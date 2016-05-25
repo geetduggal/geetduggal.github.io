@@ -1,0 +1,6 @@
+{
+  "name": "Geet's Handy Links and Notes",
+  "tagline": "",
+  "body": "# Handy Links and Notes\r\n\r\n## Docker\r\n\r\n* Nice flow to get a scalable Spark+HDFS workbench using Docker.  Could work nicely with Swarm.  https://www.big-data-europe.eu/scalable-sparkhdfs-workbench-using-docker/",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
