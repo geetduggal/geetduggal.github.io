@@ -16,7 +16,7 @@ table {
   width: 100%;
 }
 
-table, th, td {
+table {
   border: 1px solid silver;
   width: 80%;
   margin: auto;
