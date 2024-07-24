@@ -11,12 +11,6 @@ body {
 }
 
 table {
-  border-collapse: collapse;
-  max-width: 100%;
-  width: 100%;
-}
-
-table {
   border: 1px solid silver;
   margin: auto;
   border-collapse: collapse;
