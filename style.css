@@ -17,11 +17,11 @@ table {
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid grey;
 }
 
 td {
-  padding: 5px;
+  padding: 10px;
 }
 
 /* Media query for tablets and smaller screens */
