@@ -10,6 +10,11 @@ body {
     border-radius: 8px;
 }
 
+td {
+	width:1px;
+	white-space:nowrap;
+}
+
 /* Media query for tablets and smaller screens */
 @media (max-width: 768px) {
     body {
