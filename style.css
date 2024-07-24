@@ -2,11 +2,10 @@
 body {
     margin: 0 10%; /* Default margin of 10% on left and right */
     padding: 20px;
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
 }
 
 .content {
-    background-color: #f4f4f4;
     padding: 20px;
     border-radius: 8px;
 }
