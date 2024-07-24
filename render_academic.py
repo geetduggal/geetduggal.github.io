@@ -6,7 +6,7 @@ print("""
 """)
 for line in sys.stdin:
     fields = line.rstrip().split("\t")
-    # authors, title, publication, volume, number, pages, year, publisher = fields
+    authors, title, publication, volume, number, pages, year, publisher, _ = fields
     print("<tr>")
     print(f"<td>{line}</td>")
     print("</tr>")
