@@ -17,7 +17,10 @@ table {
 }
 
 table, th, td {
-  border: 1px solid grey;
+  border: 1px solid silver;
+  width: 80%;
+  margin: auto;
+  border-collapse: collapse;
 }
 
 td {
