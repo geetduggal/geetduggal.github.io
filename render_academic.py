@@ -8,7 +8,7 @@ for line in sys.stdin:
     fields = line.rstrip().split("\t")
     # authors, title, publication, volume, number, pages, year, publisher = fields
     print("<tr>")
-    print(f"<td>{line.replace("\t", " ")}</td>")
+    print(f"<td>{line}</td>")
     print("</tr>")
 print("</table>")
 print("""<p>Profile on
