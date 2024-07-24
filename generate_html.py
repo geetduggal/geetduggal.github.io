@@ -1,0 +1,23 @@
+
+html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geet Duggal</title>
+    <link rel="stylesheet" href="style.css?v=1721795989">
+</head>
+<body>
+    <div class="content">
+        <h1>Geet Duggal</h1>
+        <p>This is an example of applying responsive margins to the body element.</p>
+    </div>
+"""
+
+html += """</body>
+</html>
+"""
+
+with open("index.html", "w") as f:
+	f.write(html)
+
