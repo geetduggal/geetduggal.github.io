@@ -1,4 +1,5 @@
 all: index.html
+	git commit -am 'Minor mod' && git push
 
 index.html: header.html footer.html render_geets.py geets.tsv
 	cat header.html > index.html
