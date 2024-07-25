@@ -22,6 +22,10 @@ td {
   padding: 10px;
 }
 
+a {
+  color: azure;
+}
+
 /* Media query for tablets and smaller screens */
 @media (max-width: 768px) {
   body {
