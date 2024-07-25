@@ -10,6 +10,26 @@ body {
     border-radius: 8px;
 }
 
+.typing-animation {
+    animation: blink 1s step-end infinite;
+    font-family: monospace;
+}
+
+#typing {
+    border-right: 2px solid;
+    overflow: hidden;
+    width: fit-content;
+}
+
+@keyframes blink {
+    0%, 100% {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #000;
+    }
+}
+
 table {
   border: 1px solid coral;
   margin: auto;
