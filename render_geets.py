@@ -5,7 +5,7 @@ for i,line in enumerate(sys.stdin):
     date, geet = line.rstrip().split("\t")
     if i == 0:
         latest_geet = geet
-        print(f"<tr><td nowrap width=50px>{date}</td><td nowrap><div id='typing' class='typing-animation'></div></td></tr>")
+        print(f"<tr><td nowrap width=50px>{date}</td><td><div id='typing' class='typing-animation'></div></td></tr>")
     else:
         print(f"<tr><td nowrap width=50px>{date}</td><td>{geet}</td></tr>")
 print("</table>")
@@ -20,14 +20,14 @@ print("""
       if (index < text.length) {
           document.getElementById('typing').textContent += text.charAt(index);
           index++;
-          setTimeout(type, 50);
+          setTimeout(type, 50-index);
       } else {
         setTimeout(() => {
           document.getElementById('typing').innerHTML = text;
           document.getElementById('typing').classList.remove('typing-animation');
           document.getElementById('typing').style.borderRight = 'none';
 
-        }, 1000);
+        }, 0);
       }
   }
 
