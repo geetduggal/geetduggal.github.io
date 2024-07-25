@@ -16,7 +16,7 @@ body {
 }
 
 #typing {
-    border-right: 2px solid;
+    border-right: 0px solid;
     overflow: hidden;
     width: fit-content;
 }

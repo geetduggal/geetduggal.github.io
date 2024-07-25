@@ -20,14 +20,14 @@ print("""
       if (index < text.length) {
           document.getElementById('typing').textContent += text.charAt(index);
           index++;
-          setTimeout(type, 50-index);
+          setTimeout(type, 50);
       } else {
         setTimeout(() => {
           document.getElementById('typing').innerHTML = text;
           document.getElementById('typing').classList.remove('typing-animation');
           document.getElementById('typing').style.borderRight = 'none';
 
-        }, 0);
+        }, 500);
       }
   }
 
