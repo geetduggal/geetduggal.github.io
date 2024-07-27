@@ -9,6 +9,7 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         const code = params.get('code');
+        alert('Got code: '+code);
 
         if (code) {
             fetch('https://geetduggal.netlify.app/.netlify/functions/exchange_token', {
