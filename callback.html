@@ -11,6 +11,7 @@
         const code = params.get('code');
 
         if (code) {
+            alert('Data');
             fetch('https://geetduggal.netlify.app/.netlify/functions/exchange_token', {
                 method: 'POST',
                 headers: {
@@ -21,7 +22,6 @@
             })
             .then(response => response.json())
             .then(data => {
-                alert('Data');
                 if (data.access_token) {
                     alert('Setting local storage');
                     localStorage.setItem('githubToken', data.access_token);
