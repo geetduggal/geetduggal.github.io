@@ -15,7 +15,7 @@
     <button id="loginButton">Login with GitHub</button>
     <script>
         const clientId = 'Ov23lijztEAKMo8ij7cx';
-        const redirectUri = window.location.origin + '/callback.html';
+        const redirectUri = 'https://geetduggal.com/callback.html';
 
         document.getElementById('loginButton').addEventListener('click', () => {
             const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=repo`;
