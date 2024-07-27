@@ -9,7 +9,6 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         const code = params.get('code');
-        alert('Got code: '+code);
 
         if (code) {
             fetch('https://geetduggal.netlify.app/.netlify/functions/exchange_token', {
@@ -22,6 +21,7 @@
             })
             .then(response => response.json())
             .then(data => {
+                alert('Data');
                 if (data.access_token) {
                     alert('Setting local storage');
                     localStorage.setItem('githubToken', data.access_token);
