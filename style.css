@@ -59,3 +59,35 @@ a {
     margin: 0 2%; /* Further reduce margin to 2% for screens 480px or smaller */
   }
 }
+
+/* Text input box */
+.input-box {
+    width: 300px;
+    padding: 5px;
+    border: 2px solid #FF7F50; /* Coral border */
+    border-radius: 5px;
+    outline: none;
+/*    font-size: 16px; */
+    color: #333;
+}
+
+.input-box:focus {
+    border-color: #4169E1; /* Royal blue border on focus */
+}
+
+/* Button */
+.button {
+    padding: 5px 10px;
+    margin-top: 10px;
+    background-color: #4169E1; /* Royal blue background */
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+ /*   font-size: 16px; */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #27408B; /* Darker royal blue on hover */
+}
