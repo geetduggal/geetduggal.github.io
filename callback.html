@@ -10,29 +10,36 @@
         const params = new URLSearchParams(window.location.search);
         const code = params.get('code');
 
+        console.log('Received code:', code);
+
         if (code) {
-            alert("Received");
             fetch('https://geetduggal.netlify.app/.netlify/functions/exchange_token', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ code })
+                body: JSON.stringify({ code }),
             })
             .then(response => {
-               alert("RESPONSE");
-               response.json()
-               alert(response.json());
+                console.log('Response received:', response);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
             })
             .then(data => {
+                console.log('Data received:', data);
                 if (data.access_token) {
-                    alert('Setting local storage');
                     localStorage.setItem('githubToken', data.access_token);
                     window.location.href = '/';
                 } else {
                     alert('Failed to authenticate');
                 }
+            })
+            .catch(error => {
+                console.error('Error during fetch:', error);
+                alert('Error during authentication: ' + error.message);
             });
         } else {
             alert('No code provided');
@@ -40,3 +47,4 @@
     </script>
 </body>
 </html>
+
