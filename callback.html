@@ -11,6 +11,7 @@
         const code = params.get('code');
 
         if (code) {
+            alert("Received");
             fetch('https://geetduggal.netlify.app/.netlify/functions/exchange_token', {
                 method: 'POST',
                 headers: {
@@ -20,7 +21,6 @@
                 body: JSON.stringify({ code })
             })
             .then(response => {
-               alert("Received");
                response.json()
             })
             .then(data => {
