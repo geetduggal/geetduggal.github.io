@@ -1,0 +1,23 @@
+name: Append Geet
+
+on:
+  repository_dispatch:
+    types: [append_geet]
+
+jobs:
+  append_geet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Append to geets.tsv
+        run: |
+          echo "${{ github.event.client_payload.data }}" >> geets.tsv
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add geets.tsv
+          git commit -m "Append new geet"
+          git push
+
