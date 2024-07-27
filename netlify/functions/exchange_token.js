@@ -10,7 +10,7 @@ exports.handler = async (event) => {
     if (event.httpMethod === 'OPTIONS') {
         // Handle CORS preflight request
         return {
-            statusCode: 200,
+            statusCode: 204, // No Content
             headers: headers,
             body: ''
         };
@@ -51,4 +51,3 @@ exports.handler = async (event) => {
         };
     }
 };
-
