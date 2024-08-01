@@ -20,7 +20,7 @@ print("""
       if (index < text.length) {
           document.getElementById('typing').textContent += text.charAt(index);
           index++;
-          setTimeout(type, 50);
+          setTimeout(type, 15);
       } else {
         setTimeout(() => {
           document.getElementById('typing').innerHTML = text;
