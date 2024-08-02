@@ -20,8 +20,8 @@ print("""
       if (index < text.length) {
           document.getElementById('typing').textContent += text.charAt(index);
           index++;
-          setTimeout(type, 15);
-      } else {
+          setTimeout(type, 50);
+      } jelse {
         setTimeout(() => {
           document.getElementById('typing').innerHTML = text;
           document.getElementById('typing').classList.remove('typing-animation');
