@@ -21,7 +21,7 @@ print("""
           document.getElementById('typing').textContent += text.charAt(index);
           index++;
           setTimeout(type, 50);
-      } jelse {
+      } else {
         setTimeout(() => {
           document.getElementById('typing').innerHTML = text;
           document.getElementById('typing').classList.remove('typing-animation');
