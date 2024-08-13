@@ -7,9 +7,14 @@ let bRollSources = {};
 let cachedStreams = {}; // Cache for streams
 
 async function loadStreamConfig() {
-    const response = await fetch('ambient-stream-config.json');
-    const config = await response.json();
-    populateStreamSelect(config.streams);
+    try {
+        const response = await fetch('ambient-stream-config.json');
+        if (!response.ok) throw new Error(`Failed to fetch stream config: ${response.statusText}`);
+        const config = await response.json();
+        populateStreamSelect(config.streams);
+    } catch (error) {
+        console.error('Error loading stream config:', error);
+    }
 }
 
 function populateStreamSelect(streams) {
@@ -23,30 +28,45 @@ function populateStreamSelect(streams) {
 }
 
 async function loadAudioBuffer(file) {
-    const response = await fetch(file);
-    const arrayBuffer = await response.arrayBuffer();
-    return audioContext.decodeAudioData(arrayBuffer);
+    try {
+        console.log(`Fetching audio file: ${file}`);
+        const response = await fetch(file, { mode: 'cors' }); // Ensuring CORS is handled
+        if (!response.ok) throw new Error(`Failed to fetch audio file: ${response.statusText}`);
+        const arrayBuffer = await response.arrayBuffer();
+        return await audioContext.decodeAudioData(arrayBuffer);
+    } catch (error) {
+        console.error('Error loading audio buffer:', error);
+        return null;
+    }
 }
 
 async function preloadBaseTrackBuffers(baseTracks, streamName) {
-    if (cachedStreams[streamName] && cachedStreams[streamName].baseTrackBuffers) {
-        baseTrackBuffers = cachedStreams[streamName].baseTrackBuffers;
-    } else {
-        baseTrackBuffers = await Promise.all(baseTracks.map(track => loadAudioBuffer(track)));
-        cachedStreams[streamName] = { ...cachedStreams[streamName], baseTrackBuffers };
+    try {
+        if (cachedStreams[streamName] && cachedStreams[streamName].baseTrackBuffers) {
+            baseTrackBuffers = cachedStreams[streamName].baseTrackBuffers;
+        } else {
+            baseTrackBuffers = await Promise.all(baseTracks.map(track => loadAudioBuffer(track)));
+            cachedStreams[streamName] = { ...cachedStreams[streamName], baseTrackBuffers };
+        }
+    } catch (error) {
+        console.error('Error preloading base track buffers:', error);
     }
 }
 
 async function preloadBrollBuffers(bRoll, streamName) {
-    if (cachedStreams[streamName] && cachedStreams[streamName].bRollBuffers) {
-        bRollBuffers = cachedStreams[streamName].bRollBuffers;
-    } else {
-        const bufferPromises = bRoll.map(effect => loadAudioBuffer(effect.file));
-        const buffers = await Promise.all(bufferPromises);
-        bRoll.forEach((effect, index) => {
-            bRollBuffers[index] = buffers[index];
-        });
-        cachedStreams[streamName] = { ...cachedStreams[streamName], bRollBuffers };
+    try {
+        if (cachedStreams[streamName] && cachedStreams[streamName].bRollBuffers) {
+            bRollBuffers = cachedStreams[streamName].bRollBuffers;
+        } else {
+            const bufferPromises = bRoll.map(effect => loadAudioBuffer(effect.file));
+            const buffers = await Promise.all(bufferPromises);
+            bRoll.forEach((effect, index) => {
+                bRollBuffers[index] = buffers[index];
+            });
+            cachedStreams[streamName] = { ...cachedStreams[streamName], bRollBuffers };
+        }
+    } catch (error) {
+        console.error('Error preloading B-roll buffers:', error);
     }
 }
 
@@ -56,14 +76,18 @@ function getPlaybackOffset(duration) {
 }
 
 function startPlayback() {
-    const { buffer, duration } = concatenateBuffers(baseTrackBuffers);
-    baseTrackSource = audioContext.createBufferSource();
-    baseTrackSource.buffer = buffer;
-    baseTrackSource.loop = true;
-    baseTrackSource.connect(audioContext.destination);
+    try {
+        const { buffer, duration } = concatenateBuffers(baseTrackBuffers);
+        baseTrackSource = audioContext.createBufferSource();
+        baseTrackSource.buffer = buffer;
+        baseTrackSource.loop = true;
+        baseTrackSource.connect(audioContext.destination);
 
-    const offset = getPlaybackOffset(duration);
-    baseTrackSource.start(0, offset); // Start at the calculated offset
+        const offset = getPlaybackOffset(duration);
+        baseTrackSource.start(0, offset); // Start at the calculated offset
+    } catch (error) {
+        console.error('Error starting playback:', error);
+    }
 }
 
 function playStream() {
@@ -180,6 +204,10 @@ document.getElementById('streamSelect').addEventListener('change', async event =
         loadingSpinner.style.display = 'block'; // Show loading spinner
 
         const response = await fetch('ambient-stream-config.json');
+        if (!response.ok) {
+            console.error('Failed to load stream config:', response.statusText);
+            return;
+        }
         const config = await response.json();
         currentStream = config.streams.find(stream => stream.name === streamName);
 
