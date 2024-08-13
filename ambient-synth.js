@@ -69,7 +69,7 @@ function startPlayback() {
 function playStream() {
     if (!currentStream || baseTrackBuffers.length === 0) return;
 
-    if (audioContext.state === 'suspended') {
+    if (audioContext.state === 'suspended' || audioContext.state === 'interrupted') {
         audioContext.resume().then(() => {
             startPlayback();
         }).catch(error => {
@@ -196,9 +196,18 @@ document.getElementById('streamSelect').addEventListener('change', async event =
 
 // Resume the audio context on first user interaction, including selection of dropdown
 document.getElementById('streamSelect').addEventListener('focus', () => {
-    if (audioContext.state === 'suspended') {
+    if (audioContext.state === 'suspended' || audioContext.state === 'interrupted') {
         audioContext.resume().catch(error => {
             console.error('Error resuming audio context on focus:', error);
+        });
+    }
+});
+
+// Handle touch events to resume the audio context on Safari mobile
+document.addEventListener('touchstart', () => {
+    if (audioContext.state === 'suspended' || audioContext.state === 'interrupted') {
+        audioContext.resume().catch(error => {
+            console.error('Error resuming audio context on touchstart:', error);
         });
     }
 });
