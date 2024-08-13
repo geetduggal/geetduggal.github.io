@@ -1,0 +1,94 @@
+.container {
+    margin-top: 50px;
+}
+
+
+.controls {
+    display: flex;
+    align-items: center; /* Vertically center all elements */
+    justify-content: center;
+    gap: 12px; /* Ensure there's enough space between elements */
+}
+
+.controls label {
+    font-size: 16px;
+    color: #4169E1; /* Royal Blue */
+}
+
+select {
+    margin: 0 5px;
+    padding: 3px 8px;
+    font-size: 14px;
+    border: 1px solid #4169E1; /* Royal Blue */
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    color: #333333;
+    height: auto;
+    line-height: 1.2;
+    -webkit-appearance: none; /* Remove default styling in Safari */
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select:focus {
+    outline: none;
+    border-color: #FF6F61; /* Coral */
+}
+
+input[type="checkbox"] {
+    width: 18px; /* Standard checkbox size */
+    height: 18px;
+    margin: 0; /* Remove additional margins */
+    vertical-align: middle; /* Align with the text */
+    appearance: checkbox; /* Ensure checkboxes render correctly */
+    -webkit-appearance: checkbox; /* Safari fix */
+}
+
+#bRollCheckboxes label {
+    margin-right: 10px;
+    margin-left: 5px;
+    font-size: 14px;
+    color: #4169E1; /* Royal Blue */
+    vertical-align: middle; /* Align with the checkbox */
+}
+
+#bRollCheckboxes input[type="checkbox"] {
+    margin-right: 5px;
+    vertical-align: middle; /* Align with the text */
+}
+
+.loading-spinner {
+    border: 2px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 2px solid #FF6F61; /* Coral */
+    width: 16px;
+    height: 16px;
+    animation: spin 0.8s linear infinite;
+    display: none;
+    vertical-align: middle; /* Align with the text */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .controls label,
+    select,
+    input[type="checkbox"],
+    #bRollCheckboxes label,
+    .loading-spinner {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}

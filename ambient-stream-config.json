@@ -1,0 +1,24 @@
+{
+    "streams": [
+        {
+            "name": "LOTR",
+            "baseTracks": [
+                "aud/lotr.mp3"
+            ],
+            "bRoll": [
+                {
+                    "file": "aud/birds.mp3",
+                    "minInterval": 10,
+                    "maxInterval": 30,
+                    "volume": 0.8
+                },
+                {
+                    "file": "aud/rain.mp3",
+                    "minInterval": 20,
+                    "maxInterval": 40,
+                    "volume": 0.5
+                }
+            ]
+        }
+    ]
+}
