@@ -4,7 +4,8 @@ let baseTrackBuffers = [];
 let baseTrackSource = null;
 let bRollBuffers = {};
 let bRollSources = {};
-let cachedStreams = {}; // Cache for streams
+let cachedStreams = {};
+let isPlaying = false;
 
 async function loadStreamConfig() {
     try {
@@ -29,8 +30,7 @@ function populateStreamSelect(streams) {
 
 async function loadAudioBuffer(file) {
     try {
-        console.log(`Fetching audio file: ${file}`);
-        const response = await fetch(file, { mode: 'cors' }); // Ensuring CORS is handled
+        const response = await fetch(file, { mode: 'cors' });
         if (!response.ok) throw new Error(`Failed to fetch audio file: ${response.statusText}`);
         const arrayBuffer = await response.arrayBuffer();
         return await audioContext.decodeAudioData(arrayBuffer);
@@ -96,11 +96,33 @@ function playStream() {
     if (audioContext.state === 'suspended' || audioContext.state === 'interrupted') {
         audioContext.resume().then(() => {
             startPlayback();
+            isPlaying = true;
+            updatePlayPauseButton();
         }).catch(error => {
             console.error('Error resuming audio context:', error);
         });
     } else {
         startPlayback();
+        isPlaying = true;
+        updatePlayPauseButton();
+    }
+}
+
+function stopStream() {
+    if (baseTrackSource) {
+        baseTrackSource.stop();
+        baseTrackSource = null;
+    }
+    Object.keys(bRollSources).forEach(index => stopBroll(index));
+    isPlaying = false;
+    updatePlayPauseButton();
+}
+
+function togglePlayback() {
+    if (isPlaying) {
+        stopStream();
+    } else {
+        playStream();
     }
 }
 
@@ -124,7 +146,7 @@ function concatenateBuffers(buffers) {
 }
 
 function playBroll(buffer, volume, index) {
-    if (bRollSources[index]) return; // If already playing, do nothing
+    if (bRollSources[index]) return;
 
     const source = audioContext.createBufferSource();
     source.buffer = buffer;
@@ -143,14 +165,6 @@ function stopBroll(index) {
     }
 }
 
-function stopStream() {
-    if (baseTrackSource) {
-        baseTrackSource.stop();
-        baseTrackSource = null;
-    }
-    Object.keys(bRollSources).forEach(index => stopBroll(index));
-}
-
 function resetBrollCheckboxes() {
     const bRollCheckboxes = document.getElementById('bRollCheckboxes');
     const checkboxes = bRollCheckboxes.querySelectorAll('input[type="checkbox"]');
@@ -160,13 +174,12 @@ function resetBrollCheckboxes() {
 function resetState() {
     stopStream();
     resetBrollCheckboxes();
-    document.getElementById('bRollCheckboxes').style.display = 'none'; // Hide B-roll checkboxes
-    // Retain cached buffers
+    document.getElementById('bRollCheckboxes').style.display = 'none';
 }
 
 function populateBrollCheckboxes(bRoll) {
     const bRollCheckboxes = document.getElementById('bRollCheckboxes');
-    bRollCheckboxes.innerHTML = ''; // Clear existing checkboxes
+    bRollCheckboxes.innerHTML = '';
 
     bRoll.forEach((effect, index) => {
         const checkbox = document.createElement('input');
@@ -189,8 +202,21 @@ function populateBrollCheckboxes(bRoll) {
         bRollCheckboxes.appendChild(label);
     });
 
-    bRollCheckboxes.style.display = 'inline'; // Show B-roll checkboxes
+    bRollCheckboxes.style.display = 'inline';
 }
+
+function updatePlayPauseButton() {
+    const playPauseButton = document.getElementById('playPauseButton');
+    if (isPlaying) {
+        playPauseButton.classList.remove('play');
+        playPauseButton.classList.add('stop');
+    } else {
+        playPauseButton.classList.remove('stop');
+        playPauseButton.classList.add('play');
+    }
+}
+
+document.getElementById('playPauseButton').addEventListener('click', togglePlayback);
 
 document.getElementById('streamSelect').addEventListener('change', async event => {
     const streamName = event.target.value;
@@ -198,10 +224,10 @@ document.getElementById('streamSelect').addEventListener('change', async event =
 
     if (streamName === 'none') {
         resetState();
-        loadingSpinner.style.display = 'none'; // Hide loading spinner
+        loadingSpinner.style.display = 'none';
     } else {
-        resetState(); // Reset state before loading new stream
-        loadingSpinner.style.display = 'block'; // Show loading spinner
+        resetState();
+        loadingSpinner.style.display = 'block';
 
         const response = await fetch('ambient-stream-config.json');
         if (!response.ok) {
@@ -215,28 +241,10 @@ document.getElementById('streamSelect').addEventListener('change', async event =
             await preloadBaseTrackBuffers(currentStream.baseTracks, streamName);
             await preloadBrollBuffers(currentStream.bRoll, streamName);
             populateBrollCheckboxes(currentStream.bRoll);
-            playStream(); // Ensure audio context is resumed and stream plays automatically
+            playStream();
         }
 
-        loadingSpinner.style.display = 'none'; // Hide loading spinner after loading or if the stream isn't found
-    }
-});
-
-// Resume the audio context on first user interaction, including selection of dropdown
-document.getElementById('streamSelect').addEventListener('focus', () => {
-    if (audioContext.state === 'suspended' || audioContext.state === 'interrupted') {
-        audioContext.resume().catch(error => {
-            console.error('Error resuming audio context on focus:', error);
-        });
-    }
-});
-
-// Handle touch events to resume the audio context on Safari mobile
-document.addEventListener('touchstart', () => {
-    if (audioContext.state === 'suspended' || audioContext.state === 'interrupted') {
-        audioContext.resume().catch(error => {
-            console.error('Error resuming audio context on touchstart:', error);
-        });
+        loadingSpinner.style.display = 'none';
     }
 });
 
