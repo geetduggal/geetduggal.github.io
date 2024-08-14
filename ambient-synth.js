@@ -97,6 +97,7 @@ function playStream() {
         audioContext.resume().then(() => {
             startPlayback();
             isPlaying = true;
+            playActiveBroll();
             updatePlayPauseButton();
         }).catch(error => {
             console.error('Error resuming audio context:', error);
@@ -104,6 +105,7 @@ function playStream() {
     } else {
         startPlayback();
         isPlaying = true;
+        playActiveBroll();
         updatePlayPauseButton();
     }
 }
@@ -122,8 +124,20 @@ function togglePlayback() {
     if (isPlaying) {
         stopStream();
     } else {
-        playStream();
+        if (document.getElementById('streamSelect').value !== 'none') {
+            playStream();
+        }
     }
+}
+
+function playActiveBroll() {
+    const bRollCheckboxes = document.getElementById('bRollCheckboxes');
+    const checkboxes = bRollCheckboxes.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox, index) => {
+        if (checkbox.checked) {
+            playBroll(bRollBuffers[index], 1.0, index); // Adjust volume as needed
+        }
+    });
 }
 
 function concatenateBuffers(buffers) {
@@ -192,7 +206,9 @@ function populateBrollCheckboxes(bRoll) {
 
         checkbox.addEventListener('change', () => {
             if (checkbox.checked) {
-                playBroll(bRollBuffers[index], effect.volume, index);
+                if (isPlaying) {
+                    playBroll(bRollBuffers[index], effect.volume, index);
+                }
             } else {
                 stopBroll(index);
             }
@@ -241,11 +257,33 @@ document.getElementById('streamSelect').addEventListener('change', async event =
             await preloadBaseTrackBuffers(currentStream.baseTracks, streamName);
             await preloadBrollBuffers(currentStream.bRoll, streamName);
             populateBrollCheckboxes(currentStream.bRoll);
-            playStream();
+            // Play automatically if the play button was already pressed
+            if (isPlaying) {
+                playStream();
+            }
         }
 
         loadingSpinner.style.display = 'none';
     }
 });
+
+function updatePlayPauseButton() {
+    const playPauseButton = document.getElementById('playPauseButton');
+    const playIcon = document.getElementById('playIcon');
+    const stopIcon = document.getElementById('stopIcon');
+
+    if (isPlaying) {
+        playPauseButton.classList.remove('play');
+        playPauseButton.classList.add('stop');
+        playIcon.style.display = 'none';
+        stopIcon.style.display = 'inline';
+    } else {
+        playPauseButton.classList.remove('stop');
+        playPauseButton.classList.add('play');
+        stopIcon.style.display = 'none';
+        playIcon.style.display = 'inline';
+    }
+}
+
 
 window.onload = loadStreamConfig;
