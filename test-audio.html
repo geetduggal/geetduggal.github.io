@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Audio Playback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #status {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #1E90FF; /* Royal blue */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="status">Loading audio...</div>
+    </div>
+
+    <script>
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        let audioBuffer = null;
+
+        async function loadAndPlayAudio(url) {
+            try {
+                const response = await fetch(url);
+                const arrayBuffer = await response.arrayBuffer();
+                audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+                // Update status to indicate the audio is playing
+                document.getElementById('status').textContent = 'Playing audio...';
+
+                // Play the audio
+                playAudioBuffer();
+            } catch (error) {
+                document.getElementById('status').textContent = 'Failed to load audio.';
+                console.error('Error loading audio:', error);
+            }
+        }
+
+        function playAudioBuffer() {
+            if (audioBuffer) {
+                const source = audioContext.createBufferSource();
+                source.buffer = audioBuffer;
+                source.connect(audioContext.destination);
+                source.start(0);
+            }
+        }
+
+        // Load and play the audio on page load
+        loadAndPlayAudio('aud/lotr.mp3');
+    </script>
+</body>
+</html>
+
