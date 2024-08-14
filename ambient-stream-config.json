@@ -3,7 +3,7 @@
         {
             "name": "LOTR",
             "baseTracks": [
-                "aud/lotr.mp3"
+                "aud/lotr-truncated.mp3"
             ],
             "bRoll": [
                 {
