@@ -29,11 +29,13 @@ function calculatePlaybackOffset(duration) {
     return currentTime % duration; // Offset time within the track duration
 }
 
-function setTrackOffset(track) {
-    // Wait until the metadata (including duration) is loaded
-    track.addEventListener('loadedmetadata', () => {
+function setTrackOffsetAndPlay(track) {
+    track.addEventListener('canplaythrough', () => {
         if (track.duration && !isNaN(track.duration)) {
             track.currentTime = calculatePlaybackOffset(track.duration);
+            if (isPlaying) {
+                track.play();
+            }
         }
     });
 }
@@ -46,14 +48,14 @@ function loadConfig(config) {
     // Create base track
     baseTrack = new Audio(config.baseTrack);
     baseTrack.loop = true; // Ensure the base track loops
-    setTrackOffset(baseTrack);
+    setTrackOffsetAndPlay(baseTrack);
 
     // Create B-roll tracks and volume controls dynamically
     config.bRolls.forEach(bRoll => {
         const audioElement = new Audio(bRoll.src);
         audioElement.loop = bRoll.loop || false;
         audioElement.volume = bRoll.volume || 1.0;
-        setTrackOffset(audioElement);
+        setTrackOffsetAndPlay(audioElement);
         bRollTracks.push(audioElement);
 
         // Create volume controls for each B-roll
@@ -66,8 +68,18 @@ function loadConfig(config) {
         volumeControl.max = 1;
         volumeControl.step = 0.1;
         volumeControl.value = audioElement.volume;
+
+        // Add event listener for volume changes
         volumeControl.addEventListener('input', (e) => {
-            audioElement.volume = e.target.value;
+            const volume = e.target.value;
+            audioElement.volume = volume;
+
+            // Workaround for mobile browsers (especially iOS)
+            if (audioElement.muted) {
+                audioElement.muted = false;
+            }
+            audioElement.pause();
+            audioElement.play();
         });
 
         volumeControlsContainer.appendChild(label);
@@ -78,12 +90,12 @@ function loadConfig(config) {
 function playAllTracks() {
     // Ensure the playback offset is set each time play is toggled
     if (baseTrack) {
-        setTrackOffset(baseTrack);
+        setTrackOffsetAndPlay(baseTrack);
         baseTrack.play();
     }
 
     bRollTracks.forEach(track => {
-        setTrackOffset(track);
+        setTrackOffsetAndPlay(track);
         track.play();
     });
 
