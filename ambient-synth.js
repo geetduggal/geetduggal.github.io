@@ -24,22 +24,6 @@ async function loadStreamOptions() {
     }
 }
 
-function calculatePlaybackOffset(duration) {
-    const currentTime = Date.now() / 1000; // Current time in seconds
-    return currentTime % duration; // Offset time within the track duration
-}
-
-function setTrackOffsetAndPlay(track) {
-    track.addEventListener('canplaythrough', () => {
-        if (track.duration && !isNaN(track.duration)) {
-            track.currentTime = calculatePlaybackOffset(track.duration);
-            if (isPlaying) {
-                track.play();
-            }
-        }
-    });
-}
-
 function loadConfig(config) {
     // Clear existing volume controls and tracks
     bRollTracks = [];
@@ -48,14 +32,12 @@ function loadConfig(config) {
     // Create base track
     baseTrack = new Audio(config.baseTrack);
     baseTrack.loop = true; // Ensure the base track loops
-    setTrackOffsetAndPlay(baseTrack);
 
     // Create B-roll tracks and volume controls dynamically
     config.bRolls.forEach(bRoll => {
         const audioElement = new Audio(bRoll.src);
         audioElement.loop = bRoll.loop || false;
         audioElement.volume = bRoll.volume || 1.0;
-        setTrackOffsetAndPlay(audioElement);
         bRollTracks.push(audioElement);
 
         // Create volume controls for each B-roll
@@ -71,15 +53,7 @@ function loadConfig(config) {
 
         // Add event listener for volume changes
         volumeControl.addEventListener('input', (e) => {
-            const volume = e.target.value;
-            audioElement.volume = volume;
-
-            // Workaround for mobile browsers (especially iOS)
-            if (audioElement.muted) {
-                audioElement.muted = false;
-            }
-            audioElement.pause();
-            audioElement.play();
+            audioElement.volume = e.target.value;
         });
 
         volumeControlsContainer.appendChild(label);
@@ -90,12 +64,10 @@ function loadConfig(config) {
 function playAllTracks() {
     // Ensure the playback offset is set each time play is toggled
     if (baseTrack) {
-        setTrackOffsetAndPlay(baseTrack);
         baseTrack.play();
     }
 
     bRollTracks.forEach(track => {
-        setTrackOffsetAndPlay(track);
         track.play();
     });
 
