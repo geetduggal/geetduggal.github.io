@@ -4,7 +4,7 @@
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    max-width: 600px; /* Adjusted max-width for a more comfortable layout */
+    max-width: 600px;
     padding: 10px;
 }
 
@@ -13,7 +13,7 @@
     align-items: center;
     gap: 10px;
     width: 100%;
-    flex-wrap: nowrap; /* Prevent wrapping on larger screens */
+    flex-wrap: nowrap;
 }
 
 .play-button {
@@ -46,7 +46,7 @@ select {
     -webkit-appearance: none;
     background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%231E90FF" d="M2 0L0 2h4zM2 5L0 3h4z"/></svg>');
     background-repeat: no-repeat;
-    background-position: right 10px top 50%;
+    background-position: right 10px center;
     background-size: 8px 10px;
 }
 
@@ -71,11 +71,11 @@ select::-ms-expand {
 
 .volume-controls input[type="range"] {
     -webkit-appearance: none;
+    appearance: none;
     width: 100px; /* Fixed width to ensure functionality */
     height: 8px;
     background: #1E90FF; /* Royal blue */
     outline: none;
-    opacity: 0.9;
     border-radius: 5px;
     border: 1px solid #FF6F61; /* Coral border */
     cursor: pointer;
@@ -83,7 +83,6 @@ select::-ms-expand {
 
 .volume-controls input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    appearance: none;
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -97,6 +96,10 @@ select::-ms-expand {
     border-radius: 50%;
     background: #FF6F61; /* Coral color */
     cursor: pointer;
+}
+
+.volume-controls input[type="range"]:focus {
+    outline: none; /* Remove focus outline on sliders */
 }
 
 .loading-spinner {
