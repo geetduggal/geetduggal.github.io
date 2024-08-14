@@ -12,48 +12,30 @@
 }
 
 .play-button {
-    width: 35px; /* Slightly larger size */
+    width: 35px;
     height: 35px;
+    background-color: #FF6F61; /* Coral background */
     border: none;
-    outline: none;
+    border-radius: 50%;
     cursor: pointer;
-    background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    border: 2px solid transparent;
-}
-
-.play-button.play {
-    background-color: #FF6F61; /* Coral background */
-    border-color: #FF6F61;
-}
-
-.play-button.stop {
-    background-color: #1E90FF; /* Royal blue background */
-    border-color: #1E90FF;
+    color: white;
 }
 
 .play-button svg {
-    width: 18px; /* Larger icon size */
+    width: 18px;
     height: 18px;
 }
 
 select {
-    width: 150px; /* Adjusted to fit 'No Ambience' text */
+    width: 150px;
     padding: 6px;
     font-size: 14px;
-    border: 2px solid #1E90FF; /* Royal blue color */
+    border: 2px solid #1E90FF; /* Royal blue */
     color: #333;
     background-color: #FFF;
-    -webkit-appearance: none; /* Remove default styling on Safari */
-    -moz-appearance: none; /* Remove default styling on Firefox */
-    appearance: none; /* Modern browsers */
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMCAxMCI+PHBhdGggZmlsbD0iIzFGMTlGRiIgZD0iTTAgNGw1IDUgNS01eiIvPjwvc3ZnPg=='); /* Custom dropdown arrow */
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 10px;
 }
 
 .loading-spinner {
@@ -70,3 +52,24 @@ select {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.b-roll-control {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.b-roll-control label {
+    font-size: 14px;
+    color: #333;
+}
+
+.b-roll-control input[type="range"] {
+    width: 100px;
+}
+
+.b-roll-control input[type="checkbox"] {
+    transform: scale(1.2);
+}
+
