@@ -24,20 +24,36 @@ async function loadStreamOptions() {
     }
 }
 
+function calculatePlaybackOffset(duration) {
+    const currentTime = Date.now() / 1000; // Current time in seconds
+    return currentTime % duration; // Offset time within the track duration
+}
+
 function loadConfig(config) {
     // Clear existing volume controls and tracks
     bRollTracks = [];
     volumeControlsContainer.innerHTML = '';
 
-    // Create base track
+    // Create and configure the base track
     baseTrack = new Audio(config.baseTrack);
-    baseTrack.loop = true; // Ensure the base track loops
+    baseTrack.loop = true;
+
+    baseTrack.addEventListener('loadedmetadata', () => {
+        const offset = calculatePlaybackOffset(baseTrack.duration);
+        baseTrack.currentTime = offset;
+    });
 
     // Create B-roll tracks and volume controls dynamically
     config.bRolls.forEach(bRoll => {
         const audioElement = new Audio(bRoll.src);
         audioElement.loop = bRoll.loop || false;
         audioElement.volume = bRoll.volume || 1.0;
+
+        audioElement.addEventListener('loadedmetadata', () => {
+            const offset = calculatePlaybackOffset(audioElement.duration);
+            audioElement.currentTime = offset;
+        });
+
         bRollTracks.push(audioElement);
 
         // Create volume controls for each B-roll
@@ -62,7 +78,6 @@ function loadConfig(config) {
 }
 
 function playAllTracks() {
-    // Ensure the playback offset is set each time play is toggled
     if (baseTrack) {
         baseTrack.play();
     }
