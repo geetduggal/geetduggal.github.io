@@ -24,45 +24,61 @@ async function loadStreamOptions() {
     }
 }
 
-function loadConfig(config) {
+async function preloadAudio(src) {
+    return new Promise((resolve, reject) => {
+        const audio = new Audio(src);
+        audio.addEventListener('canplaythrough', () => resolve(audio));
+        audio.addEventListener('error', () => reject(`Failed to load ${src}`));
+    });
+}
+
+async function loadConfig(config) {
     // Clear existing volume controls and tracks
     bRollTracks = [];
     volumeControlsContainer.innerHTML = '';
 
-    // Create base track
-    baseTrack = new Audio(config.baseTrack);
-    baseTrack.loop = true; // Ensure the base track loops
+    try {
+        // Preload base track
+        baseTrack = await preloadAudio(config.baseTrack);
+        baseTrack.loop = true;
 
-    // Create B-roll tracks and volume controls dynamically
-    config.bRolls.forEach(bRoll => {
-        const audioElement = new Audio(bRoll.src);
-        audioElement.loop = bRoll.loop || false;
-        audioElement.volume = bRoll.volume || 1.0;
-        bRollTracks.push(audioElement);
+        // Preload B-roll tracks and create volume controls dynamically
+        for (const bRoll of config.bRolls) {
+            const audioElement = await preloadAudio(bRoll.src);
+            audioElement.loop = bRoll.loop || false;
+            audioElement.volume = bRoll.volume || 1.0;
+            bRollTracks.push(audioElement);
 
-        // Create volume controls for each B-roll
-        const label = document.createElement('label');
-        label.textContent = bRoll.name;
+            // Create volume controls for each B-roll
+            const label = document.createElement('label');
+            label.textContent = bRoll.name;
 
-        const volumeControl = document.createElement('input');
-        volumeControl.type = 'range';
-        volumeControl.min = 0;
-        volumeControl.max = 1;
-        volumeControl.step = 0.1;
-        volumeControl.value = audioElement.volume;
+            const volumeControl = document.createElement('input');
+            volumeControl.type = 'range';
+            volumeControl.min = 0;
+            volumeControl.max = 1;
+            volumeControl.step = 0.1;
+            volumeControl.value = audioElement.volume;
 
-        // Add event listener for volume changes
-        volumeControl.addEventListener('input', (e) => {
-            audioElement.volume = e.target.value;
-        });
+            // Add event listener for volume changes
+            volumeControl.addEventListener('input', (e) => {
+                const newVolume = e.target.value;
+                audioElement.volume = newVolume;
+                
+                // Ensure mobile browsers apply the volume change
+                audioElement.pause();
+                audioElement.play();
+            });
 
-        volumeControlsContainer.appendChild(label);
-        volumeControlsContainer.appendChild(volumeControl);
-    });
+            volumeControlsContainer.appendChild(label);
+            volumeControlsContainer.appendChild(volumeControl);
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function playAllTracks() {
-    // Ensure the playback offset is set each time play is toggled
     if (baseTrack) {
         baseTrack.play();
     }
@@ -111,7 +127,7 @@ streamSelect.addEventListener('change', async () => {
             const config = await response.json();
             const selectedConfig = config.streams.find(stream => stream.name === streamName);
             if (selectedConfig) {
-                loadConfig(selectedConfig);
+                await loadConfig(selectedConfig);
             }
         } catch (error) {
             console.error('Failed to load stream config:', error);
