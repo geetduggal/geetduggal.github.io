@@ -28,45 +28,75 @@
             margin-top: 20px;
             color: #1E90FF; /* Royal blue */
         }
+
+        #log {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            white-space: pre-wrap; /* Preserve whitespace and line breaks */
+            max-width: 90%;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="status">Loading audio...</div>
+        <div id="status">Tap to play audio...</div>
+        <div id="log"></div> <!-- Log output area -->
     </div>
 
     <script>
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         let audioBuffer = null;
 
+        function logMessage(message) {
+            const logElement = document.getElementById('log');
+            logElement.textContent += message + '\n';
+        }
+
         async function loadAndPlayAudio(url) {
             try {
-                const response = await fetch(url);
+                logMessage('Fetching audio file...');
+                const response = await fetch(url, { mode: 'cors' });
+                if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
+
+                logMessage('Audio file fetched, loading into buffer...');
                 const arrayBuffer = await response.arrayBuffer();
+                logMessage('ArrayBuffer loaded, decoding audio data...');
+
                 audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+                logMessage('Audio data decoded successfully.');
 
-                // Update status to indicate the audio is playing
                 document.getElementById('status').textContent = 'Playing audio...';
-
-                // Play the audio
                 playAudioBuffer();
             } catch (error) {
                 document.getElementById('status').textContent = 'Failed to load audio.';
-                console.error('Error loading audio:', error);
+                logMessage('Error loading audio: ' + error.message);
             }
         }
 
         function playAudioBuffer() {
             if (audioBuffer) {
+                logMessage('Starting audio playback...');
                 const source = audioContext.createBufferSource();
                 source.buffer = audioBuffer;
                 source.connect(audioContext.destination);
                 source.start(0);
+                logMessage('Audio playback started.');
             }
         }
 
-        // Load and play the audio on page load
-        loadAndPlayAudio('aud/lotr.mp3');
+        document.addEventListener('click', async () => {
+            try {
+                if (audioContext.state === 'suspended') {
+                    await audioContext.resume();
+                    logMessage('AudioContext resumed.');
+                }
+
+                loadAndPlayAudio('aud/lotr.mp3');
+            } catch (error) {
+                logMessage('Error during interaction: ' + error.message);
+            }
+        });
     </script>
 </body>
 </html>
