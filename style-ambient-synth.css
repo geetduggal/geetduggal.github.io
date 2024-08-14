@@ -4,7 +4,7 @@
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    max-width: 600px; /* Increased max-width for more space */
+    max-width: 600px; /* Adjusted max-width for a more comfortable layout */
     padding: 10px;
 }
 
@@ -13,7 +13,7 @@
     align-items: center;
     gap: 10px;
     width: 100%;
-    flex-wrap: nowrap; /* Ensure no wrapping on larger screens */
+    flex-wrap: nowrap; /* Prevent wrapping on larger screens */
 }
 
 .play-button {
@@ -58,21 +58,20 @@ select::-ms-expand {
     display: flex;
     align-items: center;
     gap: 10px;
-    flex-grow: 1;
-    white-space: nowrap; /* Prevent sliders from wrapping to the next line */
-    overflow-x: auto; /* Allow sliders to scroll horizontally if they overflow */
+    flex-grow: 2;
+    justify-content: center; /* Center elements on desktop and larger screens */
 }
 
 .volume-controls label {
     font-size: 14px;
     color: #333;
     margin-right: 5px;
-    white-space: nowrap; /* Ensure labels stay on one line */
+    white-space: nowrap; /* Keep labels on one line */
 }
 
 .volume-controls input[type="range"] {
     -webkit-appearance: none;
-    width: 100px; /* Set a specific width for sliders */
+    width: 100px; /* Fixed width to ensure functionality */
     height: 8px;
     background: #1E90FF; /* Royal blue */
     outline: none;
@@ -124,7 +123,7 @@ select::-ms-expand {
     .volume-controls {
         width: 100%; /* Take full width on small screens */
         flex-direction: column; /* Stack volume controls vertically */
-        align-items: flex-start;
+        align-items: center; /* Center volume controls */
     }
 
     .play-button {
