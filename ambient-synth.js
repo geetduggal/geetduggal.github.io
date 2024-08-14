@@ -2,34 +2,61 @@ const playPauseButton = document.getElementById('playPauseButton');
 const playIcon = document.getElementById('playIcon');
 const stopIcon = document.getElementById('stopIcon');
 const streamSelect = document.getElementById('streamSelect');
-const bRollControlsContainer = document.getElementById('bRollControls');
-const loadingSpinner = document.getElementById('loadingSpinner');
+const volumeControlsContainer = document.getElementById('volumeControls');
 
-const baseTrack = document.getElementById('baseTrack');
+let baseTrack = null;
 let bRollTracks = [];
-
 let isPlaying = false;
 
+async function loadStreamOptions() {
+    try {
+        const response = await fetch('ambient-stream-config.json');
+        const config = await response.json();
+
+        config.streams.forEach(stream => {
+            const option = document.createElement('option');
+            option.value = stream.name;
+            option.textContent = stream.name;
+            streamSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error loading stream options:', error);
+    }
+}
+
+function calculatePlaybackOffset(duration) {
+    const currentTime = Date.now() / 1000; // Current time in seconds
+    return currentTime % duration; // Offset time within the track duration
+}
+
+function setTrackOffset(track) {
+    // Wait until the metadata (including duration) is loaded
+    track.addEventListener('loadedmetadata', () => {
+        if (track.duration && !isNaN(track.duration)) {
+            track.currentTime = calculatePlaybackOffset(track.duration);
+        }
+    });
+}
+
 function loadConfig(config) {
-    // Clear existing B-roll controls
+    // Clear existing volume controls and tracks
     bRollTracks = [];
-    bRollControlsContainer.innerHTML = '';
+    volumeControlsContainer.innerHTML = '';
 
-    // Set base track
-    baseTrack.src = config.baseTrack;
+    // Create base track
+    baseTrack = new Audio(config.baseTrack);
+    baseTrack.loop = true; // Ensure the base track loops
+    setTrackOffset(baseTrack);
 
-    // Create B-roll controls dynamically
-    config.bRolls.forEach((bRoll, index) => {
-        const audioElement = document.createElement('audio');
-        audioElement.src = bRoll.src;
+    // Create B-roll tracks and volume controls dynamically
+    config.bRolls.forEach(bRoll => {
+        const audioElement = new Audio(bRoll.src);
         audioElement.loop = bRoll.loop || false;
         audioElement.volume = bRoll.volume || 1.0;
+        setTrackOffset(audioElement);
         bRollTracks.push(audioElement);
 
-        // Create controls for each B-roll
-        const controlDiv = document.createElement('div');
-        controlDiv.className = 'b-roll-control';
-
+        // Create volume controls for each B-roll
         const label = document.createElement('label');
         label.textContent = bRoll.name;
 
@@ -43,44 +70,42 @@ function loadConfig(config) {
             audioElement.volume = e.target.value;
         });
 
-        const loopControl = document.createElement('input');
-        loopControl.type = 'checkbox';
-        loopControl.checked = audioElement.loop;
-        loopControl.addEventListener('change', (e) => {
-            audioElement.loop = e.target.checked;
-        });
-
-        controlDiv.appendChild(label);
-        controlDiv.appendChild(volumeControl);
-        controlDiv.appendChild(loopControl);
-        bRollControlsContainer.appendChild(controlDiv);
+        volumeControlsContainer.appendChild(label);
+        volumeControlsContainer.appendChild(volumeControl);
     });
 }
 
 function playAllTracks() {
-    baseTrack.play();
-    bRollTracks.forEach(track => track.play());
+    // Ensure the playback offset is set each time play is toggled
+    if (baseTrack) {
+        setTrackOffset(baseTrack);
+        baseTrack.play();
+    }
+
+    bRollTracks.forEach(track => {
+        setTrackOffset(track);
+        track.play();
+    });
+
     isPlaying = true;
     updatePlayPauseButton();
 }
 
 function stopAllTracks() {
-    baseTrack.pause();
-    bRollTracks.forEach(track => track.pause());
-    baseTrack.currentTime = 0;
-    bRollTracks.forEach(track => track.currentTime = 0);
+    if (baseTrack) {
+        baseTrack.pause();
+    }
+    bRollTracks.forEach(track => {
+        track.pause();
+    });
+
     isPlaying = false;
     updatePlayPauseButton();
 }
 
 function updatePlayPauseButton() {
-    if (isPlaying) {
-        playIcon.style.display = 'none';
-        stopIcon.style.display = 'inline';
-    } else {
-        stopIcon.style.display = 'none';
-        playIcon.style.display = 'inline';
-    }
+    playIcon.style.display = isPlaying ? 'none' : 'inline';
+    stopIcon.style.display = isPlaying ? 'inline' : 'none';
 }
 
 playPauseButton.addEventListener('click', () => {
@@ -95,8 +120,8 @@ streamSelect.addEventListener('change', async () => {
     const streamName = streamSelect.value;
     if (streamName === 'none') {
         stopAllTracks();
+        volumeControlsContainer.innerHTML = ''; // Remove all volume controls
     } else {
-        loadingSpinner.style.display = 'block';
         try {
             const response = await fetch('ambient-stream-config.json');
             const config = await response.json();
@@ -106,8 +131,9 @@ streamSelect.addEventListener('change', async () => {
             }
         } catch (error) {
             console.error('Failed to load stream config:', error);
-        } finally {
-            loadingSpinner.style.display = 'none';
         }
     }
 });
+
+// Load stream options on page load
+window.addEventListener('DOMContentLoaded', loadStreamOptions);

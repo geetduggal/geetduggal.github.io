@@ -49,19 +49,20 @@
     <div class="container">
         <div class="controls">
             <button id="playPauseButton" class="play-button">
-                <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M8 5v14l11-7z"/></svg>
-                <svg id="stopIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px" style="display:none;"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 6h12v12H6z"/></svg>
+                <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+                <svg id="stopIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px" style="display:none;">
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M6 6h12v12H6z"/>
+                </svg>
             </button>
             <select id="streamSelect">
                 <option value="none">No Ambience</option>
-                <!-- Options will be populated dynamically -->
             </select>
-            <span id="bRollCheckboxes"></span>
-            <div class="loading-spinner" id="loadingSpinner"></div>
+            <div id="volumeControls" class="volume-controls"></div> <!-- Volume sliders -->
         </div>
     </div>
-
-    <div id="bRollControls"></div> <!-- Container for dynamically added B-roll controls -->
-
     <script src="ambient-synth.js"></script>
 </div> </body> </html>

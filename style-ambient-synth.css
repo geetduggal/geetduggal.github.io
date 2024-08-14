@@ -36,6 +36,58 @@ select {
     border: 2px solid #1E90FF; /* Royal blue */
     color: #333;
     background-color: #FFF;
+    appearance: none; /* Remove default styling */
+    -webkit-appearance: none; /* Remove default styling for Safari */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%231E90FF" d="M2 0L0 2h4zM2 5L0 3h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 8px 10px;
+}
+
+select::-ms-expand {
+    display: none; /* Remove the dropdown arrow in IE */
+}
+
+.volume-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.volume-controls label {
+    font-size: 14px;
+    color: #333;
+    margin-right: 5px;
+}
+
+.volume-controls input[type="range"] {
+    -webkit-appearance: none; /* Override default Safari styling */
+    width: 100px;
+    height: 8px;
+    background: #1E90FF; /* Royal blue */
+    outline: none;
+    opacity: 0.9;
+    border-radius: 5px;
+    border: 1px solid #FF6F61; /* Coral border */
+    cursor: pointer;
+}
+
+.volume-controls input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #FF6F61; /* Coral color */
+    cursor: pointer;
+}
+
+.volume-controls input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #FF6F61; /* Coral color */
+    cursor: pointer;
 }
 
 .loading-spinner {
@@ -52,24 +104,3 @@ select {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
-.b-roll-control {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.b-roll-control label {
-    font-size: 14px;
-    color: #333;
-}
-
-.b-roll-control input[type="range"] {
-    width: 100px;
-}
-
-.b-roll-control input[type="checkbox"] {
-    transform: scale(1.2);
-}
-
