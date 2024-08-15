@@ -52,7 +52,7 @@ function loadConfig(config) {
         audioElement.volume = bRoll.volume || 1.0;
 
         const trackSource = audioContext.createMediaElementSource(audioElement);
-        bRollTrackSources.push({trackSource, audioElement});
+        bRollTrackSources.push({ trackSource, audioElement });
 
         audioElement.addEventListener('loadedmetadata', () => {
             const offset = calculatePlaybackOffset(audioElement.duration);
@@ -85,6 +85,8 @@ function loadConfig(config) {
     });
 
     baseTrackSource.connect(audioContext.destination);
+
+    updateMediaSession(config.name);
 }
 
 function playAllTracks() {
@@ -96,7 +98,7 @@ function playAllTracks() {
         baseTrackSource.mediaElement.play();
     }
 
-    bRollTrackSources.forEach(({trackSource, audioElement}) => {
+    bRollTrackSources.forEach(({ trackSource, audioElement }) => {
         audioElement.play();
     });
 
@@ -109,7 +111,7 @@ function stopAllTracks() {
         baseTrackSource.mediaElement.pause();
     }
 
-    bRollTrackSources.forEach(({trackSource, audioElement}) => {
+    bRollTrackSources.forEach(({ trackSource, audioElement }) => {
         audioElement.pause();
     });
 
@@ -152,3 +154,23 @@ streamSelect.addEventListener('change', async () => {
 // Load stream options on page load
 window.addEventListener('DOMContentLoaded', loadStreamOptions);
 
+// Media Session API
+function updateMediaSession(streamName) {
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: streamName,
+            artist: 'Ambient Synth',
+            album: 'Ambient Streams',
+            artwork: [
+                { src: 'icon-128x128.png', sizes: '128x128', type: 'image/png' }, // Example images
+                { src: 'icon-256x256.png', sizes: '256x256', type: 'image/png' }
+            ]
+        });
+
+        navigator.mediaSession.setActionHandler('play', playAllTracks);
+        navigator.mediaSession.setActionHandler('pause', stopAllTracks);
+        navigator.mediaSession.setActionHandler('stop', stopAllTracks);
+
+        // Optional: Implement seek, next track, previous track handlers if needed
+    }
+}
