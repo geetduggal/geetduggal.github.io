@@ -75,6 +75,9 @@ function loadConfig(config) {
         volumeControlsContainer.appendChild(label);
         volumeControlsContainer.appendChild(volumeControl);
     });
+
+    // Update Media Session metadata
+    updateMediaSession(config.name);
 }
 
 function playAllTracks() {
@@ -88,6 +91,7 @@ function playAllTracks() {
 
     isPlaying = true;
     updatePlayPauseButton();
+    updateMediaSessionState('playing');
 }
 
 function stopAllTracks() {
@@ -100,11 +104,59 @@ function stopAllTracks() {
 
     isPlaying = false;
     updatePlayPauseButton();
+    updateMediaSessionState('paused');
 }
 
 function updatePlayPauseButton() {
     playIcon.style.display = isPlaying ? 'none' : 'inline';
     stopIcon.style.display = isPlaying ? 'inline' : 'none';
+}
+
+function updateMediaSession(streamName) {
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: streamName,
+            artist: 'Ambient Synth',
+            album: 'Ambient Streams',
+            artwork: [
+                { src: 'https://via.placeholder.com/128', sizes: '128x128', type: 'image/png' },
+                { src: 'https://via.placeholder.com/256', sizes: '256x256', type: 'image/png' }
+            ]
+        });
+
+        navigator.mediaSession.setActionHandler('play', () => {
+            if (!isPlaying) {
+                playAllTracks();
+            }
+        });
+        navigator.mediaSession.setActionHandler('pause', () => {
+            if (isPlaying) {
+                stopAllTracks();
+            }
+        });
+        navigator.mediaSession.setActionHandler('seekbackward', () => {
+            seek(-10);
+        });
+        navigator.mediaSession.setActionHandler('seekforward', () => {
+            seek(10);
+        });
+
+        console.log('Media Session actions set up');
+    } else {
+        console.warn('Media Session API not supported');
+    }
+}
+
+function updateMediaSessionState(state) {
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.playbackState = state;
+        console.log(`Media session state updated to ${state}`);
+    }
+}
+
+function seek(seconds) {
+    const newTime = Math.max(0, Math.min(baseTrack.currentTime + seconds, baseTrack.duration));
+    baseTrack.currentTime = newTime;
 }
 
 playPauseButton.addEventListener('click', () => {
