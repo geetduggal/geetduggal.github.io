@@ -99,8 +99,10 @@ function createTrack(src, isBase, initialVolume = 1.0) {
         if (data.type === 'play') {
             mediaElement.currentTime = data.offset || 0;
             mediaElement.play();
+            updateMediaSessionState('playing', src);
         } else if (data.type === 'stop') {
             mediaElement.pause();
+            updateMediaSessionState('paused', src);
         } else if (data.type === 'volume') {
             gainNode.gain.value = data.value;
         }
@@ -147,7 +149,7 @@ playPauseButton.addEventListener('click', () => {
 });
 
 streamSelect.addEventListener('change', async () => {
-    const streamName = streamSelect.value;  // Ensure streamName is initialized here
+    const streamName = streamSelect.value;
     if (streamName === 'none') {
         stopAllTracks();
         volumeControlsContainer.innerHTML = ''; // Remove all volume controls
@@ -184,5 +186,22 @@ function updateMediaSession(streamName) {
         navigator.mediaSession.setActionHandler('play', playAllTracks);
         navigator.mediaSession.setActionHandler('pause', stopAllTracks);
         navigator.mediaSession.setActionHandler('stop', stopAllTracks);
+        navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+            seek(-10); // Go back 10 seconds
+        });
+        navigator.mediaSession.setActionHandler('seekforward', (details) => {
+            seek(10); // Go forward 10 seconds
+        });
     }
+}
+
+function updateMediaSessionState(state, src) {
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.playbackState = state;
+    }
+}
+
+function seek(seconds) {
+    const newTime = baseTrack.mediaElement.currentTime + seconds;
+    baseTrack.mediaElement.currentTime = Math.max(0, Math.min(newTime, baseTrack.mediaElement.duration));
 }
