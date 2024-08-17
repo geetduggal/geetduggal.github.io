@@ -34,45 +34,49 @@ function calculatePlaybackOffset(duration) {
 }
 
 // Load the configuration and set up the audio context
-function loadConfig(config) {
-    // Terminate existing workers and stop current tracks
-    if (baseTrack) baseTrack.mediaElement.pause();
-    bRollTracks.forEach(track => track.mediaElement.pause());
-    bRollTrackWorkers.forEach(worker => worker.terminate());
+async function loadConfig(config) {
+    try {
+        // Terminate existing workers and stop current tracks
+        if (baseTrack) baseTrack.mediaElement.pause();
+        bRollTracks.forEach(track => track.mediaElement.pause());
+        bRollTrackWorkers.forEach(worker => worker.terminate());
 
-    bRollTracks = [];
-    bRollTrackWorkers = [];
-    volumeControlsContainer.innerHTML = '';
+        bRollTracks = [];
+        bRollTrackWorkers = [];
+        volumeControlsContainer.innerHTML = '';
 
-    // Create and configure the base track
-    baseTrack = createTrack(config.baseTrack, true);
+        // Create and configure the base track
+        baseTrack = createTrack(config.baseTrack, true);
 
-    // Create B-roll tracks and volume controls dynamically
-    config.bRolls.forEach(bRoll => {
-        const bRollTrack = createTrack(bRoll.src, false, bRoll.volume || 1.0);
-        bRollTracks.push(bRollTrack);
+        // Create B-roll tracks and volume controls dynamically
+        config.bRolls.forEach(bRoll => {
+            const bRollTrack = createTrack(bRoll.src, false, bRoll.volume || 1.0);
+            bRollTracks.push(bRollTrack);
 
-        // Create volume controls for each B-roll
-        const label = document.createElement('label');
-        label.textContent = bRoll.name;
+            // Create volume controls for each B-roll
+            const label = document.createElement('label');
+            label.textContent = bRoll.name;
 
-        const volumeControl = document.createElement('input');
-        volumeControl.type = 'range';
-        volumeControl.min = 0;
-        volumeControl.max = 1;
-        volumeControl.step = 0.1;
-        volumeControl.value = bRoll.volume || 1.0;
+            const volumeControl = document.createElement('input');
+            volumeControl.type = 'range';
+            volumeControl.min = 0;
+            volumeControl.max = 1;
+            volumeControl.step = 0.1;
+            volumeControl.value = bRoll.volume || 1.0;
 
-        // Update volume via the Web Worker
-        volumeControl.addEventListener('input', (e) => {
-            bRollTrack.worker.postMessage({ type: 'volume', value: e.target.value });
+            // Update volume via the Web Worker
+            volumeControl.addEventListener('input', (e) => {
+                bRollTrack.worker.postMessage({ type: 'volume', value: e.target.value });
+            });
+
+            volumeControlsContainer.appendChild(label);
+            volumeControlsContainer.appendChild(volumeControl);
         });
 
-        volumeControlsContainer.appendChild(label);
-        volumeControlsContainer.appendChild(volumeControl);
-    });
-
-    updateMediaSession(config.name);
+        updateMediaSession(config.name);
+    } catch (error) {
+        console.error('Error during configuration loading:', error);
+    }
 }
 
 function createTrack(src, isBase, initialVolume = 1.0) {
@@ -99,10 +103,10 @@ function createTrack(src, isBase, initialVolume = 1.0) {
         if (data.type === 'play') {
             mediaElement.currentTime = data.offset || 0;
             mediaElement.play();
-            updateMediaSessionState('playing', src);
+            updateMediaSessionState('playing');
         } else if (data.type === 'stop') {
             mediaElement.pause();
-            updateMediaSessionState('paused', src);
+            updateMediaSessionState('paused');
         } else if (data.type === 'volume') {
             gainNode.gain.value = data.value;
         }
@@ -160,6 +164,8 @@ streamSelect.addEventListener('change', async () => {
             const selectedConfig = config.streams.find(stream => stream.name === streamName);
             if (selectedConfig) {
                 loadConfig(selectedConfig);
+            } else {
+                console.error('Stream not found:', streamName);
             }
         } catch (error) {
             console.error('Failed to load stream config:', error);
@@ -172,9 +178,7 @@ window.addEventListener('DOMContentLoaded', loadStreamOptions);
 
 // Media Session API for system controls
 function updateMediaSession(streamName) {
-    alert("Got here")
     if ('mediaSession' in navigator) {
-        alert("And now here")
         navigator.mediaSession.metadata = new MediaMetadata({
             title: streamName,
             artist: 'Ambient Synth',
@@ -185,13 +189,21 @@ function updateMediaSession(streamName) {
             ]
         });
 
-        navigator.mediaSession.setActionHandler('play', playAllTracks);
-        navigator.mediaSession.setActionHandler('pause', stopAllTracks);
-        navigator.mediaSession.setActionHandler('seekbackward', (details) => {
-            seek(-10); // Go back 10 seconds
+        navigator.mediaSession.setActionHandler('play', () => {
+            if (!isPlaying) {
+                playAllTracks();
+            }
         });
-        navigator.mediaSession.setActionHandler('seekforward', (details) => {
-            seek(10); // Go forward 10 seconds
+        navigator.mediaSession.setActionHandler('pause', () => {
+            if (isPlaying) {
+                stopAllTracks();
+            }
+        });
+        navigator.mediaSession.setActionHandler('seekbackward', () => {
+            seek(-10);
+        });
+        navigator.mediaSession.setActionHandler('seekforward', () => {
+            seek(10);
         });
 
         console.log('Media Session actions set up');
@@ -200,16 +212,14 @@ function updateMediaSession(streamName) {
     }
 }
 
-function updateMediaSessionState(state, src) {
+function updateMediaSessionState(state) {
     if ('mediaSession' in navigator) {
         navigator.mediaSession.playbackState = state;
-        console.log(`Media session state set to ${state}`);
+        console.log(`Media session state updated to ${state}`);
     }
 }
 
 function seek(seconds) {
-    const newTime = baseTrack.mediaElement.currentTime + seconds;
-    baseTrack.mediaElement.currentTime = Math.max(0, Math.min(newTime, baseTrack.mediaElement.duration));
+    const newTime = Math.max(0, Math.min(baseTrack.mediaElement.currentTime + seconds, baseTrack.mediaElement.duration));
+    baseTrack.mediaElement.currentTime = newTime;
 }
-
-window.addEventListener('DOMContentLoaded', loadStreamOptions);
