@@ -9,6 +9,14 @@ let baseTrack = null;
 let bRollTracks = [];
 let bRollTrackWorkers = [];
 let isPlaying = false;
+let mediaSessionElement = null; // Hidden element for Media Session API
+
+// Create a hidden audio element for Media Session API
+function createMediaSessionElement() {
+    mediaSessionElement = document.createElement('audio');
+    mediaSessionElement.style.display = 'none'; // Hide the element
+    document.body.appendChild(mediaSessionElement);
+}
 
 // Load stream options
 async function loadStreamOptions() {
@@ -112,7 +120,19 @@ function createTrack(src, isBase, initialVolume = 1.0) {
         }
     };
 
+    if (isBase) {
+        syncWithMediaSessionElement(mediaElement);
+    }
+
     return { mediaElement, worker };
+}
+
+function syncWithMediaSessionElement(mediaElement) {
+    if (mediaSessionElement) {
+        mediaSessionElement.src = mediaElement.src;
+        mediaSessionElement.currentTime = mediaElement.currentTime;
+        mediaSessionElement.pause(); // Ensure it doesn't start playing immediately
+    }
 }
 
 // Play all tracks
@@ -124,6 +144,10 @@ function playAllTracks() {
     baseTrack.worker.postMessage({ type: 'play' });
     bRollTracks.forEach(track => track.worker.postMessage({ type: 'play' }));
 
+    if (mediaSessionElement) {
+        mediaSessionElement.play(); // Start playing only when this function is called
+    }
+
     isPlaying = true;
     updatePlayPauseButton();
 }
@@ -132,6 +156,10 @@ function playAllTracks() {
 function stopAllTracks() {
     baseTrack.worker.postMessage({ type: 'stop' });
     bRollTracks.forEach(track => track.worker.postMessage({ type: 'stop' }));
+
+    if (mediaSessionElement) {
+        mediaSessionElement.pause();
+    }
 
     isPlaying = false;
     updatePlayPauseButton();
@@ -174,7 +202,10 @@ streamSelect.addEventListener('change', async () => {
 });
 
 // Load stream options on page load
-window.addEventListener('DOMContentLoaded', loadStreamOptions);
+window.addEventListener('DOMContentLoaded', () => {
+    createMediaSessionElement();
+    loadStreamOptions();
+});
 
 // Media Session API for system controls
 function updateMediaSession(streamName) {
@@ -222,4 +253,7 @@ function updateMediaSessionState(state) {
 function seek(seconds) {
     const newTime = Math.max(0, Math.min(baseTrack.mediaElement.currentTime + seconds, baseTrack.mediaElement.duration));
     baseTrack.mediaElement.currentTime = newTime;
+    if (mediaSessionElement) {
+        mediaSessionElement.currentTime = newTime;
+    }
 }
