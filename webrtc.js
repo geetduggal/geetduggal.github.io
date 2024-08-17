@@ -172,7 +172,9 @@ window.addEventListener('DOMContentLoaded', loadStreamOptions);
 
 // Media Session API for system controls
 function updateMediaSession(streamName) {
+    alert("Got here")
     if ('mediaSession' in navigator) {
+        alert("And now here")
         navigator.mediaSession.metadata = new MediaMetadata({
             title: streamName,
             artist: 'Ambient Synth',
