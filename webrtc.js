@@ -178,26 +178,30 @@ function updateMediaSession(streamName) {
             artist: 'Ambient Synth',
             album: 'Ambient Streams',
             artwork: [
-                { src: 'icon-128x128.png', sizes: '128x128', type: 'image/png' },
-                { src: 'icon-256x256.png', sizes: '256x256', type: 'image/png' }
+                { src: 'https://via.placeholder.com/128', sizes: '128x128', type: 'image/png' },
+                { src: 'https://via.placeholder.com/256', sizes: '256x256', type: 'image/png' }
             ]
         });
 
         navigator.mediaSession.setActionHandler('play', playAllTracks);
         navigator.mediaSession.setActionHandler('pause', stopAllTracks);
-        navigator.mediaSession.setActionHandler('stop', stopAllTracks);
         navigator.mediaSession.setActionHandler('seekbackward', (details) => {
             seek(-10); // Go back 10 seconds
         });
         navigator.mediaSession.setActionHandler('seekforward', (details) => {
             seek(10); // Go forward 10 seconds
         });
+
+        console.log('Media Session actions set up');
+    } else {
+        console.warn('Media Session API not supported');
     }
 }
 
 function updateMediaSessionState(state, src) {
     if ('mediaSession' in navigator) {
         navigator.mediaSession.playbackState = state;
+        console.log(`Media session state set to ${state}`);
     }
 }
 
@@ -205,3 +209,5 @@ function seek(seconds) {
     const newTime = baseTrack.mediaElement.currentTime + seconds;
     baseTrack.mediaElement.currentTime = Math.max(0, Math.min(newTime, baseTrack.mediaElement.duration));
 }
+
+window.addEventListener('DOMContentLoaded', loadStreamOptions);
