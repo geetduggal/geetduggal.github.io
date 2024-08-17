@@ -5,10 +5,12 @@ const streamSelect = document.getElementById('streamSelect');
 const volumeControlsContainer = document.getElementById('volumeControls');
 
 let audioContext = new (window.AudioContext || window.webkitAudioContext)();
-let baseTrackSource = null;
-let bRollTrackSources = [];
+let baseTrack = null;
+let bRollTracks = [];
+let bRollTrackWorkers = [];
 let isPlaying = false;
 
+// Load stream options
 async function loadStreamOptions() {
     try {
         const response = await fetch('ambient-stream-config.json');
@@ -25,39 +27,30 @@ async function loadStreamOptions() {
     }
 }
 
+// Calculate playback offset
 function calculatePlaybackOffset(duration) {
     const currentTime = Date.now() / 1000; // Current time in seconds
     return currentTime % duration; // Offset time within the track duration
 }
 
+// Load the configuration and set up the audio context
 function loadConfig(config) {
-    // Clear existing volume controls and tracks
-    bRollTrackSources = [];
+    // Terminate existing workers and stop current tracks
+    if (baseTrack) baseTrack.mediaElement.pause();
+    bRollTracks.forEach(track => track.mediaElement.pause());
+    bRollTrackWorkers.forEach(worker => worker.terminate());
+
+    bRollTracks = [];
+    bRollTrackWorkers = [];
     volumeControlsContainer.innerHTML = '';
 
     // Create and configure the base track
-    const baseTrack = new Audio(config.baseTrack);
-    baseTrack.loop = true;
-    baseTrackSource = audioContext.createMediaElementSource(baseTrack);
-
-    baseTrack.addEventListener('loadedmetadata', () => {
-        const offset = calculatePlaybackOffset(baseTrack.duration);
-        baseTrack.currentTime = offset;
-    });
+    baseTrack = createTrack(config.baseTrack, true);
 
     // Create B-roll tracks and volume controls dynamically
     config.bRolls.forEach(bRoll => {
-        const audioElement = new Audio(bRoll.src);
-        audioElement.loop = bRoll.loop || false;
-        audioElement.volume = bRoll.volume || 1.0;
-
-        const trackSource = audioContext.createMediaElementSource(audioElement);
-        bRollTrackSources.push({trackSource, audioElement});
-
-        audioElement.addEventListener('loadedmetadata', () => {
-            const offset = calculatePlaybackOffset(audioElement.duration);
-            audioElement.currentTime = offset;
-        });
+        const bRollTrack = createTrack(bRoll.src, false, bRoll.volume || 1.0);
+        bRollTracks.push(bRollTrack);
 
         // Create volume controls for each B-roll
         const label = document.createElement('label');
@@ -68,60 +61,83 @@ function loadConfig(config) {
         volumeControl.min = 0;
         volumeControl.max = 1;
         volumeControl.step = 0.1;
-        volumeControl.value = audioElement.volume;
+        volumeControl.value = bRoll.volume || 1.0;
 
-        // Add event listener for volume changes
+        // Update volume via the Web Worker
         volumeControl.addEventListener('input', (e) => {
-            trackSource.gainNode.gain.value = e.target.value;
+            bRollTrack.worker.postMessage({ type: 'volume', value: e.target.value });
         });
-
-        // Create a gain node for controlling volume
-        const gainNode = audioContext.createGain();
-        trackSource.connect(gainNode).connect(audioContext.destination);
-        trackSource.gainNode = gainNode; // Store reference for later use
 
         volumeControlsContainer.appendChild(label);
         volumeControlsContainer.appendChild(volumeControl);
     });
 
-    baseTrackSource.connect(audioContext.destination);
+    updateMediaSession(config.name);
 }
 
+function createTrack(src, isBase, initialVolume = 1.0) {
+    const mediaElement = new Audio(src);
+    mediaElement.loop = true;
+
+    const trackSource = audioContext.createMediaElementSource(mediaElement);
+    const gainNode = audioContext.createGain();
+    gainNode.gain.value = initialVolume;
+
+    trackSource.connect(gainNode).connect(audioContext.destination);
+
+    // Create a Web Worker for controlling playback timing and volume
+    const worker = new Worker('audioProcessor.js');
+    worker.postMessage({
+        type: 'init',
+        duration: mediaElement.duration,
+        isBase: isBase,
+    });
+
+    // Handle playback commands from the worker
+    worker.onmessage = function (e) {
+        const data = e.data;
+        if (data.type === 'play') {
+            mediaElement.currentTime = data.offset || 0;
+            mediaElement.play();
+        } else if (data.type === 'stop') {
+            mediaElement.pause();
+        } else if (data.type === 'volume') {
+            gainNode.gain.value = data.value;
+        }
+    };
+
+    return { mediaElement, worker };
+}
+
+// Play all tracks
 function playAllTracks() {
     if (audioContext.state === 'suspended') {
         audioContext.resume();
     }
 
-    if (baseTrackSource) {
-        baseTrackSource.mediaElement.play();
-    }
-
-    bRollTrackSources.forEach(({trackSource, audioElement}) => {
-        audioElement.play();
-    });
+    baseTrack.worker.postMessage({ type: 'play' });
+    bRollTracks.forEach(track => track.worker.postMessage({ type: 'play' }));
 
     isPlaying = true;
     updatePlayPauseButton();
 }
 
+// Stop all tracks
 function stopAllTracks() {
-    if (baseTrackSource) {
-        baseTrackSource.mediaElement.pause();
-    }
-
-    bRollTrackSources.forEach(({trackSource, audioElement}) => {
-        audioElement.pause();
-    });
+    baseTrack.worker.postMessage({ type: 'stop' });
+    bRollTracks.forEach(track => track.worker.postMessage({ type: 'stop' }));
 
     isPlaying = false;
     updatePlayPauseButton();
 }
 
+// Update the play/pause button
 function updatePlayPauseButton() {
     playIcon.style.display = isPlaying ? 'none' : 'inline';
     stopIcon.style.display = isPlaying ? 'inline' : 'none';
 }
 
+// Event listeners
 playPauseButton.addEventListener('click', () => {
     if (isPlaying) {
         stopAllTracks();
@@ -131,7 +147,7 @@ playPauseButton.addEventListener('click', () => {
 });
 
 streamSelect.addEventListener('change', async () => {
-    const streamName = streamSelect.value;
+    const streamName = streamSelect.value;  // Ensure streamName is initialized here
     if (streamName === 'none') {
         stopAllTracks();
         volumeControlsContainer.innerHTML = ''; // Remove all volume controls
@@ -152,3 +168,21 @@ streamSelect.addEventListener('change', async () => {
 // Load stream options on page load
 window.addEventListener('DOMContentLoaded', loadStreamOptions);
 
+// Media Session API for system controls
+function updateMediaSession(streamName) {
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: streamName,
+            artist: 'Ambient Synth',
+            album: 'Ambient Streams',
+            artwork: [
+                { src: 'icon-128x128.png', sizes: '128x128', type: 'image/png' },
+                { src: 'icon-256x256.png', sizes: '256x256', type: 'image/png' }
+            ]
+        });
+
+        navigator.mediaSession.setActionHandler('play', playAllTracks);
+        navigator.mediaSession.setActionHandler('pause', stopAllTracks);
+        navigator.mediaSession.setActionHandler('stop', stopAllTracks);
+    }
+}
