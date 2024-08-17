@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Session API Test</title>
+</head>
+<body>
+    <h1>Media Session API Test</h1>
+    <audio id="audioPlayer" controls>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        // Setup Media Session API
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: 'Test Song',
+                artist: 'Test Artist',
+                album: 'Test Album',
+                artwork: [
+                    { src: 'https://via.placeholder.com/128', sizes: '128x128', type: 'image/png' },
+                    { src: 'https://via.placeholder.com/256', sizes: '256x256', type: 'image/png' }
+                ]
+            });
+
+            navigator.mediaSession.setActionHandler('play', () => {
+                audioPlayer.play();
+            });
+
+            navigator.mediaSession.setActionHandler('pause', () => {
+                audioPlayer.pause();
+            });
+
+            navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+                audioPlayer.currentTime = Math.max(audioPlayer.currentTime - 10, 0);
+            });
+
+            navigator.mediaSession.setActionHandler('seekforward', (details) => {
+                audioPlayer.currentTime = Math.min(audioPlayer.currentTime + 10, audioPlayer.duration);
+            });
+
+            navigator.mediaSession.setActionHandler('stop', () => {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+            });
+
+            console.log('Media Session API is set up');
+        } else {
+            console.warn('Media Session API not supported in this browser');
+        }
+
+        // Automatically start playing the audio when the page loads
+        audioPlayer.play();
+    </script>
+</body>
+</html>
