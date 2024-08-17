@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambient Synth with WebRTC</title>
+    <link rel="stylesheet" href="style.css?v=1721866614">
+    <link rel="stylesheet" href="style-ambient-synth.css">
+</head>
+<body>
+    <div class="controls">
+        <button id="playPauseButton" class="play-button">
+            <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg id="stopIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px" style="display:none;">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M6 6h12v12H6z"/>
+            </svg>
+        </button>
+        <select id="streamSelect">
+            <option value="none">No Ambience</option>
+        </select>
+        <div id="volumeControls" class="volume-controls"></div> <!-- Volume sliders -->
+    </div>
+    <script src="webrtc.js"></script>
+</body>
+</html>
