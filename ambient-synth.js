@@ -30,7 +30,8 @@ function calculatePlaybackOffset(duration) {
 }
 
 function loadConfig(config) {
-    // Clear existing volume controls and tracks
+    // Stop and clear all existing tracks
+    stopAllTracks(true);
     bRollTracks = [];
     volumeControlsContainer.innerHTML = '';
 
@@ -94,16 +95,24 @@ function playAllTracks() {
     updateMediaSessionState('playing');
 }
 
-function stopAllTracks() {
+function stopAllTracks(clearTracks = false) {
     if (baseTrack) {
         baseTrack.pause();
+        baseTrack.currentTime = 0;
     }
     bRollTracks.forEach(track => {
         track.pause();
+        track.currentTime = 0;
     });
 
     isPlaying = false;
     updatePlayPauseButton();
+
+    if (clearTracks) {
+        baseTrack = null;
+        bRollTracks = [];
+    }
+
     updateMediaSessionState('paused');
 }
 
@@ -170,7 +179,7 @@ playPauseButton.addEventListener('click', () => {
 streamSelect.addEventListener('change', async () => {
     const streamName = streamSelect.value;
     if (streamName === 'none') {
-        stopAllTracks();
+        stopAllTracks(true);
         volumeControlsContainer.innerHTML = ''; // Remove all volume controls
     } else {
         try {
