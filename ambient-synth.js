@@ -8,6 +8,21 @@ let baseTrack = null;
 let bRollTracks = [];
 let isPlaying = false;
 let hlsInstances = [];
+let consistentTimestamp = 0; // This will store the consistent timestamp
+
+// Fetch consistent timestamp from an external source
+async function fetchConsistentTimestamp() {
+    try {
+        const response = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
+        const data = await response.json();
+        consistentTimestamp = new Date(data.utc_datetime).getTime() / 1000; // Convert to seconds
+        console.log('Fetched consistent timestamp:', consistentTimestamp);
+    } catch (error) {
+        console.error('Failed to fetch consistent timestamp:', error);
+        // Fallback to local timestamp if external fetch fails
+        consistentTimestamp = Date.now() / 1000;
+    }
+}
 
 async function loadStreamOptions() {
     try {
@@ -111,8 +126,7 @@ function loadConfig(config) {
 }
 
 function calculatePlaybackOffset(duration) {
-    const currentTime = Date.now() / 1000; // Current time in seconds
-    return currentTime % duration; // Offset time within the track duration
+    return consistentTimestamp % duration; // Offset time within the track duration
 }
 
 function playAllTracks() {
@@ -232,6 +246,7 @@ streamSelect.addEventListener('change', async () => {
             const config = await response.json();
             const selectedConfig = config.streams.find(stream => stream.name === streamName);
             if (selectedConfig) {
+                await fetchConsistentTimestamp(); // Fetch consistent timestamp before playing
                 loadConfig(selectedConfig);
             } else {
                 console.warn(`Stream config not found for stream: ${streamName}`);
@@ -242,5 +257,8 @@ streamSelect.addEventListener('change', async () => {
     }
 });
 
-window.addEventListener('DOMContentLoaded', loadStreamOptions);
+window.addEventListener('DOMContentLoaded', async () => {
+    await fetchConsistentTimestamp(); // Fetch consistent timestamp on page load
+    loadStreamOptions();
+});
 
