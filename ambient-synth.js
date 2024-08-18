@@ -10,6 +10,7 @@ let bRollTracks = [];
 let isPlaying = false;
 let hlsInstances = [];
 let consistentTimestamp = 0; // This will store the consistent timestamp
+let baseTrackDuration = NaN; // Store the duration of the base track
 
 // Log function to append messages to the page
 function logMessage(message) {
@@ -77,8 +78,9 @@ function createAudioElement(src, loop = false, volume = 1.0) {
         hls.attachMedia(audio);
         hlsInstances.push(hls);
 
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            logMessage(`HLS Manifest parsed for: ${src}`);
+        hls.on(Hls.Events.LEVEL_LOADED, (event, data) => {
+            baseTrackDuration = data.details.totalduration;
+            logMessage(`HLS LEVEL_LOADED: duration set to ${baseTrackDuration} seconds for ${src}`);
             setAudioCurrentTime(audio);
         });
 
@@ -87,8 +89,11 @@ function createAudioElement(src, loop = false, volume = 1.0) {
             logMessage(`HLS.js error: ${data.details}`);
         });
     } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
+        // Safari or other browsers with native HLS support
         audio.src = src;
         audio.addEventListener('loadedmetadata', () => {
+            baseTrackDuration = audio.duration;
+            logMessage(`Native HLS loaded: duration set to ${baseTrackDuration} seconds for ${src}`);
             setAudioCurrentTime(audio);
         });
     } else {
@@ -102,9 +107,13 @@ function createAudioElement(src, loop = false, volume = 1.0) {
 }
 
 function setAudioCurrentTime(audioElement) {
-    const offset = calculatePlaybackOffset(audioElement.duration);
-    audioElement.currentTime = offset;
-    logMessage(`Set audio currentTime to: ${offset} (Duration: ${audioElement.duration})`);
+    if (!isNaN(baseTrackDuration)) {
+        const offset = calculatePlaybackOffset(baseTrackDuration);
+        audioElement.currentTime = offset;
+        logMessage(`Set audio currentTime to: ${offset} (Duration: ${baseTrackDuration})`);
+    } else {
+        logMessage('Unable to set currentTime, duration is NaN');
+    }
 }
 
 function loadConfig(config) {
@@ -143,7 +152,6 @@ function loadConfig(config) {
 }
 
 function calculatePlaybackOffset(duration) {
-    duration = 60;
     const offset = consistentTimestamp % duration;
     logMessage(`Calculated playback offset: ${offset} (Duration: ${duration}, Timestamp: ${consistentTimestamp})`);
     return offset; // Offset time within the track duration
