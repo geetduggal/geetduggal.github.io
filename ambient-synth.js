@@ -13,7 +13,7 @@ let consistentTimestamp = 0; // This will store the consistent timestamp
 // Fetch consistent timestamp from an external source
 async function fetchConsistentTimestamp() {
     consistentTimestamp = Math.floor(Date.now() / 1000);
-    document.body.innerHTML += "<p>Timestamp: " + consistentTimestamp + "</p>";
+    document.body.innerHTML += "<p>Timestamp: " + Date.now() + ":" + consistentTimestamp + "</p>";
     return;
     try {
         const response = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
