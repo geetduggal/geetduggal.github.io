@@ -7,16 +7,27 @@ const volumeControlsContainer = document.getElementById('volumeControls');
 let baseTrack = null;
 let bRollTracks = [];
 let isPlaying = false;
-
-// Function to detect if the user is on a mobile device
-function isMobileDevice() {
-    return /Mobi|Android/i.test(navigator.userAgent);
-}
+let hlsInstances = [];
 
 async function loadStreamOptions() {
     try {
+        console.log('Fetching stream options...');
         const response = await fetch('ambient-stream-config.json');
+        
+        // Check if the fetch was successful
+        if (!response.ok) {
+            console.error('Failed to load stream options:', response.statusText);
+            return;
+        }
+
         const config = await response.json();
+        console.log('Stream config loaded:', config);
+
+        // Check if streams exist in the config
+        if (!config.streams || config.streams.length === 0) {
+            console.warn('No streams found in the config');
+            return;
+        }
 
         config.streams.forEach(stream => {
             const option = document.createElement('option');
@@ -24,47 +35,56 @@ async function loadStreamOptions() {
             option.textContent = stream.name;
             streamSelect.appendChild(option);
         });
+
+        console.log('Dropdown populated with stream options');
     } catch (error) {
         console.error('Error loading stream options:', error);
     }
 }
 
-function calculatePlaybackOffset(duration) {
-    const currentTime = Date.now() / 1000; // Current time in seconds
-    return currentTime % duration; // Offset time within the track duration
+function createAudioElement(src, loop = false, volume = 1.0) {
+    let audio = new Audio();
+
+    if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(audio);
+        hlsInstances.push(hls);
+
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            audio.play();
+        });
+
+        hls.on(Hls.Events.ERROR, (event, data) => {
+            console.error('HLS.js error:', data);
+        });
+    } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
+        audio.src = src;
+        audio.addEventListener('loadedmetadata', () => {
+            audio.play();
+        });
+    } else {
+        console.error('HLS is not supported on this browser.');
+    }
+
+    audio.loop = loop;
+    audio.volume = volume;
+    return audio;
 }
 
 function loadConfig(config) {
-    // Stop and clear all existing tracks
     stopAllTracks(true);
     bRollTracks = [];
     volumeControlsContainer.innerHTML = '';
 
-    // Create and configure the base track
     const baseTrackSrc = `hls/${config.baseTrack.replace('aud/', '').replace('.mp3', '.m3u8')}`;
-    baseTrack = new Audio(baseTrackSrc);
-    baseTrack.loop = true;
+    baseTrack = createAudioElement(baseTrackSrc, true);
 
-    baseTrack.addEventListener('loadedmetadata', () => {
-        const offset = calculatePlaybackOffset(baseTrack.duration);
-        baseTrack.currentTime = offset;
-    });
-
-    // Create B-roll tracks and volume controls dynamically
     config.bRolls.forEach(bRoll => {
         const bRollSrc = `hls/${bRoll.src.replace('aud/', '').replace('.mp3', '.m3u8')}`;
-        const audioElement = new Audio(bRollSrc);
-        audioElement.loop = bRoll.loop || false;
-        audioElement.volume = bRoll.volume || 1.0;
-
-        audioElement.addEventListener('loadedmetadata', () => {
-            const offset = calculatePlaybackOffset(audioElement.duration);
-            audioElement.currentTime = offset;
-        });
-
+        const audioElement = createAudioElement(bRollSrc, true, bRoll.volume);
         bRollTracks.push(audioElement);
 
-        // Create volume controls for each B-roll
         const label = document.createElement('label');
         label.textContent = bRoll.name;
 
@@ -75,7 +95,6 @@ function loadConfig(config) {
         volumeControl.step = 0.1;
         volumeControl.value = audioElement.volume;
 
-        // Add event listener for volume changes
         volumeControl.addEventListener('input', (e) => {
             audioElement.volume = e.target.value;
         });
@@ -84,7 +103,6 @@ function loadConfig(config) {
         volumeControlsContainer.appendChild(volumeControl);
     });
 
-    // Update Media Session metadata
     updateMediaSession(config.name);
 }
 
@@ -118,6 +136,9 @@ function stopAllTracks(clearTracks = false) {
     if (clearTracks) {
         baseTrack = null;
         bRollTracks = [];
+
+        hlsInstances.forEach(hls => hls.destroy());
+        hlsInstances = [];
     }
 
     updateMediaSessionState('paused');
@@ -190,11 +211,14 @@ streamSelect.addEventListener('change', async () => {
         volumeControlsContainer.innerHTML = ''; // Remove all volume controls
     } else {
         try {
+            console.log(`Loading config for stream: ${streamName}`);
             const response = await fetch('ambient-stream-config.json');
             const config = await response.json();
             const selectedConfig = config.streams.find(stream => stream.name === streamName);
             if (selectedConfig) {
                 loadConfig(selectedConfig);
+            } else {
+                console.warn(`Stream config not found for stream: ${streamName}`);
             }
         } catch (error) {
             console.error('Failed to load stream config:', error);
@@ -202,5 +226,4 @@ streamSelect.addEventListener('change', async () => {
     }
 });
 
-// Load stream options on page load
 window.addEventListener('DOMContentLoaded', loadStreamOptions);
