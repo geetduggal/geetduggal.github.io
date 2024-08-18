@@ -14,7 +14,6 @@ async function loadStreamOptions() {
         console.log('Fetching stream options...');
         const response = await fetch('ambient-stream-config.json');
         
-        // Check if the fetch was successful
         if (!response.ok) {
             console.error('Failed to load stream options:', response.statusText);
             return;
@@ -23,7 +22,6 @@ async function loadStreamOptions() {
         const config = await response.json();
         console.log('Stream config loaded:', config);
 
-        // Check if streams exist in the config
         if (!config.streams || config.streams.length === 0) {
             console.warn('No streams found in the config');
             return;
@@ -52,7 +50,7 @@ function createAudioElement(src, loop = false, volume = 1.0) {
         hlsInstances.push(hls);
 
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            audio.play();
+            console.log(`HLS Manifest parsed for: ${src}`);
         });
 
         hls.on(Hls.Events.ERROR, (event, data) => {
@@ -60,9 +58,6 @@ function createAudioElement(src, loop = false, volume = 1.0) {
         });
     } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
         audio.src = src;
-        audio.addEventListener('loadedmetadata', () => {
-            audio.play();
-        });
     } else {
         console.error('HLS is not supported on this browser.');
     }
@@ -79,6 +74,12 @@ function loadConfig(config) {
 
     const baseTrackSrc = `hls/${config.baseTrack.replace('aud/', '').replace('.mp3', '.m3u8')}`;
     baseTrack = createAudioElement(baseTrackSrc, true);
+
+    // Adjust base track current time based on timestamp
+    baseTrack.addEventListener('loadedmetadata', () => {
+        const offset = calculatePlaybackOffset(baseTrack.duration);
+        baseTrack.currentTime = offset;
+    });
 
     config.bRolls.forEach(bRoll => {
         const bRollSrc = `hls/${bRoll.src.replace('aud/', '').replace('.mp3', '.m3u8')}`;
@@ -104,6 +105,11 @@ function loadConfig(config) {
     });
 
     updateMediaSession(config.name);
+}
+
+function calculatePlaybackOffset(duration) {
+    const currentTime = Date.now() / 1000; // Current time in seconds
+    return currentTime % duration; // Offset time within the track duration
 }
 
 function playAllTracks() {
@@ -172,10 +178,10 @@ function updateMediaSession(streamName) {
             }
         });
         navigator.mediaSession.setActionHandler('seekbackward', () => {
-            seek(-10);
+            moveStream(-1);
         });
         navigator.mediaSession.setActionHandler('seekforward', () => {
-            seek(10);
+            moveStream(1);
         });
 
         console.log('Media Session actions set up');
@@ -191,9 +197,14 @@ function updateMediaSessionState(state) {
     }
 }
 
-function seek(seconds) {
-    const newTime = Math.max(0, Math.min(baseTrack.currentTime + seconds, baseTrack.duration));
-    baseTrack.currentTime = newTime;
+function moveStream(direction) {
+    const currentIndex = streamSelect.selectedIndex;
+    const newIndex = Math.min(Math.max(0, currentIndex + direction), streamSelect.options.length - 1);
+
+    if (newIndex !== currentIndex) {
+        streamSelect.selectedIndex = newIndex;
+        streamSelect.dispatchEvent(new Event('change'));
+    }
 }
 
 playPauseButton.addEventListener('click', () => {
@@ -227,3 +238,4 @@ streamSelect.addEventListener('change', async () => {
 });
 
 window.addEventListener('DOMContentLoaded', loadStreamOptions);
+
