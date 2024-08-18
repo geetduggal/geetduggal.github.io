@@ -17,6 +17,7 @@ async function fetchConsistentTimestamp() {
         const data = await response.json();
         consistentTimestamp = new Date(data.utc_datetime).getTime() / 1000; // Convert to seconds
         console.log('Fetched consistent timestamp:', consistentTimestamp);
+        alert(consistentTimestamp)
     } catch (error) {
         console.error('Failed to fetch consistent timestamp:', error);
         // Fallback to local timestamp if external fetch fails
@@ -28,7 +29,7 @@ async function loadStreamOptions() {
     try {
         console.log('Fetching stream options...');
         const response = await fetch('ambient-stream-config.json');
-        
+
         if (!response.ok) {
             console.error('Failed to load stream options:', response.statusText);
             return;
