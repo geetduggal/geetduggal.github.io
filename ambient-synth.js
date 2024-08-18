@@ -8,6 +8,11 @@ let baseTrack = null;
 let bRollTracks = [];
 let isPlaying = false;
 
+// Function to detect if the user is on a mobile device
+function isMobileDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+}
+
 async function loadStreamOptions() {
     try {
         const response = await fetch('ambient-stream-config.json');
@@ -57,24 +62,26 @@ function loadConfig(config) {
 
         bRollTracks.push(audioElement);
 
-        // Create volume controls for each B-roll
-        const label = document.createElement('label');
-        label.textContent = bRoll.name;
+        // Create volume controls for each B-roll if not on a mobile device
+        if (!isMobileDevice()) {
+            const label = document.createElement('label');
+            label.textContent = bRoll.name;
 
-        const volumeControl = document.createElement('input');
-        volumeControl.type = 'range';
-        volumeControl.min = 0;
-        volumeControl.max = 1;
-        volumeControl.step = 0.1;
-        volumeControl.value = audioElement.volume;
+            const volumeControl = document.createElement('input');
+            volumeControl.type = 'range';
+            volumeControl.min = 0;
+            volumeControl.max = 1;
+            volumeControl.step = 0.1;
+            volumeControl.value = audioElement.volume;
 
-        // Add event listener for volume changes
-        volumeControl.addEventListener('input', (e) => {
-            audioElement.volume = e.target.value;
-        });
+            // Add event listener for volume changes
+            volumeControl.addEventListener('input', (e) => {
+                audioElement.volume = e.target.value;
+            });
 
-        volumeControlsContainer.appendChild(label);
-        volumeControlsContainer.appendChild(volumeControl);
+            volumeControlsContainer.appendChild(label);
+            volumeControlsContainer.appendChild(volumeControl);
+        }
     });
 
     // Update Media Session metadata
