@@ -128,6 +128,7 @@ function loadConfig(config) {
 }
 
 function calculatePlaybackOffset(duration) {
+    duration = 60;
     return consistentTimestamp % duration; // Offset time within the track duration
 }
 
