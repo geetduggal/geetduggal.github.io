@@ -12,7 +12,7 @@ let consistentTimestamp = 0; // This will store the consistent timestamp
 
 // Fetch consistent timestamp from an external source
 async function fetchConsistentTimestamp() {
-    consistentTimestamp = Date.now();
+    consistentTimestamp = Date.now(); / 1000;
     document.body.innerHTML += "<p>Timestamp: " + consistentTimestamp + "</p>";
     return;
     try {
