@@ -2,14 +2,16 @@ const playPauseButton = document.getElementById('playPauseButton');
 const playIcon = document.getElementById('playIcon');
 const stopIcon = document.getElementById('stopIcon');
 const streamSelect = document.getElementById('streamSelect');
-const useBackendCheckbox = document.getElementById('useBackendCheckbox');
 const volumeControlsContainer = document.getElementById('volumeControls');
 
 let baseTrack = null;
 let bRollTracks = [];
 let isPlaying = false;
-let currentStreamConfig = null;
-let useBackend = false;
+
+// Function to detect if the user is on a mobile device
+function isMobileDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+}
 
 async function loadStreamOptions() {
     try {
@@ -22,43 +24,47 @@ async function loadStreamOptions() {
             option.textContent = stream.name;
             streamSelect.appendChild(option);
         });
-
-        // Automatically select the first stream if available
-        if (config.streams.length > 0) {
-            streamSelect.value = config.streams[0].name;
-            loadSelectedStream();
-        }
     } catch (error) {
         console.error('Error loading stream options:', error);
     }
 }
 
-function loadSelectedStream() {
-    const streamName = streamSelect.value;
-    if (streamName === 'none') {
-        stopAllTracks();
-        volumeControlsContainer.innerHTML = ''; // Remove all volume controls
-    } else {
-        fetch('ambient-stream-config.json')
-            .then(response => response.json())
-            .then(config => {
-                const selectedConfig = config.streams.find(stream => stream.name === streamName);
-                if (selectedConfig) {
-                    currentStreamConfig = selectedConfig;
-                    setupVolumeControls(selectedConfig);
-                    playStream(selectedConfig);
-                }
-            })
-            .catch(error => {
-                console.error('Failed to load stream config:', error);
-            });
-    }
+function calculatePlaybackOffset(duration) {
+    const currentTime = Date.now() / 1000; // Current time in seconds
+    return currentTime % duration; // Offset time within the track duration
 }
 
-function setupVolumeControls(config) {
-    volumeControlsContainer.innerHTML = ''; // Clear previous controls
+function loadConfig(config) {
+    // Stop and clear all existing tracks
+    stopAllTracks(true);
+    bRollTracks = [];
+    volumeControlsContainer.innerHTML = '';
 
+    // Create and configure the base track
+    const baseTrackSrc = `hls/${config.baseTrack.replace('aud/', '').replace('.mp3', '.m3u8')}`;
+    baseTrack = new Audio(baseTrackSrc);
+    baseTrack.loop = true;
+
+    baseTrack.addEventListener('loadedmetadata', () => {
+        const offset = calculatePlaybackOffset(baseTrack.duration);
+        baseTrack.currentTime = offset;
+    });
+
+    // Create B-roll tracks and volume controls dynamically
     config.bRolls.forEach(bRoll => {
+        const bRollSrc = `hls/${bRoll.src.replace('aud/', '').replace('.mp3', '.m3u8')}`;
+        const audioElement = new Audio(bRollSrc);
+        audioElement.loop = bRoll.loop || false;
+        audioElement.volume = bRoll.volume || 1.0;
+
+        audioElement.addEventListener('loadedmetadata', () => {
+            const offset = calculatePlaybackOffset(audioElement.duration);
+            audioElement.currentTime = offset;
+        });
+
+        bRollTracks.push(audioElement);
+
+        // Create volume controls for each B-roll
         const label = document.createElement('label');
         label.textContent = bRoll.name;
 
@@ -67,89 +73,54 @@ function setupVolumeControls(config) {
         volumeControl.min = 0;
         volumeControl.max = 1;
         volumeControl.step = 0.1;
-        volumeControl.value = bRoll.volume;
-        volumeControl.dataset.name = bRoll.name; // Associate slider with the B-roll name
+        volumeControl.value = audioElement.volume;
 
+        // Add event listener for volume changes
         volumeControl.addEventListener('input', (e) => {
-            bRollTracks.forEach(track => {
-                if (track.dataset.name === bRoll.name) {
-                    track.volume = e.target.value;
-                }
-            });
+            audioElement.volume = e.target.value;
         });
 
         volumeControlsContainer.appendChild(label);
         volumeControlsContainer.appendChild(volumeControl);
     });
-}
 
-function playStream(config) {
-    stopAllTracks();
-
-    if (useBackend) {
-        // Use HLS files directly from the local hls/ directory, remove 'aud/' prefix
-        const baseTrackSrc = config.baseTrack.replace('aud/', '');
-        baseTrack = createAudioElement(baseTrackSrc, true);
-        baseTrack.play();
-
-        config.bRolls.forEach(bRoll => {
-            const bRollSrc = bRoll.src.replace('aud/', '');
-            const audioElement = createAudioElement(bRollSrc, true, bRoll.volume);
-            audioElement.dataset.name = bRoll.name; // Store the track name for volume control
-            bRollTracks.push(audioElement);
-            audioElement.play();
-        });
-    } else {
-        // Original client-side behavior, keep 'aud/' prefix
-        const baseTrackSrc = config.baseTrack;
-        baseTrack = createAudioElement(baseTrackSrc, true);
-        baseTrack.play();
-
-        config.bRolls.forEach(bRoll => {
-            const bRollSrc = bRoll.src;
-            const audioElement = createAudioElement(bRollSrc, true, bRoll.volume);
-            audioElement.dataset.name = bRoll.name; // Store the track name for volume control
-            bRollTracks.push(audioElement);
-            audioElement.play();
-        });
-    }
-
-    // Call setupVolumeControls to ensure volume sliders are displayed and functional
-    setupVolumeControls(config);
-
-    isPlaying = true;
-    updatePlayPauseButton();
+    // Update Media Session metadata
     updateMediaSession(config.name);
 }
 
-function createAudioElement(src, loop = false, volume = 1.0) {
-    let audio;
-    if (useBackend) {
-        // Modify the URL to point to the HLS stream in the local hls/ directory
-        const hlsUrl = `hls/${src.replace('.mp3', '.m3u8')}`;
-        audio = new Audio(hlsUrl);
-    } else {
-        audio = new Audio(src);
+function playAllTracks() {
+    if (baseTrack) {
+        baseTrack.play();
     }
-    audio.loop = loop;
-    audio.volume = volume;
-    return audio;
+
+    bRollTracks.forEach(track => {
+        track.play();
+    });
+
+    isPlaying = true;
+    updatePlayPauseButton();
+    updateMediaSessionState('playing');
 }
 
-function stopAllTracks() {
+function stopAllTracks(clearTracks = false) {
     if (baseTrack) {
         baseTrack.pause();
         baseTrack.currentTime = 0;
-        baseTrack = null;
     }
     bRollTracks.forEach(track => {
         track.pause();
         track.currentTime = 0;
     });
-    bRollTracks = [];
 
     isPlaying = false;
     updatePlayPauseButton();
+
+    if (clearTracks) {
+        baseTrack = null;
+        bRollTracks = [];
+    }
+
+    updateMediaSessionState('paused');
 }
 
 function updatePlayPauseButton() {
@@ -171,7 +142,7 @@ function updateMediaSession(streamName) {
 
         navigator.mediaSession.setActionHandler('play', () => {
             if (!isPlaying) {
-                playStream(currentStreamConfig);
+                playAllTracks();
             }
         });
         navigator.mediaSession.setActionHandler('pause', () => {
@@ -192,27 +163,42 @@ function updateMediaSession(streamName) {
     }
 }
 
-function seek(seconds) {
-    if (baseTrack) {
-        const newTime = Math.max(0, Math.min(baseTrack.currentTime + seconds, baseTrack.duration));
-        baseTrack.currentTime = newTime;
+function updateMediaSessionState(state) {
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.playbackState = state;
+        console.log(`Media session state updated to ${state}`);
     }
+}
+
+function seek(seconds) {
+    const newTime = Math.max(0, Math.min(baseTrack.currentTime + seconds, baseTrack.duration));
+    baseTrack.currentTime = newTime;
 }
 
 playPauseButton.addEventListener('click', () => {
     if (isPlaying) {
         stopAllTracks();
-    } else if (currentStreamConfig) {
-        playStream(currentStreamConfig);
+    } else {
+        playAllTracks();
     }
 });
 
-streamSelect.addEventListener('change', loadSelectedStream);
-
-useBackendCheckbox.addEventListener('change', () => {
-    useBackend = useBackendCheckbox.checked;
-    if (isPlaying && currentStreamConfig) {
-        playStream(currentStreamConfig);
+streamSelect.addEventListener('change', async () => {
+    const streamName = streamSelect.value;
+    if (streamName === 'none') {
+        stopAllTracks(true);
+        volumeControlsContainer.innerHTML = ''; // Remove all volume controls
+    } else {
+        try {
+            const response = await fetch('ambient-stream-config.json');
+            const config = await response.json();
+            const selectedConfig = config.streams.find(stream => stream.name === streamName);
+            if (selectedConfig) {
+                loadConfig(selectedConfig);
+            }
+        } catch (error) {
+            console.error('Failed to load stream config:', error);
+        }
     }
 });
 
