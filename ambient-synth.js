@@ -51,6 +51,7 @@ function createAudioElement(src, loop = false, volume = 1.0) {
 
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
             console.log(`HLS Manifest parsed for: ${src}`);
+            setAudioCurrentTime(audio);
         });
 
         hls.on(Hls.Events.ERROR, (event, data) => {
@@ -58,6 +59,9 @@ function createAudioElement(src, loop = false, volume = 1.0) {
         });
     } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
         audio.src = src;
+        audio.addEventListener('loadedmetadata', () => {
+            setAudioCurrentTime(audio);
+        });
     } else {
         console.error('HLS is not supported on this browser.');
     }
@@ -67,6 +71,11 @@ function createAudioElement(src, loop = false, volume = 1.0) {
     return audio;
 }
 
+function setAudioCurrentTime(audioElement) {
+    const offset = calculatePlaybackOffset(audioElement.duration);
+    audioElement.currentTime = offset;
+}
+
 function loadConfig(config) {
     stopAllTracks(true);
     bRollTracks = [];
@@ -74,12 +83,6 @@ function loadConfig(config) {
 
     const baseTrackSrc = `hls/${config.baseTrack.replace('aud/', '').replace('.mp3', '.m3u8')}`;
     baseTrack = createAudioElement(baseTrackSrc, true);
-
-    // Adjust base track current time based on timestamp
-    baseTrack.addEventListener('loadedmetadata', () => {
-        const offset = calculatePlaybackOffset(baseTrack.duration);
-        baseTrack.currentTime = offset;
-    });
 
     config.bRolls.forEach(bRoll => {
         const bRollSrc = `hls/${bRoll.src.replace('aud/', '').replace('.mp3', '.m3u8')}`;
@@ -114,10 +117,12 @@ function calculatePlaybackOffset(duration) {
 
 function playAllTracks() {
     if (baseTrack) {
+        setAudioCurrentTime(baseTrack); // Ensure it always starts at the correct offset
         baseTrack.play();
     }
 
     bRollTracks.forEach(track => {
+        setAudioCurrentTime(track); // Ensure it always starts at the correct offset
         track.play();
     });
 
