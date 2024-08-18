@@ -12,7 +12,7 @@ let consistentTimestamp = 0; // This will store the consistent timestamp
 
 // Fetch consistent timestamp from an external source
 async function fetchConsistentTimestamp() {
-    consistentTimestamp = Math.floor(Date.now() / 1000);
+    consistentTimestamp = Date.now() / 1000;
     return;
     try {
         const response = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
@@ -128,7 +128,6 @@ function loadConfig(config) {
 }
 
 function calculatePlaybackOffset(duration) {
-    return consistentTimestamp % 60:
     return consistentTimestamp % duration; // Offset time within the track duration
 }
 
