@@ -135,8 +135,8 @@ function updateMediaSession(streamName) {
             artist: 'Ambient Synth',
             album: 'Ambient Streams',
             artwork: [
-                { src: 'https://via.placeholder.com/128', sizes: '128x128', type: 'image/png' },
-                { src: 'https://via.placeholder.com/256', sizes: '256x256', type: 'image/png' }
+                { src: 'img/logo-128x128.png', sizes: '128x128', type: 'image/png' },
+                { src: 'img/logo-256x256.png', sizes: '256x256', type: 'image/png' }
             ]
         });
 
