@@ -35,6 +35,24 @@
             "loop": true
         }
         ]
+    },
+    {
+        "name": "Enya",
+        "baseTrack": "aud/enya.mp3",
+        "bRolls": [
+        {
+            "name": "Fireplace",
+            "src": "aud/fireplace.mp3",
+            "volume": 0.6,
+            "loop": true
+        },
+        {
+            "name": "Rain",
+            "src": "aud/rain.mp3",
+            "volume": 0.2,
+            "loop": true
+        }
+        ]
     }
     ]
 }
