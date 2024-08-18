@@ -3,6 +3,7 @@ const playIcon = document.getElementById('playIcon');
 const stopIcon = document.getElementById('stopIcon');
 const streamSelect = document.getElementById('streamSelect');
 const volumeControlsContainer = document.getElementById('volumeControls');
+const logContainer = document.getElementById('logContainer'); // Logging container
 
 let baseTrack = null;
 let bRollTracks = [];
@@ -10,37 +11,46 @@ let isPlaying = false;
 let hlsInstances = [];
 let consistentTimestamp = 0; // This will store the consistent timestamp
 
-// Fetch consistent timestamp from an external source
+// Log function to append messages to the page
+function logMessage(message) {
+    const logEntry = document.createElement('p');
+    logEntry.textContent = message;
+    logContainer.appendChild(logEntry);
+}
+
 async function fetchConsistentTimestamp() {
     consistentTimestamp = Date.now() / 1000;
+    logMessage(`Fetched consistent timestamp (local): ${consistentTimestamp}`);
     return;
     try {
         const response = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
         const data = await response.json();
         consistentTimestamp = new Date(data.utc_datetime).getTime() / 1000; // Convert to seconds
-        console.log('Fetched consistent timestamp:', consistentTimestamp);
+        logMessage(`Fetched consistent timestamp (external): ${consistentTimestamp}`);
     } catch (error) {
         console.error('Failed to fetch consistent timestamp:', error);
-        // Fallback to local timestamp if external fetch fails
+        logMessage('Failed to fetch consistent timestamp, using local time');
         consistentTimestamp = Date.now() / 1000;
     }
 }
 
 async function loadStreamOptions() {
     try {
-        console.log('Fetching stream options...');
+        logMessage('Fetching stream options...');
         const response = await fetch('ambient-stream-config.json');
 
         if (!response.ok) {
             console.error('Failed to load stream options:', response.statusText);
+            logMessage(`Failed to load stream options: ${response.statusText}`);
             return;
         }
 
         const config = await response.json();
-        console.log('Stream config loaded:', config);
+        logMessage('Stream config loaded');
 
         if (!config.streams || config.streams.length === 0) {
             console.warn('No streams found in the config');
+            logMessage('No streams found in the config');
             return;
         }
 
@@ -51,9 +61,10 @@ async function loadStreamOptions() {
             streamSelect.appendChild(option);
         });
 
-        console.log('Dropdown populated with stream options');
+        logMessage('Dropdown populated with stream options');
     } catch (error) {
         console.error('Error loading stream options:', error);
+        logMessage(`Error loading stream options: ${error}`);
     }
 }
 
@@ -67,12 +78,13 @@ function createAudioElement(src, loop = false, volume = 1.0) {
         hlsInstances.push(hls);
 
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            console.log(`HLS Manifest parsed for: ${src}`);
+            logMessage(`HLS Manifest parsed for: ${src}`);
             setAudioCurrentTime(audio);
         });
 
         hls.on(Hls.Events.ERROR, (event, data) => {
             console.error('HLS.js error:', data);
+            logMessage(`HLS.js error: ${data.details}`);
         });
     } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
         audio.src = src;
@@ -81,6 +93,7 @@ function createAudioElement(src, loop = false, volume = 1.0) {
         });
     } else {
         console.error('HLS is not supported on this browser.');
+        logMessage('HLS is not supported on this browser.');
     }
 
     audio.loop = loop;
@@ -91,6 +104,7 @@ function createAudioElement(src, loop = false, volume = 1.0) {
 function setAudioCurrentTime(audioElement) {
     const offset = calculatePlaybackOffset(audioElement.duration);
     audioElement.currentTime = offset;
+    logMessage(`Set audio currentTime to: ${offset} (Duration: ${audioElement.duration})`);
 }
 
 function loadConfig(config) {
@@ -118,6 +132,7 @@ function loadConfig(config) {
 
         volumeControl.addEventListener('input', (e) => {
             audioElement.volume = e.target.value;
+            logMessage(`Volume changed for ${bRoll.name}: ${e.target.value}`);
         });
 
         volumeControlsContainer.appendChild(label);
@@ -129,18 +144,22 @@ function loadConfig(config) {
 
 function calculatePlaybackOffset(duration) {
     duration = 60;
-    return consistentTimestamp % duration; // Offset time within the track duration
+    const offset = consistentTimestamp % duration;
+    logMessage(`Calculated playback offset: ${offset} (Duration: ${duration}, Timestamp: ${consistentTimestamp})`);
+    return offset; // Offset time within the track duration
 }
 
 function playAllTracks() {
     if (baseTrack) {
         setAudioCurrentTime(baseTrack); // Ensure it always starts at the correct offset
         baseTrack.play();
+        logMessage('Playing base track');
     }
 
     bRollTracks.forEach(track => {
         setAudioCurrentTime(track); // Ensure it always starts at the correct offset
         track.play();
+        logMessage('Playing B-roll track');
     });
 
     isPlaying = true;
@@ -152,10 +171,12 @@ function stopAllTracks(clearTracks = false) {
     if (baseTrack) {
         baseTrack.pause();
         baseTrack.currentTime = 0;
+        logMessage('Stopped base track');
     }
     bRollTracks.forEach(track => {
         track.pause();
         track.currentTime = 0;
+        logMessage('Stopped B-roll track');
     });
 
     isPlaying = false;
@@ -175,6 +196,7 @@ function stopAllTracks(clearTracks = false) {
 function updatePlayPauseButton() {
     playIcon.style.display = isPlaying ? 'none' : 'inline';
     stopIcon.style.display = isPlaying ? 'inline' : 'none';
+    logMessage(`Updated play/pause button, isPlaying: ${isPlaying}`);
 }
 
 function updateMediaSession(streamName) {
@@ -206,16 +228,17 @@ function updateMediaSession(streamName) {
             moveStream(1);
         });
 
-        console.log('Media Session actions set up');
+        logMessage('Media Session actions set up');
     } else {
         console.warn('Media Session API not supported');
+        logMessage('Media Session API not supported');
     }
 }
 
 function updateMediaSessionState(state) {
     if ('mediaSession' in navigator) {
         navigator.mediaSession.playbackState = state;
-        console.log(`Media session state updated to ${state}`);
+        logMessage(`Media session state updated to ${state}`);
     }
 }
 
@@ -226,6 +249,7 @@ function moveStream(direction) {
     if (newIndex !== currentIndex) {
         streamSelect.selectedIndex = newIndex;
         streamSelect.dispatchEvent(new Event('change'));
+        logMessage(`Moved stream selection by ${direction}, newIndex: ${newIndex}`);
     }
 }
 
@@ -242,9 +266,10 @@ streamSelect.addEventListener('change', async () => {
     if (streamName === 'none') {
         stopAllTracks(true);
         volumeControlsContainer.innerHTML = ''; // Remove all volume controls
+        logMessage('Stopped all tracks and cleared volume controls');
     } else {
         try {
-            console.log(`Loading config for stream: ${streamName}`);
+            logMessage(`Loading config for stream: ${streamName}`);
             const response = await fetch('ambient-stream-config.json');
             const config = await response.json();
             const selectedConfig = config.streams.find(stream => stream.name === streamName);
@@ -252,10 +277,11 @@ streamSelect.addEventListener('change', async () => {
                 await fetchConsistentTimestamp(); // Fetch consistent timestamp before playing
                 loadConfig(selectedConfig);
             } else {
-                console.warn(`Stream config not found for stream: ${streamName}`);
+                logMessage(`Stream config not found for stream: ${streamName}`);
             }
         } catch (error) {
             console.error('Failed to load stream config:', error);
+            logMessage(`Failed to load stream config: ${error}`);
         }
     }
 });
@@ -264,4 +290,3 @@ window.addEventListener('DOMContentLoaded', async () => {
     await fetchConsistentTimestamp(); // Fetch consistent timestamp on page load
     loadStreamOptions();
 });
-
