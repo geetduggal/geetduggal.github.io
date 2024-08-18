@@ -68,6 +68,8 @@ function setupVolumeControls(config) {
         volumeControl.max = 1;
         volumeControl.step = 0.1;
         volumeControl.value = bRoll.volume;
+        volumeControl.dataset.name = bRoll.name; // Associate slider with the B-roll name
+
         volumeControl.addEventListener('input', (e) => {
             bRollTracks.forEach(track => {
                 if (track.dataset.name === bRoll.name) {
@@ -85,7 +87,7 @@ function playStream(config) {
     stopAllTracks();
 
     if (useBackend) {
-        // Use HLS files directly from the local hls/ directory
+        // Use HLS files directly from the local hls/ directory, remove 'aud/' prefix
         const baseTrackSrc = config.baseTrack.replace('aud/', '');
         baseTrack = createAudioElement(baseTrackSrc, true);
         baseTrack.play();
@@ -98,19 +100,22 @@ function playStream(config) {
             audioElement.play();
         });
     } else {
-        // Original client-side behavior
-        const baseTrackSrc = config.baseTrack.replace('aud/', '');
+        // Original client-side behavior, keep 'aud/' prefix
+        const baseTrackSrc = config.baseTrack;
         baseTrack = createAudioElement(baseTrackSrc, true);
         baseTrack.play();
 
         config.bRolls.forEach(bRoll => {
-            const bRollSrc = bRoll.src.replace('aud/', '');
+            const bRollSrc = bRoll.src;
             const audioElement = createAudioElement(bRollSrc, true, bRoll.volume);
             audioElement.dataset.name = bRoll.name; // Store the track name for volume control
             bRollTracks.push(audioElement);
             audioElement.play();
         });
     }
+
+    // Call setupVolumeControls to ensure volume sliders are displayed and functional
+    setupVolumeControls(config);
 
     isPlaying = true;
     updatePlayPauseButton();
