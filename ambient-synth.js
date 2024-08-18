@@ -17,7 +17,6 @@ async function fetchConsistentTimestamp() {
         const data = await response.json();
         consistentTimestamp = new Date(data.utc_datetime).getTime() / 1000; // Convert to seconds
         console.log('Fetched consistent timestamp:', consistentTimestamp);
-        document.body.innerHTML += "<p>Timestamp: " + consistentTimestamp + "</p>";
     } catch (error) {
         console.error('Failed to fetch consistent timestamp:', error);
         // Fallback to local timestamp if external fetch fails
