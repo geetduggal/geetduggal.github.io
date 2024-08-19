@@ -5,21 +5,34 @@ const streamSelect = document.getElementById('streamSelect');
 const volumeControlsContainer = document.getElementById('volumeControls');
 const logContainer = document.getElementById('logContainer'); // Logging container
 
-let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let baseTrack = null;
-let bRollTrack = null;
-let hlsInstance = null;
-let bRollHlsInstance = null;
+let bRollTracks = [];
 let isPlaying = false;
-let baseGainNode = null; // GainNode for base track
-let bRollGainNode = null; // GainNode for B-roll track
+let hlsInstances = [];
+let consistentTimestamp = 0; // This will store the consistent timestamp
+let baseTrackDuration = NaN; // Store the duration of the base track
 
 // Log function to append messages to the page
 function logMessage(message) {
     const logEntry = document.createElement('p');
     logEntry.textContent = message;
     logContainer.appendChild(logEntry);
-    console.log(message);  // Also log to the console for easier debugging
+}
+
+async function fetchConsistentTimestamp() {
+    consistentTimestamp = Date.now() / 1000;
+    logMessage(`Fetched consistent timestamp (local): ${consistentTimestamp}`);
+    return;
+    try {
+        const response = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
+        const data = await response.json();
+        consistentTimestamp = new Date(data.utc_datetime).getTime() / 1000; // Convert to seconds
+        logMessage(`Fetched consistent timestamp (external): ${consistentTimestamp}`);
+    } catch (error) {
+        console.error('Failed to fetch consistent timestamp:', error);
+        logMessage('Failed to fetch consistent timestamp, using local time');
+        consistentTimestamp = Date.now() / 1000;
+    }
 }
 
 async function loadStreamOptions() {
@@ -36,116 +49,155 @@ async function loadStreamOptions() {
         const config = await response.json();
         logMessage('Stream config loaded');
 
-        if (config.streams && config.streams.length > 0) {
-            const stream = config.streams[0]; // Only use the first stream for this simplified version
+        if (!config.streams || config.streams.length === 0) {
+            console.warn('No streams found in the config');
+            logMessage('No streams found in the config');
+            return;
+        }
+
+        config.streams.forEach(stream => {
             const option = document.createElement('option');
             option.value = stream.name;
             option.textContent = stream.name;
             streamSelect.appendChild(option);
-            logMessage('Dropdown populated with the first stream option');
-        } else {
-            logMessage('No streams found in the config');
-        }
+        });
+
+        logMessage('Dropdown populated with stream options');
     } catch (error) {
         console.error('Error loading stream options:', error);
         logMessage(`Error loading stream options: ${error}`);
     }
 }
 
-function createHLSTrackWithGain(src, loop = false, volume = 1.0) {
-    logMessage(`Creating HLS track for src: ${src}`);
-
+function createAudioElement(src, loop = false, volume = 1.0) {
     let audio = new Audio();
-    let gainNode = audioContext.createGain();
-    gainNode.gain.value = volume;
-    logMessage(`GainNode created with initial gain value: ${gainNode.gain.value}`);
 
-    let hls = new Hls();
-    hls.loadSource(src);
-    hls.attachMedia(audio);
+    if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(audio);
+        hlsInstances.push(hls);
 
-    hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        logMessage('HLS manifest parsed successfully');
-    });
+        hls.on(Hls.Events.LEVEL_LOADED, (event, data) => {
+            baseTrackDuration = data.details.totalduration;
+            logMessage(`HLS LEVEL_LOADED: duration set to ${baseTrackDuration} seconds for ${src}`);
+            setAudioCurrentTime(audio);
+        });
 
-    hls.on(Hls.Events.ERROR, (event, data) => {
-        logMessage(`HLS.js error occurred: ${data.type} - ${data.details}`);
-        console.error('HLS.js error:', data);
-    });
-
-    audio.loop = loop;
-    audio.volume = 1.0; // Start with native volume control for initial testing
-    logMessage(`Audio element created and loop set to: ${loop}`);
-
-    return { audio, gainNode, hls };
-}
-
-function togglePlayPause() {
-    if (baseTrack.paused) {
-        baseTrack.play().then(() => {
-            logMessage('Base track is playing');
-
-            // Connect the GainNode after the track starts playing
-            const baseSource = audioContext.createMediaElementSource(baseTrack);
-            baseSource.connect(baseGainNode).connect(audioContext.destination);
-            logMessage('Connected GainNode to audio context for base track');
-
-            if (bRollTrack) {
-                bRollTrack.play().then(() => {
-                    logMessage('B-roll track is playing');
-
-                    const bRollSource = audioContext.createMediaElementSource(bRollTrack);
-                    bRollSource.connect(bRollGainNode).connect(audioContext.destination);
-                    logMessage('Connected GainNode to audio context for B-roll track');
-                }).catch(error => {
-                    logMessage('Failed to play B-roll track: ' + error.message);
-                    console.error('Failed to play B-roll track:', error);
-                });
-            }
-
-            isPlaying = true;
-            updatePlayPauseButton();
-            updateMediaSessionState('playing');
-        }).catch(error => {
-            logMessage('Failed to play base track: ' + error.message);
-            console.error('Failed to play base track:', error);
+        hls.on(Hls.Events.ERROR, (event, data) => {
+            console.error('HLS.js error:', data);
+            logMessage(`HLS.js error: ${data.details}`);
+        });
+    } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
+        // Safari or other browsers with native HLS support
+        audio.src = src;
+        audio.addEventListener('loadedmetadata', () => {
+            baseTrackDuration = audio.duration;
+            logMessage(`Native HLS loaded: duration set to ${baseTrackDuration} seconds for ${src}`);
+            setAudioCurrentTime(audio);
         });
     } else {
-        baseTrack.pause();
-        if (bRollTrack) bRollTrack.pause();
-        logMessage('Base track and B-roll track paused');
-        isPlaying = false;
-        updatePlayPauseButton();
-        updateMediaSessionState('paused');
+        console.error('HLS is not supported on this browser.');
+        logMessage('HLS is not supported on this browser.');
+    }
+
+    audio.loop = loop;
+    audio.volume = volume;
+    return audio;
+}
+
+function setAudioCurrentTime(audioElement) {
+    if (!isNaN(baseTrackDuration)) {
+        const offset = calculatePlaybackOffset(baseTrackDuration);
+        audioElement.currentTime = offset;
+        logMessage(`Set audio currentTime to: ${offset} (Duration: ${baseTrackDuration})`);
+    } else {
+        logMessage('Unable to set currentTime, duration is NaN');
     }
 }
 
-function stopAllTracks() {
+function loadConfig(config) {
+    stopAllTracks(true);
+    bRollTracks = [];
+    volumeControlsContainer.innerHTML = '';
+
+    const baseTrackSrc = `hls/${config.baseTrack.replace('aud/', '').replace('.mp3', '.m3u8')}`;
+    baseTrack = createAudioElement(baseTrackSrc, true);
+
+    config.bRolls.forEach(bRoll => {
+        const bRollSrc = `hls/${bRoll.src.replace('aud/', '').replace('.mp3', '.m3u8')}`;
+        const audioElement = createAudioElement(bRollSrc, true, bRoll.volume);
+        bRollTracks.push(audioElement);
+
+        const label = document.createElement('label');
+        label.textContent = bRoll.name;
+
+        const volumeControl = document.createElement('input');
+        volumeControl.type = 'range';
+        volumeControl.min = 0;
+        volumeControl.max = 1;
+        volumeControl.step = 0.1;
+        volumeControl.value = audioElement.volume;
+
+        volumeControl.addEventListener('input', (e) => {
+            audioElement.volume = e.target.value;
+            logMessage(`Volume changed for ${bRoll.name}: ${e.target.value}`);
+        });
+
+        volumeControlsContainer.appendChild(label);
+        volumeControlsContainer.appendChild(volumeControl);
+    });
+
+    updateMediaSession(config.name);
+}
+
+function calculatePlaybackOffset(duration) {
+    const offset = consistentTimestamp % duration;
+    logMessage(`Calculated playback offset: ${offset} (Duration: ${duration}, Timestamp: ${consistentTimestamp})`);
+    return offset; // Offset time within the track duration
+}
+
+function playAllTracks() {
+    if (baseTrack) {
+        setAudioCurrentTime(baseTrack); // Ensure it always starts at the correct offset
+        baseTrack.play();
+        logMessage('Playing base track');
+    }
+
+    bRollTracks.forEach(track => {
+        setAudioCurrentTime(track); // Ensure it always starts at the correct offset
+        track.play();
+        logMessage('Playing B-roll track');
+    });
+
+    isPlaying = true;
+    updatePlayPauseButton();
+    updateMediaSessionState('playing');
+}
+
+function stopAllTracks(clearTracks = false) {
     if (baseTrack) {
         baseTrack.pause();
         baseTrack.currentTime = 0;
         logMessage('Stopped base track');
     }
-
-    if (bRollTrack) {
-        bRollTrack.pause();
-        bRollTrack.currentTime = 0;
+    bRollTracks.forEach(track => {
+        track.pause();
+        track.currentTime = 0;
         logMessage('Stopped B-roll track');
-    }
+    });
 
     isPlaying = false;
-
-    if (hlsInstance) {
-        hlsInstance.destroy();
-        hlsInstance = null;
-    }
-
-    if (bRollHlsInstance) {
-        bRollHlsInstance.destroy();
-        bRollHlsInstance = null;
-    }
-
     updatePlayPauseButton();
+
+    if (clearTracks) {
+        baseTrack = null;
+        bRollTracks = [];
+
+        hlsInstances.forEach(hls => hls.destroy());
+        hlsInstances = [];
+    }
+
     updateMediaSessionState('paused');
 }
 
@@ -153,26 +205,6 @@ function updatePlayPauseButton() {
     playIcon.style.display = isPlaying ? 'none' : 'inline';
     stopIcon.style.display = isPlaying ? 'inline' : 'none';
     logMessage(`Updated play/pause button, isPlaying: ${isPlaying}`);
-}
-
-function createVolumeSlider(trackName, gainNode) {
-    const label = document.createElement('label');
-    label.textContent = `${trackName} Volume`;
-
-    const volumeControl = document.createElement('input');
-    volumeControl.type = 'range';
-    volumeControl.min = 0;
-    volumeControl.max = 1;
-    volumeControl.step = 0.1;
-    volumeControl.value = gainNode.gain.value;
-
-    volumeControl.addEventListener('input', (e) => {
-        gainNode.gain.value = e.target.value;
-        logMessage(`${trackName} volume changed to: ${gainNode.gain.value}`);
-    });
-
-    volumeControlsContainer.appendChild(label);
-    volumeControlsContainer.appendChild(volumeControl);
 }
 
 function updateMediaSession(streamName) {
@@ -189,27 +221,25 @@ function updateMediaSession(streamName) {
 
         navigator.mediaSession.setActionHandler('play', () => {
             if (!isPlaying) {
-                togglePlayPause();
+                playAllTracks();
             }
         });
-
         navigator.mediaSession.setActionHandler('pause', () => {
             if (isPlaying) {
-                togglePlayPause();
+                stopAllTracks();
             }
         });
-
-        navigator.mediaSession.setActionHandler('seekbackward', (details) => {
-            seek(-10);
+        navigator.mediaSession.setActionHandler('seekbackward', () => {
+            moveStream(-1);
         });
-
-        navigator.mediaSession.setActionHandler('seekforward', (details) => {
-            seek(10);
+        navigator.mediaSession.setActionHandler('seekforward', () => {
+            moveStream(1);
         });
 
         logMessage('Media Session actions set up');
     } else {
-        logMessage('Media Session API not supported in this browser');
+        console.warn('Media Session API not supported');
+        logMessage('Media Session API not supported');
     }
 }
 
@@ -220,80 +250,51 @@ function updateMediaSessionState(state) {
     }
 }
 
-function seek(seconds) {
-    if (baseTrack) {
-        const newTime = Math.max(0, Math.min(baseTrack.currentTime + seconds, baseTrack.duration));
-        baseTrack.currentTime = newTime;
-        logMessage(`Base track seeked to ${newTime}`);
+function moveStream(direction) {
+    const currentIndex = streamSelect.selectedIndex;
+    const newIndex = Math.min(Math.max(0, currentIndex + direction), streamSelect.options.length - 1);
+
+    if (newIndex !== currentIndex) {
+        streamSelect.selectedIndex = newIndex;
+        streamSelect.dispatchEvent(new Event('change'));
+        logMessage(`Moved stream selection by ${direction}, newIndex: ${newIndex}`);
     }
 }
 
 playPauseButton.addEventListener('click', () => {
-    if (!baseTrack) {
-        const streamName = streamSelect.value;
-        const streamSrc = `hls/${streamName.toLowerCase()}.m3u8`; // Ensure correct path and case
-        const baseTrackObj = createHLSTrackWithGain(streamSrc, true); // Create base track with GainNode
-        baseTrack = baseTrackObj.audio;
-        baseGainNode = baseTrackObj.gainNode;
-
-        createVolumeSlider('Base Track', baseGainNode); // Add volume slider for base track
-        updateMediaSession(streamName); // Setup media session for base track
-
-        // Get B-roll from the stream config
-        fetch('ambient-stream-config.json')
-            .then(resp => resp.json())
-            .then(config => {
-                const selectedStream = config.streams.find(stream => stream.name === streamName);
-                if (selectedStream && selectedStream.bRolls && selectedStream.bRolls.length > 0) {
-                    const bRollSrc = `hls/${selectedStream.bRolls[0].src.replace('aud/', '').replace('.mp3', '.m3u8')}`;
-                    const bRollTrackObj = createHLSTrackWithGain(bRollSrc, true, selectedStream.bRolls[0].volume || 1.0);
-                    bRollTrack = bRollTrackObj.audio;
-                    bRollGainNode = bRollTrackObj.gainNode;
-
-                    createVolumeSlider('B-roll Track', bRollGainNode); // Add volume slider for B-roll track
-                    logMessage(`Loaded B-roll track with URL: ${bRollSrc}`);
-                }
-                togglePlayPause(); // Start playing only when the play button is pressed
-            });
-    } else {
-        togglePlayPause();
-    }
-});
-
-streamSelect.addEventListener('change', () => {
     if (isPlaying) {
         stopAllTracks();
+    } else {
+        playAllTracks();
     }
-
-    volumeControlsContainer.innerHTML = ''; // Clear previous volume controls
-
-    const streamName = streamSelect.value;
-    const streamSrc = `hls/${streamName.toLowerCase()}.m3u8`; // Ensure correct path and case
-    const baseTrackObj = createHLSTrackWithGain(streamSrc, true); // Simplified config for testing
-    baseTrack = baseTrackObj.audio;
-    baseGainNode = baseTrackObj.gainNode;
-
-    createVolumeSlider('Base Track', baseGainNode); // Add volume slider for base track
-    updateMediaSession(streamName); // Setup media session for base track
-
-    // Get B-roll from the stream config
-    fetch('ambient-stream-config.json')
-        .then(resp => resp.json())
-        .then(config => {
-            const selectedStream = config.streams.find(stream => stream.name === streamName);
-            if (selectedStream && selectedStream.bRolls && selectedStream.bRolls.length > 0) {
-                const bRollSrc = `hls/${selectedStream.bRolls[0].src.replace('aud/', '').replace('.mp3', '.m3u8')}`;
-                const bRollTrackObj = createHLSTrackWithGain(bRollSrc, true, selectedStream.bRolls[0].volume || 1.0);
-                bRollTrack = bRollTrackObj.audio;
-                bRollGainNode = bRollTrackObj.gainNode;
-
-                createVolumeSlider('B-roll Track', bRollGainNode); // Add volume slider for B-roll track
-                logMessage(`Loaded B-roll track with URL: ${bRollSrc}`);
-            }
-            // Do not auto-play, wait for the play button to be pressed
-        });
 });
 
-window.addEventListener('DOMContentLoaded', () => {
+streamSelect.addEventListener('change', async () => {
+    const streamName = streamSelect.value;
+    if (streamName === 'none') {
+        stopAllTracks(true);
+        volumeControlsContainer.innerHTML = ''; // Remove all volume controls
+        logMessage('Stopped all tracks and cleared volume controls');
+    } else {
+        try {
+            logMessage(`Loading config for stream: ${streamName}`);
+            const response = await fetch('ambient-stream-config.json');
+            const config = await response.json();
+            const selectedConfig = config.streams.find(stream => stream.name === streamName);
+            if (selectedConfig) {
+                await fetchConsistentTimestamp(); // Fetch consistent timestamp before playing
+                loadConfig(selectedConfig);
+            } else {
+                logMessage(`Stream config not found for stream: ${streamName}`);
+            }
+        } catch (error) {
+            console.error('Failed to load stream config:', error);
+            logMessage(`Failed to load stream config: ${error}`);
+        }
+    }
+});
+
+window.addEventListener('DOMContentLoaded', async () => {
+    await fetchConsistentTimestamp(); // Fetch consistent timestamp on page load
     loadStreamOptions();
 });
