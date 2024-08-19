@@ -48,8 +48,8 @@
         },
         {
             "name": "Rain",
-            "src": "aud/rain.mp3",
-            "volume": 0.2,
+            "src": "aud/rain-quiet.mp3",
+            "volume": 0.5,
             "loop": true
         }
         ]
