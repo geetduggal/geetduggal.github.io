@@ -12,6 +12,9 @@ let hlsInstances = [];
 let consistentTimestamp = 0; // This will store the consistent timestamp
 let baseTrackDuration = NaN; // Store the duration of the base track
 
+// Detect if the user is on a mobile device
+const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
+
 // Log function to append messages to the page
 function logMessage(message) {
     const logEntry = document.createElement('p');
@@ -132,20 +135,36 @@ function loadConfig(config) {
         const label = document.createElement('label');
         label.textContent = bRoll.name;
 
-        const volumeControl = document.createElement('input');
-        volumeControl.type = 'range';
-        volumeControl.min = 0;
-        volumeControl.max = 1;
-        volumeControl.step = 0.1;
-        volumeControl.value = audioElement.volume;
+        if (isMobileDevice) {
+            // Create checkbox for muting/unmuting on mobile devices
+            const muteCheckbox = document.createElement('input');
+            muteCheckbox.type = 'checkbox';
+            muteCheckbox.checked = true; // Start unmuted
 
-        volumeControl.addEventListener('input', (e) => {
-            audioElement.volume = e.target.value;
-            logMessage(`Volume changed for ${bRoll.name}: ${e.target.value}`);
-        });
+            muteCheckbox.addEventListener('change', (e) => {
+                audioElement.muted = !e.target.checked;
+                logMessage(`${bRoll.name} ${audioElement.muted ? 'muted' : 'unmuted'}`);
+            });
 
-        volumeControlsContainer.appendChild(label);
-        volumeControlsContainer.appendChild(volumeControl);
+            volumeControlsContainer.appendChild(label);
+            volumeControlsContainer.appendChild(muteCheckbox);
+        } else {
+            // Create volume control slider for non-mobile devices
+            const volumeControl = document.createElement('input');
+            volumeControl.type = 'range';
+            volumeControl.min = 0;
+            volumeControl.max = 1;
+            volumeControl.step = 0.1;
+            volumeControl.value = audioElement.volume;
+
+            volumeControl.addEventListener('input', (e) => {
+                audioElement.volume = e.target.value;
+                logMessage(`Volume changed for ${bRoll.name}: ${e.target.value}`);
+            });
+
+            volumeControlsContainer.appendChild(label);
+            volumeControlsContainer.appendChild(volumeControl);
+        }
     });
 
     updateMediaSession(config.name);
@@ -298,3 +317,4 @@ window.addEventListener('DOMContentLoaded', async () => {
     await fetchConsistentTimestamp(); // Fetch consistent timestamp on page load
     loadStreamOptions();
 });
+
