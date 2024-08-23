@@ -93,3 +93,9 @@ a {
 .button:hover {
     background-color: #27408B; /* Darker royal blue on hover */
 }
+
+#floating {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
