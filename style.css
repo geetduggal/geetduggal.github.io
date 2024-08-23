@@ -20,7 +20,8 @@ body {
 #typing {
     border-right: 0px solid;
     overflow: hidden;
-    width: fit-content;
+    max-width: 100%;
+    text-overflow: ellipsis; /* Add an ellipsis (...) to indicate that text is truncated */
 }
 
 @keyframes blink {
