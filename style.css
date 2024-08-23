@@ -19,6 +19,7 @@ body {
     border-right: 0px solid;
     overflow: hidden;
     width: fit-content;
+    word-wrap: break-word;
 }
 
 @keyframes blink {
