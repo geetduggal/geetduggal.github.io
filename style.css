@@ -51,6 +51,13 @@ a {
 
 /* Media query for tablets and smaller screens */
 @media (max-width: 768px) {
+  #typing {
+        border-right: 0px solid;
+        overflow: hidden;
+        max-width: 768px;
+        text-overflow: ellipsis; /* Add an ellipsis (...) to indicate that text is truncated */
+  }
+  
   body {
     margin: 0 5%; /* Reduce margin to 5% for screens 768px or smaller */
   }
@@ -58,6 +65,12 @@ a {
 
 /* Media query for smartphones and very small screens */
 @media (max-width: 480px) {
+  #typing {
+        border-right: 0px solid;
+        overflow: hidden;
+        max-width: 480px;
+        text-overflow: ellipsis; /* Add an ellipsis (...) to indicate that text is truncated */
+  }
   body {
     margin: 0 2%; /* Further reduce margin to 2% for screens 480px or smaller */
   }
