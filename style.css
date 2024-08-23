@@ -107,4 +107,6 @@ a {
     left: 50%;
     transform: translateX(-50%);
     max-width: 100%;
+    padding: 10px;
+    padding-left: 20px;
 }
