@@ -1,7 +1,4 @@
-
-----------
-
-### Weather Resistant Productivity
+# Weather Resistant Productivity
 
 _Arm yourself with the finest, battle-tested productivity tools of all time._
 
@@ -83,136 +80,136 @@ The foundation — the ‘uber tool’ of Weather Resistant Productivity �
 
 Here is an example of what a set of written workflows could look like. This is actually a variant and subset of my current workflow as of this writing.
 ```
-Daily planning workflow:  
-  
-Mentally commit to one key highlight per day.  
-    Bonus: display highlight in other places (eg. homescreen, sticky note)  
-           highlight is a complete sentence  
-Review recent daily log entries  
-Review calendar through Apple Calendar (iOS, MacOS) backed by Google Calendar  
-    (see also 'Create personal tasks workflow')  
-Briefly review and update bullet journal seasonal planning spread and  
-    make calendar adjustments accordingly  
-    (see also 'Seasonal planning workflow')  
-  
----  
-  
-Seasonal planning workflow:  
-  
-Schedule time roughly quarterly via the 'Capture personal tasks' workflow  
-Encode plan in a bullet journal seasonal planning spread  
-  
-Note: bullet journal spreads group projects roughly by 'essential space'  
-    (eg. software craftsmanship, financial management, relationships)  
-  
----  
-  
-Capture and retreive shopping items workflow:  
-  
-Combine  
-    lists from family in WhatsApp messages,  
-    items in sticky note on fridge, and  
-    daily log entries prefixed with 'get '  
-  
----  
-  
-Capture personal tasks workflow:  
-  
-Create events in either my  
-    main Google calendar (these events must get done at specified time) or  
-    'Frontier' Google calendar (time for completion is flexible)  
-  
-Note: while calendars are backed by Google cloud, I prefer Apple's apps  
-  
----  
-  
-Capture and review personal project ideas workflow:  
-  
-Create daily log entries that look like: 'ideas, XYZ'  
-  
-If I decide to pursue a project idea:  
-    Add project to bullet journal seasonal planning spread  
-        ideally with rough end date and categorized by essential space  
-        (see 'Seasonal planning workflow')  
-    Create a directory within a 'Projects/' directory  
-  
-If a project is complete:  
-    Move project directory from 'Projects/' to 'Archives/'  
-  
-Notes:  
-    Projects are referred to by the same name across different media  
-    Project and Archive directories are synced to cloud via Obsidian Sync  
-      
----  
-  
-Capture and review reference material workflow:  
-  
-Create daily log entries that look like: 'XYZ [[<PKE Article>]]'  
-Cultivate PKE Articles as Wikipedia-like Markdown documents   
-  
-  
-Notes:  
-    Articles are stored locally in my 'Spaces' directory  
-    Articles are synced to cloud using Obsidian sync  
-    Articles are generally reviewed and edited in Obsidian  
-  
----  
-  
-Capture and review for content consumption workflow  
-  
-Create daily log entries that look like: '<YouTube URL>, note 1, note 2, ...'  
-    for YouTube videos  
-  
-...  
-  
----  
-  
-Capture and review voice notes workflow:  
-  
-Create voice memo using Apple Voice Memos app and  
-    save voice memo as a daily log entry  
-Extract appropriate content to either the  
-    'capture and review reference material',  
-    'capture and review personal/work tasks',  
-    'capture and review personal project ideas',  
-  
-  
-  
----  
-  
-Capture and review work tasks workflow:  
-  
-Encode all tasks in JIRA tickets assigned to me  
-  
-Notes:  
-    Tasks are distinguished primarily between 'queued', 'in progress' states  
-    Use the 'Capture personal tasks' workflow to time block work task  
-    If knowledge is transferrable outside work  
-        Use the 'capture and review reference material' workflow  
-  
----  
-  
-Create and review work documentation workflow:  
-  
-Notes:  
-    Use in-house Notion for processes and project planning  
-    Use Github for architecture and code-related documentation  
-    Use Confluence for compliance-related documentation  
-    If knowledge is transferrable outside work  
-        Use the 'capture and review reference material' workflow  
----  
-  
-Create daily log entry workflow:  
-  
-Create log entry primarily through 'Capture Media' iOS shortcut.  
-  
-Notes:  
-    iOS shortcut works on iPhone, Mac, through typing and voice dictation  
-    iOS shortcut works for text, images, PDFs, audio, and video  
-    iOS shortcut triggerable by physical keyboard, speaker, AirPods, HomePods  
-    Log entries are formatted like '- [ ] HH:MM <entry>' in Obsidian daily note  
-    Log entries are typically reviewed in Obsidian  
-    Log entries are stored in my local 'Log/' directory  
+Daily planning workflow:
+
+Mentally commit to one key highlight per day.
+    Bonus: display highlight in other places (eg. homescreen, sticky note)
+           highlight is a complete sentence
+Review recent daily log entries
+Review calendar through Apple Calendar (iOS, MacOS) backed by Google Calendar
+    (see also 'Create personal tasks workflow')
+Briefly review and update bullet journal seasonal planning spread and
+    make calendar adjustments accordingly
+    (see also 'Seasonal planning workflow')
+
+---
+
+Seasonal planning workflow:
+
+Schedule time roughly quarterly via the 'Capture personal tasks' workflow
+Encode plan in a bullet journal seasonal planning spread
+
+Note: bullet journal spreads group projects roughly by 'essential space'
+    (eg. software craftsmanship, financial management, relationships)
+
+---
+
+Capture and retreive shopping items workflow:
+
+Combine
+    lists from family in WhatsApp messages,
+    items in sticky note on fridge, and
+    daily log entries prefixed with 'get '
+
+---
+
+Capture personal tasks workflow:
+
+Create events in either my
+    main Google calendar (these events must get done at specified time) or
+    'Frontier' Google calendar (time for completion is flexible)
+
+Note: while calendars are backed by Google cloud, I prefer Apple's apps
+
+---
+
+Capture and review personal project ideas workflow:
+
+Create daily log entries that look like: 'ideas, XYZ'
+
+If I decide to pursue a project idea:
+    Add project to bullet journal seasonal planning spread
+        ideally with rough end date and categorized by essential space
+        (see 'Seasonal planning workflow')
+    Create a directory within a 'Projects/' directory
+
+If a project is complete:
+    Move project directory from 'Projects/' to 'Archives/'
+
+Notes:
+    Projects are referred to by the same name across different media
+    Project and Archive directories are synced to cloud via Obsidian Sync
+
+---
+
+Capture and review reference material workflow:
+
+Create daily log entries that look like: 'XYZ [[<PKE Article>]]'
+Cultivate PKE Articles as Wikipedia-like Markdown documents
+
+
+Notes:
+    Articles are stored locally in my 'Spaces' directory
+    Articles are synced to cloud using Obsidian sync
+    Articles are generally reviewed and edited in Obsidian
+
+---
+
+Capture and review for content consumption workflow
+
+Create daily log entries that look like: '<YouTube URL>, note 1, note 2, ...'
+    for YouTube videos
+
+...
+
+---
+
+Capture and review voice notes workflow:
+
+Create voice memo using Apple Voice Memos app and
+    save voice memo as a daily log entry
+Extract appropriate content to either the
+    'capture and review reference material',
+    'capture and review personal/work tasks',
+    'capture and review personal project ideas',
+
+
+
+---
+
+Capture and review work tasks workflow:
+
+Encode all tasks in JIRA tickets assigned to me
+
+Notes:
+    Tasks are distinguished primarily between 'queued', 'in progress' states
+    Use the 'Capture personal tasks' workflow to time block work task
+    If knowledge is transferrable outside work
+        Use the 'capture and review reference material' workflow
+
+---
+
+Create and review work documentation workflow:
+
+Notes:
+    Use in-house Notion for processes and project planning
+    Use Github for architecture and code-related documentation
+    Use Confluence for compliance-related documentation
+    If knowledge is transferrable outside work
+        Use the 'capture and review reference material' workflow
+---
+
+Create daily log entry workflow:
+
+Create log entry primarily through 'Capture Media' iOS shortcut.
+
+Notes:
+    iOS shortcut works on iPhone, Mac, through typing and voice dictation
+    iOS shortcut works for text, images, PDFs, audio, and video
+    iOS shortcut triggerable by physical keyboard, speaker, AirPods, HomePods
+    Log entries are formatted like '- [ ] HH:MM <entry>' in Obsidian daily note
+    Log entries are typically reviewed in Obsidian
+    Log entries are stored in my local 'Log/' directory
     Log engtries are synced to cloud using Obsidian Sync
 ```
 
@@ -254,27 +251,27 @@ Photo by  [Mick Haupt](https://unsplash.com/@rocinante_11?utm_source=medium&utm_
 You can compile this list on-the-fly when you realize that something actually works well for you. It can be even less structured and more messy. Here’s an example of a subset of my list:
 
  ```
-having just one or a handful of reliable places to capture everything  
-anticipation of doing work in the future: esp ‘finish line sprint’ of a project  
-keeping key items in working memory  
-physical rewards derived from doing hard things  
-time blocking on digital calendar, distract myself when anxious  
-carry one thing (eg. laptop, physical notebook) as a motivation to   
-'just do it' for the smaller, 'high friction' tasks  
-reviewing events in the past and reflecting with gratitude  
-laptop  
-bujo for lists, longer-term planning, and notes from in-person discussions  
-uniform naming of projects and workflows across tools  
-writing down a desired ideal outcome for the day or season  
-brief shut down procedure at the end of every day  
-reading and writing the highest quality findings after a deep investigation  
-alarms: especially on apple watch  
-free public services: library, parks and rec, events and safety programs  
-following your 'highest thought' that intuitively feels the most right  
-naps  
-avoiding negative overreaction in the moment  
-intrinsic motivation, external support  
-building on a foundation and iterating  
+having just one or a handful of reliable places to capture everything
+anticipation of doing work in the future: esp ‘finish line sprint’ of a project
+keeping key items in working memory
+physical rewards derived from doing hard things
+time blocking on digital calendar, distract myself when anxious
+carry one thing (eg. laptop, physical notebook) as a motivation to
+'just do it' for the smaller, 'high friction' tasks
+reviewing events in the past and reflecting with gratitude
+laptop
+bujo for lists, longer-term planning, and notes from in-person discussions
+uniform naming of projects and workflows across tools
+writing down a desired ideal outcome for the day or season
+brief shut down procedure at the end of every day
+reading and writing the highest quality findings after a deep investigation
+alarms: especially on apple watch
+free public services: library, parks and rec, events and safety programs
+following your 'highest thought' that intuitively feels the most right
+naps
+avoiding negative overreaction in the moment
+intrinsic motivation, external support
+building on a foundation and iterating
 post it notes, especially for grocery lists
 ```
 
