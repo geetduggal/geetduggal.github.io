@@ -1,12 +1,15 @@
 import sys
+import csv
 
 print("""
 <h2>Academic</h2>
 <table>
 """)
-for line in sys.stdin:
-    fields = line.rstrip().split("\t")
-    authors, title, publication, volume, number, pages, year, publisher, pdf, url = fields
+
+csv_reader = csv.reader(sys.stdin)
+next(csv_reader)
+for line in csv_reader:
+    authors, title, publication, volume, number, pages, year, publisher, pdf, url = line
     print("<tr>")
     print(f"<td>{authors} <a href='{url}'>{title}</a> <i>{publication}</i> {volume} {number} {pages} {year} {publisher} (<a href='lib/{pdf}'>pdf</a>)</td>")
     print("</tr>")

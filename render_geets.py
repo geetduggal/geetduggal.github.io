@@ -1,8 +1,10 @@
 import sys
+import csv
 
 print("<table>")
-for i,line in enumerate(sys.stdin):
-    date, geet = line.rstrip().split("\t")
+csv_reader = csv.reader(sys.stdin)
+for i,line in enumerate(csv_reader):
+    date, geet = line
     if i == 0:
         latest_geet = geet
         print(f"<tr><td nowrap width=50px>{date}</td><td><div id='typing' class='typing-animation'></div></td></tr>")
