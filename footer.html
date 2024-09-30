@@ -17,7 +17,7 @@
             event.preventDefault();
             const input = document.getElementById('geetInput').value;
             const date = new Date().toISOString().split('T')[0];
-            const data = `${date}\t${input}`;
+            const data = `${date},${input}`;
 
             const token = localStorage.getItem('githubToken');
             if (!token) {
