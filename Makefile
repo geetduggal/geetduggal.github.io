@@ -1,6 +1,6 @@
 all: index.html
 
-index.html: header.html footer.html render_geets.py geets.csv render_academic.py articles.csv render_articles.py style.css academic.csv
+index.html: header.html footer.html render_geets.py geets.csv render_academic.py articles.csv render_articles.py style.css academic.csv style-ambient-synth.css
 	cat header.html > index.html
 	tail -8 geets.csv | tac | python3 render_geets.py >> index.html
 	cat articles.csv | tac | python3 render_articles.py >> index.html

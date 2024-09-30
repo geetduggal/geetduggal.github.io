@@ -99,7 +99,6 @@ a {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: royalblue; /* Change this to whatever background color you prefer */
     color: white;
     padding: 10px;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for styling */
