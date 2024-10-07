@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Set the theme color for Safari's browser header -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#4169e1">
+    <meta name="theme-color" content="#4169e1">
+    <title>Geet Duggal</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="style-ambient-synth.css?v=1.1">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+<div class="content">
+
+<h1>Geet Duggal</h1>
+<p><a href="https://www.linkedin.com/in/geet-duggal">LinkedIn Profile</a> · <a href="https://gist.github.com/geetduggal/d9702695b96b13532a291d74f7a38e38">vimrc</a> · <a href='https://www.newyorker.com/culture/infinite-scroll/the-revenge-of-the-home-page'>The revenge of the home page</a>  </p>
+<table>
+<tr><td nowrap width=50px>2024-09-29</td><td><div id='typing' class='typing-animation'></div></td></tr>
+<tr><td nowrap width=50px>2024-09-21</td><td>Second post on 'Tech Habits' live!</td></tr>
+<tr><td nowrap width=50px>2024-09-20</td><td>Just heard on a podcast that Cal Newport has a similar idea as my 'written workflow' for Weather Resistant Productivity. He calls it a 'core system'.  Weather resistant productivity expands on it a bit and has a lot of other dimensions but was fun to see this independent affirmation of writing down your system having value!</td></tr>
+<tr><td nowrap width=50px>2024-09-18</td><td>Open the current file’s directory in netrw: Press :, then type :e %:h</td></tr>
+<tr><td nowrap width=50px>2024-09-16</td><td>Vim tip: Ctrl-w x to swap the current window with the next window.</td></tr>
+<tr><td nowrap width=50px>2024-09-13</td><td>Excellent <a href='https://youtu.be/TeF6lomaU3I?si=juvMG5wjkXvBD9RQ'>video on the Lord of the Rings philosophy</a></td></tr>
+<tr><td nowrap width=50px>2024-09-06</td><td>Trying out a post series called 'Tech Habits'.  See first post below in articles.</td></tr>
+<tr><td nowrap width=50px>2024-09-03</td><td>Heuristic: Is this thing I’m doing leaving an impression or making an impact?</td></tr>
+</table>
+
+<script>
+  const text = "Vim tip: open multiple files in split mode (horizontal) with 'vi -o <files>'";
+  let index = 0;
+
+
+  function type() {
+      if (index < text.length) {
+          document.getElementById('typing').textContent += text.charAt(index);
+          index++;
+          setTimeout(type, 50);
+      } else {
+        setTimeout(() => {
+          document.getElementById('typing').innerHTML = text;
+          document.getElementById('typing').classList.remove('typing-animation');
+          document.getElementById('typing').style.borderRight = 'none';
+
+        }, 500);
+      }
+  }
+
+  type();
+</script>
+
+<p>
+See all Geets with ability to permalink on
+<a href='https://github.com/geetduggal/geetduggal.github.io/blob/master/geets.tsv'>Github</a>.
+</p>
+
+<h2>Articles</h2><table>
+<tr><td nowrap width=50px>2024-09-06</td><td><a href='https://medium.com/@geetduggal/tech-habits-obsidian-live-preview-vi-focus-mode-alarms-for-calendar-events-8c42976be5af'>Tech Habits: Obsidian Live Preview, Vi Focus Mode, & Alarms for Calendar Events</a></td></tr>
+<tr><td nowrap width=50px>2024-08-27</td><td><a href='https://medium.com/@geetduggal/2a90c4357068'>Weather Resistant Productivity</a></td></tr>
+<tr><td nowrap width=50px>2024-07-30</td><td><a href='https://github.com/geetduggal/geetduggal.github.io/blob/master/pke/OAuth.md'>OAuth (An Example PKE Article)</a></td></tr>
+<tr><td nowrap width=50px>2024-07-24</td><td><a href='https://medium.com/@geetduggal/want-extraordinarily-useful-and-timeless-notes-build-a-personal-knowledge-encyclopedia-bc8b7fb09829'>Want Extraordinarily Useful and Timeless Notes? Build a Personal Knowledge Encyclopedia.</a></td></tr>
+<tr><td nowrap width=50px>2024-07-01</td><td><a href='https://medium.com/@geetduggal/a-no-code-ish-approach-for-using-obsidian-ai-to-process-your-notes-the-way-you-want-50714ceaf9c3'>A “No-Code”ish Approach for Using Obsidian & AI To Process Your Notes the Way You Want</a></td></tr>
+<tr><td nowrap width=50px>2024-06-20</td><td><a href='https://medium.com/@geetduggal/discipline-absorbs-chaos-try-this-game-changing-simple-way-to-manage-your-time-14e262ca05bc'>Discipline Absorbs Chaos. Try This Game-Changing & Simple Way to Manage Your Time.</a></td></tr>
+<tr><td nowrap width=50px>2024-05-26</td><td><a href='https://medium.com/@geetduggal/the-most-useful-ios-shortcut-for-obsidian-and-beyond-revisited-9692e62c993a'>The Most Useful iOS Shortcut for Obsidian (and Beyond!) Revisited</a></td></tr>
+<tr><td nowrap width=50px>2024-05-08</td><td><a href='https://medium.com/@geetduggal/your-obsidian-workflow-is-missing-a-physical-notebook-2e99866edcfc'>Your Obsidian Workflow is Missing a Physical Notebook</a></td></tr>
+<tr><td nowrap width=50px>2024-04-22</td><td><a href='https://medium.com/@geetduggal/bullet-journals-and-obsidian-15c52584cd83'>Bullet Journals and Obsidian</a></td></tr>
+<tr><td nowrap width=50px>2024-04-07</td><td><a href='https://medium.com/@geetduggal/it-was-love-at-first-sight-with-this-obsidian-plugin-0616630becf7'>It Was Love At First Sight with This Obsidian Plugin</a></td></tr>
+<tr><td nowrap width=50px>2024-02-26</td><td><a href='https://medium.com/@geetduggal/how-to-create-a-simple-personal-finance-dashboard-in-obsidian-2f238627286a'>How to Create a Simple Personal Finance Dashboard in Obsidian</a></td></tr>
+<tr><td nowrap width=50px>2024-02-17</td><td><a href='https://medium.com/@geetduggal/satisfy-the-beast-science-the-sh-t-out-of-difficult-tasks-and-habits-18c4e3d2f04a'>Satisfy the Beast. Science the Sh-t Out of Difficult Tasks and Habits</a></td></tr>
+<tr><td nowrap width=50px>2024-01-05</td><td><a href='https://medium.com/@geetduggal/the-power-of-obsidian-for-personal-finance-accounting-f00bbcb1b66f'>The Power of Obsidian for Personal Finance Accounting</a></td></tr>
+<tr><td nowrap width=50px>2023-12-16</td><td><a href='https://medium.com/@geetduggal/capture-to-do-d040e1bae4a6'>Capture To Do. How I Manage Literally All My Tasks in Obsidian</a></td></tr>
+<tr><td nowrap width=50px>2023-09-10</td><td><a href='https://medium.com/@geetduggal/powerful-task-creation-with-siri-and-fantastical-57423aa3cf14'>Powerful Task Creation with Siri and Fantastical</a></td></tr>
+<tr><td nowrap width=50px>2022-07-23</td><td><a href='https://medium.com/@geetduggal/the-most-useful-ios-shortcut-for-obsidian-450a4a751ab0'>The Most Useful iOS Shortcut for Obsidian</a></td></tr>
+<tr><td nowrap width=50px>2022-07-13</td><td><a href='https://medium.com/@geetduggal/how-to-use-obsidian-as-your-companion-for-ultimate-creativity-65dabed92768'>How To Use Obsidian as Your Companion for Ultimate Creativity</a></td></tr>
+<tr><td nowrap width=50px>2022-06-12</td><td><a href='https://medium.com/@geetduggal/this-habit-forming-tip-helped-me-actually-make-habits-stick-cdd8b5502e17'>This Habit Forming Tip Helped Me Actually Make Habits Stick</a></td></tr>
+<tr><td nowrap width=50px>2022-06-02</td><td><a href='https://medium.com/@geetduggal/i-spent-50-on-these-obsidian-plugins-750945f4010b'>I Spent $50 On These Obsidian Plugins</a></td></tr>
+<tr><td nowrap width=50px>2022-05-24</td><td><a href='https://medium.com/@geetduggal/the-apple-home-theater-7a0375f894e9'>The Apple Home Theater</a></td></tr>
+<tr><td nowrap width=50px>2022-05-22</td><td><a href='https://medium.com/@geetduggal/how-to-surface-the-most-useful-reading-highlights-in-obsidian-c2d50786c5ee'>How to Surface The Most Useful Reading Highlights in Obsidian</a></td></tr>
+<tr><td nowrap width=50px>2022-05-20</td><td><a href='https://medium.com/@geetduggal/organize-your-notes-projects-and-tasks-by-area-of-responsibility-18035702be22'>Organize Your Notes, Projects and Tasks by Area of Responsibility</a></td></tr>
+<tr><td nowrap width=50px>2022-05-17</td><td><a href='https://medium.com/@geetduggal/the-5-reasons-i-switched-from-notion-to-obsidian-adebf802c1f9'>The 5 Reasons I Switched from Notion to Obsidian</a></td></tr>
+<tr><td nowrap width=50px>2022-05-16</td><td><a href='https://medium.com/@geetduggal/this-is-how-to-have-your-books-and-articles-read-to-you-for-free-ee2bd9540d4c'>This Is How to Have Your Books and Articles Read to You for Free (iOS)</a></td></tr>
+<tr><td nowrap width=50px>2022-05-15</td><td><a href='https://medium.com/@geetduggal/this-simple-journaling-method-could-change-your-life-638b51fac9d8'>This Simple Journaling Method Could Change Your Life</a></td></tr>
+<tr><td nowrap width=50px>2016-12-02</td><td><a href='https://medium.com/@geetduggal/reflections-on-aws-re-invent-2016-e59a847d0463'>Reflections on AWS re:Invent 2016</a></td></tr>
+<tr><td nowrap width=50px>2016-12-01</td><td><a href='https://medium.com/@geetduggal/editor-first-vs-terminal-first-for-development-efea6b02d294'>‘Editor-First’ vs. ‘Terminal-First’ for Development</a></td></tr>
+<tr><td nowrap width=50px>2014-11-11</td><td><a href='https://geetduggal.wordpress.com'>Old Wordpress Blog</a></td></tr>
+<tr><td nowrap width=50px>Date</td><td><a href='URL'>Title</a></td></tr>
+</table>
+
+<h2>Academic</h2>
+<table>
+
+<tr>
+<td>Sefer, Emre; Duggal, Geet; Kingsford, Carl; <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4904159/'>Deconvolution of ensemble chromatin interaction data reveals the latent mixing structures in cell subpopulations</a> <i>Journal of Computational Biology</i> 23 6 425-438 2016 Mary Ann Liebert, Inc. 140 Huguenot Street, 3rd Floor New Rochelle, NY 10801 USA (<a href='lib/deconvolution.pdf'>pdf</a>)</td>
+</tr>
+<tr>
+<td>Filippova, Darya *; Patro, Rob *; Duggal, Geet *; Kingsford, Carl; <a href='https://link.springer.com/article/10.1186/1748-7188-9-14'>Identification of alternative topological domains in chromatin</a> <i>Algorithms for Molecular Biology</i> 9  1-11 2014 BioMed Central (<a href='lib/domains.pdf'>pdf</a>)</td>
+</tr>
+<tr>
+<td>Wang, Hao; Duggal, Geet; Patro, Rob; Girvan, Michelle; Hannenhalli, Sridhar; Kingsford, Carl; <a href='https://dl.acm.org/doi/abs/10.1145/2506583.2506633'>Topological properties of chromosome conformation graphs reflect spatial proximities within chromatin</a> <i>Proceedings of the International Conference on Bioinformatics, Computational Biology and Biomedical Informatics</i>   306-315 2013  (<a href='lib/topo3c.pdf'>pdf</a>)</td>
+</tr>
+<tr>
+<td>Duggal, Geet; Wang, Hao; Kingsford, Carl; <a href='https://academic.oup.com/nar/article/42/1/87/2436666'>Higher-order chromatin domains link eQTLs with the expression of far-away genes</a> <i>Nucleic acids research</i> 42 1 87-96 2014 Oxford University Press (<a href='lib/3qtl.pdf'>pdf</a>)</td>
+</tr>
+<tr>
+<td>Filippova, Darya; Duggal, Geet; Patro, Rob; Kingsford, Carl; <a href='https://scholar.google.com/citations?view_op=view_citation&hl=en&user=1APlUC8AAAAJ&sortby=pubdate&citation_for_view=1APlUC8AAAAJ:eQOLeE2rZwMC'>Chromovis: Feature-rich layouts of chromosome conformation graphs</a> <i>Unpublished manuscript at http://www. cs. cmu. edu/~ dfilippo/projects/chromovis/chromovisGD2013. pdf (last accessed 9/21/2017)</i> 15   2013  (<a href='lib/chromovis.pdf'>pdf</a>)</td>
+</tr>
+<tr>
+<td>Duggal, Geet; Patro, Rob; Sefer, Emre; Wang, Hao; Filippova, Darya; Khuller, Samir; Kingsford, Carl; <a href='https://link.springer.com/article/10.1186/1748-7188-8-8'>Resolving spatial inconsistencies in chromosome conformation measurements</a> <i>Algorithms for Molecular Biology</i> 8  1-10 2013 BioMed Central (<a href='lib/consistency3c.pdf'>pdf</a>)</td>
+</tr>
+<tr>
+<td>Duggal, Geet; Kingsford, Carl; <a href='https://link.springer.com/article/10.1186/1471-2105-13-241'>Graph rigidity reveals well-constrained regions of chromosome conformation embeddings</a> <i>BMC bioinformatics</i> 13  1-13 2012 BioMed Central (<a href='lib/rigidity3c.pdf'>pdf</a>)</td>
+</tr>
+<tr>
+<td>Patro, Robert *; Duggal, Geet *; Sefer, Emre; Wang, Hao; Filippova, Darya; Kingsford, Carl; <a href='https://dl.acm.org/doi/abs/10.1145/2339530.2339541'>The missing models: A data-driven approach for learning how networks grow</a> <i>Proceedings of the 18th ACM SIGKDD international conference on Knowledge discovery and data mining</i>   42-50 2012  (<a href='lib/growcode.pdf'>pdf</a>)</td>
+</tr>
+<tr>
+<td>Ku, Wai Lim; Duggal, Geet; Li, Yuan; Girvan, Michelle; Ott, Edward; <a href='https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0031969'>Interpreting patterns of gene expression: signatures of coregulation, the data processing inequality, and triplet motifs</a> <i>PloS one</i> 7 2 e31969 2012 Public Library of Science San Francisco, USA (<a href='lib/networkexpr.pdf'>pdf</a>)</td>
+</tr>
+<tr>
+<td>Duggal, Geet *; Navlakha, Saket *; Girvan, Michelle; Kingsford, Carl; <a href='https://scholar.google.com/citations?view_op=view_citation&hl=en&user=1APlUC8AAAAJ&citation_for_view=1APlUC8AAAAJ:u5HHmVD_uO8C'>Uncovering many views of biological networks using ensembles of near-optimal partitions</a> <i>Proceedings of the 1st International Workshop on Discovering, Summarizing and Using Multiple Clusterings (KDD MultiClust)</i> 9 9  2010 Washington DC (<a href='lib/biomodularity.pdf'>pdf</a>)</td>
+</tr>
+<tr>
+<td>Authors <a href='URL'>Title</a> <i>Publication</i> Volume Number Pages Year Publisher (<a href='lib/PDF'>pdf</a>)</td>
+</tr>
+</table>
+<p>* indicates equal contribution. Profile on
+<a href='https://scholar.google.com/citations?user=1APlUC8AAAAJ&hl=en'>Google Scholar</a>.
+</p>
+
+    <form id="geetForm">
+        <label for="geetInput">Enter your Geet:</label>
+        <input class="input-box" type="text" id="geetInput" name="geetInput" required>
+        <button class="button" type="submit">Submit</button>
+        <button class="button" id="loginButton">Login with GitHub</button>
+    </form>
+    <script>
+        const clientId = 'Ov23lijztEAKMo8ij7cx';
+        const redirectUri = 'https://geetduggal.com/callback.html';
+
+        document.getElementById('loginButton').addEventListener('click', () => {
+            const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=repo`;
+            window.location.href = githubAuthUrl;
+        });
+
+        document.getElementById('geetForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const input = document.getElementById('geetInput').value;
+            const date = new Date().toISOString().split('T')[0];
+            const data = `${date},${input}`;
+
+            const token = localStorage.getItem('githubToken');
+            if (!token) {
+                alert('Please log in with GitHub first.');
+                return;
+            }
+
+            const response = await fetch('https://api.github.com/repos/geetduggal/geetduggal.github.io/dispatches', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    event_type: 'append_geet',
+                    client_payload: { data }
+                })
+            });
+
+            if (response.ok) {
+                alert('Done gone Geeted.');
+            } else {
+                alert('Submission failed. Are you Geet?');
+            }
+        });
+    </script>
+    <p></p>
+    <div class="container" id="floating">
+    <div class="controls">
+        <button id="playPauseButton" class="play-button">
+            <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg id="stopIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px" style="display:none;">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M6 6h12v12H6z"/>
+            </svg>
+        </button>
+        <select id="streamSelect">
+            <option value="none">No Ambience</option>
+        </select>
+        <div id="volumeControls" class="volume-controls"></div> <!-- Volume sliders -->
+    </div>
+    </div>
+    <div id="logContainer" style="border: 1px solid #ccc; padding: 10px; margin-top: 20px;">
+        <h2>Log Output</h2>
+    </div>
+
+    <script src="ambient-synth.js?v=0.1111111111"></script>
+</div> </body> </html>
