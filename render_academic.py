@@ -7,7 +7,6 @@ print("""
 """)
 
 csv_reader = csv.reader(sys.stdin)
-next(csv_reader)
 for line in csv_reader:
     authors, title, publication, volume, number, pages, year, publisher, pdf, url = line
     print("<tr>")
