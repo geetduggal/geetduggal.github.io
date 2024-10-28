@@ -1,7 +1,7 @@
 {
     "streams": [
     {
-        "name": "LOTR",
+        "name": "🏔️",
             "baseTrack": "aud/lotr.mp3",
             "bRolls": [
             {
@@ -25,7 +25,7 @@
             ]
     },
     {
-        "name": "Chopin",
+        "name": "🎼",
         "baseTrack": "aud/chopin-mazurka.mp3",
         "bRolls": [
         {
@@ -37,7 +37,7 @@
         ]
     },
     {
-        "name": "Enya",
+        "name": "🌊",
         "baseTrack": "aud/enya.mp3",
         "bRolls": [
         {
