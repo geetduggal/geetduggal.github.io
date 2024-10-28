@@ -39,7 +39,7 @@ print("""
 
 print("""<p>
 See all Geets with ability to permalink on
-<a href='https://github.com/geetduggal/geetduggal.github.io/blob/master/geets.tsv'>Github</a>.
+<a href='https://github.com/geetduggal/geetduggal.github.io/blob/master/geets.csv'>Github</a>.
 </p>
 """)
 
