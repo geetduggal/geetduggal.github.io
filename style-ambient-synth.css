@@ -11,9 +11,9 @@
 
 .controls {
     display: flex;
-    align-items: left;
+    align-items: center;
     gap: 10px;
-    width: 10%;
+    width: 100%;
     flex-wrap: nowrap;
 }
 
