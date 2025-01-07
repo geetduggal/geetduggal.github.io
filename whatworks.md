@@ -1,0 +1,28 @@
+- quick capture everything in one place
+- a 'finish line sprint' for projects
+- populate my working memory with things to do
+- physical rewards from hard work
+- frontier method for timeblocking
+- carry one thing with me for focus (eg. laptop, BuJo)
+- think big, do small, small will lead to big
+- audio logs for review, reflection, and gratitude
+- core gadgets: macbook, iphone, apple watch, airpods, pen & paper
+- frequent processing, immediate responding 
+- bujo for planning, reflection
+- uniform naming of projects and spaces and dates
+- daily and seasonal highlights
+- evening shutdown procedure
+- alarms: especially apple watch
+- follow highest thought that feels right
+- avoid negative reactions
+- listen to intrinsic motivation & seek external support
+- build on a foundation
+- waking up early, even if it's unpleasant at first
+- start brunch/lunch at approximately 10:30-11:30
+-  ios notification badges
+- 10-11am lunch 
+- memorize calendar events for the day
+- camaraderie in code development 
+- electric scooter
+
+![[Pasted image 20241229235029.jpg]]
