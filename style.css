@@ -6,7 +6,7 @@ body {
 }
 
 .content {
-    padding: 20px;
+    padding: 5px;
     border-radius: 8px;
     max-width: 100%;
     text-overflow: ellipsis; /* Add an ellipsis (...) to indicate that text is truncated */
@@ -107,6 +107,5 @@ a {
     left: 50%;
     transform: translateX(-50%);
     max-width: 100%;
-    padding: 10px;
     padding-left: 20px;
 }
