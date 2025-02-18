@@ -1,6 +1,6 @@
 /* Base styles */
 body {
-    margin: 0 10%; /* Default margin of 10% on left and right */
+    margin: 0 5%; /* Default margin of 10% on left and right */
     padding: 20px;
     font-family: sans-serif;
 }
@@ -53,14 +53,14 @@ a {
 /* Media query for tablets and smaller screens */
 @media (max-width: 768px) {
   body {
-    margin: 0 5%; /* Reduce margin to 5% for screens 768px or smaller */
+    margin: 0 1%; /* Reduce margin to 5% for screens 768px or smaller */
   }
 }
 
 /* Media query for smartphones and very small screens */
 @media (max-width: 480px) {
   body {
-    margin: 0 2%; /* Further reduce margin to 2% for screens 480px or smaller */
+    margin: 0 1%; /* Further reduce margin to 2% for screens 480px or smaller */
   }
 }
 
