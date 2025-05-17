@@ -14,27 +14,9 @@ The purpose of this article is to help you get smarter about how you ready yours
 
 I’ve recently found great joy in revisiting  _The Fellowship of the Ring_. It’s not just about the comfort of me escaping to another land and immersing myself in a beautiful story. There’s a spirit, depth, and principle-oriented nature to the work that energizes me.
 
-Chapter 3 paints a picture of the crew getting ready to travel:
-
-> Sam was the most laden of the party, and he had a large pack filled with all sorts of things that might be useful on the journey. Among them, he had rope, which he had long thought of taking, and a box of salt that he had considered essential.
-
-> … [he] was carrying a large heavy bag on his back, with cooking gear and blankets and everything that could be crammed in: he had his own spare clothes, and some of Frodo’s and a lot of handkerchiefs (which he suspected his master might forget).”
-
-> … Merry was in high spirits, but he was carrying a pack with his own provisions and a large number of useful items: a tinder-box, flint and steel, a coil of strong rope, a small pot for cooking, a spoon, and a small knife. He had thought of everything that a sensible hobbit might need when traveling.
-
-> .. Pippin was burdened with a pack that seemed far too large for him, filled with an odd assortment of things, including a hatchet, several blankets, a flask of water, and a small bag of apples. He also insisted on bringing along a brightly colored scarf, ‘just in case,’ he said, though Frodo wasn’t sure in case of what.”
-
-> .. Sam fussed over the cooking gear, making sure all the pots and pans were securely tied. Merry and Pippin compared their supplies and laughed at how much they had packed, though they were secretly relieved to have everything they might need.
-
-The crew had considered everything, but our hero had a bit more of a minimalist take on the matter:
-
-> Frodo only took with him some clothing, a bit of food, and his small sword that had hung over the fireplace at Bag End.
-
 ![](https://cdn-images-1.medium.com/max/2600/0*0bqMkH3LRQR_jpOa)
 
 Photo by  [Lucas Lenzi](https://unsplash.com/@lucaslenzi?utm_source=medium&utm_medium=referral)  on [Unsplash](https://unsplash.com/?utm_source=medium&utm_medium=referral)
-
-Maybe it was the sense of urgency or secrecy of the mission that motivated Frodo to pack light (possibly advice from our hero’s mentor Gandalf). Or perhaps it was the psychological weight of carrying the ring. Either way, there is something inspiring about the mission-oriented mentality of Frodo and something comforting about how Frodo’s crew considered everything else.
 
 I argue that this distinction between packing what is essential vs. what is comforting can help you simultaneously be nimble in accomplishing your mission and provision yourself appropriately along the way. If you’re a creator — whether running your own business, working for a company within the industry, or even a hobbyist — you’re likely juggling a multitude of tasks large and small, personal and professional. Having worked multi-year stints across government, academia, and industry, I have come to realize that when I’m at my best in any sector, it’s when I’m really good at using only a handful of tools together.
 
