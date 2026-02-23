@@ -1,7 +1,7 @@
 import sys
 import csv
 
-print("<h2><a href='tools-readme.md'>Tools</a></h2><table>")
+print("<h2><a href='https://github.com/geetduggal/geetduggal.github.io/blob/master/tools-readme.md'>Tools</a></h2><table>")
 csv_reader = csv.reader(sys.stdin)
 for line in csv_reader:
     name, description, url = line
