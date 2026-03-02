@@ -10,7 +10,7 @@ Plain text is fast, portable, and future-proof. But raw markdown files benefit f
 
 **Full Calendar Plus** adds a linear year view to the Obsidian Full Calendar plugin. When your notes have date properties in their YAML front matter, every note becomes a calendar event. Projects with start and end dates appear as spans of time on a timeline. Combined with property-based filtering and coloring, you get a view where the calendar and your organizational structure are the same system.
 
-**Thousand Words** bridges ephemeral daily work to your knowledge system. Meaningful decisions, progress, and relationship-building happen in Slack conversations and disappear. This tool is AI-first: you point it at a markdown note containing screenshots of conversations, and it proposes mutations to your people, projects, and spaces notes. You review and accept or reject each change interactively. It follows the [Superpowers skill pattern](https://github.com/obra/superpowers) and runs as a Claude Code skill, not as an Obsidian plugin.
+**Thousand Words** bridges ephemeral daily work to your knowledge system. Meaningful decisions, progress, and relationship-building happen in Slack conversations and disappear. This tool is AI-first: you point it at a markdown note containing screenshots of conversations, and it proposes mutations to your people, projects, and spaces notes. You review and accept or reject each change interactively. It follows the [Superpowers skill pattern](https://github.com/obra/superpowers) and runs as an AI agent skill, not as an Obsidian plugin.
 
 ## Installation
 
@@ -32,7 +32,6 @@ Both Obsidian plugins can be installed using [BRAT (Beta Reviewers Auto-update T
 
 ```bash
 git clone https://github.com/geetduggal/thousand-words
-ln -s $(pwd)/thousand-words/skills/thousand-words ~/.claude/skills/thousand-words
 ```
 
-Then invoke it in Claude Code by typing `/thousand-words` or asking Claude to run the thousand-words skill.
+Then symlink `skills/thousand-words` to your agent's skills directory and invoke the `thousand-words` skill. See the [repo README](https://github.com/geetduggal/thousand-words) for platform-specific instructions.
