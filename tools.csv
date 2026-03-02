@@ -1,4 +1,4 @@
 Name,Description,URL
 Kanban Plus,A fork of Obsidian Kanban with cross-file list management and Full Calendar integration for power users who want more from markdown-backed task boards.,https://github.com/geetduggal/obsidian-kanban
 Full Calendar Plus,A fork of Obsidian Full Calendar adding a linear year view and property-based filtering so you can see your projects as time-spans alongside daily events.,https://github.com/geetduggal/obsidian-full-calendar
-Thousand Words,"A Claude Code skill that bridges ephemeral daily work (Slack screenshots) to your People, Projects, Spaces (PPS) system. AI-first: proposes mutations to people/projects/spaces notes for interactive review.",https://github.com/geetduggal/thousand-words
+Thousand Words,"An AI skill that bridges ephemeral daily work (eg. Slack, WhatsApp screenshots) to People, Project, and Spaces notes.",https://github.com/geetduggal/thousand-words
