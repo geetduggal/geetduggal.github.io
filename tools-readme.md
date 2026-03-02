@@ -12,8 +12,6 @@ Plain text is fast, portable, and future-proof. But raw markdown files benefit f
 
 **Thousand Words** bridges ephemeral daily work to your knowledge system. Meaningful decisions, progress, and relationship-building happen in Slack conversations and disappear. This tool is AI-first: you point it at a markdown note containing screenshots of conversations, and it proposes mutations to your people, projects, and spaces notes. You review and accept or reject each change interactively. It follows the [Superpowers skill pattern](https://github.com/obra/superpowers) and runs as a Claude Code skill, not as an Obsidian plugin.
 
-Together, these three tools cover the core actions of a plain text productivity system: **manage** (Kanban Plus), **plan and reflect** (Full Calendar Plus), and **capture and route** (Thousand Words).
-
 ## Installation
 
 ### Kanban Plus and Full Calendar Plus via BRAT
