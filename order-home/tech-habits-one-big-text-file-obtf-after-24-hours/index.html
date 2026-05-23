@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tech Habits: One Big Text File (OBTF) after 24 Hours</title>
+    <script type="module" crossorigin src="/order-home/assets/index-BOfwdneQ.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-85cOnMCH.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: One Big Text File (OBTF) after 24 Hours</h1>
+<h2>It really is everything I hoped for … and more</h2>
+<p><a href="https://medium.com/@geetduggal?source=post_page---byline--27672f999949--------------------------------"></a></p>
+<p><img src="https://miro.medium.com/v2/resize:fill:88:88/0*NUf7cKjbrdEqk8cC." alt="Geet Duggal"></p>
+<p><a href="https://medium.com/@geetduggal?source=post_page---byline--27672f999949--------------------------------">Geet Duggal</a></p>
+<p>4 min read</p>
+<p>·</p>
+<p>Just now</p>
+<blockquote>
+<p>If it doesn’t strike a tuneful chord in you today, I’d recommend leaving it alone until it does. —  <a href="https://ellanew.com/">Elanne W</a></p>
+</blockquote>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*eKKiMkMnhyewOTwu" alt=""></p>
+<p>Photo by  <a href="https://unsplash.com/@prolabprints?utm_source=medium&utm_medium=referral">ron dyar</a>  on  <a href="https://unsplash.com/?utm_source=medium&utm_medium=referral">Unsplash</a></p>
+<p>I remember reading that in Elanne’s  <a href="https://medium.com/produclivity/ptpl-091-im-using-one-big-text-file-in-obsidian-as-a-digital-bullet-journal-6f8346a3e8e0">inaugural OBTF post</a>  last year and the thought stuck with me since. I  <a href="https://medium.com/@geetduggal/tech-habits-the-right-time-to-experiment-with-task-and-capture-apps-06c775bc3aa9">recently mentioned</a>  that I’ll be moving all my daily notes to a single text file from multiple text files motivated largely by the fact that “I like to  <em>play</em>  with my tasks in 2D and in the context of other contextually relevant text.” I finally got around to actually implementing it.</p>
+<p>For the uninitiated, OBTF is a method popularized in the ‘blogosphere’  <a href="https://danlucraft.com/blog/2008/04/plain-text-organizer/">about 20 years ago</a>  to keep all your digital notes in one big file,  <em>in plain text</em>  (no Microsoft Word, Apple Notes, Evernote, …).</p>
+<p>Back then, maintaining a OBTF required a bit of manual ‘engineering’ work to properly keep data in sync. There was therefore a period where apps like Evernote had good reason to reign supreme. Their multimedia prowess and ability to work seamlessly on mobile and desktop is what made them so unique. Since then, the plain text movement has had a resurgence in part due to much better mobile apps and file synchronization support.</p>
+<p>It sounds funny to write about OBTF after using it for just 24 hours, but the more I think about it the more it feels right. This is because I really have been thinking about this for a while. Months ago, I knew I wanted the transition to be smooth since I use so many tools around my daily log files and what I call the ‘<a href="https://medium.com/@geetduggal/it-was-love-at-first-sight-with-this-obsidian-plugin-0616630becf7">tick items</a>’ in them. I therefore realized that while it is technically trivial for me to combine my individual daily log files into one big text file, my workflows for capturing data into these files as well as reading my log would have to change. (For example, I’m largely abandoning using one of my favorite Obsidian plugins ‘Thino’ in this process.)</p>
+<p>I therefore determined a few requirements to guide me. My OBTF should be:</p>
+<ul>
+<li>Loadable from my iOS home page  <em>fast</em></li>
+<li>Multimedia friendly</li>
+<li>Easy to play around and write in the file across days (this is something that keeping plain text daily notes in their own files seems to have trouble with)</li>
+<li><em>Fast</em>  to operate in (avoid long sessions of scrolling around)</li>
+<li>Friendly to use in multiple applications on both Mobile and desktop</li>
+</ul>
+<p>The implementation I ultimately settled on is to slightly modify my <a href="https://medium.com/@geetduggal/the-most-useful-ios-shortcut-for-obsidian-and-beyond-revisited-9692e62c993a">capture shortcut</a>  for quickly capturing media or bits of text. I use this method due to it bing an insanely fast, convenient, and plain-text friendly approach in Apple’s ecosystem. I changed my format to not include markdown task items for everything I capture. Instead it’s a single line that looks more like this and is much more pleasant to read across multiple editors:</p>
+<p>2025-01-26 21:05 Some text or wikilink to media</p>
+<p>I decided to use Obsidian as my preferred way to read and input data in the OBTF. It works well on Mobile and Desktop and I have it customized just slightly so it’s as much of a pleasure to read and write in it as when I code. Also  <a href="https://medium.com/produclivity/ptpl-115-theres-something-new-at-the-top-of-my-one-big-text-file-89d62e340fdc">inspired by Elanne</a>, The Page Scroll plugin is particularly useful on Mobile when jumping from the top and bottom of the file. I too like keeping some more persistent notes at the top.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*Kr4E8wa7W4otY0r-tsoRwA.png" alt=""></p>
+<p>Screenshot of my OBTF in Obsidian. It doesn’t look too different in other editors aside from rendering images and other Markdown inline. I like monospaced fonts and high contrast and that is very easy to customize in Obsidian.</p>
+<p>I did experiment with other editors including iA Writer, 1Writer, and I still use Vim and VS Code/Cursor on my desktop. I just feel like Obsidian does more of what I want with the fewest sacrifices (eg. inline media rendering, fast interaction, customizability). Obsidian is therefore my app of choice, but it’s great to know I’m not limited to Obsidian.</p>
+<p>Some issues I noticed early-on:</p>
+<ul>
+<li>Big files tend to be handled slowly in iA Writer on iOS and seeing other media in context is a bit of a pain. My OBTF contains nearly 25,000 lines so it might be not the best suited for certain apps.  <em>Solution</em>: use Obsidian</li>
+<li>On mobile, Obsidian has a longer-than-desired initial load time.  <em>Solution</em>: optimize load time where I can</li>
+<li>I found that my text was dwarfed by images making the viewing experience either too text centric (when I don’t render images), or too image-centric.  <em>Solution</em>: scale image size down using a custom CSS snippet</li>
+<li>Markdown tasks make the plain text look cluttered when not rendering the markdown.  <em>Solution</em>: I prefer to just list the items one line at a time (no markdown list item) but annotated with a human readable timestamp</li>
+</ul>
+<p>What I love so far</p>
+<ul>
+<li>I  <em>finally</em>  have the free and open space to capture notes in a way that feels most natural to me.</li>
+<li>I already see myself better refining and revisiting thoughts</li>
+<li>Search has been more natural for me because whether it be on mobile, or my computer, I’m just using common features found in any text editor.</li>
+<li>Like Elanne, I find it visually appealing to  <a href="https://medium.com/@geetduggal/atlas-journaling-a-unified-approach-for-seeing-the-big-picture-and-acting-with-focus-78804f26f5ab">use special character</a>  prefixes that represent areas of cultivation for me in lines of my OBTF.</li>
+</ul>
+<p>I’ll have a lot more to say about my OBTF in upcoming posts. I am quite happy it’s off to a good start despite a couple of issues early-on.</p>
+<p>Other OBTF links:</p>
+<ul>
+<li><a href="https://medium.com/@miscellaneplans/ptpl-126-what-the-dash-plus-system-looks-like-in-my-obtf-and-analog-notes-419873d27920">https://medium.com/@miscellaneplans/ptpl-126-what-the-dash-plus-system-looks-like-in-my-obtf-and-analog-notes-419873d27920</a></li>
+<li><a href="https://medium.com/produclivity/ptpl-100-one-big-text-file-top-down-or-bottom-up-b712083b3485">https://medium.com/produclivity/ptpl-100-one-big-text-file-top-down-or-bottom-up-b712083b3485</a></li>
+<li><a href="https://jeffhuang.com/productivity_text_file/">https://jeffhuang.com/productivity_text_file/</a></li>
+<li><a href="https://medium.com/@mikegrindle/my-one-big-text-file-8159fe941be3">https://medium.com/@mikegrindle/my-one-big-text-file-8159fe941be3</a></li>
+</ul>
+<p>Wait, no YouTube videos. No podcast? No social media?” Yup, still blogging like it’s 2005 in 2025. ‘Till next time 🏔️</p>
+</article></div><script>window.__ORDER__={"slug":"tech-habits-one-big-text-file-obtf-after-24-hours","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>

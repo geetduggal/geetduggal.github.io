@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tech Habits: Brainstorming a ‘Plain Text Habits’ Tool Suite</title>
+    <script type="module" crossorigin src="/order-home/assets/index-BOfwdneQ.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-85cOnMCH.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: Brainstorming a ‘Plain Text Habits’ Tool Suite</h1>
+<p>A <em>very</em> brief update on my Obsidian &amp; AI-assisted side-quests</p>
+<p><img src="https://cdn-images-1.medium.com/max/1024/1*yRVlbzOCf3bHS9DXaAvNaA@2x.jpeg" alt="">Photo by 5010 on <a href="https://unsplash.com/?utm_source=medium&utm_medium=referral">Unsplash</a></p>
+<p>I’ve mentioned the pieces of what I’m now calling the ‘<a href="https://github.com/geetduggal/geetduggal.github.io/blob/master/tools-readme.md">Plain Text Habits Suite</a>’ in passing across a few posts, but I haven’t named the whole thing until now, and I’m super excited to be converging on this trinity of tools.</p>
+<p>The basic idea is that there are three tools able to work well together but are independently useful. All are grounded in the same principle: powerful user experience on top, simple and readable plain text underneath. The first two are Obsidian plugins: Kanban Plus and Full Calendar Plus (installable via <a href="https://github.com/TfTHacker/obsidian42-brat">BRAT</a>). I’ve written about both. They were vibe-coded into existence, AI-assisted but not AI-dependent. They do what they do and stay out of the way.</p>
+<p>The third one is a bit different. I’m calling it ‘Thousand Words’, and it’s not an Obsidian plugin. It’s not vibe-coded. It’s AI-first in a more load-bearing sense.</p>
+<p>The problem Thousand Words is trying to solve:</p>
+<p>A huge fraction of meaningful work — decisions made, problems untangled, relationships built — happens in messaging apps like WhatsApp, Messages, and Slack. These messages are somewhat ephemeral. The conversations that shaped a project, the back-and-forth that resolved a hard call, the slow accumulation of trust with a colleague: all of it technically exists somewhere, but functionally it disappears.</p>
+<p>Thousand Words takes a different approach to dealing with what you’ve captured.</p>
+<p>The name comes from the fact that a screenshot of a conversation captures something that taking notes never does. The actual words, the context, the shape of the exchange. I’ve been moving toward image-based capture for a while now. I wrote about it briefly in the Pocket Bullet Journal post (see link below), and Thousand Words turns that instinct into a system.</p>
+<p>You can think about it like this: the input is one or more markdown notes with image links to screenshots of conversations, plus some YAML frontmatter essentially containing key-value pairs that help guide ‘Thousand Words’.</p>
+<p>The output isn’t a separate artifact. Thousand Words mutates the existing state of my people/projects/spaces notes, proposing targeted updates to those notes based on what the conversations actually contained. Practically, that means things like updating a person’s note with a new decision you made together, or nudging a project note to reflect a shift in direction that happened in chat.</p>
+<p>Crucially, all data fed into Thousand Words has been from information I have <em>chosen</em> to quick-capture, allowing me to be the gatekeeper of the kind of information I allow the AI to process. But after that quick capture, the AI can do its thing to help me out.</p>
+<p>Also, the key word is <em>proposes</em>. The workflow is explicitly gated: the agent analyzes, suggests, and then waits. I review each proposed change and accept, reject, or modify it. The thinking doesn’t get outsourced. The boilerplate does.</p>
+<p>There are two modes: a lightweight pass for quick triage, and a more rigorous mode. On first run, a short setup wizard asks where your vault lives and writes a config file. After that it runs quietly, scanning for new files since the last session and surfacing them for review before anything mutates.</p>
+<p>Architecturally, I’m following the <a href="https://github.com/obra/superpowers/blob/main/skills/brainstorming/SKILL.md#process-flow">Superpowers</a> pattern. Superpowers is an AI plugin built entirely as markdown skill files with embedded workflow diagrams and hard gates. No custom framework. Just structured instructions any compatible agent can discover via a symlink. Thousand Words works the same way: a Git repo, a SKILL.md, symlinked into your agent’s skill directory. It’ll work in Claude Code, Cursor, or anything else that supports the same skill discovery pattern.</p>
+<p>I’m still seeing how well it works as I’ve literally just started to play with it, but if it’s anything like Kanban Plus or Full Calendar Plus, I think it may make for a great tool for me in the long run.</p>
+<p>Looking forward to sharing more about it soon!</p>
+<p>On another note, I’ve recently posted broadly about two tiny experiments and wanted to provide brief updates:</p>
+<ol>
+<li><a href="https://medium.com/@geetduggal/tech-habits-property-folders-a-linear-calendar-view-in-obsidian-a-plain-text-renaissance-9252bad51a46">Flattening</a> and <a href="https://medium.com/@geetduggal/tech-habits-can-you-johnny-decimal-without-the-decimal-31927f0f2e82">de-decimaling my Johnny Decimal</a> while still preserving its essence. This has been working great so far. The main thing I miss about ‘traditional’ folders is the navigability in standard file system browers. I find I want to do that more often than I thought. However, the simplicity and speed of just <em>annotating</em> a potential folder in my note combined with having very wiki-like clear file name to refer to makes these two experiments ones I’ll be continuing moving forward!</li>
+<li><a href="https://medium.com/@geetduggal/tech-habits-the-pocket-bullet-journal-is-the-bullet-journal-ive-always-wanted-8fb451657d62">Pocket Bullet Journal</a> and <a href="https://medium.com/@geetduggal/tech-habits-daily-highlights-as-all-day-events-e70d239540ea">Daily Highlights</a>. I have come to really enjoy the time I spend with my Pocket Bujo and feel like my daily highlights kept both digitally and physically have been useful over-and-over again for things I forget as well as planning on multiple time scales. One thing I have been noticing: in the past, I have defined seasons as having more-or-less natural start- and end-points. Seasons are generally longer (weeks to months, typically months). On a similar note, I’ve recently noticed that ‘daily’ highlights also have natural timescales, usually from 1–3 days. I therefore simply extend those days in my digital calendar and my Pocket Bujo. The key is that both seasons and highlights should cover natural start and endpoints of activity but just on two different timescales.</li>
+</ol>
+<p>My sincere appreciation to all those who inspire me and take the time to read these posts! ‘Till next time! 🏔️</p>
+</article></div><script>window.__ORDER__={"slug":"tech-habits-brainstorming-a-plain-text-habits-tool-suite","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>

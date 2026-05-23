@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tech Habits: Can you Johnny Decimal Without the Decimal?</title>
+    <script type="module" crossorigin src="/order-home/assets/index-BOfwdneQ.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-85cOnMCH.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: Can you Johnny Decimal Without the Decimal?</h1>
+<hr>
+<h3><strong>Tech Habits: Can you Johnny Decimal Without the Decimal?</strong></h3>
+<p><em>A tiny experiment in stripping the numbers and keeping the structure and tiny experiments that have worked well for me vs. not.</em></p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/0*xKRUEVz1YvGmac6a" alt="1.00"></p>
+<p>Photo by  <a href="https://unsplash.com/@markuswinkler?utm_source=medium&utm_medium=referral">Markus Winkler</a>  on <a href="https://unsplash.com/?utm_source=medium&utm_medium=referral">Unsplash</a></p>
+<p><em><strong>Short Update:</strong></em>  The last installment of Tech Habits called “<a href="https://medium.com/@geetduggal/tech-habits-how-i-moved-into-my-johnny-decimal-and-obsidian-bases-system-for-organizing-notes-6bc7a00747e7">How I Moved Into My Johnny Decimal System</a>” was about embracing numerical IDs, constraints, and the joy of staking ground.</p>
+<p>If you’ve been following my journey with Johnny Decimal, you know I was all in. The numerical prefixes, the rigid hierarchy, the sense of place. I genuinely believe that theres value to  <code>61.28 Bill</code>  over just  <code>Bill</code>  because of the memorability it affords.</p>
+<p>As I’ve lived with it, I noticed something: the actual Johnny Decimal IDs (JIDs) not only clutter my file and directory names (a disadvantage mentioned earlier), most of what I like about Johnny Decimal (which is a whole lot) doesn’t really require the JIDs.</p>
+<h3>The Tiny Experiment</h3>
+<p>I’m a fan of  <a href="https://nesslabs.com/book">tiny experiments</a>. They let you test ideas and learn without betting your entire system on them. So I am currently running one: what if I could have Johnny Decimal without the decimal, or JIDs to be precise?</p>
+<p>Blasphemy?</p>
+<p>What I realized recently is that most of what’s valuable in Johnny Decimal isn’t actually in the numbers. It’s the constraints. At most 10 areas. At most 10 categories per area. Files live in folders, not areas or categories directly. These structural rules are what make JD powerful, not necessarily the  <code>61.28</code>  prefix.</p>
+<p>The numbers serve a few purposes: they encode order and can be used as an initial filter for folders of interest. But order is just data. And, crucially, that order can live in a file instead of in every single folder name.</p>
+<h3>Archives.md as Source of Truth</h3>
+<p>The key insight came from realizing that I could maintain all the order information in a single index file:  <code>Archives.md</code>. Instead of encoding hierarchy in folder names like this:</p>
+<p>60-69 Craft/
+├── 61 Craft people/
+│   ├── 61.28 Bill Bob/
+│   └── 61.29 Sallie Chen/
+└── 62 Craft projects/
+└── 62.07 Metrics Database/</p>
+<p>I could keep clean folder names and store the structure in a simple nested list:</p>
+<ul>
+<li><p><span class="wikilink-broken">Craft</span></p>
+<ul>
+<li><p><span class="wikilink-broken">Craft people</span></p>
+<ul>
+<li><p><span class="wikilink-broken">Bill Bob</span></p>
+</li>
+<li><p><span class="wikilink-broken">Sally Chen</span></p>
+</li>
+</ul>
+</li>
+<li><p><span class="wikilink-broken">Craft projects</span></p>
+<ul>
+<li><span class="wikilink-broken">Metrics Database</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The hierarchy is identical. The order is preserved. But now when I type a wikilink, I write  <code>&lt;span class=&quot;wikilink-broken&quot;&gt;Bill Bob&lt;/span&gt;</code>  instead of  <code>&lt;span class=&quot;wikilink-broken&quot;&gt;61.28 Bill Bob&lt;/span&gt;</code>. My searches return human names instead of cryptic codes. My file explorer and notes look like actual English.</p>
+<p>And here’s the beautiful part: because the order lives in  <code>Archives.md</code>, I can regenerate the numerical IDs whenever I want. This isn&#39;t abandoning Johnny Decimal. It&#39;s making it reversible.</p>
+<h3>What This Reveals About Experiments That Stick</h3>
+<p>Running this tiny experiment prompted me to reflect more broadly: across all the productivity tools and methods I’ve tried over the last few years, what actually stuck vs didn’t?</p>
+<p>I went through my notes from previous Tech Habits posts and made two lists.</p>
+<p><strong>What didn’t stick:</strong></p>
+<ul>
+<li><p>Thino (Obsidian Memos plugin)</p>
+</li>
+<li><p>Ledger for plain text accounting</p>
+</li>
+<li><p>CSV files for project management</p>
+</li>
+<li><p>Classic Bullet Journaling</p>
+</li>
+<li><p>One Big Text File (OBTF)</p>
+</li>
+</ul>
+<p><strong>What stuck:</strong></p>
+<ul>
+<li><p>iOS Shortcuts for quick capture</p>
+</li>
+<li><p>‘Digital doodles’ and working memory techniques</p>
+</li>
+<li><p>Areas and Atlas journaling</p>
+</li>
+<li><p>Weather resistant productivity principles</p>
+</li>
+<li><p>Plain text with Obsidian and Kanban</p>
+</li>
+<li><p>Wikipedia style articles for spaces</p>
+</li>
+<li><p>Lists and calendar as primary interfaces</p>
+</li>
+<li><p>Capture in one place with mixed media</p>
+</li>
+<li><p>Interstitial journaling via voice</p>
+</li>
+<li><p>Notable Folders with Johnny-Decimal(ish) archives</p>
+</li>
+</ul>
+<h3>Why Thino Didn’t Stick</h3>
+<p>I wrote an  <a href="https://medium.com/@geetduggal/it-was-love-at-first-sight-with-this-obsidian-plugin-0616630becf7">entire love letter to Thino</a>  when I discovered it. The plugin transforms your daily log entries into a beautiful “me feed” with timestamps tucked away, multimedia support, and excellent filtering.</p>
+<p>So why did I stop using it?</p>
+<p>Obsidian Kanban provided most of the functionality I wanted and the interface was even simpler and cleaner IMHO.</p>
+<h3>Why Ledger Didn’t Stick</h3>
+<p>Plain text accounting with Ledger appealed to the same part of me that loves plain text notes. But it was ultimately too complicated and hard to maintain. I found myself falling behind, then dreading the catch up sessions, then abandoning the system entirely.</p>
+<p>These days I use Monarch Money. It connects to my accounts, categorizes transactions automatically, and gives me the visibility I need without the manual overhead. I haven’t given up on plain text finance entirely though. Monarch exports to CSV, and I’m curious about building a workflow that periodically pulls my data into a plain text format for archival and analysis.</p>
+<h3>Why OBTF Didn’t Stick</h3>
+<p>One Big Text File was  <a href="https://medium.com/@geetduggal/27672f999949">everything I hoped for</a>  and more. The continuity across days, the frictionless transferability of information, the ability to scroll up and find everything exactly where I left it.</p>
+<p>But it got unwieldy. 25,000+ lines became sometimes cumbersome to navigate, even with good tooling. And I found that the “one file” constraint was more philosophically satisfying than practically useful. I still capture everything in one place, but that place is now a folder of event notes rather than a single file.</p>
+<p>Of all my experiments that ultimately didn’t lead to full time adoption, this one is the one I’ll most likely revisit somehow.</p>
+<h3>Why CSV for Projects Didn’t Stick</h3>
+<p>I wrote about using CSV files for project management as a plain text alternative to complex task managers. Really nice idea in theory, but I found Obsidian Kanban simpler and more useful in practice. A few H2 headers with bulleted lists gives me the same visibility with less friction.</p>
+<h3>Why Bullet Journaling Didn’t Stick (As Primary System)</h3>
+<p>At some point in 2024 I genuinely tried to see if  <a href="https://medium.com/@geetduggal/your-obsidian-workflow-is-missing-a-physical-notebook">physical notebooks can be my primary capture system</a>. I appreciated how my Bujo could serve as a companion for processing digital scraps, how it forced me to slow down and reflect.</p>
+<p>But the reality is: I can’t capture a URL, a screenshot, or a voice memo in a physical notebook. Most of my information arrives digitally. Making paper the primary system created friction in the wrong direction.</p>
+<p>What I kept from Bujo: the intentionality, the practice of migration, the pleasure of handwriting when I need to think slowly, and the high quality notebooks themselves! What I abandoned: the notion that physical should be primary for quick capture.</p>
+<h3>Why Weather Resistant Productivity Stuck</h3>
+<p>On the other hand,  <a href="https://medium.com/@geetduggal/weather-resistant-productivity-2a90c4357068">weather resistant productivity</a>  has become foundational to how I think about tools.</p>
+<p>The core idea: select your essential tools the way a fantasy hero packs for a long journey. Your toolkit should be repeatable, durable, simple, seamless, and adaptable. You write down your workflows and iterate.</p>
+<p>This stuck because it’s meta and simple. It’s not a specific tool or format. It’s a framework for evaluating tools and formats. When I encountered Johnny Decimal, I asked: “Is this weather resistant?” When I stripped out the decimals, I asked the same question.</p>
+<h3>Why Digital Doodles and Working Memory Stuck</h3>
+<p>I still find myself thinking in groups of three to six items. There’s something about that cognitive chunk size that matches how my brain works.</p>
+<p>The practice: dump items quickly into my Log or Working Memory section, then process them. This gives me confidence I haven’t missed anything and helps me work on related things together. It’s like a mental clipboard that persists across interruptions.</p>
+<h3>Why ‘Interstitial Voice Journaling’ Stuck</h3>
+<p>Of everything I’ve experimented with, interstitial journaling via voice might be the stickiest habit. I take walks with my dog. I talk into my phone. The transcription lands in my log.</p>
+<p>Why does this work so well?</p>
+<p>First, zero friction. Speaking is faster than typing. I can capture thoughts while walking, which is often when my best thinking happens.</p>
+<p>Second, it’s multimedia capture that still produces searchable text. The audio file exists if I want it. But the transcription means I can find things later with plain text search.</p>
+<p>Finally, it has been the primary way I sort out complex thoughts and as a bonus I stay physically active in the process.</p>
+<h3>Why Readwise Stuck</h3>
+<p>Readwise and Readwise Reader might be the best apps I’ve ever used. They serve a thoughtful purpose: capturing highlights from books, articles, and podcasts, then resurfacing them over time.</p>
+<p>What makes it stick is the seamless sync with my plain text vault. My highlights automatically appear in Obsidian, work beautifully with Obsidian Bases for querying, and I always have a version backed up in plain text.</p>
+<h3>Why iOS Shortcuts Stuck</h3>
+<p>My  <a href="https://medium.com/@geetduggal/the-most-useful-ios-shortcut-for-obsidian-and-beyond-revisited-9692e62c993a">quick capture shortcut</a>  has been in continuous use for years. Tap, speak or type, done. The thought lands in my daily log automatically prepended with a timestamp.</p>
+<p>This is almost too simple to write about, but that’s exactly why it works. When I’m walking and remember I need milk, I don’t open an app, navigate to a list, and add an item. I just invoke Siri and say “Capture get milk.” Done.</p>
+<p>The lesson:  <strong>capture speed is everything</strong>. If you can’t offload a thought in under 5 seconds, you’ll lose thoughts. Period.</p>
+<h3>Why Lists and Calendar as Primary Stuck</h3>
+<p>Everything I need to do is either on a list or on my calendar. If it has a specific time I want to commit to, it goes on the calendar. If it’s a general task, it goes on a list that I review when planning. Lists can be as simple as a markdown file with items.</p>
+<p>This stuck because it mirrors how my brain actually works. “What am I doing right now?” (check calendar). “What could I do next?” (check the calendar and scan lists). No complex task or project management software required.</p>
+<p>The lesson:  <strong>simpler primitives often beat sophisticated tools</strong>. Lists and calendars have existed for centuries because they map to fundamental human needs: tracking what we need to do and when. Choose the most efficient, minimal, portable, and elegant setup to manage your lists and calendars together.</p>
+<h3>What This Means for Johnny Decimal and my Notable Folders</h3>
+<p>Coming back to where we started: the JID experiment fits this pattern perfectly.</p>
+<p>Johnny Decimal itself is a set of constraints that stuck: the 10 areas, 10 categories limit, the files in folders only rule. These mirror weather resistant principles. They’re simple, durable, adaptable.</p>
+<p>The numerical prefixes, however, were an implementation detail that created friction quickly without sufficient benefit for my use case. The friction of typing/selecting  <code>61.28</code>  every time I mentioned Bill outweighed the benefit of having that number visible in my folder names.</p>
+<p>The solution wasn’t to abandon Johnny Decimal. It was to extract the essential principles (hierarchy, constraints, order) and find a less friction full implementation (clean folder names with order stored in  <code>Archives.md</code>).</p>
+<h3>The Reversible JD Toolkit</h3>
+<p>For those interested in the technical details, I created a Python script called  <code>manage-archives.py</code>  that can toggle between numbered and clean folder names:</p>
+<h1>Remove Johnny Decimal IDs</h1>
+<p>python3 manage-archives.py remove-jids --archives-path ~/Archives</p>
+<h1>Restore Johnny Decimal IDs from Archives.md order</h1>
+<p>python3 manage-archives.py restore-jids --archives-path ~/Archives</p>
+<h1>Preview changes without applying them</h1>
+<p>python3 manage-archives.py remove-jids --dry-runThe script walks the directory tree, renames folders, updates all wikilinks throughout the vault, adjusts YAML frontmatter, and regenerates Archives.md. It&#39;s fully reversible because the ordering information is never lost, just stored differently.</p>
+<p>AI tools made building this script remarkably quick. What would have been a tedious manual migration became an evening ‘mini’ half-hour project. i believe this is the future of productivity system evolution: use AI to automate the boring transformation work so you can focus on experimenting with the underlying principles.</p>
+<h3>The Broader Pattern</h3>
+<p>Here’s what I think is really going on when we distinguish experiments that stick from those that don’t:</p>
+<p><strong>Experiments that stuck optimize for the constraint that matters most.</strong>  Voice capture optimizes for speed and natural input. Lists and calendars optimize for simplicity and practicality. Weather resistant productivity optimizes for durability. JD without decimals optimizes for making a comfortable home for my data long term while not sacrificing readability.</p>
+<p><strong>Abandoned experiments optimize for the wrong constraint, or a constraint that wasn’t actually a problem.</strong>  OBTF optimized for single file unity, but I didn’t actually have a “too many files” problem. Classic Bujo optimized for physical capture, but my inputs are mostly digital. Thino optimized for beautiful visualization, but Kanban Plus also had that and was simpler and more powerful at the same time.</p>
+<p>The trick is knowing which constraint actually matters for your situation. This is why writing down your workflows (a core weather resistant practice) is so valuable. When you articulate what you’re optimizing for, you can evaluate whether a tool actually serves that goal.</p>
+<h3>What’s Next</h3>
+<p>I’m continuing to run tiny experiments. The reversible JD approach has been working well so far. My folder names are clean. My wikilinks are readable. And I know I can restore the numerical prefixes anytime I want.</p>
+<p>But I’m already wondering about the next iteration. How to make the workflow even simpler while focusing on the core principles of using plain text, lists, calendars, and notable folders? What role do templates have to play here? How do I more seamlessly capture and tell stories of what I do and who with through these simple and timeless tools?</p>
+<p>These are motivation for tiny experiments for another day. And AI tools make them take only a half-hour or so to try out. For now, the lesson is clear: the best productivity systems are the ones you can evolve. Build reversibility into everything. Treat implementations as experiments. Let principles guide you, and don’t let any specific tool become sacred.</p>
+<p>Even Johnny Decimal. 🏔️</p>
+<hr>
+<p><em>Related posts:</em></p>
+<ul>
+<li><p><a href="https://medium.com/@geetduggal/tech-habits-how-i-moved-into-my-johnny-decimal-and-obsidian-bases-system-for-organizing-notes-6bc7a00747e7">How I Moved Into My Johnny Decimal System</a> — The original post about embracing JD</p>
+</li>
+<li><p><a href="https://medium.com/@geetduggal/weather-resistant-productivity-2a90c4357068">Weather Resistant Productivity</a> — The framework for evaluating tools</p>
+</li>
+<li><p><a href="https://medium.com/@geetduggal/capture-to-do-d040e1bae4a6">Capture To Do</a> — The original ALPS system</p>
+</li>
+<li><p><a href="https://medium.com/@geetduggal/this-one-idea-changed-the-way-i-organized-my-notes-forever-f293371a0d5b">This One Idea Changed the Way I Organized My Notes Forever</a> — Notable Folders and organizing around people</p>
+</li>
+</ul>
+</article></div><script>window.__ORDER__={"slug":"tech-habits-can-you-johnny-decimal-without-the-decimal","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>
