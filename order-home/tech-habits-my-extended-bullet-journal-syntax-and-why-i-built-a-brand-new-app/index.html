@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tech Habits: My Extended Bullet Journal Syntax and Why I Built a Brand New App</title>
-    <script type="module" crossorigin src="/order-home/assets/index-V6en79y6.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BMQEKMgO.css">
+    <script type="module" crossorigin src="/order-home/assets/index-DiAWDTs_.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-DoQX-H3z.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: My Extended Bullet Journal Syntax and Why I Built a Brand New App</h1>
 <h4>Plus the “Ultimate Principle for Getting Things Done”</h4>
-<p><img src="https://cdn-images-1.medium.com/max/1024/1*xNK17j6Vy7W8aP3teVU_jQ.png" alt="1.00"></p>
+<p><img src="https://cdn-images-1.medium.com/max/1024/1*xNK17j6Vy7W8aP3teVU_jQ.png" style="width:720px;max-width:100%"></p>
 <p>Hello friends! This post has been a long time coming for me. Three threads have been simmering for a few months: an extended bullet journal syntax, the one productivity principle I keep coming back to, and a brand new app that pulls both into one window. They’ve somehow all crossed a boiling point together. So grab some tea and cookies and I’ll try to explain. ☕️🍪</p>
 <h3>Part One: The Extended Bullet Journal Syntax</h3>
 <p>When I first got into Bujo, there was a part of me that struggled with it. I felt like if I didn’t follow the system somewhat faithfully, I’d end up just with my normal somewhat useless scribbles in a notebook.</p>
@@ -31,7 +31,7 @@
 </li>
 </ul>
 <p>See below for an illustration of how this typically looks:</p>
-<p><img src="https://cdn-images-1.medium.com/max/1024/1*mDVg3Ntmu9DwfMiBWVNh0w.png" alt="1.00"></p>
+<p><img src="https://cdn-images-1.medium.com/max/1024/1*mDVg3Ntmu9DwfMiBWVNh0w.png" style="width:720px;max-width:100%"></p>
 <p>This system bridges physical and digital without making me pick. I photograph the pages so everything ends up searchable in Obsidian, and I generally follow my <a href="https://medium.com/@geetduggal/tech-habits-how-i-use-my-pocket-bullet-journal-as-a-pocket-atlas-679e5a368faf">Pocket Atlas workflow</a> to bridge the divide. The structure travels with me all day: on the desk while I work, in my Obsidian Vault, in my pocket while I think.</p>
 <p>One of my colleagues recently told me he loves the idea of physical notebooks but can’t justify them in such a digital world. I get the instinct as that was why I held off on committing to a physical notebook for like 20 years. For me, however, Pocket Bujo has been a superpower. I get the tactile, friction-free experience of writing, plus the permanence and searchability of digital on top. The extended syntax really leans in on the 2D space paper gives me and compliments my working memory perfectly since I can reconstruct parts of the page often without even looking just by focusing mentally on the right portion of the page. The act of physically drawing the symbols and boxes and letters is what I think contributes to the power being so super.</p>
 <h3>Part Two: The Uber Principle of Getting Things Done</h3>
@@ -56,11 +56,11 @@
 <p>What I wanted: the same plain text conventions I’d built my life around, viewed through a different, simpler interface. An interface that feels like home when I open it.</p>
 <p>Obsidian is excellent. The surface area it covers is also its cost: calendars, drawing canvases, Bases, plugins everywhere. For an interface to think, browse, and eventually publish, I wanted less of everything.</p>
 <p>So I built it. I call it ‘<a href="https://github.com/geetduggal/order/">Order</a>’ (short for ‘Atlas Order’ and <strong>its in very early stages of development</strong>) and the tagline is: “Y_our notes, at home at last.”_</p>
-<p><img src="https://cdn-images-1.medium.com/max/1024/1*sRw_LIcpQh9Ed531T7OqLQ.png" alt="1.00"></p>
+<p><img src="https://cdn-images-1.medium.com/max/1024/1*sRw_LIcpQh9Ed531T7OqLQ.png" style="width:720px;max-width:100%"></p>
 <p>Underneath, the data is unchanged: plain text markdown files, YAML front matter, the same portable conventions I’ve used for years. Image pastes write to <vault>/Attachments/ (Obsidian&#39;s convention), referenced by relative paths in the markdown, so the same vault opens cleanly in Obsidian and any other markdown editor. The ‘standards’ stay standards. Order is only an interface.</p>
 <p><strong>The home view is a masonry of cards,</strong> a newspaper/Google Keepish-shaped grid, two-to-four columns at desktop widths and one on a phone. Each card is one markdown note. Recent entries float to the top. The layout sits on an 8px row track, so a one-line card stays small and a long note takes the height it needs, with no wasted vertical space between them.</p>
 <p>Critically, click any card and you’re editing in it. No modal, no separate page, no editor/viewer toggle. As you type, the card grows and its neighbors slide live to make room — measured against the 8px row, the reflow is invisible. The editor itself (built on <a href="https://milkdown.dev/">Milkdown Crepe</a>) holds to the <a href="https://typora.io/">Typora</a> promise: raw markdown syntax only appears on the line your cursor is touching. Everywhere else, you see the rendered result in a way that’s clean like Medium.</p>
-<p><img src="https://cdn-images-1.medium.com/max/1024/1*4_WutSG0_3o_oBO0tRpsJQ.png" alt="1.00"></p>
+<p><img src="https://cdn-images-1.medium.com/max/1024/1*4_WutSG0_3o_oBO0tRpsJQ.png" style="width:720px;max-width:100%"></p>
 <p>The right sidebar is a drill-down: <strong>Areas → Categories → Notable Folders</strong> with the <a href="https://johnnydecimal.com/">Johnny Decimal</a> 10-cap baked into the visual grid as a 2×5 box of tiles. Empty slots show up as dashed outlines. The cap is the design. Click a folder to filter the masonry. Click again to deselect. Two shortcuts that have already wired into muscle memory, eg:</p>
 <ul>
 <li><p><strong>Cmd-K</strong> opens a centered command palette over the whole window. Type a folder name, hit Enter, the masonry filters showing first the main content of the Notable Folder (think like a Wikipedia page) and then a stream of notes ordered by time. I’ve found this model very useful since most Projects, People, and Spaces of interest have main content and a list of ‘updates’ or related ‘notes’.</p>
@@ -77,7 +77,7 @@
 <p>is rendered as a card grid. Each card resolves against the linked note: cover image from its image: field, falling back to a <a href="https://lucide.dev/">Lucide</a> icon over an alternating royal/coral wash when no cover exists. Pick up a card and the others slide out of the way along a FLIP animation, drop it and the underlying markdown bullets reorder on disk live. Click a title to rename. Click the meta line to override. A &quot;+ New&quot; tile at the end appends another item without leaving the page. A Books folder becomes a literal grid of book covers. The inspiration is <a href="https://help.obsidian.md/bases">Obsidian Bases</a> or similar views of Notion Databases.</p>
 <p>Given how much I value the use of calendars, you’ll notice on the right-hand side bar, you can switch from a stream of notes to calendar views (Week, Month, and Year). Creating tasks/notes is as easy as dragging over a time period of interest. Click on an event and it hops you over to its location in the stream view so you can take notes or edit what’s already there.</p>
 <p>The Year view is the linear strip I ported from a fork of obsidian-full-calendar (twelve month-rows, every day a cell) which has changed how I plan and reflect more than any other view I&#39;ve tried. Drag an event to move it. Drag across days to create a multi-day span. The calendar views aren’t a separate module bolted into Order. They are a projection of the same notes at different scales.</p>
-<p><img src="https://cdn-images-1.medium.com/max/1024/1*d5iVSVYGpBurAv1StBw7lQ.png" alt="1.00"></p>
+<p><img src="https://cdn-images-1.medium.com/max/1024/1*d5iVSVYGpBurAv1StBw7lQ.png" style="width:720px;max-width:100%"></p>
 <p>Speed is a feature I’m allergic to compromising on. Startup is instant. View switches (Stream, Week, Month, Year) are a single frame. Edits land on disk inside 600ms via a debounced save and never block the editor.</p>
 <p>Same surface on desktop and mobile. The masonry collapses gracefully to a single column on a phone; the same in-place editor, the same sidebar drill-down. <a href="https://v2.tauri.app">Tauri v2</a> ships the same React frontend to both platforms from one repo, so there’s no parallel port to maintain.</p>
 <p>Finally, something that Order has that I am really excited about: <strong>publishing</strong>. The plan: one toggle in a note’s YAML (public: true), plus a single Publish pill in the topbar that pulses coral when something is pending. Click it, and a static site renders exactly the view you were editing in: the same masonry, the same filtering, the same fonts and palette. The thinking surface and the publishing surface collapsed into one. (Sketch today; feature soon.)</p>
