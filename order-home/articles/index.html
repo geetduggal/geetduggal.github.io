@@ -8,14 +8,14 @@
       // Set the theme before first paint to avoid a light flash. Visitors
       // with no saved choice get their OS preference.
       try {
+        // Apply whatever theme was saved; fall back to OS preference.
         var t = localStorage.getItem("order.theme");
-        if (t !== "light" && t !== "dark")
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-CwRhPdaa.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-CNE5tCVz.css">
+    <script type="module" crossorigin src="/order-home/assets/index-D64uVFjy.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BidC8aRN.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>Articles</h1>
@@ -76,10 +76,8 @@
 <li><a class="wikilink" href="/this-is-how-to-have-your-books-and-articles-read-to-you-for-free-ios/">This Is How to Have Your Books and Articles Read to You for Free (iOS)</a> · 2022-05-16</li>
 <li><a class="wikilink" href="/this-simple-journaling-method-could-change-your-life/">This Simple Journaling Method Could Change Your Life</a> · 2022-05-15</li>
 <li><a class="wikilink" href="/reflections-on-aws-re-invent-2016/">Reflections on AWS re —Invent 2016</a> · 2016-12-02</li>
-<li><a class="wikilink" href="/editor-first-vs-terminal-first-for-development/">‘Editor-First’ vs. ‘Terminal-First’ for Development</a> · 2016-12-01<ul>
+<li><a class="wikilink" href="/editor-first-vs-terminal-first-for-development/">‘Editor-First’ vs. ‘Terminal-First’ for Development</a> · 2016-12-01</li>
 <li><a class="wikilink" href="/old-wordpress-blog/">Old Wordpress Blog</a> · 2014-11-11</li>
-</ul>
-</li>
 </ul>
 </article></div><script>window.__ORDER__={"slug":"articles","dataUrl":"/order-home/data.json"}</script>
   </body>

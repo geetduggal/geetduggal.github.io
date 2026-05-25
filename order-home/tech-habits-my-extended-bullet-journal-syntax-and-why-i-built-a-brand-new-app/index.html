@@ -8,14 +8,14 @@
       // Set the theme before first paint to avoid a light flash. Visitors
       // with no saved choice get their OS preference.
       try {
+        // Apply whatever theme was saved; fall back to OS preference.
         var t = localStorage.getItem("order.theme");
-        if (t !== "light" && t !== "dark")
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-CwRhPdaa.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-CNE5tCVz.css">
+    <script type="module" crossorigin src="/order-home/assets/index-D64uVFjy.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BidC8aRN.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: My Extended Bullet Journal Syntax and Why I Built a Brand New App</h1>
@@ -29,16 +29,11 @@
 <p>Sometimes I show results of using this syntax as I am brainstorming about some topic with coworkers in my pocket Bullet Journal. We have even gone so far as photographing my pocket Bujo pages so we can continue to brainstorm and collaborate before anything goes digital. Working side-by-side with a pocket notebook open between us without fiddling around with digital apps has a way of connecting me with my colleagues that I’ve appreciated.</p>
 <p>The page anatomy I’ve landed on:</p>
 <ul>
-<li><p><strong>Left column.</strong> Core bullet journal syntax: task bullets (⏺), event circles (⊙), migration arrows (&gt;), plus extensions like partial-progress markers, priority indicators, relationships between items.</p>
-</li>
-<li><p><strong>Left margin.</strong><a href="https://medium.com/@geetduggal/this-one-idea-changed-the-way-i-organized-my-notes-forever-f293371a0d5b">Notable folder</a> annotation. Whichever digital folder a line belongs to gets tagged here, so my <a href="https://medium.com/@geetduggal/tech-habits-how-i-moved-into-my-johnny-decimal-and-obsidian-bases-system-for-organizing-notes-6bc7a00747e7">ALPPS</a> structure stays visible on paper.</p>
-</li>
-<li><p><strong>Top right: “high bits.”</strong> A term borrowed from one of my colleagues. I typically have three to five thematic ideas to keep front of mind for a few days.</p>
-</li>
-<li><p><strong>Center box.</strong> The one or two things that actually matter today. If everything else falls apart, these still happen.</p>
-</li>
-<li><p><strong>Bottom right: minutiae.</strong> Small to-dos and tiny errands that need a home but shouldn’t pollute the main flow.</p>
-</li>
+<li><strong>Left column.</strong> Core bullet journal syntax: task bullets (⚫️), event circles (🔘), migration arrows (&gt;), plus extensions like partial-progress markers, priority indicators, relationships between items.</li>
+<li><strong>Left margin.</strong><a href="https://medium.com/@geetduggal/this-one-idea-changed-the-way-i-organized-my-notes-forever-f293371a0d5b">Notable folder</a> annotation. Whichever digital folder a line belongs to gets tagged here, so my <a href="https://medium.com/@geetduggal/tech-habits-how-i-moved-into-my-johnny-decimal-and-obsidian-bases-system-for-organizing-notes-6bc7a00747e7">ALPPS</a> structure stays visible on paper.</li>
+<li><strong>Top right: “high bits.”</strong> A term borrowed from one of my colleagues. I typically have three to five thematic ideas to keep front of mind for a few days.</li>
+<li><strong>Center box.</strong> The one or two things that actually matter today. If everything else falls apart, these still happen.</li>
+<li><strong>Bottom right: minutiae.</strong> Small to-dos and tiny errands that need a home but shouldn’t pollute the main flow.</li>
 </ul>
 <p>See below for an illustration of how this typically looks:</p>
 <p><img src="https://cdn-images-1.medium.com/max/1024/1*mDVg3Ntmu9DwfMiBWVNh0w.png" style="width:720px;max-width:100%"></p>
@@ -50,12 +45,9 @@
 <p>I’ve written about this at length in <a href="https://medium.com/@geetduggal/have-you-been-using-your-calendar-all-wrong-9e686de42237">this post</a>, so I’ll keep the philosophy short: a to-do list disconnected from the calendar is noise. The same list anchored to dates and times and durations becomes a visualizable and digestible plan. A calendar can also serve as a great place to reflect on what you’ve done in a visual way.</p>
 <p>Practical version of the principle I keep coming back to:</p>
 <ul>
-<li><p><strong>Live in one calendar.</strong> Google for work, Apple Calendar at home, whatever. If in doubt or in analysis paralysis, pick the one you already check involuntarily, and double down on it. Future you will thank you.</p>
-</li>
-<li><p><strong>Curate events manually.</strong> Auto-import is convenient and lossy. The friction of dragging an event into place is also the act of agreeing to it.</p>
-</li>
-<li><p><strong>Use a single planner downstream of all sources.</strong> In my case, I am a proud #PlainTextPlanner and use the plain text way of annotating events used by <a href="https://github.com/geetduggal/obsidian-full-calendar">Obsidian Full Calendar</a>. In this approach all calendars feed into this single planner. Conflicts get resolved here and priorities crystallize here. As a plain text planner, I want to point out that there are many elegant ways to keep a calendar in readable plain text eg. <a href="https://terokarvinen.com/2021/calendar-txt/">calendar.txt</a>, and <a href="https://medium.com/u/7c1ab936a5cc">Ellane W</a>’s recently discussed <a href="https://miscellaneplans.medium.com/how-to-create-a-plain-text-calendar-with-the-todo-txt-format-41f0ce6f093d">todo.txt used as a planner</a>. All of these are portable, outlive whichever app you’re currently using, and can co-exist with tasks.</p>
-</li>
+<li><strong>Live in one calendar.</strong> Google for work, Apple Calendar at home, whatever. If in doubt or in analysis paralysis, pick the one you already check involuntarily, and double down on it. Future you will thank you.</li>
+<li><strong>Curate events manually.</strong> Auto-import is convenient and lossy. The friction of dragging an event into place is also the act of agreeing to it.</li>
+<li><strong>Use a single planner downstream of all sources.</strong> In my case, I am a proud #PlainTextPlanner and use the plain text way of annotating events used by <a href="https://github.com/geetduggal/obsidian-full-calendar">Obsidian Full Calendar</a>. In this approach all calendars feed into this single planner. Conflicts get resolved here and priorities crystallize here. As a plain text planner, I want to point out that there are many elegant ways to keep a calendar in readable plain text eg. <a href="https://terokarvinen.com/2021/calendar-txt/">calendar.txt</a>, and <a href="https://medium.com/u/7c1ab936a5cc">Ellane W</a>’s recently discussed <a href="https://miscellaneplans.medium.com/how-to-create-a-plain-text-calendar-with-the-todo-txt-format-41f0ce6f093d">todo.txt used as a planner</a>. All of these are portable, outlive whichever app you’re currently using, and can co-exist with tasks.</li>
 </ul>
 <p>There are so many tools and techniques sitting around the calendar. A lot of productivity advice will tell you to use something else as your home base: your to-do list, your note-taking app, whatever. But here’s what I’ve found: the further those things are disconnected from your calendar, the less powerful they are. And the closer they are to time, the more useful they become. A floating to-do list is just noise until it is anchored to the calendar: things with dates, things you’re actually doing today or this week. That becomes powerful because it’s grounded in reality.</p>
 <p>This is where scales of time matter too. Your daily log, your weekly review, your monthly planning, your quarterly reflections: all of that still comes back to time. And hierarchies like Johnny Decimal or Notable Folders? They exist at larger scales of time. Projects are time-bound. Areas and Categories are things you’re maintaining over longer periods. But they’re all still anchored to time just at a much larger scale.</p>
@@ -65,7 +57,7 @@
 <p>I never expected to write this many words about calendars on personal productivity, much less ship tools around it. I have a few Obsidian plugins I’ve been using for a while: <a href="https://github.com/geetduggal/obsidian-full-calendar">Full Calendar Plus</a>, <a href="https://github.com/geetduggal/...">Kanban Plus</a>. I lean on them daily, but something felt missing.</p>
 <p>What I wanted: the same plain text conventions I’d built my life around, viewed through a different, simpler interface. An interface that feels like home when I open it.</p>
 <p>Obsidian is excellent. The surface area it covers is also its cost: calendars, drawing canvases, Bases, plugins everywhere. For an interface to think, browse, and eventually publish, I wanted less of everything.</p>
-<p>So I built it. I call it ‘<a href="https://github.com/geetduggal/order/">Order</a>’ (short for ‘Atlas Order’ and <strong>its in very early stages of development</strong>) and the tagline is: “Y_our notes, at home at last.”_</p>
+<p>So I built it. I call it ‘<a href="https://github.com/geetduggal/order/">Order</a>’ (short for ‘Atlas Order’ and <strong>its in very early stages of development</strong>) and the tagline is: “Your notes, at home at last.”</p>
 <p><img src="https://cdn-images-1.medium.com/max/1024/1*sRw_LIcpQh9Ed531T7OqLQ.png" style="width:720px;max-width:100%"></p>
 <p>Underneath, the data is unchanged: plain text markdown files, YAML front matter, the same portable conventions I’ve used for years. Image pastes write to <vault>/Attachments/ (Obsidian&#39;s convention), referenced by relative paths in the markdown, so the same vault opens cleanly in Obsidian and any other markdown editor. The ‘standards’ stay standards. Order is only an interface.</p>
 <p><strong>The home view is a masonry of cards,</strong> a newspaper/Google Keepish-shaped grid, two-to-four columns at desktop widths and one on a phone. Each card is one markdown note. Recent entries float to the top. The layout sits on an 8px row track, so a one-line card stays small and a long note takes the height it needs, with no wasted vertical space between them.</p>
@@ -73,10 +65,8 @@
 <p><img src="https://cdn-images-1.medium.com/max/1024/1*4_WutSG0_3o_oBO0tRpsJQ.png" style="width:720px;max-width:100%"></p>
 <p>The right sidebar is a drill-down: <strong>Areas → Categories → Notable Folders</strong> with the <a href="https://johnnydecimal.com/">Johnny Decimal</a> 10-cap baked into the visual grid as a 2×5 box of tiles. Empty slots show up as dashed outlines. The cap is the design. Click a folder to filter the masonry. Click again to deselect. Two shortcuts that have already wired into muscle memory, eg:</p>
 <ul>
-<li><p><strong>Cmd-K</strong> opens a centered command palette over the whole window. Type a folder name, hit Enter, the masonry filters showing first the main content of the Notable Folder (think like a Wikipedia page) and then a stream of notes ordered by time. I’ve found this model very useful since most Projects, People, and Spaces of interest have main content and a list of ‘updates’ or related ‘notes’.</p>
-</li>
-<li><p><strong>Cmd-;</strong> toggles the sidebar so you can go full-bleed on a card without losing the chrome forever.</p>
-</li>
+<li><strong>Cmd-K</strong> opens a centered command palette over the whole window. Type a folder name, hit Enter, the masonry filters showing first the main content of the Notable Folder (think like a Wikipedia page) and then a stream of notes ordered by time. I’ve found this model very useful since most Projects, People, and Spaces of interest have main content and a list of ‘updates’ or related ‘notes’.</li>
+<li><strong>Cmd-;</strong> toggles the sidebar so you can go full-bleed on a card without losing the chrome forever.</li>
 </ul>
 <p><img src="https://cdn-images-1.medium.com/max/1024/1*AONK3egW34bS-VBTlZ0fnQ.png" alt=""><img src="https://cdn-images-1.medium.com/max/1024/1*BubYKbGy4rEZ5aiHimr9qQ.png" alt=""></p>
 <p>One aspect I’m excited about that’s related to Kanban Plus is what I’m calling <strong>list folders:</strong> aNotable Folder whose YAML contians list . A simple bulleted list of Wiki links</p>

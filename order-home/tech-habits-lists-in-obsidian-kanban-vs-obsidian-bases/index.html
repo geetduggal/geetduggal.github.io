@@ -8,14 +8,14 @@
       // Set the theme before first paint to avoid a light flash. Visitors
       // with no saved choice get their OS preference.
       try {
+        // Apply whatever theme was saved; fall back to OS preference.
         var t = localStorage.getItem("order.theme");
-        if (t !== "light" && t !== "dark")
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-CwRhPdaa.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-CNE5tCVz.css">
+    <script type="module" crossorigin src="/order-home/assets/index-D64uVFjy.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BidC8aRN.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: Lists in Obsidian Kanban vs. Obsidian Bases</h1>
@@ -26,14 +26,10 @@
 <p>Lists are arguably the foundational unit of organization we use to get things done. In the classic  <em>Getting Things Done</em> David Allen devotes quite a bit of time to lists.</p>
 <p>He categorizes lists into now canonical categories like:</p>
 <ul>
-<li><p><strong>Next Actions</strong>  (e.g., “Calls,” “At Computer”),</p>
-</li>
-<li><p><strong>Projects</strong>  (multi-step outcomes)</p>
-</li>
-<li><p><strong>Waiting For</strong>  (delegated tasks),</p>
-</li>
-<li><p>and  <strong>Someday/Maybe</strong>  (non-urgent ideas).</p>
-</li>
+<li><strong>Next Actions</strong>  (e.g., “Calls,” “At Computer”),</li>
+<li><strong>Projects</strong>  (multi-step outcomes)</li>
+<li><strong>Waiting For</strong>  (delegated tasks),</li>
+<li>and  <strong>Someday/Maybe</strong>  (non-urgent ideas).</li>
 </ul>
 <p>He also advocates for ‘checklists’ to maintain standards or routines eg. travel packing lists or weekly reviews.</p>
 <p>For Allen, lists are dynamic tools that support thinking by externalizing a relatively comprehensive set of items out of memory and into a meaningful order.</p>
@@ -55,17 +51,13 @@
 <p>Obsidian Kanban is a simple and slick plugin on top of this idea that allows you to create multiple lists in a simple markdown format where each list item is simply a line in a file:</p>
 <h2>List 1</h2>
 <ul>
-<li><p>a</p>
-</li>
-<li><p>b</p>
-</li>
+<li>a</li>
+<li>b</li>
 </ul>
 <h2>List 2</h2>
 <ul>
-<li><p>b</p>
-</li>
-<li><p>c</p>
-</li>
+<li>b</li>
+<li>c</li>
 </ul>
 <p>When rendered in Obsidian, this text file looks like this in dark mode my high-contrast monospace Obsidian setup:</p>
 <p><img src="https://cdn-images-1.medium.com/max/1600/1*kA8YnjQWhz5q9MyQ66smiw.png" style="width:720px;max-width:100%"></p>
@@ -77,13 +69,10 @@ year: 1977
 favorite: true
 cast: # This is a list property</p>
 <ul>
-<li><p>Mark Hamill</p>
-</li>
-<li><p>Harrison Ford</p>
-</li>
-<li><p>Carrie Fisher
----`</p>
-</li>
+<li>Mark Hamill</li>
+<li>Harrison Ford</li>
+<li>Carrie Fisher
+---`</li>
 </ul>
 <p>If you have lots of files like these (ie. they have ‘title’, ‘year’, ‘favorite’, and ‘cast’ as properties), you can quickly create tables, edit metadata, etc based on them. This table can be thought of as a list. Taking it further, in Notion you can literally view a table like this as a Kanban board.</p>
 <p>The only problem is that niether Dataview nor Bases currently has the ability to apply a custom ordering like Notion does (as far as I know). I do, however, believe that Bases is an excellent and efficient foundation to build on. The following video does a good job introducing Bases and comparing it to Dataview:</p>
@@ -101,14 +90,10 @@ cast: # This is a list property</p>
 <p>The beauty of organizing my lists in plain text in the way I do now and especially with new AI tools, is that I actually feel more empowered to create variants of these types of plugins or simply use a plain text editor to manage all of ’em. ‘Till next time! 🏔️</p>
 <p>Related:</p>
 <ul>
-<li><p><a href="https://medium.com/@geetduggal/tech-habits-obsidian-kanban-and-full-calendar-integration-a05a7ff2d2f6">Tech Habits: Obsidian Kanban and Full Calendar Integration</a></p>
-</li>
-<li><p><a href="https://medium.com/@geetduggal/have-you-been-using-your-calendar-all-wrong-9e686de42237">Have You Been Using Your Calendar All Wrong?</a>: Power of Lists alongside Calendars</p>
-</li>
-<li><p><a href="https://medium.com/@geetduggal/tech-habits-one-big-text-file-obtf-meets-obsidian-messaging-apps-and-ai-e12909bf571c">Tech Habits: One Big Text File (OBTF) meets Obsidian, &amp; Messaging Apps, and AI</a></p>
-</li>
-<li><p><a href="https://medium.com/@geetduggal/tech-habits-the-two-lists-i-rely-on-to-run-my-day-469ca249dc9f">Tech Habits: The Two Lists I Rely On to Run My Day</a></p>
-</li>
+<li><a href="https://medium.com/@geetduggal/tech-habits-obsidian-kanban-and-full-calendar-integration-a05a7ff2d2f6">Tech Habits: Obsidian Kanban and Full Calendar Integration</a></li>
+<li><a href="https://medium.com/@geetduggal/have-you-been-using-your-calendar-all-wrong-9e686de42237">Have You Been Using Your Calendar All Wrong?</a>: Power of Lists alongside Calendars</li>
+<li><a href="https://medium.com/@geetduggal/tech-habits-one-big-text-file-obtf-meets-obsidian-messaging-apps-and-ai-e12909bf571c">Tech Habits: One Big Text File (OBTF) meets Obsidian, &amp; Messaging Apps, and AI</a></li>
+<li><a href="https://medium.com/@geetduggal/tech-habits-the-two-lists-i-rely-on-to-run-my-day-469ca249dc9f">Tech Habits: The Two Lists I Rely On to Run My Day</a></li>
 </ul>
 </article></div><script>window.__ORDER__={"slug":"tech-habits-lists-in-obsidian-kanban-vs-obsidian-bases","dataUrl":"/order-home/data.json"}</script>
   </body>

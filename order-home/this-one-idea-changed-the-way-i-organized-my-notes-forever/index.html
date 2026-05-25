@@ -8,14 +8,14 @@
       // Set the theme before first paint to avoid a light flash. Visitors
       // with no saved choice get their OS preference.
       try {
+        // Apply whatever theme was saved; fall back to OS preference.
         var t = localStorage.getItem("order.theme");
-        if (t !== "light" && t !== "dark")
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-CwRhPdaa.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-CNE5tCVz.css">
+    <script type="module" crossorigin src="/order-home/assets/index-D64uVFjy.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BidC8aRN.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>This One Idea Changed the Way I Organized My Notes Forever</h1>
@@ -120,16 +120,11 @@
 <p>When organizing for actionability, I counter-intuitively prefer  <strong>People over Projects</strong>. In any given season of my life there are only a handful of projects I’m actively working on and it’s usually pretty obvious if a note fits neatly in one of them. What’s less obvious with any given incoming note is  _what person_is it most actionable for? I find this to be way more practical as many topics and tasks don’t neatly fit into a big project or space you are cultivating. Rather, they are best suited for your next conversation with a person.</p>
 <p><strong>Special Space: Lists</strong>. There are a number of very active lists that don’t fit neatly into a project or a space. I have found it particularly useful to simply keep all of these lists in one folder called ‘Lists’. Examples include:</p>
 <ul>
-<li><p>Groceries</p>
-</li>
-<li><p>Books to read</p>
-</li>
-<li><p>Shows to watch</p>
-</li>
-<li><p>This week</p>
-</li>
-<li><p>…</p>
-</li>
+<li>Groceries</li>
+<li>Books to read</li>
+<li>Shows to watch</li>
+<li>This week</li>
+<li>…</li>
 </ul>
 <p>I have always found that what works best for me is to treat tasks as calendar events. In ALPS, calendar events are simply notes. I can simply turn a list item into a note with a future date and it becomes a scheduled task. You will see below that it is easy to store all of this in plain text and visualize it beautifully in Obsidian.</p>
 <h2>Archives: Where Notable Folders Find Their Permanent Home</h2>
@@ -175,12 +170,10 @@
 <p>Let’s re-visit the command line snippet example. Here is how my workflow looked for that afternoon.</p>
 <p>I visited that person’s desk with my laptop. As we were solving the problem and I realized a few of the commands we used could be useful later, I just used my quick capture method to append lines of text to the plain text file that I call ‘Inbox’. That file looked something like this made-up example:</p>
 <ul>
-<li><p>Bill</p>
-</li>
-<li><p>Handy commands for fixing product feature X
+<li>Bill</li>
+<li>Handy commands for fixing product feature X
 fc -l | grep &quot;$(date +%Y-%m-%d)&quot;
-du -sh ./* | sort -h</p>
-</li>
+du -sh ./* | sort -h</li>
 </ul>
 <p>After I packed up my laptop and was heading out, I also did some quick research on toilet seats and noted down a task I needed to perform, so I used a Siri Shortcut on my phone triggered by my iPhone’s action button to quickly add text input. The file now looked like this:</p>
 <ul>
@@ -235,18 +228,12 @@ du -sh ./* | sort -h</p>
 <p><strong>Jake Knapp &amp; John Zeratsky.</strong>  Authors of  <em>Make Time: How to Focus on What Matters Every Day</em>. Their concept of choosing a daily highlight: a single 60–90 minute focal point that will make your day feel meaningful directly influenced how I think about intent in my logs. I often create an all-day event that acts like a ‘post-it’ note to remind me of my main focus. What I love most about their approach is its playful practicality: instead of burying you in research and science, they offer over 80 concrete tactics and encourage you to run tiny personal experiments to see what works.</p>
 <p>If you’ve enjoyed this article, you might find these previous explorations fun:</p>
 <ul>
-<li><p><a href="https://medium.com/@geetduggal/capture-to-do-d040e1bae4a6">Capture To Do</a>  — This article is an evolution of that original system for managing tasks in Obsidian but extends it to note organization.</p>
-</li>
-<li><p><a href="https://medium.com/@geetduggal/discipline-absorbs-chaos-try-this-game-changing-simple-way-to-manage-your-time-14e262ca05bc">Discipline Absorbs Chaos</a>  — Introduces the notion of a “frontier” calendar event for time management.</p>
-</li>
-<li><p><a href="https://medium.com/@geetduggal/have-you-been-using-your-calendar-all-wrong-9e686de42237">Have You Been Using Your Calendar All Wrong?</a>  — Explores the relationship between lists and calendars.</p>
-</li>
-<li><p><a href="https://medium.com/@geetduggal/want-extraordinarily-useful-and-timeless-notes-build-a-personal-knowledge-encyclopedia-bc8b7fb09829">Build a Personal Knowledge Encyclopedia</a>  — My first introduction to notable people and spaces, and the connection to Wikipedia-style thinking.</p>
-</li>
-<li><p><a href="https://medium.com/@geetduggal/atlas-journaling-a-unified-approach-for-seeing-the-big-picture-and-acting-with-focus-78804f26f5ab">Atlas Journaling</a>  — With notable folders, my maps now don’t just involve projects and contexts but also people. I still love to atlas journal every season.</p>
-</li>
-<li><p><a href="https://medium.com/@geetduggal/introducing-the-obsidian-kanban-plus-plugin-3c970c21141a">Introducing the Obsidian Kanban Plus Plugin</a>  — A practical plugin to use some of the methods I discuss here.</p>
-</li>
+<li><a href="https://medium.com/@geetduggal/capture-to-do-d040e1bae4a6">Capture To Do</a>  — This article is an evolution of that original system for managing tasks in Obsidian but extends it to note organization.</li>
+<li><a href="https://medium.com/@geetduggal/discipline-absorbs-chaos-try-this-game-changing-simple-way-to-manage-your-time-14e262ca05bc">Discipline Absorbs Chaos</a>  — Introduces the notion of a “frontier” calendar event for time management.</li>
+<li><a href="https://medium.com/@geetduggal/have-you-been-using-your-calendar-all-wrong-9e686de42237">Have You Been Using Your Calendar All Wrong?</a>  — Explores the relationship between lists and calendars.</li>
+<li><a href="https://medium.com/@geetduggal/want-extraordinarily-useful-and-timeless-notes-build-a-personal-knowledge-encyclopedia-bc8b7fb09829">Build a Personal Knowledge Encyclopedia</a>  — My first introduction to notable people and spaces, and the connection to Wikipedia-style thinking.</li>
+<li><a href="https://medium.com/@geetduggal/atlas-journaling-a-unified-approach-for-seeing-the-big-picture-and-acting-with-focus-78804f26f5ab">Atlas Journaling</a>  — With notable folders, my maps now don’t just involve projects and contexts but also people. I still love to atlas journal every season.</li>
+<li><a href="https://medium.com/@geetduggal/introducing-the-obsidian-kanban-plus-plugin-3c970c21141a">Introducing the Obsidian Kanban Plus Plugin</a>  — A practical plugin to use some of the methods I discuss here.</li>
 </ul>
 </article></div><script>window.__ORDER__={"slug":"this-one-idea-changed-the-way-i-organized-my-notes-forever","dataUrl":"/order-home/data.json"}</script>
   </body>

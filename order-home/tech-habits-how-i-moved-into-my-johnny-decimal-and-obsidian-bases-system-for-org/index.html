@@ -8,14 +8,14 @@
       // Set the theme before first paint to avoid a light flash. Visitors
       // with no saved choice get their OS preference.
       try {
+        // Apply whatever theme was saved; fall back to OS preference.
         var t = localStorage.getItem("order.theme");
-        if (t !== "light" && t !== "dark")
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-CwRhPdaa.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-CNE5tCVz.css">
+    <script type="module" crossorigin src="/order-home/assets/index-D64uVFjy.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BidC8aRN.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: How I Moved Into My Johnny Decimal (and Obsidian Bases) System for Organizing Notes</h1>
@@ -135,18 +135,12 @@
 <p>When I added milk to my grocery list yesterday via a simple iOS shortcut, it showed up instantly on my phone home screen. No separate app. Just text in the right place.</p>
 <h2>column 1</h2>
 <ul>
-<li><p>a</p>
-</li>
-<li><p>b</p>
-</li>
-<li><p>c</p>
-</li>
-<li><p>d</p>
-</li>
-<li><p>e</p>
-</li>
-<li><p>f</p>
-</li>
+<li>a</li>
+<li>b</li>
+<li>c</li>
+<li>d</li>
+<li>e</li>
+<li>f</li>
 </ul>
 <p>Press enter or click to view image in full size</p>
 <p><img src="https://miro.medium.com/v2/resize:fit:2000/1*fM6WZmaPMG-auuNOKssOzQ.png" style="width:720px;max-width:100%"></p>

@@ -8,14 +8,14 @@
       // Set the theme before first paint to avoid a light flash. Visitors
       // with no saved choice get their OS preference.
       try {
+        // Apply whatever theme was saved; fall back to OS preference.
         var t = localStorage.getItem("order.theme");
-        if (t !== "light" && t !== "dark")
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-CwRhPdaa.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-CNE5tCVz.css">
+    <script type="module" crossorigin src="/order-home/assets/index-D64uVFjy.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BidC8aRN.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>Have You Been Using Your Calendar All Wrong?</h1>
@@ -35,16 +35,11 @@
 <p>Repetition is built into the cosmos. The planets move in cycles, and these cycles make our calendar more like a wheel of time. Even though everything changes, there’s a periodicity and rhythm underneath it all.</p>
 <p>Stargazing aside, your day-to-day, week-to-week, and year-to-year is full of repetition. For example, you may:</p>
 <ul>
-<li><p>brush your teeth every morning,</p>
-</li>
-<li><p>follow a specific routine to relax at night,</p>
-</li>
-<li><p>have multiple recurring personal and professional meetings every week,</p>
-</li>
-<li><p>visit the salon roughly every month, and</p>
-</li>
-<li><p>look forward and plan for holidays and birthdays every year.</p>
-</li>
+<li>brush your teeth every morning,</li>
+<li>follow a specific routine to relax at night,</li>
+<li>have multiple recurring personal and professional meetings every week,</li>
+<li>visit the salon roughly every month, and</li>
+<li>look forward and plan for holidays and birthdays every year.</li>
 </ul>
 <p>Imagine you approach each day, week, month, or year with a deep understanding of these repeating patterns. And also, how these patterns can change.</p>
 <p>Imagine that when you look at your calendar, you are implicitly or explicitly appreciating these repeated moments. Between these repeating moments, we figure out what new things we want to do, and what old patterns we might want to change or stop altogether.</p>
@@ -57,37 +52,26 @@
 <p>For example, I may want to swap my after-work walk mentioned above with a more challenging form of exercise. If I want to add a new event to a yearly routine, I have a more explicit idea as to whether it is realistic. I’m also better positioned to plan ahead knowing what important recurring events are coming my way.</p>
 <p>Here are a few points supporting this principle:</p>
 <ul>
-<li><p><strong>Keep recurring events in</strong> <strong><a href="https://medium.com/@geetduggal/satisfy-the-beast-science-the-sh-t-out-of-difficult-tasks-and-habits-18c4e3d2f04a">working memory</a></strong>. You should be able to recall repeated events that ground you off the top of your head. Think about the most important needle-moving and spiritually uplifting routines across scales of time and hold them close to your heart. It’s fine if you want to actually represent these events in lists or as recurring events in a physical notebook or calendar app, but these events should truly be memorable so ideally you shouldn’t need to rely on your calendar to remind you of them.</p>
-</li>
-<li><p><strong>Be fearless when repeating content across events.</strong> Recurring  events generally have content associated with them. Think preparing for birthday parties, weekly meetings, etc. The most natural way to organize content and notes related to the event is by linking it to the event directly. When an event repeats, it may be tempting to somehow unify repeated information across events. In my experience this can lead to wasted time and confusion. Simply copy and paste the relevant information. You can rely on the fact that recurring events as I’ve defined them are memorable for example. If you ever want to look up details or notes from a particular meeting or Birthday celebration, you know exactly on your calendar where to look. If you want to organize this information at a higher level, do so organically.</p>
-</li>
-<li><p><strong>Think in terms of seasons natural to you</strong>. In the example above I highlighted daily, weekly, and yearly scales of time. While these are the obvious cycles to use, I also like to think in terms of ‘seasons’. These could be just a few weeks or on the order of a quarter or so. But they have a natural start and end point with their own rituals based on what feels right to me. In this sense, it’s important to recognize that at larger scales seasons will repeat themselves and can be often very personal in nature.</p>
-</li>
+<li><strong>Keep recurring events in</strong> <strong><a href="https://medium.com/@geetduggal/satisfy-the-beast-science-the-sh-t-out-of-difficult-tasks-and-habits-18c4e3d2f04a">working memory</a></strong>. You should be able to recall repeated events that ground you off the top of your head. Think about the most important needle-moving and spiritually uplifting routines across scales of time and hold them close to your heart. It’s fine if you want to actually represent these events in lists or as recurring events in a physical notebook or calendar app, but these events should truly be memorable so ideally you shouldn’t need to rely on your calendar to remind you of them.</li>
+<li><strong>Be fearless when repeating content across events.</strong> Recurring  events generally have content associated with them. Think preparing for birthday parties, weekly meetings, etc. The most natural way to organize content and notes related to the event is by linking it to the event directly. When an event repeats, it may be tempting to somehow unify repeated information across events. In my experience this can lead to wasted time and confusion. Simply copy and paste the relevant information. You can rely on the fact that recurring events as I’ve defined them are memorable for example. If you ever want to look up details or notes from a particular meeting or Birthday celebration, you know exactly on your calendar where to look. If you want to organize this information at a higher level, do so organically.</li>
+<li><strong>Think in terms of seasons natural to you</strong>. In the example above I highlighted daily, weekly, and yearly scales of time. While these are the obvious cycles to use, I also like to think in terms of ‘seasons’. These could be just a few weeks or on the order of a quarter or so. But they have a natural start and end point with their own rituals based on what feels right to me. In this sense, it’s important to recognize that at larger scales seasons will repeat themselves and can be often very personal in nature.</li>
 </ul>
 <h1>Color Your Time</h1>
 <p>This principle is where the day-to-day magic truly occurs. When you color your calendar, you don’t look at your calendar just to see what’s next or worry if you’re ready for what’s coming. That’s the boring, uninspiring, even stressful way.</p>
 <p>Instead, you see your past as sacred. It has already happened. As you live through the present moment, you are already adding to both your immediate past and future. This process is like a gentle form of journaling. It’s a quick, personal diary of your events tied to the exact time they happened.</p>
 <p>You can color your past events in whatever way that feels good to you using just a few simple categories. For example, you could color them by  <em>activity</em>:</p>
 <ul>
-<li><p>Reading</p>
-</li>
-<li><p>Coding</p>
-</li>
-<li><p>Entertainment</p>
-</li>
-<li><p>Administrative</p>
-</li>
-<li><p>Shopping / Errands</p>
-</li>
+<li>Reading</li>
+<li>Coding</li>
+<li>Entertainment</li>
+<li>Administrative</li>
+<li>Shopping / Errands</li>
 </ul>
 <p>Or you could color them by the  <em>people</em>  involved:</p>
 <ul>
-<li><p>Immediate family</p>
-</li>
-<li><p>Friends</p>
-</li>
-<li><p>Professional Colleagues</p>
-</li>
+<li>Immediate family</li>
+<li>Friends</li>
+<li>Professional Colleagues</li>
 </ul>
 <p>The goal is to better annotate the important moments of your past. You can see how these colored events connect, or you can focus on each category individually and appreciate it. You don’t need to account for every single minute. Just log the particularly important or memorable events, whether they happen often or just once.</p>
 <p>I can’t stress enough how much this small shift in how you look at your calendar can change everything. Remember, “as you live through the present moment, you are already adding to this immediate past and future, like a gentle form of journaling.” Many journaling methods already encourage this. Think Bullet Journaling or  <a href="https://medium.com/@geetduggal/this-simple-journaling-method-could-change-your-life-638b51fac9d8">Interstitial Journaling</a>. My suggestion is to make this kind of journaling even simpler and more powerful by doing it directly on your calendar.</p>
@@ -100,18 +84,12 @@
 <p>Looking at events from your recent past isn’t enough. Sometimes, tiny details or big ideas from further back in time are relevant to what you might want to do in the near future. Lists of these potential events can also fit into categories, maybe the same ones you use for your recent past.</p>
 <p>It could be, eg:</p>
 <ul>
-<li><p>books to read</p>
-</li>
-<li><p>movies to watch</p>
-</li>
-<li><p>home projects</p>
-</li>
-<li><p>work projects</p>
-</li>
-<li><p>small administrative tasks</p>
-</li>
-<li><p>follow-ups</p>
-</li>
+<li>books to read</li>
+<li>movies to watch</li>
+<li>home projects</li>
+<li>work projects</li>
+<li>small administrative tasks</li>
+<li>follow-ups</li>
 </ul>
 <p>However you want to contextually group your potential events, the important point is to recognize that calendars aren’t just for events; they’re inspired by lists. These lists are like paint that can be added to the canvas of your time.</p>
 <p>Depending on your mood and what’s needed, your immediate past and these lists inspire your near future. I find that 3–7 day windows with columns as days and rows as hours are appropriate spans of time to look at to color your calendar. The days can be easily stored in your working memory and often align well with traditional weeks. In this sense you can color your week with notable events.</p>

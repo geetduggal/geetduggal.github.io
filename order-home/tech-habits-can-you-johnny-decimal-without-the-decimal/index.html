@@ -8,14 +8,14 @@
       // Set the theme before first paint to avoid a light flash. Visitors
       // with no saved choice get their OS preference.
       try {
+        // Apply whatever theme was saved; fall back to OS preference.
         var t = localStorage.getItem("order.theme");
-        if (t !== "light" && t !== "dark")
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-CwRhPdaa.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-CNE5tCVz.css">
+    <script type="module" crossorigin src="/order-home/assets/index-D64uVFjy.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BidC8aRN.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: Can you Johnny Decimal Without the Decimal?</h1>
@@ -42,18 +42,13 @@
 └── 62.07 Metrics Database/</p>
 <p>I could keep clean folder names and store the structure in a simple nested list:</p>
 <ul>
-<li><p><span class="wikilink-broken">Craft</span></p>
-<ul>
-<li><p><span class="wikilink-broken">Craft people</span></p>
-<ul>
-<li><p><span class="wikilink-broken">Bill Bob</span></p>
-</li>
-<li><p><span class="wikilink-broken">Sally Chen</span></p>
-</li>
+<li><span class="wikilink-broken">Craft</span><ul>
+<li><span class="wikilink-broken">Craft people</span><ul>
+<li><span class="wikilink-broken">Bill Bob</span></li>
+<li><span class="wikilink-broken">Sally Chen</span></li>
 </ul>
 </li>
-<li><p><span class="wikilink-broken">Craft projects</span></p>
-<ul>
+<li><span class="wikilink-broken">Craft projects</span><ul>
 <li><span class="wikilink-broken">Metrics Database</span></li>
 </ul>
 </li>
@@ -67,39 +62,24 @@
 <p>I went through my notes from previous Tech Habits posts and made two lists.</p>
 <p><strong>What didn’t stick:</strong></p>
 <ul>
-<li><p>Thino (Obsidian Memos plugin)</p>
-</li>
-<li><p>Ledger for plain text accounting</p>
-</li>
-<li><p>CSV files for project management</p>
-</li>
-<li><p>Classic Bullet Journaling</p>
-</li>
-<li><p>One Big Text File (OBTF)</p>
-</li>
+<li>Thino (Obsidian Memos plugin)</li>
+<li>Ledger for plain text accounting</li>
+<li>CSV files for project management</li>
+<li>Classic Bullet Journaling</li>
+<li>One Big Text File (OBTF)</li>
 </ul>
 <p><strong>What stuck:</strong></p>
 <ul>
-<li><p>iOS Shortcuts for quick capture</p>
-</li>
-<li><p>‘Digital doodles’ and working memory techniques</p>
-</li>
-<li><p>Areas and Atlas journaling</p>
-</li>
-<li><p>Weather resistant productivity principles</p>
-</li>
-<li><p>Plain text with Obsidian and Kanban</p>
-</li>
-<li><p>Wikipedia style articles for spaces</p>
-</li>
-<li><p>Lists and calendar as primary interfaces</p>
-</li>
-<li><p>Capture in one place with mixed media</p>
-</li>
-<li><p>Interstitial journaling via voice</p>
-</li>
-<li><p>Notable Folders with Johnny-Decimal(ish) archives</p>
-</li>
+<li>iOS Shortcuts for quick capture</li>
+<li>‘Digital doodles’ and working memory techniques</li>
+<li>Areas and Atlas journaling</li>
+<li>Weather resistant productivity principles</li>
+<li>Plain text with Obsidian and Kanban</li>
+<li>Wikipedia style articles for spaces</li>
+<li>Lists and calendar as primary interfaces</li>
+<li>Capture in one place with mixed media</li>
+<li>Interstitial journaling via voice</li>
+<li>Notable Folders with Johnny-Decimal(ish) archives</li>
 </ul>
 <h3>Why Thino Didn’t Stick</h3>
 <p>I wrote an  <a href="https://medium.com/@geetduggal/it-was-love-at-first-sight-with-this-obsidian-plugin-0616630becf7">entire love letter to Thino</a>  when I discovered it. The plugin transforms your daily log entries into a beautiful “me feed” with timestamps tucked away, multimedia support, and excellent filtering.</p>
@@ -169,14 +149,10 @@
 <hr>
 <p><em>Related posts:</em></p>
 <ul>
-<li><p><a href="https://medium.com/@geetduggal/tech-habits-how-i-moved-into-my-johnny-decimal-and-obsidian-bases-system-for-organizing-notes-6bc7a00747e7">How I Moved Into My Johnny Decimal System</a> — The original post about embracing JD</p>
-</li>
-<li><p><a href="https://medium.com/@geetduggal/weather-resistant-productivity-2a90c4357068">Weather Resistant Productivity</a> — The framework for evaluating tools</p>
-</li>
-<li><p><a href="https://medium.com/@geetduggal/capture-to-do-d040e1bae4a6">Capture To Do</a> — The original ALPS system</p>
-</li>
-<li><p><a href="https://medium.com/@geetduggal/this-one-idea-changed-the-way-i-organized-my-notes-forever-f293371a0d5b">This One Idea Changed the Way I Organized My Notes Forever</a> — Notable Folders and organizing around people</p>
-</li>
+<li><a href="https://medium.com/@geetduggal/tech-habits-how-i-moved-into-my-johnny-decimal-and-obsidian-bases-system-for-organizing-notes-6bc7a00747e7">How I Moved Into My Johnny Decimal System</a> — The original post about embracing JD</li>
+<li><a href="https://medium.com/@geetduggal/weather-resistant-productivity-2a90c4357068">Weather Resistant Productivity</a> — The framework for evaluating tools</li>
+<li><a href="https://medium.com/@geetduggal/capture-to-do-d040e1bae4a6">Capture To Do</a> — The original ALPS system</li>
+<li><a href="https://medium.com/@geetduggal/this-one-idea-changed-the-way-i-organized-my-notes-forever-f293371a0d5b">This One Idea Changed the Way I Organized My Notes Forever</a> — Notable Folders and organizing around people</li>
 </ul>
 </article></div><script>window.__ORDER__={"slug":"tech-habits-can-you-johnny-decimal-without-the-decimal","dataUrl":"/order-home/data.json"}</script>
   </body>

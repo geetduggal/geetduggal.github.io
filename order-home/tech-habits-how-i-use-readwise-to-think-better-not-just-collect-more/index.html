@@ -8,14 +8,14 @@
       // Set the theme before first paint to avoid a light flash. Visitors
       // with no saved choice get their OS preference.
       try {
+        // Apply whatever theme was saved; fall back to OS preference.
         var t = localStorage.getItem("order.theme");
-        if (t !== "light" && t !== "dark")
-          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-CwRhPdaa.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-CNE5tCVz.css">
+    <script type="module" crossorigin src="/order-home/assets/index-D64uVFjy.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BidC8aRN.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: How I Use Readwise to Think Better (Not Just Collect More)</h1>
@@ -28,12 +28,9 @@
 <p>This post is about that fuller picture. And it’s organized around a principle I keep coming back to from a previous installment on <a href="https://medium.com/@geetduggal/this-one-idea-changed-the-way-i-organized-my-notes-forever-f293371a0d5b">Notable Folders</a>: the well-organized mind isn’t about storing everything or bookkeeping. It’s about feeling at home in your own thinking.</p>
 <p>In short, Readwise, its Reader app, and Obsidian integration serve as my primary tool to:</p>
 <ul>
-<li><p>capture full text for various types of media, notably YouTube videos</p>
-</li>
-<li><p>consume and highlight this media</p>
-</li>
-<li><p>whittle exports for use in a broader and more memorable context</p>
-</li>
+<li>capture full text for various types of media, notably YouTube videos</li>
+<li>consume and highlight this media</li>
+<li>whittle exports for use in a broader and more memorable context</li>
 </ul>
 <p>A few things worth being clear about:</p>
 <p>This is not a system that requires constant maintenance. The automation handles the routine. You handle the intention.</p>
@@ -71,16 +68,11 @@
 <p>Also, a previous Tech Habits post on <a href="https://medium.com/@geetduggal/tech-habits-ditching-digital-capture-and-why-claude-hasn-t-killed-obsidian-for-me-3f912b569b37">standards versus interfaces</a> is worth connecting here. Here you can think of Markdown as the standard underneath both tools. Readwise and Obsidian are interfaces that conceptually sit on top of it. If either tool disappeared tomorrow, the notes remain intact and readable in any text editor.</p>
 <p>Finally, a few things on a slow burn that I’ll write about soon 😀:</p>
 <ul>
-<li><p><strong>Multiscale journaling</strong> : a workflow where voice capture flows through AI synthesis to hand-written artifacts and eventually public graduation, the most powerful piece in the pipeline and the one I’m most excited about</p>
-</li>
-<li><p><strong>The pocket e-reader as personal library</strong> : carrying your own writing, key texts, and saved notes on eInk in a way that changes how you read your own thinking</p>
-</li>
-<li><p><strong>The shutdown ritual</strong> : a simple trick for how I close my day</p>
-</li>
-<li><p><strong>Collections in bullet journals mapped to people, projects, and spaces</strong> : how physical and digital notable folders talk to each other</p>
-</li>
-<li><p><strong>From private notes to public GitHub and a personal website</strong> : the architecture of graduating your thinking from flat local files to a multi-channel publishing setup with near-zero additional friction</p>
-</li>
+<li><strong>Multiscale journaling</strong> : a workflow where voice capture flows through AI synthesis to hand-written artifacts and eventually public graduation, the most powerful piece in the pipeline and the one I’m most excited about</li>
+<li><strong>The pocket e-reader as personal library</strong> : carrying your own writing, key texts, and saved notes on eInk in a way that changes how you read your own thinking</li>
+<li><strong>The shutdown ritual</strong> : a simple trick for how I close my day</li>
+<li><strong>Collections in bullet journals mapped to people, projects, and spaces</strong> : how physical and digital notable folders talk to each other</li>
+<li><strong>From private notes to public GitHub and a personal website</strong> : the architecture of graduating your thinking from flat local files to a multi-channel publishing setup with near-zero additional friction</li>
 </ul>
 <p>Till next time! 🏔️</p>
 <p><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=3d955e2983fa" style="width:720px;max-width:100%"></p>
