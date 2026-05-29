@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Tech Habits: Order App Updates and Personal Gadget Renaissance</title>
+    <script>
+      // Set the theme before first paint to avoid a light flash. Visitors
+      // with no saved choice get their OS preference.
+      try {
+        // Apply whatever theme was saved; fall back to OS preference.
+        var t = localStorage.getItem("order.theme");
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/order-home/assets/index-KCp-pmsN.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-D2P0c37h.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: Order App Updates and Personal Gadget Renaissance</h1>
+<p>I am writing this post in <em><a href="https://github.com/geetduggal/order">Order</a></em>, my new homegrown and opinionated note-taking and publishing app that&#39;s meant to be just about as WSYIWYG as you can be while being true to plain text foundations.  It&#39;s <strong>meant to serve alongside your favorite plain text tools</strong>, command line, file explorer, favorite text editors (think Typora, VS Code), plain-text oriented note taking apps (think Obsidian, Tolaria) and <strong>provide a unique and exciting interface into your notes</strong> while keeping you organized.</p>
+<p>I teased it briefly in <a href="https://geetduggal.com/order-home/tech-habits-my-extended-bullet-journal-syntax-and-why-i-built-a-brand-new-app/">my last Tech Habits post</a> and it is most certainly still <strong>Alpha/MVP/0.x</strong>.  That being said, it has had some major updates now that I had some time to give it some love over a Memorial Day weekend holiday.</p>
+<h2>Some updates</h2>
+<ul>
+<li><strong>One-click publishing support works</strong><ul>
+<li>Toggle notes and folders as public or private, publish the public ones</li>
+<li>Github pages support for generating a static webpage</li>
+<li>Published web page looks nearly identical to note taking app</li>
+<li>Permalinks to Notable Folders</li>
+</ul>
+</li>
+<li><strong>MVP of both desktop and iOS apps complete</strong><ul>
+<li>Unifying and opinionated <a href="https://johnnydecimal.com">Johnny-Decimal</a> like organizing principle<ul>
+<li>You have limited small number of Areas and Categories (10 each)</li>
+<li>Each Category contains <a href="https://geetduggal.com/order-home/this-one-idea-changed-the-way-i-organized-my-notes-forever/">Notable Folders</a> (a main document plus accompanying notes)</li>
+</ul>
+</li>
+<li>Single click WYSIWYG editing</li>
+<li>Newspaper-style layout for Notable Folders</li>
+<li>Initial version of Obsidian-like Wikilink support</li>
+<li>Some fun theming and focus mode styles</li>
+</ul>
+</li>
+<li><strong>Order now implements three key &quot;ordering&quot; concepts</strong>:<ul>
+<li><strong>Time</strong>. A stream of Notable Folders and notes over the most natural way to order things: time<ul>
+<li>The stream can be visualized as<ul>
+<li>a chronologically-ordered Newspaper style display of notes</li>
+<li>weekly, monthly, and yearly calendar views</li>
+</ul>
+</li>
+<li>The stream can be filtered by Notable Folders</li>
+</ul>
+</li>
+<li><strong>Folder views</strong>. Filtered notable folder streams can be re-ordered for convenient viewing or editing</li>
+<li><strong>Lists</strong>: the first class concept of reorderable items in <em>Order</em><ul>
+<li>Areas and Categories are themselves just lists of reorderable items encoded as Markdown lists</li>
+<li>Notable Folders can be a list of things (eg. Books)</li>
+<li>Lists can reference lists and render appropriately</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>As discussed previously, this app is meant to be an app somewhat custom-built for me, but I think the ideas of it are fresh and powerful enough to be potentially generalizable to other people&#39;s workflows.</p>
+<h2>Home page in Order</h2>
+<p>This time, <strong>I hope to showcase some recent improvements by illustrating briefly and literally through screenshots how the app can be used</strong> to simultaneously build a personal home page and take casual notes on topics of interest.</p>
+<p>A huge motivation came from <a href="https://miscellaneplans.medium.com/another-value-rich-well-written-piece-thanks-geet-3eb90d62020a">this comment</a> from @Ellane to have my own indepedent space to post these articles as well as Medium. I&#39;ve been through many forms of manual, automated, static, and dyanamic ways of posting my content and I wanted to approach it somewhat more thoughtfully this time.  To illustrate this is exactly how my Order App looks vs. my current home page:</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-0114.png" alt=""></p>
+<p>The point is there&#39;s basically no difference except that one is editable.  With the click of one publish button, in less than a minute a static site is generated that looks identical.  Published contents are of course immutable to the reader and retain only content I wish to be public.</p>
+<p>Critically, it looks almost identical to my <a href="https://geetduggal.com/legacy.html">old home page</a> save for some purposeful stylistic differences:</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-0119.png" alt=""></p>
+<p>The home page contains four class of items:</p>
+<ul>
+<li>Articles</li>
+<li>Tools</li>
+<li>Academic</li>
+</ul>
+<p>Each class of items is itself a list.</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-0122.png" alt=""></p>
+<p>This is the source code for the home page above:</p>
+<pre><code>---
+list: lines
+category: Creative Spaces
+home: geetduggal/geetduggal.github.io/order-home
+public: true
+slug: geet-duggal
+
+---
+
+# Geet Duggal
+
+[LinkedIn Profile](https://www.linkedin.com/in/eng-crisis) · [vimrc](https://gist.github.com/geetduggal/d9702695b96b13532a291d74f7a38e38) · [The revenge of the home page](https://www.newyorker.com/culture/infinite-scroll/the-revenge-of-the-home-page) · &lt;a class=&quot;wikilink&quot; href=&quot;/order/&quot;&gt;Order&lt;/a&gt;
+
+- &lt;a class=&quot;wikilink&quot; href=&quot;/articles/&quot;&gt;Articles&lt;/a&gt; · Mostly posts on Medium
+- &lt;a class=&quot;wikilink&quot; href=&quot;/tools/&quot;&gt;Tools&lt;/a&gt; · Useful-to-me bits of code I made
+- &lt;a class=&quot;wikilink&quot; href=&quot;/academic/&quot;&gt;Academic&lt;/a&gt; · From a previous life
+</code></pre>
+<br /><p>Very simple.  A few things to note:</p>
+<ul>
+<li>the key <code>list</code> indicates that this folder is to be rendered as a first class concept of a list</li>
+<li><code>home</code> indicates that of all my notable folders this is my home base and home page.  Notes by default are private and end up going here.  The value is a github username, repo, and subdirectory that this page will publish to</li>
+<li><code>public</code> is the key boolean deciding whether or not this file is publicly visible</li>
+<li><code>slug</code> is the URL suffix that will correspond to the permalink.  Order auto-fills this but you can edit it to be whatever you like</li>
+</ul>
+<h2>Lists in Order</h2>
+<p>If you pick a list item above (eg. <code>&lt;a class=&quot;wikilink&quot; href=&quot;/academic/&quot;&gt;Academic&lt;/a&gt;</code> in the screenshot below), you will see a list of items themselves:</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-0129.png" alt=""></p>
+<p>So in this case, we have a list of lists and the result is a simple homepage showcasing a few key classes of lists.</p>
+<p>If you look more closely at the finder directory structure in the screenshot, you will see that each place has a home.  For me, <code>Academic</code> is under the area <code>Craft</code> and it is a space I maintain over time (<code>Craft Spaces</code>) called <code>Academic</code> (which is a Notable Folder).</p>
+<p>This is simultaneously simple and complicated.  It&#39;s simple in the sense that I just have a few lists in different files that Order puts together into a page view.  On the other hand, the directory structure may seem bit complicated at first.  This is by design and is inspired deeply from Johnny Decimal.  My home page has lists from two broad areas of my life: <code>Craft</code> and <code>Creative</code> .</p>
+<p><strong>Importantly</strong>, having a directory dedicated to each Notable Folder (hence the name Notable Folder) helps me to collect other relevant file types (eg. videos, <a href="https://x.com/trq212/status/2052809885763747935?s=46">effective HTML files</a>, presentations etc) in a place I can count on: it&#39;s easy for me to remember, and it&#39;s future proof.  I&#39;ve experimented with <a href="https://geetduggal.com/order-home/tech-habits-property-folders-linear-calendar-view-in-obsidian-plain-text-renaiss/">completely flat file structures</a> but have found that lightweight folders that also include other files of relevance are the best. Also important to note, Order doesn&#39;t require files to be in a particular directory structure but it does by default mirror a directory structure that corresponds exactly to your Area → Category → Notable Folder  breakdown.</p>
+<p>Each of these lists even <code>Areas</code> themselves are just Markdown files and the Order UI makes them natural to reorder.  For example, the screenshot below shows how I can simply reorder my <code>Areas</code> spatially.  The directory structure then simply automatically matches.</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-0146.png" alt=""></p>
+<br /><p>That&#39;s an example of reordering a card, and in the next screenshot screenshot you can see how to reorder <code>Academic</code> list items:</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-0151.png" alt=""></p>
+<br /><p>My favorite part of Order is <strong>Newspaper-Style Layouts</strong> of Notable folders.   As an example, suppose I&#39;m interested in just seeing two notable folders in my stream, the one for my home page (Geet Duggal) and the one for the Order App (Order).  All I have to do is select them in the sidebar or auto-complete search them using &#39;Cmd + K&#39; and I get the following kind of view:</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-0159.png" alt=""></p>
+<p>You can see here the bottom part of the page shows a newspaper style view of Order.  The main document is centered and contains a brief description as well as task list.  Notes surrounding it are sorted in descending order of time and surround the central page.  This makes it easy to naturally explore recent things you&#39;ve written about related to a topic but in a way that&#39;s more playful and visual than just a sorted list.</p>
+<p>Above the Order notable folder is the bottom-half of my home folder.  These two folders form a collection of newspaper-style layouts.  The left-hand bar makes it easy to hop between them and even reorder which ones show up first.</p>
+<p>The reason I find this powerful is that I have a consistent way of visualizing a topic broadly but can instantly drill into details or capture new information without having to worry about file names and directory structure. But in the end, all of that is taken care for me underneath in neat plain text.</p>
+<h2>Order Themes and Lightweight Folders</h2>
+<p>In Order, with just a click of a few buttons I can create new notable folders on topics of even lightweight interes.  For example, here are two related to a &#39;Personal Gadget Renaissance&#39; I am going through where I&#39;m finding joy in exploring small single purpose devices:</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-0232.png" alt=""></p>
+<br /><p>I think single purpose e-ink devicees: eg. for reading, family calendars and single purpose gaming devices (eg. for retro games) will be holding an increasingly valuable place in my list of favorite things and having these notable folders is a great way to organically start exploring.</p>
+<p>I love how this display with Order is a quickly created and filtered set of notes that feels like an appropriate mix of Google Keepish like notes and more in-depth note taking and categorization.  They are not my actual notes on the subject for the purposes of this demo but they&#39;re not too far off.</p>
+<p>What I like about Order is that it makes these quick notes and exploration live alongside more meaty topics in one place.  That place is just your files on disk, but with a few simple conventions that Obsidian does very well with, Order can make browsing and curation of these topics a real pleasure.</p>
+<p>This being said, Order is of course very early in development and I&#39;m just enjoying the fact that these days it doesn&#39;t take so long to develop an app that works even on iOS that is so versatile.  🏔️ &#39;Till next time, here are a few additional screenshots with fun easter-eggish themes:</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-0244.png" alt=""></p>
+<p>Above is one of the dark mode variants just enabled with a single click to the bottom left.  Heck I even have a &#39;Doogie Houser&#39;/&#39;Word Perfect 5.1&#39; type theme:</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-0246.png" alt=""></p>
+<p>Which, when putting a note into full screen can be great for writing sessions:</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-0247.png" alt=""></p>
+<p>And even a Star Trek like LCARs theme for giggles</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-0305.png" alt=""></p>
+<p>And just about as distraction free of a writing experience on iPhone as possible:</p>
+<p><img src="/order-home/order-app-updates/image-2026-05-25-1916.png" alt=""></p>
+</article></div><script>window.__ORDER__={"slug":"order-app-updates","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>
