@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
+    <title>Order: A Calendar-First Notebook for Mapping Your World</title>
+    <script>
+      // Set the theme before first paint to avoid a light flash. Visitors
+      // with no saved choice get their OS preference.
+      try {
+        // Apply whatever theme was saved; fall back to OS preference.
+        var t = localStorage.getItem("order.theme");
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/order-home/assets/index-3-XddDgO.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BA-FQcTz.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>Order: A Calendar-First Notebook for Mapping Your World</h1>
+<br /><p><img src="https://miro.medium.com/v2/resize:fit:2000/1*9PAUXAvO0GuNE9oWnmQXsw.png" style="width:720px;max-width:100%"></p>
+<p>This is a piece about treating your own life as territory worth mapping and about an app I built to help me do it. It’s called <em>Atlas Order</em>, or <em>Order</em> for short. I’ve been battle-testing it personally <a href="https://medium.com/@geetduggal/tech-habits-my-extended-bullet-journal-syntax-and-why-i-built-a-brand-new-app-1baa90e00000">for a few weeks now</a> and as of today it lives at <a href="https://atlasorder.md/">atlasorder.md</a> as an alpha version <code>v0.1.0</code> you build from source for both Desktop and iOS. That &#39;build from source&#39; part is on purpose: I&#39;d still like to improve the app a bit more with feedback from those who are more inclined to tinker. Packaged releases soon to follow! Until then, I hope this piece gives you an idea as to what Order does do and could do for you, so get out the popcorn and drink and let’s go for a ride 🍿 🥤!</p>
+<h2>Yet Another Note-Taking App? (YANTA?)</h2>
+<p>Overall, I’ve been heartened by the positive responses I get when I’ve shown very early versions of Order to friends and colleagues. One of the most critical standout questions I ask myself and I get from friends and colleagues goes something like this: “wow, this is like Notion or an interesting Obsidian-compatible alternative.” The natural follow-up whether we discuss it or not is: why this alternative interface? Why not just use Obsidian or use Notion or a text file or a Google Doc?</p>
+<p>I often play devil’s advocate and remind myself of how happy I’ve been for example with Obsidian for years, how aware I am that you could use just a lot of different technologies even like Google Keep or other plain text file conventions, and get along just fine. It is true that Order can simply be thought of as an alternative interface to editing markdown files in a principled and well-organized way.</p>
+<p>On the surface, Order is a note-taking app. But the longer I’ve used it, the more I’ve realized that calling it a note-taking app misses what it’s actually for. What’s actually happening when I use Order is that I’m slowly drawing a map of my life.</p>
+<p>Not in any inward, introspective sense. I mean an actual map of the things I’m doing, the people I’m working with, the projects I’m running, the conversations I keep returning to, and the seasons I’m moving through. I’ll torture the map metaphor throughout this piece because I’m a believer that the territory is already there whether I notice it or not.</p>
+<p>The question is whether I’m curious enough to draw the map.</p>
+<p>So especially as I was developing Order, I was asking myself this question more and more often, “why this app?” And the answer I quickly converged on is that I have a mental model or spatial map in my head of what my world kinda looks like and I have both digital and analog ways to represent that map.</p>
+<p>I’ve actually written about this extensively over the past two or three years. But I wanted a way to experience this feeling of ‘being home in my world’ in as frictionless and beautiful of a way as possible. It turned out that alternative approaches could get me close but not quite connect everything the way I wanted.</p>
+<p>The other thing I kept on coming around to is that Order is actually very opinionated about how you should organize your information but it’s flexible enough to not lock you in. And I haven’t seen that combination for myself in an app that ties it all together, especially with my most favorite way to interact with my notes: a calendar.</p>
+<p>The strawberry on top: Order really isn’t meant to be a competitor to a lot of plain text apps out there. I actually regularly use Obsidian, Tolaria, and Order together. I’m generally at home most of the time in Order, but sometimes I find I’ll even use other apps like Typora or iA Writer when I’m in the mood or the tool is best used for my application. That’s the beauty of working in a portable format.</p>
+<h2>Walking through your own world without a map</h2>
+<p>Imagine yourself living a few centuries ago in a world where you have your home, your village, a few key territories and landmarks surrounding it that you’re aware of, and that model of your world is all kept in your mind. You get by, life is good, and you live with that model in your head as it refines over the course of your life. Maybe you explore new areas based on what you know, and you fill in gaps here and there. All is well.</p>
+<p>There’s nothing wrong with that, but imagine now you’re a bit of a cartographer at heart, and as you’re going about exploring your world, you’re also coming up with clever ways to represent it around you. You draw in maps of areas you’ve visited, and create descriptions of regions. Because of this, your mental model of the world is being supplemented and represented in a different form by an analog or physical representation of the world.</p>
+<p>Crucially, you now use this map to help you decide what areas are fun to explore next. You might even learn more about those areas than you would have otherwise and operate more efficiently. But that’s not really the point. That’s definitely an awesome side effect.</p>
+<p>The real point is the map that you’re building is serving as an aid to adventure.</p>
+<p>For me, modern knowledge work and intellectual life share a surprisingly similar pattern. You have ideas you half-remember. You make the same observation twice, three times, before it lands somewhere it can stay. You wake up on a Wednesday in November and cannot quite name what happened last Wednesday, let alone last November. Your projects exist as folders on your laptop, sticky notes on your monitor, threads in your messages, fragments in your head. You navigate by feel.</p>
+<p>This is not bad. It is what most adults do most of the time. Modern life moves fast and the systems we’ve been handed for keeping track of it are either too elaborate (the personal productivity industrial complex with its templates and dashboards and methodologies) or too thin (the default notes app on your phone). So we end up improvising.</p>
+<p>The improvisation works, more or less. You get things done. You raise the kids. You ship the projects. You live the life. But there is a difference between living a life and seeing it. Between walking through the territory and knowing the territory you’ve walked.</p>
+<p>The difference <em>is</em> the map.</p>
+<h2>What a map does</h2>
+<p>A map in my parlance is not a memory aid. It is not a productivity tool. It is not a way to remember more or find things faster or optimize your life.</p>
+<p>A map is a way of seeing.</p>
+<p>When you draw a map of a place you live, the place becomes more real to you. Not because you remember it better, but because you have looked at it carefully enough to name its features. The hill behind your house was always there. Now you know it’s called something. The river you cross on your commute was always there. Now you know where it starts and where it ends. The territory does not change. Your relationship to it changes.</p>
+<p>Mapping your own life works the same way. You don’t take notes to remember. You take notes because the act of assigning a name for what you’re moving through changes how you move through it. You see the patterns. You notice the seasons. You catch yourself returning to questions you didn’t know you’d been carrying for a year. I’d wager that this is what great cartographers have always understood. The act of drawing the map is the act of paying attention. Once you’ve drawn it, you know the place differently, even if you never look at the map again.</p>
+<h2>Four principles for drawing the map</h2>
+<p>I’d argue that if you want to draw a useful map of your life, four things should to be true. These are not features of Order. They are conditions for the map to form, and Order is built around them.</p>
+<h2>1. Time is the primary dimension</h2>
+<p>Almost every note-taking app treats time as metadata. There is a created-at timestamp. There is a modified-at timestamp. You can sort by those if you want. But the structure of the app is alphabetical, or hierarchical, or graph-shaped. Time is along for the ride.</p>
+<p>To me, this is backwards. Your actual life happens in time. The notes you took last Tuesday are about something that happened last Tuesday. The theme of a year better emerges if you can see the year. The pattern of your thinking across a season is invisible if your notes are arranged by topic and date is just a footnote. This is why project logs and work diaries are so popular IMHO.</p>
+<p>Order makes time the default and in some sense primary structure. The home screen is the weekly calendar. The default view shows you the current week with your notes and events laid out by day. You can zoom out to month, year, or in to a single day. The notes live inside time the way they live inside your life, not alongside it.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:6912/1*aYv8enRL85LdjCcg7D73dw.png" style="width:720px;max-width:100%"></p>
+<p>Typical week view in Order. This is the default when you open Order on Desktop.</p>
+<p>This is the single largest difference between Order and other note apps. For me, once you’ve used a system where time is the spine, going back to one where time is a sort option feels like going back to an alphabetized photo album.</p>
+<h2>2. Lists are first-class</h2>
+<p>A list is how a cartographer enumerates the features of a territory. The rivers, the peaks, the settlements, and the roads. Without lists, a map is a sketch. With lists, it becomes navigable.</p>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*24uw5yvE34Dn7VZCRaP9qA.png" style="width:720px;max-width:100%"></p>
+<p>Playful list of sites to see on a map of Manhattan. (Source <a href="https://www.mapsland.com/maps/north-america/usa/new-york/detailed-alternative-new-york-city-tourist-map.jpg">mapsland.com</a>.)</p>
+<p>Most note apps treat lists as a formatting choice inside a note. A bulleted block, indented, and often collapsible these days. The list is buried inside the note that contains it. Order treats lists as their own thing, should you elevate a list to be particularly notable. You can name them, navigate to them, revisit them, see them at a glance. Your reading list, your shopping list, your list of open questions, your list of people you owe a follow-up to: each of these is a structural element of your map, not a hidden bullet point inside a wall of text.</p>
+<p>This, for example, is the difference between a list of books you’ve read or articles you’re interested in reading being a simple bulleted list buried in a note versus a beautiful, navigable set of cards.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:6884/1*wDwjcl5S3HQ8eoLCBkv0tw.png" style="width:720px;max-width:100%"></p>
+<p>A small portion of my <a href="https://medium.com/@geetduggal/tech-habits-how-i-use-readwise-to-think-better-not-just-collect-more-3d955e2983fa">Readwise library</a> in Order</p>
+<h2>3. Notable folders are named regions</h2>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2000/0*-VH3EDUisNA3lJch.png" style="width:720px;max-width:100%"></p>
+<p>(Source: <a href="https://medium.com/@geetduggal/atlas-journaling-a-unified-approach-for-seeing-the-big-picture-and-acting-with-focus-78804f26f5ab">Atlas Journaling</a>)</p>
+<p>The territories of your life are not arbitrary. There is a region called Work. There is one called Health. Within Health there may be an Dental category and within it whatever-the-current-dental-issue-is. These projects and places are where you actually spend time, and they deserve names as first-class objects in whatever application you use. In Order, I call them ‘Notable Folders’.</p>
+<p><a href="https://medium.com/@geetduggal/tech-habits-how-i-organize-my-life-into-six-areas-6c59d5bf56bf">The way I define regions</a> spiritually follows <a href="https://johnnydecimal.com/">Johnny Decimal</a>: you to commit to a small number of named areas and categories. You cannot have eighty-seven of them. You cannot have nested taxonomies seven levels deep. You get a manageable number of meaningful areas and categories, all named in a way that stays consistent.</p>
+<p>On your filesystem, notable folders are actual folders. <em>All</em> data must go in the notable folders. Every notable folder belongs to a category, and every category belongs to an area. The directory structure looks like this:</p>
+<p>Self/ ← Area (navigation only)<br>├── Spirituality/ ← Category (navigation only)<br>│ └── Surrender Experiment/ ← Notable Folder (files live here)<br>│ ├── reflections.md<br>│ └── singer-notes.pdf<br>└── Self-Care/ ← Category (navigation only)<br>└── log/ ← Notable Folder (files live here)<br>└── morning-pages.md</p>
+<p>✗ Self/notes.md ← not allowed (file under an Area)<br>✗ Self/Spirituality/idea.md ← not allowed (file under a Category)<br>✓ .../Surrender Experiment/x.md ← allowed (file in a Notable Folder)</p>
+<h2>4. Consistent map across mental, analog, and digital</h2>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*H88M7ajwB703emYf.png" style="width:720px;max-width:100%"></p>
+<p>(Source <a href="https://medium.com/@geetduggal/atlas-journaling-a-unified-approach-for-seeing-the-big-picture-and-acting-with-focus-78804f26f5ab">Atlas Journaling</a>)</p>
+<p>This is the principle that ties the others together, and it’s the one I think is most underappreciated in modern note-taking.</p>
+<p>The map you keep in your head, the map on your shelves at home, and the map in your file system should be the same map. The folder named Health in your laptop should match the box labeled Health on the shelf where your medical records live. The mental category “current creative project” should match a directory by that name in Order. When you move between these ‘registers’, the cognitive cost should be near zero.</p>
+<p>Order is designed around the principle that you don’t have to switch mental models when switching media. Notable folders are just directories on your disk. Notes are markdown files. The names you give your regions in Order are names you can use anywhere. The map you draw inside the app is portable to the file system, to your physical world, to your head.</p>
+<h2>Time at multiple scales</h2>
+<p>If you take the first principle seriously and make time the structure, something becomes possible that I haven’t seen in quite the same way in other note systems. <em>You can see your life at multiple scales at once.</em></p>
+<p>A daily view shows you what’s on deck today. A weekly view shows how the day fits within the context of what’s happening and what needs to get done in a week. A monthly view shows the arc of a season.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:6912/1*gUAMOruej8R-WoMRqROBNA.png" style="width:720px;max-width:100%"></p>
+<p>The same set of notes in Order as shown above, but on month scale, focusing on larger all-day events.</p>
+<p>Finally, a yearly view, rendered as a linear calendar in the style Nick Milo’s been advocating for, shows the whole year at a glance.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:6760/1*-h18gv_RNmv7Ss8tHpyoWQ.png" style="width:720px;max-width:100%"></p>
+<p>Here, you can see how the year view in Order simplifies the display of all-day events in a visually understandable way across many months in a year.</p>
+<p>The notes and events surface at the scale where they matter. A casual note about a phone call surfaces at the daily scale. A meaningful update to a notable folder, marked as an all-day event, surfaces at the month and year scale. You can scrub through time and see how a region of your life changed across a season. You can spot the months you were heads-down on something and the months you were dormant. You can see highlights of your year.</p>
+<p>This is where the cartographer analogy almost stops being a metaphor and starts feeling literal. A good map is one you can read at different scales. The street map of your neighborhood and the highway map of your country are both maps. They show different things at different resolutions. A life map should do the same.</p>
+<p>The ‘notable update’ concept matters here. Order lets you mark significant changes in a notable folder as all-day events, eg. when you pivot a project or when a new topic of interest captures you, etc. These markers are sometimes less relevant at the daily scale (they don’t clutter your week) and meaningful at the yearly scale (they become the spine of how you remember the year). The cartographer in you is narrating the evolution of the territory in with your own hand, and these markers compose, over time, into the actual story of your life.</p>
+<h2>Portability and durability makes the map yours</h2>
+<p><strong>Markdown.</strong> Every note is a markdown file. Plain text. Readable in any text editor for the last forty years and probably the next forty. If Order disappeared tomorrow, your notes would still be there, perfectly usable.</p>
+<p><strong>Directories</strong>. Your notable folders are just folders on your disk. The structure you see in Order is the structure in your file system. You can navigate it with Finder, the terminal, another markdown app, a backup tool, whatever. Critically, directories allow you to store other types of content than Markdown (eg. HTML files, PDFs, movies etc.) so the notes you take live closest to other relevant media.</p>
+<p><strong><a href="https://medium.com/@geetduggal/tech-habits-order-app-updates-and-personal-gadget-renaissance-2ea429f2501f">Publishing</a></strong>. Notes graduate from private capture to public reference by simply clicking one button. The published version looks identical to the editing version except the ability to edit.</p>
+<h2>How to start</h2>
+<p>The entry point is much simpler than it sounds and I’ll create a more ‘official’ tutorial as the app matures. I’m hoping this description will illustrate how simple it is to get started in Order and how minimal and simple the underlying plain text is.</p>
+<p>When you open Order for the first time, you can select a vault, and, like in Obsidian, it is just a directory. If you already have a vault, I’d recommend creating a <em>subdirectory</em> under your main vault to start playing with Order. This way you can incrementally move notes into Order’s more opinionated Johnny-Decimal-like system without polluting either space.</p>
+<p>As mentioned earlier, the weekly calendar view shown above is default on desktop. To further illustrate how this is seemless with iOS, here’s an example of the mobile view:</p>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*Zp1Mc2O5tcfnz0bad4pMxw.png" style="width:720px;max-width:100%"></p>
+<p>Weekly view on Order mobile.</p>
+<p>You can select which days of the week to show so it’s easy to view on narrower displays. This makes it easy to drag and drop events if you adopt something like the <a href="https://medium.com/@geetduggal/tech-habits-calendar-maxxing-bb62444a5b72">‘Saturday Frontier’ method</a> I described recently.</p>
+<p>Every Order vault should have a ‘home notable folder’. This is your home base when you are not in the calendar mode. All you do is click on the home icon in the dock (either on desktop or mobile), and you get something like this:</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:6880/1*oxbg1Ozuu-fRbwpaRgW0WQ.png" style="width:720px;max-width:100%"></p>
+<p>This will show a clean view of your main notable folder. In this example, the user maintains a weekly hub main document. If you click on the folder icon, notes within the folder expand in a newspaper-kinda-style chronologically sorted.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:6792/1*QxloFeiMVvZg0kHpM0GaBg.png" style="width:720px;max-width:100%"></p>
+<p>What I love about this layout is that it encourages me to browse and edit notes I’ve recently written. There’s no opening files or anything here. You just click on text within a note and you’re immediately editing. Note how the ‘annual leave’ note with an image in this view also shows up in the yearly view shown earlier. In Order the intention is for it to be seamless to hop between browsing notable folders and the events they relate to on a calendar.</p>
+<p>As a quick historical side-quest, there’s something very natural about this kind of ‘core’ vs. ‘periphery’ layout. Pages of the <a href="https://en.wikipedia.org/wiki/Talmud">Talmud</a> (the central text of <a href="https://en.wikipedia.org/wiki/Rabbinic_Judaism">Rabbinic Judaism</a>) are spiritually laid out in a similar way. The central text is fixed and polished while surrounding text is explanations and commentary. This structure was interestingly <a href="https://blog.nli.org.il/en/daf_gemara/">established by a Catholic printer in 16th century Venice</a>.</p>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*apKWYCSS3BVxAFvYe248PQ.png" style="width:720px;max-width:100%"></p>
+<p>(Source <a href="https://hadran.org.il/terms/the-layout-of-a-talmud-page/">hadran.org</a>)</p>
+<p>In addition to the Talmud example for layout, if you want to go deeper on cartography bringing spatial thinking to more abstract areas/topics, the memory palace tradition is the closest to what’s being discussed here. Frances Yates’s The Art of Memory (1966) is the canonical study. Camillo’s “Theater of Memory” (16th century) was a literal physical building intended as a navigable storage system for all human knowledge.</p>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*lAaq2ce8KAmF24Cx.png" style="width:720px;max-width:100%"></p>
+<p>(Source: <a href="https://www.historyofinformation.com/detail.php?id=5056">History of Information</a>)</p>
+<p>For a great example of a spatial map of spiritual territory, you can visit the <a href="https://en.wikipedia.org/wiki/Teresa_of_%C3%81vila#Interior_Castle">Interior Castle</a>.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:750/0*VyrKmGFnZszegPmB" style="width:720px;max-width:100%"></p>
+<p>(Source <a href="https://store.cac.org/products/the-interior-castle?srsltid=AfmBOorsf20drhH70N99HFY4JDr-7tobHRL93EBscRcnKIaGb7IEgNxI">CAC Bookstore</a>)</p>
+<p>For dated personal notebook practice, Coleridge’s notebooks (Kathleen Coburn’s Bollingen edition or the more accessible Seamus Perry selection from Penguin) are the gold standard. For the bound miscellany tradition where a single book holds many kinds of content, look at Giovanni Rucellai’s Zibaldone Quaresimale (1457).</p>
+<p>Next, one click of an icon in the Notable Folder and the card flips over to a list of files in that folder. You can drag and drop files in it.</p>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*haAMIEe_dj2eqHU9ip_BYw.png" style="width:720px;max-width:100%"></p>
+<p>Important note: Order is not trying to be a replacement of your file browser, Obsidian, or any other editor or note taking app. In fact, they can often work very well together side-by-side since the markdown is so simple.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:6912/1*TP3mzYzJhbSnLUydRJeXBA.png" style="width:720px;max-width:100%"></p>
+<p>Here you see an example using Apple’s Finder app to illustrate how simple the directory structure and files are. Areas and Categories are simply lists organized neatly into folders easily navigable on any filesystem.</p>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*GLhM2AHXIvRjvEw_dKH_iw.png" style="width:720px;max-width:100%"></p>
+<p>You can also see the same note shown earlier in <a href="https://tolaria.md/">Tolaria</a></p>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*feE_83yzsh9-fYJmEvvyYw.png" style="width:720px;max-width:100%"></p>
+<p>And in <a href="https://obsidian.md/">Obsidian</a> using the <a href="https://notebooknavigator.com/">Notebook Navigator plugin</a></p>
+<p>Order just helps you keep a rather opinionated structure and fun layout that can be viewed well from almost anywhere.</p>
+<p>To further illustrate how cleanly lists in Markdown can be rendered take a look at this:</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:6912/1*aWzTG-VgMeOqhzr7nz5ppg.png" style="width:720px;max-width:100%"></p>
+<p>Order allows you to drag-and-drop and represent these lists as either line items or cards, and underneath the hood it looks very simple. List items can be plain text, links, and images and render cleanly.</p>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*3PGTJVC9G8ZJq4fGLFXvQw.png" style="width:720px;max-width:100%"></p>
+<p>Finally, when you open the order side bar, you’ll notice a few things. At the top there is a list of filter pills for each notable folder. You can think of it conceptually as a pile. The most relevant/recent note should be at the top. You can grab, drag, and drop these however you like. The moment you tap into view it, it’ll move to the top of the pile.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:6912/1*2uIRGt1I-FHvHfMqj1BeEg.png" style="width:720px;max-width:100%"></p>
+<h2>Where AI Fits (and Where It Doesn’t)</h2>
+<p>My answer, for now, is deliberately short. I am not building a deep integration where an agent lives inside the app. Tolaria takes that path, weaving agents into the core, and I think it’s good at what it does.</p>
+<p>Order’s approach is generally that it should be a place you feel at home manually curating your map. The beauty of working in plain markdown is that the the files just sit there, readable by anything, and that openness is the whole point. For me, I find it very easy to just point an AI tool to my directory and go from there.</p>
+<p>Given Order’s focus on time, the first place I intend to reach for AI is with calendars, but not necessarilysyncing with calendar apps. Full automatic sync runs against the grain of everything Order stands for, which is that you curate your own map, deliberately, one choice at a time. What I want instead is an agent with a skill like this that understands Order’s conventions well enough to walk through your events with you. It can surface what you logged, help you decide which moments deserve a place on a calendar, and point out connections you might otherwise miss. You stay in the driver’s seat and the curation is yours.</p>
+<p>In the end, I built Order because I wanted a tool that did all of the things I described above in an interface that is as simple and fast as possible. .</p>
+<p>Order is the tool I’ve always wanted in the last few years, so it’s built by me for me. It is calendar-first because life happens in time. It is markdown-native because the map should outlast the app. It treats lists and notable folders as important and structural because those are how a map gets built.</p>
+<p>Order has proven to be useful day-to-day across mobile and desktop and I feel the map I’ve already built has allowed be to better explore myself and the world.</p>
+<p>From my perspective you too have a territory worth exploring. The question is whether you want to worldbuild the map to explore it or not. Looking forward to any comments you have and to see where this goes. ‘Till next time! 🏔️</p>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2000/1*8zmk_-fZ71y6iXHlatIgeQ.png" style="width:720px;max-width:100%"></p>
+<p>(Source: <a href="https://www.dreamstime.com/fantasy-map-medieval-castle-sailing-ship-textured-ocean-background-fantasy-map-medieval-castle-sailing-ship-image375181938">dreamstime</a>)</p>
+<p>Press enter or click to view image in full size</p>
+</article></div><script>window.__ORDER__={"slug":"order-a-calendar-first-notebook-for-mapping-your-world","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>
