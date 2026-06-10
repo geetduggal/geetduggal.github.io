@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
+    <title>Next up in Order</title>
+    <script>
+      // Set the theme before first paint to avoid a light flash. Visitors
+      // with no saved choice get their OS preference.
+      try {
+        // Apply whatever theme was saved; fall back to OS preference.
+        var t = localStorage.getItem("order.theme");
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/order-home/assets/index-Bmxy0GFQ.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-B6ToYBZJ.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>Next up in Order: Seasons</h1>
+<p>I’d like to develop the concept of a season  (see <span class="wikilink-broken">Atlas Journaling — A Unified Approach for Seeing the Big Picture and Acting with Focus</span>).</p>
+<p>The idea is that in a calendar view, there will be new option after year called ‘Season’.</p>
+<p>A season has a user defined start and end point and a visualization:</p>
+<p>Imagine the Areas grid take up the whole screen. In my case it will be a 3 row  by 2 column grid. Each cell in the grid representing an area will have a list of notable folders for the season.  The arrows will move between seasons much like the arrows move between days weeks, months, and years.</p>
+<p><strong>How does a user define a season and how is it represented on disk?</strong></p>
+<p>First, there is Areas.md that has a special <code>role</code> YAML frontmatter to distinguish it as special.</p>
+<p>First, a season is a first class concept in Order.  If <code>role </code> is <code>seasons</code> (for the standard case it will be <code>Seasons.md </code>in the root of the vault.  This file is just a markdown file with a list of ISO 8601 date ranges in a format like:</p>
+<pre><code>- 2026-01-27 - 2026-05-24 · Optional name of season
+- 2026-06-01 -  · Current season (no determined end yet)
+</code></pre>
+<br /><p>The idea is that if there exists a notable update (all day event) for a notable folder in this season&#39;s date range, then the corresponding  parent <em>Area</em> the notable folder is a part of is populated with a link to that folder.   The notable folders are in sorted within an area box in order of date of most recent all day event associated with the notable folder.</p>
+</article></div><script>window.__ORDER__={"slug":"next-up-in-order","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>
