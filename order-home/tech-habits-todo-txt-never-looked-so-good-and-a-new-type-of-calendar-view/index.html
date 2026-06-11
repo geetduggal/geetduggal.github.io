@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
+    <title>Tech Habits: todo.txt never looked so good and a new type of calendar view</title>
+    <script>
+      // Set the theme before first paint to avoid a light flash. Visitors
+      // with no saved choice get their OS preference.
+      try {
+        // Apply whatever theme was saved; fall back to OS preference.
+        var t = localStorage.getItem("order.theme");
+        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/order-home/assets/index-DpWxUSfF.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-F6wRBqTe.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: todo.txt Never Looked so Good and a New Type of Calendar View</h1>
+<p><img src="https://miro.medium.com/v2/resize:fit:2000/1*Jw1fpFbGFaY2eirqfFet8g.png" style="width:720px;max-width:100%"></p>
+<p>I love plain text.</p>
+<p>I wanted to quickly showcase two new features in my homegrown app <a href="https://medium.com/@geetduggal/order-a-calendar-first-notebook-for-mapping-your-world-abc0970494a5">Order</a>. They ride the same idea at different scales: keep the calendar legible at every zoom level. <a href="http://todotxt.org/">todo.txt</a> does it line by line. <a href="https://medium.com/@geetduggal/atlas-journaling-a-unified-approach-for-seeing-the-big-picture-and-acting-with-focus-78804f26f5ab">Seasons</a> does it across months. Both are illustrated below with the actual simple plain text files from a working demo vault, one full week of calendar at the small scale and six weeks of project arc at the large.</p>
+<h2>todo.txt as Order’s backing calendar store</h2>
+<p>Turn on the todo.txt toggle in Settings, and Order’s calendar starts writing to a single text file at the root of the vault. Here is the Saturday cluster from one week:</p>
+<p>due:2026-06-13 07:30 Long run +weekly-hub end:09:30<br>due:2026-06-13 10:00 Sofa showroom visit +living-room-refresh end:11:30<br>due:2026-06-13 11:45 Order paint +living-room-refresh<br>due:2026-06-13 12:30 Trip groceries - first pass +cabin-week end:13:30<br>due:2026-06-13 14:00 Check-in call +household<br>due:2026-06-13 15:00 Ship Issue 22 +wide-margins end:17:00<br>due:2026-06-13 17:30 On-call rotation - draft +polaris end:19:00<br>due:2026-06-13 20:00 Finish Field Notes +books end:22:00<br>due:2026-06-13 22:30 Tidy desk +weekly-hub end:22:45<br>due:2026-06-13 Ship to prod +map-pipeline-v2</p>
+<p>The conventions are minimal and inspired largely by</p>
+<p><a href="https://medium.com/u/7c1ab936a5cc?source=post_page---user_mention--c1ecc51d64ed---------------------------------------">Ellane W</a></p>
+<p>’s <a href="https://ellanew.com/2026/05/11/plain-text-calendar-todo-txt">calendar in a todo.txt format</a>.</p>
+<p>A line that opens <code>due:YYYY-MM-DD HH:MM</code> is a timed event. The default duration is 30 minutes, so <code>end:HH:MM</code> only appears when the duration is something else. That keeps the common case simple: a standup line gets one timestamp, a two hour ship gets two.</p>
+<p>A line with no time after the date is an all day event. The last line above marks the project shipping to prod.</p>
+<p><code>+project</code> maps to a notable folder. The matching tolerates style: <code>+map-pipeline-v2</code>, <code>+MapPipelineV2</code> all land on the same folder, so the visible token can match whatever feels right in the line.</p>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2000/1*zJiAiMk6Qpx26FrCskyAVA.png" style="width:720px;max-width:100%"></p>
+<p>Tens of lines covered the full week. Order’s calendar reads them back into chips that look identical to chips backed by markdown files, and a single chip click can drag, resize, or delete the underlying line.</p>
+<h2>When a line becomes a file</h2>
+<p>Most events do not need their own document. A morning workout, a 1:1, a dentist appointment, an order-paint errand, a desk tidy: all single lines, all carrying nothing the body field could not say in their title.</p>
+<p>A few events have content the title cannot carry. From the same week, four lines got their own markdown file in the right notable folder:</p>
+<ul>
+<li>A three hour deep work block on the Map Pipeline v2 ingestion path, with the goal scribbled into the body: get the staging cluster pulling per shard metrics end to end.</li>
+<li>An incident review on the previous week’s queue stall, with action items pointing at the post mortem doc.</li>
+<li>The Friday weekly review and plan, which captured the recurring rules that drive the Saturday plan: skim every notable folder touched this week, move stale todos forward, pick the one thing for Saturday.</li>
+<li>The Saturday Issue 22 ship, which carried a pre flight checklist:</li>
+</ul>
+<h2>Pre-flight</h2>
+<ul>
+<li>Read aloud (catch the dropped articles)</li>
+<li>Image: header finalized</li>
+<li>Subject line: A/B &#39;The calendar shift&#39; vs. &#39;Putting it all on the calendar&#39;</li>
+<li>Schedule for Monday 7am PT</li>
+</ul>
+<p>Both representations live on the calendar as identical chips. Order syncs them by identity (date, start time, title) so the line in todo.txt and the markdown file are bound to the same event. Drag the chip, either side updates. Delete it, the right thing gets deleted. The choice of file or line stops being a decision: it becomes a function of whether the event has content the body field needs to hold.</p>
+<h2>Seasons as a calendar view</h2>
+<p>The second feature operates at a different scale. Drop a <code>Seasons.md</code> file at the vault root with a bullet list of date ranges:</p>
+<ul>
+<li>2025-12-01 - 2026-02-14 · Winter Quiet</li>
+<li>2026-02-15 - 2026-04-30 · Spring Builds</li>
+<li>2026-05-01 - 2026-06-13 · Frontier</li>
+</ul>
+<p>That simple little file unlocks a new entry in the calendar’s view picker, sitting next to Day, Week, Month, and Year. The arrows step through the ranges. The body of each season is a grid by area.</p>
+<p>(Also I’m convinced that the <a href="https://en.wikipedia.org/wiki/Interpunct">interpunct</a> should be a dedicated key on the keyboard.)</p>
+<p>The raw material is the notable update. A notable update is an all day event on a notable folder, used to mark a milestone: a project shipped, a ritual carried out, an idea closed, a person seen. Most days have none. Some weeks have several. The season view clusters them by area over its date range.</p>
+<p>Press enter or click to view image in full size</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2000/1*I72vLmD8VAezwMBNNxL3UA.png" style="width:720px;max-width:100%"></p>
+<p>Here is what the Frontier season above looks like in grid form, every notable folder that had at least one update between May 1 and June 13, with the count in parentheses:</p>
+<ul>
+<li><strong>Craft</strong>: Map Pipeline v2 (6), Build Log v3 (1), Ana Sterling (1)</li>
+<li><strong>Self-Care</strong>: Living Room Refresh (4), Books (1)</li>
+<li><strong>Creative</strong>: Wide Margins (2)</li>
+<li><strong>Stewardship</strong>: Weekly Hub (1), Polaris (1)</li>
+<li><strong>Spirituality</strong>: Morning Sit (1), Free Will (1)</li>
+<li><strong>Relationships</strong>: Cabin Week (1), Household (1)</li>
+</ul>
+<p>Two things stand out instantly. Drill into Map Pipeline v2 and the notable updates read as a single narrative:</p>
+<ul>
+<li>May 8: Frontier kickoff (sprint cut, owners named, cadence locked)</li>
+<li>May 22: Staging deploy (end to end with real tiles)</li>
+<li>June 4: Perf milestone (P95 under 400ms)</li>
+<li>June 13: Ship to prod (lands behind a feature flag)</li>
+</ul>
+<p>That is the whole story of the project’s season on four bullets. Drill into Living Room Refresh and a different shape appears:</p>
+<ul>
+<li>May 3: Paint goes up</li>
+<li>May 17: Furniture day</li>
+<li>May 31: Rug and art</li>
+<li>June 7: Done</li>
+</ul>
+<p>A five week home project, closed the weekend before the season ends. The grid does not need to label which is which; the closed arc speaks.</p>
+<p>The grid also shows other patterns. Stewardship and Spirituality each carried two updates: a planning weekend, a Q2 reorg, a thirty day meditation streak, a finished book. Relationships logged a single cabin booking that closed a vacation loop. Creative ticked twice for Wide Margins. None of those required active attention. They appeared because life kept happening at low volume in those areas while Craft and Self-Care led.</p>
+<p>The Season view is not a productivity dashboard. It is a map. Closed loops are clear wins. Single bullets are upkeep. etc</p>
+<p>At some level todo.txt and seasons are the same kinda thing at two zoom levels. One asks what a week or so is made of. The other asks what the last few months were made of. Both answer in plain text. Both stay portable. Both make the choice of what to write down easier by letting the format hold the structure.</p>
+<p>The plain text says it all. One line per intention in todo.txt. Named seasons using a simple list in Seasons.md. Notable updates clustered by area in (using a simple list in Areas.md) at the close of each stretch.</p>
+<p>What I love about this and where I live is where extremely simple plain text can be married with an intuitive UI to make going about your day just feel better and more clear.</p>
+<p>Even if you never use the Order app, I hope the ideas here inspire you to streamline your workflow ‘till we meet again next time! 🏔️</p>
+</article></div><script>window.__ORDER__={"slug":"tech-habits-todo-txt-never-looked-so-good-and-a-new-type-of-calendar-view","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>
