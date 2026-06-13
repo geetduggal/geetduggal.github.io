@@ -6,17 +6,14 @@
     <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
     <title>Leaving Evernote? Try This Evernote-Inspired Free Note App</title>
     <script>
-      // Set the theme before first paint to avoid a light flash. Visitors
-      // with no saved choice get their OS preference.
-      try {
-        // Apply whatever theme was saved; fall back to OS preference.
-        var t = localStorage.getItem("order.theme");
-        if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        document.documentElement.dataset.theme = t;
-      } catch (e) {}
+      // Published viewer always lands in light theme. The in-session
+      // theme toggle still works, but every fresh page load resets to
+      // light so the published page has a predictable, friendly default
+      // regardless of OS preference or what was saved last visit.
+      document.documentElement.dataset.theme = "light";
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-DPES_LhX.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-MDFKcMMo.css">
+    <script type="module" crossorigin src="/order-home/assets/index-DBcO-mPO.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-Cy226RwC.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>Leaving Evernote? Try This Evernote-Inspired Free Note App</h1>
