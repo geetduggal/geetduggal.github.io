@@ -15,8 +15,8 @@
         document.documentElement.dataset.theme = t;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-DpWxUSfF.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-F6wRBqTe.css">
+    <script type="module" crossorigin src="/order-home/assets/index-XO3vt-6J.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BHXufOyH.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: todo.txt Never Looked so Good and a New Type of Calendar View</h1>
@@ -25,10 +25,9 @@
 <p>I wanted to quickly showcase two new features in my homegrown app <a href="https://medium.com/@geetduggal/order-a-calendar-first-notebook-for-mapping-your-world-abc0970494a5">Order</a>. They ride the same idea at different scales: keep the calendar legible at every zoom level. <a href="http://todotxt.org/">todo.txt</a> does it line by line. <a href="https://medium.com/@geetduggal/atlas-journaling-a-unified-approach-for-seeing-the-big-picture-and-acting-with-focus-78804f26f5ab">Seasons</a> does it across months. Both are illustrated below with the actual simple plain text files from a working demo vault, one full week of calendar at the small scale and six weeks of project arc at the large.</p>
 <h2>todo.txt as Order’s backing calendar store</h2>
 <p>Turn on the todo.txt toggle in Settings, and Order’s calendar starts writing to a single text file at the root of the vault. Here is the Saturday cluster from one week:</p>
-<p>due:2026-06-13 07:30 Long run +weekly-hub end:09:30<br>due:2026-06-13 10:00 Sofa showroom visit +living-room-refresh end:11:30<br>due:2026-06-13 11:45 Order paint +living-room-refresh<br>due:2026-06-13 12:30 Trip groceries - first pass +cabin-week end:13:30<br>due:2026-06-13 14:00 Check-in call +household<br>due:2026-06-13 15:00 Ship Issue 22 +wide-margins end:17:00<br>due:2026-06-13 17:30 On-call rotation - draft +polaris end:19:00<br>due:2026-06-13 20:00 Finish Field Notes +books end:22:00<br>due:2026-06-13 22:30 Tidy desk +weekly-hub end:22:45<br>due:2026-06-13 Ship to prod +map-pipeline-v2</p>
+<p><code>due:2026-06-13 07:30 Long run +weekly-hub end:09:30</code><br><code>due:2026-06-13 10:00 Sofa showroom visit +living-room-refresh end:11:30</code><br><code>due:2026-06-13 11:45 Order paint +living-room-refresh</code><br><code>due:2026-06-13 12:30 Trip groceries - first pass +cabin-week end:13:30</code><br><code>due:2026-06-13 14:00 Check-in call +household</code><br><code>due:2026-06-13 15:00 Ship Issue 22 +wide-margins end:17:00</code><br><code>due:2026-06-13 17:30 On-call rotation - draft +polaris end:19:00</code><br><code>due:2026-06-13 20:00 Finish Field Notes +books end:22:00</code><br><code>due:2026-06-13 22:30 Tidy desk +weekly-hub end:22:45</code><br><code>due:2026-06-13 Ship to prod +map-pipeline-v2</code></p>
 <p>The conventions are minimal and inspired largely by</p>
-<p><a href="https://medium.com/u/7c1ab936a5cc?source=post_page---user_mention--c1ecc51d64ed---------------------------------------">Ellane W</a></p>
-<p>’s <a href="https://ellanew.com/2026/05/11/plain-text-calendar-todo-txt">calendar in a todo.txt format</a>.</p>
+<p><a href="https://medium.com/u/7c1ab936a5cc?source=post_page---user_mention--c1ecc51d64ed---------------------------------------">Ellane W</a>s <a href="https://ellanew.com/2026/05/11/plain-text-calendar-todo-txt">calendar in a todo.txt format</a>.</p>
 <p>A line that opens <code>due:YYYY-MM-DD HH:MM</code> is a timed event. The default duration is 30 minutes, so <code>end:HH:MM</code> only appears when the duration is something else. That keeps the common case simple: a standup line gets one timestamp, a two hour ship gets two.</p>
 <p>A line with no time after the date is an all day event. The last line above marks the project shipping to prod.</p>
 <p><code>+project</code> maps to a notable folder. The matching tolerates style: <code>+map-pipeline-v2</code>, <code>+MapPipelineV2</code> all land on the same folder, so the visible token can match whatever feels right in the line.</p>
