@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
+    <title>2026-06-15 List interleaving, render each bullet group as its own list (deferred)</title>
+    <script>
+      // Published viewer always lands in light theme. The in-session
+      // theme toggle still works, but every fresh page load resets to
+      // light so the published page has a predictable, friendly default
+      // regardless of OS preference or what was saved last visit.
+      document.documentElement.dataset.theme = "light";
+    </script>
+    <script type="module" crossorigin src="/order-home/assets/index-B8fZnE6d.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-C3LYE0Ry.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><p>Feature idea, logged and deferred.</p>
+<h2>Goal</h2>
+<p>For a note or Notable Folder with <code>list: cards</code> or <code>list: lines</code>, stop collapsing the whole body into one list. Instead, render the body in document order: keep the prose blocks as they are, and turn each consecutive run of bullet items into its own separate visual list (cards or lines). Text between two runs of bullets stays put, and each bullet group becomes an independent list.</p>
+<h2>Current behavior</h2>
+<p><code>splitBodyAndBullets</code> pulls every bullet out of the body and renders them as a single list at the bottom, dropping the surrounding prose from the list view. So separate groups of bullets get merged into one list and the interleaved text is lost in that view.</p>
+<h2>Decisions made during design</h2>
+<ol>
+<li>Prose between lists should be fully editable inline (not read only).</li>
+<li>Cross group drag is allowed (an item can move from one group into another, which rewrites its position across the intervening text on save).</li>
+</ol>
+<h2>Key constraint</h2>
+<p>The editor uses <code>@milkdown/crepe</code> plus <code>@milkdown/kit</code> only. There is no <code>@milkdown/react</code>, and Crepe is a batteries included wrapper that does not cleanly expose node view configuration. This is what makes the two ambitious decisions above expensive.</p>
+<h2>Architecture options considered</h2>
+<p><strong>A. One Milkdown editor, lists as ProseMirror node views.</strong> The body stays a single editable document; a custom node view renders each bullet run as the cards or lines UI in place. Cleanest fit for inline editing and cross group moves, since it is all one document. Blocked by the missing React node view support; would need <code>@milkdown/react</code> wired into Crepe, or a vanilla DOM rewrite of the list UI. High risk, multi day.</p>
+<p><strong>B. Multiple Milkdown editors interleaved with list components.</strong> Split the body into ordered segments (prose run, bullet run, prose run, and so on); one editor per prose run, one list component per bullet run. No new dependencies, reuses existing <code>ListCards</code> and <code>ListLines</code>. But inline editing gets awkward at boundaries (typing a bullet into a prose editor), and cross group drag does not exist today (<code>useTileDrag</code> is single grid), so it would need a new cross list drag mechanism. Medium to high effort.</p>
+<h2>Status</h2>
+<p>Deferred. Pick this up by choosing an architecture, then writing a proper implementation plan. If we commit to option A, first add <code>@milkdown/react</code> and spike whether Crepe will host a React node view before building.</p>
+<h2>Relevant code</h2>
+<ul>
+<li><code>src/lib/list-folder.ts</code> (<code>splitBodyAndBullets</code>, <code>parseListItems</code>, <code>serializeListItems</code>)</li>
+<li><code>src/components/Card.tsx</code> (list split on load around the <code>isListFolder</code> branch, save path)</li>
+<li><code>src/components/ListCards.tsx</code>, <code>src/components/ListLines.tsx</code></li>
+<li><code>src/lib/use-tile-drag.ts</code> (drag reorder, currently single grid)</li>
+</ul>
+</article></div><script>window.__ORDER__={"slug":"2026-06-15-list-interleaving-render-each-bullet-group-as-its-own-list-deferred","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>
