@@ -12,8 +12,8 @@
       // regardless of OS preference or what was saved last visit.
       document.documentElement.dataset.theme = "light";
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-Dp6JBEYn.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-CTkl7CC9.css">
+    <script type="module" crossorigin src="/order-home/assets/index-Dqr-AhI4.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-6ubnNK8Z.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>spacetime.md: A Minimal Plain Text Format for Mapping Your Daily Work</h1>
@@ -54,42 +54,35 @@
 <h2><strong>The Machine Layer: YAML</strong></h2>
 <p>For the strict, precise, machine-readable version of all this, the best format to represent it is YAML. If markdown is the most habitable format for prose, YAML is the closest thing to that for structure. Indentation encodes nesting, a list encodes order, and asingle line can represent a whole event.</p>
 <p>Here is the entire format in one small example:</p>
-<p>space:</p>
-<ul>
-<li>Entertainment:<ul>
-<li>Games:<ul>
-<li>Board Games</li>
-<li>Video Games</li>
-</ul>
-</li>
-<li>Music:<ul>
-<li>Jazz</li>
-<li>Rock</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Work:<ul>
-<li>Projects:<ul>
-<li>Order</li>
-<li>PKM System</li>
-</ul>
-</li>
-<li>Teams:<ul>
-<li>Frontend</li>
-<li>Firmware<br>time:<br>seasons:</li>
-</ul>
-</li>
-<li>{date: 2026-06-01, title: Summer Building, endDate: 2026-08-31}</li>
-<li>{date: 2026-09-01, title: Community Focus, endDate: 2026-11-30}<br>  events:</li>
-<li>{date: 2026-06-15, title: Order v0.1.0 Release, folder: Order, allDay: true}</li>
-<li>{date: 2026-06-16, title: Team standup, folder: Frontend, time: 09:00, endTime: 09:30}</li>
-<li>{date: 2026-07-01, title: Summer trip, folder: Rock, endDate: 2026-07-05}</li>
-<li>{date: 2026-07-10, title: Company offsite, folder: Firmware, allDay: true}</li>
-<li>{date: 2026-08-20, title: Medium deadline, folder: Order, time: 17:00}</li>
-</ul>
-</li>
-</ul>
+<pre><code class="language-yaml">space:
+
+* Entertainment:
+    * Games:
+        * Board Games
+        * Video Games
+    * Music:
+        * Jazz
+        * Rock
+* Work:
+    * Projects:
+        * Order
+        * PKM System
+    * Teams:
+        * Frontend
+        * Firmware
+time:
+  seasons:
+
+    * {date: 2026-06-01, title: Summer Building, endDate: 2026-08-31}
+    * {date: 2026-09-01, title: Community Focus, endDate: 2026-11-30}\
+    events:
+
+    * {date: 2026-06-15, title: Order v0.1.0 Release, folder: Order, allDay: true}
+    * {date: 2026-06-16, title: Team standup, folder: Frontend, time: 09:00, endTime: 09:30}
+    * {date: 2026-07-01, title: Summer trip, folder: Rock, endDate: 2026-07-05}
+    * {date: 2026-07-10, title: Company offsite, folder: Firmware, allDay: true}
+    * {date: 2026-08-20, title: Medium deadline, folder: Order, time: 17:00}
+</code></pre>
 <p>Two top-level keys: <code>space</code> and <code>time</code>. Under <code>space</code>, the tree is drawn through nesting. You read the structure off the page. Under <code>time</code>, the records line up as a table. Dates and titles form clean columns you can read straight down.</p>
 <p>The idea here is just to encode the essential structure and data. When I look at this representing hundreds, even thousands of events across years of my life, it still looks like this.</p>
 <h2><strong>Three Key Properties</strong></h2>
@@ -103,8 +96,22 @@
 </ol>
 <h2>The Notable Folder: Where It All Lives</h2>
 <p>The leaves of the space tree are <strong><a href="https://medium.com/@geetduggal/this-one-idea-changed-the-way-i-organized-my-notes-forever-f293371a0d5b">notable folders</a></strong>. Real. Filesystem. Folders.</p>
-<p>Entertainment/<br>Games/<br>Board Games/<br>Board Games.md &lt;-- Main document for folder<br>2026-06-20 Game Night.md &lt;-- Note and/or event<br>rules.txt<br>photos...<br>Video Games/<br>Work/<br>Projects/<br>Order/<br>Order.md<br>2026-06-15 Order v0.1.0 Release.md<br>architecture.png</p>
-<p>That’s your space dimension. Just folders. The hierarchy is the structure of your directories.</p>
+<pre><code class="language-markdown">Entertainment/\
+Games/\
+Board Games/\
+Board Games.md &lt;-- Main document for folder\
+2026-06-20 Game Night.md &lt;-- Note and/or event\
+rules.txt\
+photos...\
+Video Games/\
+Work/\
+Projects/\
+Order/\
+Order.md\
+2026-06-15 Order v0.1.0 Release.md\
+architecture.png
+</code></pre>
+<br /><p>That’s your space dimension. Just folders. The hierarchy is the structure of your directories.</p>
 <p>Now look inside a notable folder. It can hold anything. Images. PDFs. A subfolder for a project. Whatever.</p>
 <p>But one thing is special by convention: a markdown file named with a date and title. <code>2026-06-15 Order v0.1.0 Release.md</code>. In the spirit of <a href="https://obsidian-full-calendar-remastered.github.io/plugin-full-calendar/user/calendars/local/">Obsidian Full Calendar Full Note Events</a>. That&#39;s an event. It could be a note. Or a dated task.</p>
 <p>The date places it on your calendar. The folder places it in space. The file contents are just markdown — you write whatever you want.</p>
@@ -154,6 +161,6 @@
 <p>Of course, you do not need Order to use any of this. That is rather the point.</p>
 <p>Try thinking of your own world in just these terms. What are your areas? Your categories? The handful of notable folders that actually hold your content? Write them as a nested list. That is your space tree, and you already know how to read it. Then try logging time as plain dated lines. A date, a title, maybe a folder tag. One entry per line.</p>
 <p>The deeper invitation is underneath the syntax. It is the structure of your life at a glance and plain enough to read without a manual. Yours in a way no app can take away. You can always open the file. You can always read it. You can always live in it. There is a freshness I have found to this. That underneath all the machinery, the essential idea was simple the whole time. It was waiting there for me in plain text 🏔️</p>
-<br /></article></div><script>window.__ORDER__={"slug":"spacetime-md-a-minimal-plain-text-format-for-mapping-your-daily-work","dataUrl":"/order-home/data.json"}</script>
+</article></div><script>window.__ORDER__={"slug":"spacetime-md-a-minimal-plain-text-format-for-mapping-your-daily-work","dataUrl":"/order-home/data.json"}</script>
   </body>
 </html>
