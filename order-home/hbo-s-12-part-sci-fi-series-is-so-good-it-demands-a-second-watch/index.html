@@ -6,13 +6,18 @@
     <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
     <title>HBO's 12-Part Sci-Fi Series Is So Good, It Demands A Second Watch</title>
     <script>
-      // Published viewer always lands in light theme. The in-session
-      // theme toggle still works, but every fresh page load resets to
-      // light so the published page has a predictable, friendly default
-      // regardless of OS preference or what was saved last visit.
-      document.documentElement.dataset.theme = "light";
+      // The published viewer follows the visitor's OS light/dark by default
+      // ("auto"); a saved override (from the in-session toggle) wins. Resolved
+      // before first paint to avoid a flash; theme.ts keeps it live afterwards.
+      try {
+        var pref = localStorage.getItem("order.theme") || "auto";
+        var resolved = (pref === "auto")
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : pref;
+        document.documentElement.dataset.theme = resolved;
+      } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-Dsu6EfSp.js"></script>
+    <script type="module" crossorigin src="/order-home/assets/index-X6nJTC0X.js"></script>
     <link rel="stylesheet" crossorigin href="/order-home/assets/index-BXhAVYCs.css">
   </head>
   <body>
