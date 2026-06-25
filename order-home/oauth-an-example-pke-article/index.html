@@ -12,12 +12,188 @@
       // regardless of OS preference or what was saved last visit.
       document.documentElement.dataset.theme = "light";
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-Dqr-AhI4.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-6ubnNK8Z.css">
+    <script type="module" crossorigin src="/order-home/assets/index-Dsu6EfSp.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BXhAVYCs.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>OAuth (An Example PKE Article)</h1>
-<p><em>2024-07-30</em> — <a href="https://github.com/geetduggal/geetduggal.github.io/blob/master/pke/OAuth.md">read on Medium</a></p>
+<p>Please see <a href="https://medium.com/@geetduggal/want-extraordinarily-useful-and-timeless-notes-build-a-personal-knowledge-encyclopedia-bc8b7fb09829">this article</a>  on creating a Personal Knowledge Encyclopedia (PKE) for more information. This article is an example.</p>
+<p><a href="https://en.wikipedia.org/wiki/OAuth">OAuth</a> is a standard that enables a user (resource owner) to allow a third-party application (client) access to protected data (hosted on a resource server).  OAuth is designed so that the third party application doesn&#39;t need to know the the user&#39;s credentials to access the data.</p>
+<h1>Typical OAuth2 flow</h1>
+<pre><code>     +--------+                               +---------------+
+     |        |--(A)- Authorization Request -&gt;|   Resource    |
+     |        |                               |     Owner     |
+     |        |&lt;-(B)-- Authorization Grant ---|               |
+     |        |                               +---------------+
+     |        |
+     |        |                               +---------------+
+     |        |--(C)-- Authorization Grant --&gt;| Authorization |
+     | Client |                               |     Server    |
+     |        |&lt;-(D)----- Access Token -------|               |
+     |        |                               +---------------+
+     |        |
+     |        |                               +---------------+
+     |        |--(E)----- Access Token ------&gt;|    Resource   |
+     |        |                               |     Server    |
+     |        |&lt;-(F)--- Protected Resource ---|               |
+     +--------+                               +---------------+
+                 High level flow from RFC 6749*
+</code></pre>
+<p>Before the high-level flow above can be executed, the authorization server must somehow know about the client.  In the RFC, this is called &quot;client registration&quot;* .  The details of this process are largely left up to the service hosting the resource and ability to authenticate and authorize access to the resource.  For example, the service may provide a web page for users to authenticate clients with the service.  On another extreme, a client could literally contact the service owner in person and the service owner configures the server to understand the appropriate details about the client.</p>
+<pre><code>     +----------+
+     | Resource |
+     |   Owner  |
+     |          |
+     +----------+
+          ^
+          |
+         (B)
+     +----|-----+          Client Identifier      +---------------+
+     |         -+----(A)-- &amp; Redirection URI ----&gt;|               |
+     |  User-   |                                 | Authorization |
+     |  Agent  -+----(B)-- User authenticates ---&gt;|     Server    |
+     |          |                                 |               |
+     |         -+----(C)-- Authorization Code ---&lt;|               |
+     +-|----|---+                                 +---------------+
+       |    |                                         ^      v
+      (A)  (C)                                        |      |
+       |    |                                         |      |
+       ^    v                                         |      |
+     +---------+                                      |      |
+     |         |&gt;---(D)-- Authorization Code ---------&#39;      |
+     |  Client |          &amp; Redirection URI                  |
+     |         |                                             |
+     |         |&lt;---(E)----- Access Token -------------------&#39;
+     +---------+       (w/ Optional Refresh Token)
+
+   Note: The lines illustrating steps (A), (B), and (C) are broken into
+   two parts as they pass through the user-agent.
+
+        More detailed &#39;Authorization Code Flow&#39; from RFC 6749*
+</code></pre>
+<p>When the client exchanges the authorization code for the access token, it may need to provide a client secret* to further provide confidence the client is legitimate.   Note that some services may allow &quot;Single-Page Apps&quot;* which do not require using a secret provided by the authorization server during registration time, but they do generate a secret dynamically for each request.</p>
+<h1>Example</h1>
+<p>A simple example of using an OAuth2 workflow is to enable a properly authenticated and authorized user / resource owner (Geet Duggal) to allow a third-party application (geetduggal.com client) to issue an API call to Github on his behalf.  This API call will eventually trigger a Github action to append a line of text to file.   Note that in this process, there are no tokens stored anywhere in the client code.</p>
+<ul>
+<li><strong>Client.</strong> geetduggal.com</li>
+<li><strong>Resource owner.</strong> Geet Duggal</li>
+<li><strong>Authorization and resource server(s)</strong> Github</li>
+</ul>
+<p>First, the user (Geet Duggal) needs to be able to login to Github via Github&#39;s authorization endpoint:</p>
+<pre><code class="language-html">    &lt;form id=&quot;geetForm&quot;&gt;
+        &lt;label for=&quot;geetInput&quot;&gt;Enter your Geet:&lt;/label&gt;
+        &lt;input class=&quot;input-box&quot; type=&quot;text&quot; id=&quot;geetInput&quot; name=&quot;geetInput&quot; required&gt;
+        &lt;button class=&quot;button&quot; type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+        &lt;button class=&quot;button&quot; id=&quot;loginButton&quot;&gt;Login with GitHub&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;script&gt;
+        const clientId = &#39;Ov23lijztEAKMo8ij7cx&#39;;
+        const redirectUri = &#39;https://geetduggal.com/callback.html&#39;;
+
+        document.getElementById(&#39;loginButton&#39;).addEventListener(&#39;click&#39;, () =&gt; {
+            const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&amp;redirect_uri=${redirectUri}&amp;scope=repo`;
+            window.location.href = githubAuthUrl;
+        });
+
+    // ...
+</code></pre>
+<p>After Geet successfully authenticates, &#39;<a href="https://geetduggal.com/callback.html">https://geetduggal.com/callback.html</a>&#39; (the client) is provided with an authorization code that can be exchanged for a token.  (You can see how this is desirable from a security perspective because the tokens can be relatively short-lived and potentially revoked in a more granular fashion).</p>
+<pre><code class="language-html">&lt;script&gt;
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get(&#39;code&#39;);
+
+    console.log(&#39;Received code:&#39;, code);
+
+    if (code) {
+        fetch(&#39;https://geetduggal.netlify.app/.netlify/functions/exchange_token&#39;, {
+            method: &#39;POST&#39;,
+            headers: {
+                &#39;Accept&#39;: &#39;application/json&#39;,
+                &#39;Content-Type&#39;: &#39;application/json&#39;,
+            },
+            body: JSON.stringify({ code }),
+        })
+        .then(response =&gt; {
+            console.log(&#39;Response received:&#39;, response);
+            if (!response.ok) {
+                throw new Error(&#39;Network response was not ok&#39;);
+            }
+            return response.json();
+        })
+        .then(data =&gt; {
+            console.log(&#39;Data received:&#39;, data);
+            if (data.access_token) {
+                localStorage.setItem(&#39;githubToken&#39;, data.access_token);
+                window.location.href = &#39;/&#39;;
+            } else {
+                alert(&#39;Failed to authenticate&#39;);
+            }
+        })
+        .catch(error =&gt; {
+            console.error(&#39;Error during fetch:&#39;, error);
+            alert(&#39;Error during authentication: &#39; + error.message);
+        });
+    } else {
+        alert(&#39;No code provided&#39;);
+    }
+&lt;/script&gt;
+</code></pre>
+<p>The token is exchanged using a serverless function on Netlify without exposing the client secret:</p>
+<pre><code class="language-javascript">exports.handler = async (event) =&gt; {
+    if (event.httpMethod === &#39;OPTIONS&#39;) {
+        // Handle CORS preflight request
+        return {
+            statusCode: 204, // No Content
+            headers: headers,
+            body: &#39;&#39;,
+        };
+    }
+
+    try {
+        const { code } = JSON.parse(event.body);
+        const clientId = process.env.GITHUB_CLIENT_ID;
+        const clientSecret = process.env.GITHUB_CLIENT_SECRET;
+
+        const response = await fetch(&#39;https://github.com/login/oauth/access_token&#39;, {
+            method: &#39;POST&#39;,
+            headers: {
+                &#39;Accept&#39;: &#39;application/json&#39;,
+                &#39;Content-Type&#39;: &#39;application/json&#39;,
+            },
+            body: JSON.stringify({
+                client_id: clientId,
+                client_secret: clientSecret,
+                code: code,
+            }),
+        });
+
+        const data = await response.json();
+        console.log(&#39;GitHub response data:&#39;, data);
+
+        return {
+            statusCode: 200,
+            headers: headers,
+            body: JSON.stringify({ access_token: data.access_token }),
+        };
+    } catch (error) {
+        console.error(&#39;Error fetching access token:&#39;, error);
+        return {
+            statusCode: 500,
+            headers: headers,
+            body: JSON.stringify({ error: &#39;Internal Server Error&#39; }),
+        };
+    }
+};
+</code></pre>
+<p>The token is then stored in the browser local storage for use to call the Github API to initiate a Github action.</p>
+<h1>References</h1>
+<ul>
+<li>^ &quot;RFC 6749&quot; Figure 1, <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-1.2">RFC 6749 Section 1.2. Protocol Flow</a></li>
+<li>^ &quot;client registration&quot;, <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-2">RFC 6749 Section 2. Client Registration</a></li>
+<li>^ &quot;client secret&quot; <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-2.3.1">RFC 6749 Section 2.3.1 Client Password</a></li>
+<li>^ &quot;Single-Page Apps&quot; <a href="https://aaronparecki.com/oauth-2-simplified/#single-page-apps">OAuth2 Simplified, Single-Page Apps</a></li>
+<li>^ &quot;authorization code flow&quot;, <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.1">RFC 6749 Section 4.1 Authorization Code Grant</a></li>
+</ul>
 </article></div><script>window.__ORDER__={"slug":"oauth-an-example-pke-article","dataUrl":"/order-home/data.json"}</script>
   </body>
 </html>
