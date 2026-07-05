@@ -17,12 +17,31 @@
         document.documentElement.dataset.theme = resolved;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-X6nJTC0X.js"></script>
+    <script type="module" crossorigin src="/order-home/assets/index-DNmSa4jU.js"></script>
     <link rel="stylesheet" crossorigin href="/order-home/assets/index-BXhAVYCs.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>‘Editor-First’ vs. ‘Terminal-First’ for Development</h1>
-<br /><p><em>2016-12-01</em> — <a href="https://medium.com/@geetduggal/editor-first-vs-terminal-first-for-development-efea6b02d294">read on Medium</a></p>
+<p><em>2016-12-02</em> — <a href="https://medium.com/@geetduggal/editor-first-vs-terminal-first-for-development-efea6b02d294">read on Medium</a></p>
+<p><img src="/order-home/editor-first-vs-terminal-first-for-development/image-v8d8oPHFZkDxZ5ALmjFDgQ.png" alt=""></p>
+<p><em>Great editors like Atom, Sublime, and GUI front-ends to Emacs/Vi are commonly used by developers.</em></p>
+<p>They scroll smoothly, have all sorts of colorful features, and let you install sophisticated packages for development in multiple languages and version control systems.</p>
+<p><em>Why would anyone go back to the stone age and edit within a terminal using Vi/Emacs?</em></p>
+<p>I have had the same question many times before.</p>
+<p>I have also tried to answer it by using editors like the ones I mentioned above.</p>
+<p>Inevitably, I end up wanting to develop on a remote server (e.g. I have a development AWS instance with some fancy features I am experimenting with).</p>
+<p>So I end up spending an amusing amount of time setting up some remote connection facility in <insert your favorite editor here> (e.g. Tramp for Emacs, …) in order to edit files remotely with my beautiful editor.</p>
+<p>And inevitably, I always run into some issue where I need to reconnect or I get out of sync in a way that slows my flow down.</p>
+<p>Also, development isn’t just about code. I spend a substantial fraction of my time on the terminal, trying commands, testing, and exploring.</p>
+<p><em>So I always end up abandoning this ‘editor-first’ approach for one that is ‘terminal-first’</em>:</p>
+<p><img src="/order-home/editor-first-vs-terminal-first-for-development/image-Y8SwhWaAO2NNVj5fo072cw.jpg" alt=""></p>
+<p><em>‘Editor-first’ vs. ‘terminal-first’ approach to development</em></p>
+<p>(You can imagine the ‘editor-first’ approach displayed above getting a lot more complicated in case you end up going through another host before having to edit.)</p>
+<p>Here is an example of my ‘Vi flow’ for ‘in-terminal’ development:</p>
+<p><img src="/order-home/editor-first-vs-terminal-first-for-development/image-1RpAeTaviL1cTMdRbWbB5w.gif" alt=""></p>
+<p><em>Simple example of using Vi in a terminal while going back and forth to a terminal</em></p>
+<p>This system also has some additional perks. If I combine it with a tmux session on a development node, I can easily hop back into the state of development where I left off, and because there’s no fancy editing software, I can literally continue work anywhere with a terminal. I have successfully done this on my iPad pro, a Chromebook, and even my phone when I wanted to make a quick edit (Serverauditor is my terminal app of choice for iOS).</p>
+<p>I am curious to what others do and especially curious if someone can convince me to stop using my stones to write on cave walls. Do you develop editor-first or terminal-first? Why?</p>
 </article></div><script>window.__ORDER__={"slug":"editor-first-vs-terminal-first-for-development","dataUrl":"/order-home/data.json"}</script>
   </body>
 </html>

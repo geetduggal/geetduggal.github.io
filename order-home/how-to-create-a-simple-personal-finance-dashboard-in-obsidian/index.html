@@ -17,12 +17,73 @@
         document.documentElement.dataset.theme = resolved;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-X6nJTC0X.js"></script>
+    <script type="module" crossorigin src="/order-home/assets/index-DNmSa4jU.js"></script>
     <link rel="stylesheet" crossorigin href="/order-home/assets/index-BXhAVYCs.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>How to Create a Simple Personal Finance Dashboard in Obsidian</h1>
-<p><em>2024-02-26</em> — <a href="https://medium.com/@geetduggal/how-to-create-a-simple-personal-finance-dashboard-in-obsidian-2f238627286a">read on Medium</a></p>
+<p><em>2024-02-27</em> — <a href="https://medium.com/@geetduggal/how-to-create-a-simple-personal-finance-dashboard-in-obsidian-2f238627286a">read on Medium</a></p>
+<p><img src="/order-home/how-to-create-a-simple-personal-finance-dashboard-in-obsidian/image-ovC4ehnz0_gJ-I3E.jpg" alt=""></p>
+<p><em>Photo by <a href="https://unsplash.com/@kmuza?utm_source=medium&utm_medium=referral">Carlos Muza</a> on <a href="https://unsplash.com/?utm_source=medium&utm_medium=referral">Unsplash</a></em></p>
+<p>At the beginning of the year I wrote an article on how to use Obsidian in a simple but powerful way for personal finance management. All you really need is something called a ‘plain text ledger’ of transactions and Obsidian. With this, you have a powerful, private, and even mobile-friendly way to manage your personal finances.</p>
+<h2>The Power of Obsidian for Personal Finance Accounting</h2>
+<h3>A direct approach to managing your money in plain text</h3>
+<p>medium.com</p>
+<blockquote>
+<p>The point is that I feel like with Obsidian I’ve been empowered in a special way to solve the problems that matter to me related to personal finance management. And I get to have fun in the process. ^</p>
+</blockquote>
+<p>I’m happy to say that I’m finding ever more utility in adopting this approach. The article linked to above describes some of the basic principles of accounting for personal finance management and how Obsidian and a plaint text approach <em>can</em> be powerful for this purpose. In many ways, I think it was a very important foundation for me to lay before developing anything personally useful day-to-day.</p>
+<p>In this article, I aim to briefly describe the pros and cons of using this method. Unlike the article above, I provide more than a screenshot of the current version of a code I use. (Note: Code is in ‘Github Gist’ format so I can update and share it easily.)</p>
+<p>If your’e comfortable with programming, you can use the code shown below as a starting point and modify it for your needs. All you have to do is make sure you have the ‘Dataview’ plugin installed in Obsidian. After you adjust a setting to allow it to ‘Enable Inline JavaScript Queries’, simply paste this code in a ‘<a href="https://blacksmithgu.github.io/obsidian-dataview/api/intro/">dataviewjs</a>’ code block:</p>
+<p>As I mentioned in the initial article, the code above is certainly not pretty or perfect, but it gets the job done for me. To get started, simply replace the path on the line with ‘ledgerFile’ with the path to your ledger journal file. An example ledger journal file can look something like:</p>
+<p>The image below shows the dashboard as viewed from my phone in Obsidian. It uses the example ledger file above. I implemented the dashboard above with a few, simple features:</p>
+<ul>
+<li>Table of balances for banks, credit cards, and expense accounts</li>
+<li>Transaction histories for each account beginning at a particular ISO 8601 date (eg. name your file ‘2024–02–01 Dashboard’)</li>
+<li>Projections of future balances based on expected transactions across account</li>
+<li>Filters of transactions based on text matches</li>
+</ul>
+<p><img src="/order-home/how-to-create-a-simple-personal-finance-dashboard-in-obsidian/image-V_W_JAr_noHUyx9iCeoONQ.png" alt=""></p>
+<p>In the example above, you can see that the future balance in the checking account is negative. In this case, the projected negative balance is obviously due to a very large transaction associated with a remodel. The negative number in red under the ‘Future Balance’ column indicates exactly how far the account would go under (incorporating other potential transactions) without any transfers.</p>
+<p>While this example is fairly straightforward, the dashboard really shines with more complicated projects and more transactions. For example, a real home renovation likely involves a variety of transactions across many accounts. This ‘future balance’ feature allows you to see the impact of a this variety of transactions on the future balance of potentially many accounts.</p>
+<p>Personally, I have never had such simple and useful ‘at-a-glance’ view of money across my accounts. The fact that Obsidian has so many plugins for charts and calendars further excites me about the possibilities of other features if and when I would like to add them.</p>
+<p>In the last few months, I have gained a lot of value from being able to monitor all my transactions across accounts. I have been able to identify spending patterns and predict how money may need to be transferred in a simple and precise way. I can even simply export reports eg. every month by using file names like that described above.</p>
+<p>This approach isn’t perfect, though. For example, I still find manually updating transactions a bit of a chore. Adopting this approach also requires that you have some more technical knowledge of how to code. However, you can still use the code as written ‘out of the box’ even if you don’t know how to code.</p>
+<p>To further illustrate some pros and cons, I’ll answer a few thoughtful questions by a commenter on the original article:</p>
+<blockquote>
+<ol>
+<li>You should do a ‘how to build a personal finance system ( step-by-step) using Obsidian’ for novice like me. I suppose the ledger journal is a separate note.</li>
+</ol>
+</blockquote>
+<p>Yes (hopefully this a start). And Yes.</p>
+<blockquote>
+<p>Do you maintain the running entries in a single note throughout the year or is it for a particular period?</p>
+</blockquote>
+<p>I use one single ledger file for all transactions (at least for the moment).</p>
+<blockquote>
+<p>Currently I use tags to maintain expenses and incomes and have a dataview query, but the way your summarise the totals is interesting. For the level of code in your screenshot, I suppose one needs to be an expert in javascript.</p>
+</blockquote>
+<p>Basic JavScript knowledge should suffice and I’m toying with how the ledger format could be used more seamlessly with Dataview in a way that doesn’t require JavaScript knowledge.</p>
+<blockquote>
+<ol start="2">
+<li>I see some icons in your phone screenshot. Do you intend to use these icons to visualise the expense and incomes too?</li>
+</ol>
+</blockquote>
+<p>I use Emojis in front of file and folder names to help keep me organized but no icons for the finance dashboard itself. I actually really like the idea of using icons in a creative and useful way in the case of the finance dashboard. The system I use for personal organization and how the icons play into it is described here:</p>
+<h2>Capture to do. How I manage literally all my tasks in Obsidian</h2>
+<h3>Unlock the simple, satisfying, and energizing secret to task management ‘productivity’</h3>
+<p>medium.com</p>
+<blockquote>
+<ol start="3">
+<li>How do you make these many entries in the ledger in the phone. Have you created some shortcuts , it seems a lot of text needs to be typed along with numbers.</li>
+</ol>
+</blockquote>
+<p>This is a very smart point and certainly one of the less glamorous aspects of using this system. I use iOS shortcuts and use the beautifully designed iA Writer app to enter transactions. It’s usually simplest and quickest if I update my transactions daily, though I can get by with weekly. A ‘philosophy’ of how I design shortcuts on my phone for this is described in this post:</p>
+<h2>Satisfy the Beast. Science the Sh-t Out of Difficult Tasks and Habits</h2>
+<h3>Special guests: Obsidian, iA Writer, iOS Shortcuts</h3>
+<p>medium.com</p>
+<p>Finally, though I’m fully on the ‘plain text accounting’ train for the moment, if you’re interested in more of a nicely packaged cloud-based solution, a colleague of mine recently recommended ‘Monarch’, and I find it to be quite good (though you will have to pay for it):</p>
+<p><a href="https://www.monarchmoney.com/">https://www.monarchmoney.com/</a></p>
 </article></div><script>window.__ORDER__={"slug":"how-to-create-a-simple-personal-finance-dashboard-in-obsidian","dataUrl":"/order-home/data.json"}</script>
   </body>
 </html>
