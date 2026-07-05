@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
+    <title>Tech Habits - Life Without Order</title>
+    <script>
+      // The published viewer follows the visitor's OS light/dark by default
+      // ("auto"); a saved override (from the in-session toggle) wins. Resolved
+      // before first paint to avoid a flash; theme.ts keeps it live afterwards.
+      try {
+        var pref = localStorage.getItem("order.theme") || "auto";
+        var resolved = (pref === "auto")
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : pref;
+        document.documentElement.dataset.theme = resolved;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/order-home/assets/index-TfcIvxRp.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BXhAVYCs.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>Tech Habits - Life Without Order</h1>
+<p><em>2026-07-03</em> — <a href="https://medium.com/@geetduggal/tech-habits-life-without-order-a76c8c1b5921">read on Medium</a></p>
+<h4>Brief notes on living without My App on vacation, apps I would use if I didn’t live a plain text life, and combating AI Slop</h4>
+<p><img src="/order-home/tech-habits-life-without-order/image-Gb27IgFEoxsKFgETWtXRGw.jpg" alt=""></p>
+<p>We are living in a world where “you can make an app for that” has become a reality for many people who always wished their app(s) behaved just the way they wanted but felt like they were always making compromises.</p>
+<p><a href="https://www.theverge.com/tech/928905/vibe-code-personal-software-revolution">Welcome to the personal software revolution</a></p>
+<p>I’m apparently one of those people and have spent some time, when winding down in the evenings, to build an app called <a href="https://medium.com/@geetduggal/order-a-calendar-first-notebook-for-mapping-your-world-abc0970494a5">Order</a> that not only works the way I think and behaves the way I’ve always wanted, but also embeds in it a philosophy behind personal knowledge management that has been brewing for years.</p>
+<p>As a software engineer and longtime coder, I know how hard it is to even build an app that anyone can consider well designed and battle tested. I still strongly believe that AI tools don’t solve that problem magically, but they do make certain things easier: especially reducing the energy barrier to crafting your own tools. My favorite part about it is that it opens a world of creativity and thinking that would otherwise be less accessible because I would be spending more time figuring out a lot of the more mundane machinery behind the end product.</p>
+<p>When it came time for me to pack for my summer vacation, I realized that I didn’t want to bring two machines:</p>
+<ol>
+<li>The machine I typically do my work on (that I’d want to keep around in case of an emergency)</li>
+<li>The machine I primarily have developed the Order app I’ve been working on</li>
+</ol>
+<p>I decided to leave my personal development laptop at home while I am on vacation. The main reason behind this was that, after spending about a month and a half of occasional evenings here and there vibe coding the app, I thought it was a good time to have a little bit of a break from it and just see how life went with it and without it.</p>
+<p>I’m still using a free Apple iOS app development technique where you have to re-register the license every week for the app that you’re working on. (You can get out of this by paying $100 a year for the development program that they offer.)</p>
+<p>I was kind of excited about this because when my temporary license expired, it would really put my plain text organization philosophy to the test. In other words, would it still be straightforward for me to get by without an app I custom built and still come back to it feeling overall that my own app is a much better experience? That would mean that the app is still providing a pretty significant value add to my life, but I could do fine without it. What follows is a very brief set of notes on that experience while I was on vacation, and I’ll keep it short this time 😀.</p>
+<p>The moment my app, which has been my daily driver for over a month now, stopped working on my phone, I did have a momentary sense of loss and/or panic. My mind reached for a few apps to jump to when taking a quick note or wanting to edit something:</p>
+<ul>
+<li>iA Writer: a long-time favorite. Simple, beautiful, and focuses on one plain text file at a time</li>
+<li>1Writer: Also simple, cross-platform friendly, and handles odd file extensions and formats better</li>
+<li>Obsidian: heavier-weight but can handle the lightweight stuff with surprisingly good speed and flexibility</li>
+<li>Files: since my system is really just a well-organized hierarchy, the idea is that you should be able to just browse a normal file system as a sort of ‘default’ when taking notes</li>
+</ul>
+<p>In the end, after taking a bunch of notes about my thinking on various topics here and there during the vacation and reacquainting myself with these tried-and-true apps, I ended up preferring Obsidian primarily because I felt like it was the easiest for me to hop around between various files and directories. It just felt like I could better manage my clean hierarchy from within Obsidian than I could within other apps.</p>
+<p>Things that felt clunky without Order:</p>
+<ul>
+<li><strong>Quick note taking/scratchpad space</strong>: I’m pretty convinced that with or without Order, any note-taking system benefits from having one single place that you can quickly go to that serves as a scratchpad for thoughts. Just a free-form text file works great for this. The way I have currently built Order, it could support this fairly straightforwardly, but it was so easy to capture my thoughts I never really made a scratch space within Order. More on that later.</li>
+<li><strong>Editing</strong><a href="https://medium.com/@geetduggal/spacetime-md-a-minimal-plain-text-format-for-mapping-your-daily-work-b3e03e2621be">spacetime.md</a><strong>, line wrapping</strong>: Well, this was overall pretty doable. It actually took me a little experimentation to get whatever app I was using set up in a way that looked very clean when editing a simple plain text file. The main problem really came down to line wrapping. Most text editors, by default, will take one long line of text and wrap it so you can see it all at once without scrolling right and left, which makes perfect sense for like 98% of use cases. The thing is, for files that serve more as records, like CSV files or the events in spacetime.md, I like to have one clean line for every record. With that constraint, things start to look a little ugly when lines wrap. There are ways around this, but they’re actually surprisingly hard on the phone. In the end, a couple of quick adjustments in Obsidian worked great for me.</li>
+<li><strong>Directory maintenance</strong>: Order does a great job of automatically helping me keep my hierarchy crisp and clean and manage some of the cruft required when creating new notable folders. Without Order, there are just a few extra steps. I usually have to create a directory in advance and a note within it if I am starting a new project, a space of interest, or notes about a notable person. Since I was primarily using my phone, this was kind of a pain, but usually just a few taps here and there.</li>
+</ul>
+<p>Things that felt really good regardless of whether I was in Order or not:</p>
+<ul>
+<li><strong>Editing</strong><a href="https://medium.com/@geetduggal/spacetime-md-a-minimal-plain-text-format-for-mapping-your-daily-work-b3e03e2621be">spacetime.md</a><strong>,</strong><a href="https://medium.com/@geetduggal/tech-habits-calendar-maxxing-bb62444a5b72">Saturday Frontier</a>**:**Even without a fancy app to help me manage my events or calendar in a pretty view, I really enjoyed adding tasks, events, and other kinds of notes in the spacetime file. In fact, in many ways I prefer it in certain contexts over the App. It felt more like like jotting a note down on a piece of paper, but a piece of paper that’s parsable and readable by all sorts of other technologies if I would like. When I added tasks to do, I could still see them at a glance when opening the text file in IA Writer or Obsidian, for example. That dedication to having the plain text format be the underlying source of truth started to really pay dividends when I didn’t have My App to depend on.</li>
+<li><strong>Editing</strong><a href="https://medium.com/@geetduggal/spacetime-md-a-minimal-plain-text-format-for-mapping-your-daily-work-b3e03e2621be">spacetime.md</a>**, email/Google Calendar support:**A feature I have not yet discussed on Medium that I also developed in particular in the spacetime format, is that if you simply append an email or a set of email addresses, there’s a set of simple conventions that automatically associate those events with a Google Calendar event and invites the appropriate people. This has been really useful for me to see events that involve other people at a glance in a text file when planning things out. Even without Order, I found it useful to know that, when I’m planning certain events in the future, the next time I sync the file all the invites etc will be automatically sent. I don’t have to be clicking around on Google Calendar on my desktop or tapping around on the app to create all of these events and send the information to different people. More on that in a future post!</li>
+</ul>
+<p>Overall, I’ve had a great time living the plain text life, and it’s made me appreciate the work I’ve done on my own custom app that much more. It’s also given me a few thoughts on how to streamline the experience within my app. It has been fun for me to not only take a vacation from my regular work in life, but also from this app I made.</p>
+<p>This vacation did also get me thinking: if I wasn’t so dedicated to living a life rooted in plain text for my personal knowledge management, what would I use in that alternate universe? The answer that keeps coming back to my head is probably something pretty simple. I think what I value about plain text is the universality of it and the accessibility of it from almost anywhere, and the fact that the files I’ve used are so future-proof. I would want something like that in this ecosystem as well, which kind of constrains me a lot. In the end, I would probably end up going with one of two suites:</p>
+<ol>
+<li>Notion + Todoist + sprinkle of Google tools as needed</li>
+<li>All in on the Google Tool Suite</li>
+</ol>
+<p>For 1, even though there are many things I don’t like about Notion (don’t get me started on search), I think it is one of the more creative and useful and long-lasting tools in productivity. It has all sorts of powerful integration and unique visual features of organizing information in two dimensions that I love. Todoist has been a long-time favorite task management app for myself and others (notably my wife 😉), and I’d sprinkle in a Google Spreadsheet here-or-there as needed. This option would give me the creative flexibility and long-term reliability I want.</p>
+<p>For 2, this is the rock-solid option I know will work a decade from now just like it did a decade before. I still have all my stuff from back then and I don’t see this just dissapearing. I would have to choose the tools I use carefully, but a good rule-of-thumb would be apps offered and commonly used in the corporate Google Workspace suite.</p>
+<p>Also, while on vacation, I’ve had a chance to catch up on reading a bunch of articles that I’ve saved for later, as well as just kind of browse around, whether it be on Medium or other places. I am convinced that AI slop is a real and still fast-growing problem.</p>
+<p><a href="https://medium.com/the-daily-draft/the-obvious-ways-to-spot-someone-secretly-writing-with-ai-f36ce8d4d715">The Obvious Ways To Spot Someone Secretly Writing With AI</a></p>
+<p>It’s not that I’m against using AI for writing. In fact, the opposite is true. I think it can really help in many cases and I’ve used it for sure. And it’s not even the fact that, when browsing a lot of these articles, I’m seeing all kinds of cringe-worthy patterns that I often see in AI-generated writing, for example. In fact, I sometimes think there’s a part of me and others’ aversion to AI Slop that’s maybe too extreme. The technology is relatively new, and everyone is understandably excited about what it can do, so we’re going to be all riding this bumpy road together.</p>
+<p>That being said, craft is still craft. Good deep thinking is still good deep thinking. And it is a real concern for me if every other article that I’m intrigued about reading is devoid of a personality or richness in information: a pattern we may often see in text generated by AI tools without much subsequent sculpting.</p>
+<p>Even this mostly rambly post that I’m writing now is something that I would rather read from someone else than a lot of the slop that has shown up in my queue.</p>
+<p>Therefore, I’m gonna try a tiny experiment: something that I’ve verbally mentioned to a few of my friends and colleagues. If they see a certain check mark by text I give them, it means that it’s something that has really come from me. It doesn’t matter if it has been generated with the help of AI or not. The point is, it’s something that I’m putting my ✅ stamp on, that I’m saying that this is worth you maybe taking a look at. It may not be perfect, may not be the most concise thing in the world, but at least you know it’s from me and it’s my actual thinking that I stand by as my own.</p>
+<p>Here’s to sincerely hoping the pendulum starts to swing away from the slop, and ‘till next time! 🏔️</p>
+<p>(Also, I just joined a plain text enthusiast group <a href="https://pkm.social/@ellane">here</a> via <a href="https://medium.com/u/7c1ab936a5cc">Ellane W</a>. Look forward to seeing what goes on there!)</p>
+<p>✅</p>
+</article></div><script>window.__ORDER__={"slug":"tech-habits-life-without-order","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>

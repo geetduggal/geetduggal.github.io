@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
+    <title>Tech Habits- Tiny Experiments</title>
+    <script>
+      // The published viewer follows the visitor's OS light/dark by default
+      // ("auto"); a saved override (from the in-session toggle) wins. Resolved
+      // before first paint to avoid a flash; theme.ts keeps it live afterwards.
+      try {
+        var pref = localStorage.getItem("order.theme") || "auto";
+        var resolved = (pref === "auto")
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : pref;
+        document.documentElement.dataset.theme = resolved;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/order-home/assets/index-TfcIvxRp.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BXhAVYCs.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>Tech Habits: Tiny Experiments in Note Apps, AI, and Terminals</h1>
+<p><em>2026-06-13</em> — <a href="https://medium.com/@geetduggal/tech-habits-tiny-experiments-in-note-apps-ai-and-terminals-5cb7af54dc75">read on Medium</a></p>
+<h4>A brief update on some recent experiments and a preview of new ones I’m trying out</h4>
+<p><img src="/order-home/tech-habits-tiny-experiments-in-note-apps-ai-and-terminals/image-rPs_-TSzzVCYTno7.jpg" alt=""></p>
+<p><em>Photo by <a href="https://unsplash.com/@avillalonv?utm_source=medium&utm_medium=referral">Luis Andrés Villalón Vega</a> on <a href="https://unsplash.com?utm_source=medium&utm_medium=referral">Unsplash</a></em></p>
+<p>Early in the year I posted about some<a href="https://medium.com/@geetduggal/tech-habits-can-you-johnny-decimal-without-the-decimal-31927f0f2e82">tiny experiments that stuck and did not</a>, and thought I’d check in with a mid-year update. Here’s a list of experiments in descending order of <a href="https://www.cncf.io/project-metrics/">maturity</a> that have stuck (graduated, 🎓), in progress (incubating, 🐣), and on the deck (sandbox, 🏖️). And a brief sentence or few on each.</p>
+<h3>Graduated</h3>
+<ul>
+<li>🎓 <a href="https://medium.com/@geetduggal/the-most-useful-ios-shortcut-for-obsidian-and-beyond-revisited-9692e62c993a">iOS Shortcuts for quick capture</a> &amp; <a href="https://medium.com/@geetduggal/capture-to-do-d040e1bae4a6">capture mixed media in one place</a></li>
+</ul>
+<p>This particular one has been going strong for quite a long time. I’ll probably do an update soon on how I’ve slightly modified it to work with my more evolved setup, but the basic idea is the same. There’s nothing that quite beats a quick action button popping up an OS-native text box to capture via voice or text something on your mind so you don’t forget! The one thing that gave this a run for its money was the fact that I use my <a href="https://medium.com/@geetduggal/tech-habits-ditching-digital-capture-and-why-claude-hasn-t-killed-obsidian-for-me-3f912b569b37">Pocket Bullet Journal for a lot of capture</a> these days, which demoted digital capture from being my primary to my secondary method. I still use digital capture all the time. Ultimately, my digital space is my source of truth.</p>
+<ul>
+<li>🎓 ‘Digital doodles’ and similar <a href="https://medium.com/@geetduggal/satisfy-the-beast-science-the-sh-t-out-of-difficult-tasks-and-habits-18c4e3d2f04a">working memory</a>-inspired techniques</li>
+</ul>
+<p>I also can’t understate how knowing that the mind has a practical limit of how many things it can keep in working memory, on the handful of 3 to 6, has been immensely valuable. It changes the way I think about a lot of what’s coming into my mind. If I’m not in the mood to pull out my phone or even a pen and paper, I’m just processing thoughts. Just knowing that I generally have a handful of registers that I can load up and play with concepts at any given time makes it really easy for me to have fun and play in the sandbox that is my brain. It also makes it convenient to cue up things that I eventually want to capture. Could be items needed from the grocery store, things to do during the day, or priorities for the day. It’s also a critically useful tool when I come up with systems for myself. For example, how I organize my life into six areas, which we’ll talk about in a second. That’s the a reason why I kept that number limited and why I am also attracted to the Johnny Decimal system.</p>
+<ul>
+<li>🎓 <a href="https://medium.com/@geetduggal/tech-habits-daily-highlights-as-all-day-events-e70d239540ea">All-day events &amp; highlights</a></li>
+</ul>
+<p>This is low-key one of the most powerful techniques I’ve used, along with the Frontier method (below). There are slight refinements to this over time. I’ve been through phases where I wanted to put a highlight for literally every single day. I realized that maybe too granular in many cases, so I allowed for multi-day events. Now I’ve kind of converged on something that makes this feel the most natural in my homemade app order, where I essentially call all-day events “notable updates”. These are things that may belong to a project or an area of interest, and you’re providing kind of an update on it that’s notable enough that you would like to see it very visible on a month, year, or season view. This has proven invaluable for seeing my activity at multiple scales of time, all in one unified interface, which is the calendar.</p>
+<ul>
+<li>🎓 <a href="https://medium.com/@geetduggal/have-you-been-using-your-calendar-all-wrong-9e686de42237">Lists and calendar as primary interfaces</a></li>
+</ul>
+<p>This is the <em>raison d’être</em> for <a href="https://medium.com/@geetduggal/order-a-calendar-first-notebook-for-mapping-your-world-abc0970494a5">Order</a>. There’s almost nothing I can&#39;t do without a solid calendar and well curated lists.</p>
+<p><a href="https://medium.com/@geetduggal/order-a-calendar-first-notebook-for-mapping-your-world-abc0970494a5">Order: A Calendar-First Notebook for Mapping Your World</a></p>
+<ul>
+<li>🎓 Plain text with <a href="https://medium.com/@geetduggal/introducing-the-obsidian-kanban-plus-plugin-3c970c21141a">Obsidian and Kanban</a></li>
+</ul>
+<p>While this has graduated, I would say that the role of Kanban and the Kanban Plus plugin is largely being supplanted by my homegrown app Order and the first-class list support. That being said, that plugin was essentially the foundation for how I think about lists in Order.</p>
+<p>Most importantly, I think Obsidian is still arguably the best plain text editor across desktop and mobile on the planet (not including terminal-based editors, for which I have a particular soft spot). I’ll also note that my daily use of Obsidian has decreased mostly due to my use of Order. I tend to use Obsidian a lot for more obscure kinds of plain text edits and plugins that I find a lot of value in, like the Readwise plugin, Excalidraw, etc. For general-purpose note navigation, I prefer my own homegrown app at this point, but we’ll see. I’m still on the honeymoon period there!</p>
+<ul>
+<li>🎓 <a href="https://medium.com/@geetduggal/atlas-journaling-a-unified-approach-for-seeing-the-big-picture-and-acting-with-focus-78804f26f5ab">Areas and Atlas Journaling</a></li>
+</ul>
+<p>Enough said here between what I’ve said now and all the links above.</p>
+<ul>
+<li>🎓 <a href="https://medium.com/@geetduggal/want-extraordinarily-useful-and-timeless-notes-build-a-personal-knowledge-encyclopedia-bc8b7fb09829">Wikipedia style articles for spaces</a></li>
+</ul>
+<p>This is also one that I can’t stress enough how valuable it’s been to me. It’s a great guiding principle for deciding when to actually create a note out of something. And when you combine it with the concept of notability (which is a notion in Wikipedia), it can become very powerful.</p>
+<p>I think one interesting note on this, since I wrote the first article on the topic, is that with modern AI techniques, it’s becoming more popular to have <a href="https://x.com/karpathy/status/2039805659525644595">AI actually generate your personal knowledge base</a>, if you will. I don’t think this is unlike other trends we’ve seen in the past, where encyclopedias or other books, for example, would replace the old school style commonplace book that people would keep, etc.</p>
+<p>However, I’m a big believer that writing things in your own words is not only an aid to memory and a form of active learning but also adds something new to the world if you choose to share it. I’m pretty bullish on the idea of building your own personal knowledge bases. You don’t have to be comprehensive about it, but using Wikipedia or using encyclopedia-style conventions as a guiding principle and making something your own will probably be one of the most valuable things I’ve experimented with in this space.</p>
+<ul>
+<li>🎓 <a href="https://medium.com/@geetduggal/weather-resistant-productivity-2a90c4357068">Weather resistant productivity principles</a></li>
+</ul>
+<p>The salient takeaway, I think, from my experiments and thinking with this term I’m calling “weather-resistant productivity” is that we all have to acknowledge that there will be multiple applications and methodologies that fit into our entire workflow. In that sense, we are all managing a workflow of heterogeneous tools and techniques.</p>
+<p>The idea behind weather-resistant productivity is just, either mentally or, better yet, in text, to have a description of what you’re doing. That helps you better evaluate your workflow, and that’ll help you better evaluate whether or not you should even be making changes or conducting experiments.</p>
+<p>I think another huge thing I got out of this work is that whenever you’re working on a project or maintaining information in a space of interest, it’s good to focus on formats that’ll stand the test of time. I actually have found that that’s surprisingly hard to do, and it always takes a little extra effort to make sure that you have saved from your work salient outputs. Often times, that means converting a PowerPoint or a keynote into a PDF, or the same thing with a webpage you’ve worked on.</p>
+<ul>
+<li>🎓 Interstitial journaling via voice</li>
+</ul>
+<p>This might be very personal, but for me, there’s always been something about just using the Voice Memos app on the iPhone these days, combined with transcription and AI capabilities That has proven to be very useful just for processing a lot of thoughts and centering me on what I feel really matters. It tends to occur between big events of the day or especially in the evenings when I’m walking the dog. I think, especially with voice AI becoming more popular, this will probably be in practice what we see more and more people do, because it’s so natural just to speak.</p>
+<p>That being said, there’s something even more special about talking into the void, so to speak, which is more akin to traditional journaling by hand. That I think remains very powerful and will always be in my toolbox.</p>
+<h3>🐣 Incubating</h3>
+<ul>
+<li>🐣 <a href="https://medium.com/@geetduggal/tech-habits-can-you-johnny-decimal-without-the-decimal-31927f0f2e82">Johnny Decimal without decimal</a></li>
+</ul>
+<p>I’m tempted to put this one in Graduated because it has been a resounding success. One of the critical ideas behind my Homegrown app is to have a limited number of areas and a limited number of categories within the area, and that the file organization should be pretty much exactly like what Johnny Decimal suggests. If you haven’t already checked out his workbook or his materials, they are absolutely excellent. Clearly someone who has thought about this stuff for years and has come across some timeless concepts.</p>
+<p>That being said, I think there was just an aesthetic issue I had, and I still have, with the Decimals, and that’s why I conducted this experiment. For me, I found out that the folder names stuck in my head just fine. The numbers were nice but a little bit difficult to digest aesthetically.</p>
+<p>That being said, every once in a while I still just wonder what it would be like if I just put numbers in front of everything in my current system. It’s not hard to go back and forth for me. I’ve always designed it that way, so I’ll always argue that my system is quite similar to Johnny Decimal in many ways. The largest exceptions would be the Decimal and the fact that the index is distributed across markdown files as opposed to all-in-one.</p>
+<ul>
+<li>🐣 <a href="https://medium.com/@geetduggal/this-one-idea-changed-the-way-i-organized-my-notes-forever-f293371a0d5b">Notable Folders with Johnny-Decimal(ish) archives</a></li>
+</ul>
+<p>Also very close to graduating. I still feel I’m iterating a bit on where active projects and more fleeting notes live in terms of file structure and hierarchy, but generally it’s been a converging process. My current modus operandi is that fleeting notes generally go in a default notable folder, and that’s been working pretty well. That notable folder just fits somewhere within my Johnny Decimal system, which generally could be considered my Archives.</p>
+<h3>🏖️ Sandbox</h3>
+<ul>
+<li>🏖️ <a href="https://medium.com/@geetduggal/tech-habits-how-i-use-my-pocket-bullet-journal-as-a-pocket-atlas-679e5a368faf">Pocket Atlas</a></li>
+</ul>
+<p>I’ve been through a number of Pocket Bullet Journal notebooks, and they’ve proven very valuable. I really like it, though I’m still finding the right balance between digital and physical capture. The Pocket Bullet Journal and having a sort of atlas within it have been the written system I’ve stuck with for the longest time, and I feel like it’ll always have a place in my system. It is currently still my primary form of capture, and I really love how it helps to slow me down while keeping my digital medium as a source of truth.</p>
+<ul>
+<li>🏖️ Single Purpose Devices: <a href="https://medium.com/@geetduggal/tech-habits-what-a-70-pocket-ereader-revealed-about-notes-ai-and-what-actually-matters-6ca65ac8908f">Pocket eReaders &amp; Retro Gaming</a></li>
+</ul>
+<p>This is an early experiment that’s still ongoing. What I’m most excited about in this world is having a small set of portable, useful, single-purpose devices that have some timeless content on them for me to browse in a way that’s completely offline and relaxing My next step is to define what I call my main SD card. Much like for AI uses, I keep a main prompt that I use for everything. This SD card is meant to be the one SD card that has a lot of my games, books, certain videos, and other text files that I would love to have on me anywhere I don’t have an internet connection or a computer.</p>
+<ul>
+<li>🏖️ 🗄️ <a href="https://medium.com/@geetduggal/tech-habits-property-folders-a-linear-calendar-view-in-obsidian-a-plain-text-renaissance-9252bad51a46">Flattened Johnny Decimal</a></li>
+</ul>
+<p>The idea behind this experiment was: as much as I like Johnny Decimal, can I keep the hierarchy outside of traditional file system folders and take advantage of the sort of flattened structure that many Obsidian enthusiasts swear by? This was fun, and there were a lot of benefits obtained from it, but ultimately the portability and cleanliness I find in keeping the actual hierarchy of folders far outweigh the in-app benefits I get from having a flattened structure, for example in Obsidian.</p>
+<p>I also, like with the one big text file experiment, OBTF, ran into a number of cases where the sheer number of files in one directory was causing slowdowns when I opened that directory in certain apps. In the end, with literally a click of a button, I was able to move my files all back into their folders, and pretty much nothing changed. My homegrown app order takes it one step further and helps maintain that folder structure without you even thinking about it, so yeah, I’m pretty much ready to archive this experiment, but it was definitely fun while it lasted. The article above goes into a lot of details for why I would even do it in the first place.</p>
+<ul>
+<li>🏖️ <a href="https://medium.com/@geetduggal/tech-habits-brainstorming-a-plain-text-habits-tool-suite-dd28edcb48a9">Thousand Words</a></li>
+</ul>
+<p>This is also an interesting ongoing experiment. I’d say once every two to three weeks I’ll just run my 1,000 words Claude skill, and it really helps clean up a lot of my information. It also adds a lot of relevant context to people, projects, and spaces that have been involved with in chats and in other contexts and helps me automatically organize it.</p>
+<p>The most common thing I use that’s a part of my main prompt now is actually importing my pocket bullet journal entries automatically with the plug-in. I think this is an interesting ongoing experiment, but I would say that at this point it’s a sort of relatively straightforward use of AI techniques, and I don’t do it on the daily.</p>
+<ul>
+<li>🏖 ️<a href="https://medium.com/@geetduggal/tech-habits-todo-txt-never-looked-so-good-and-a-new-type-of-calendar-view-c1ecc51d64ed">todo.txt</a></li>
+</ul>
+<p>I recently wrote about this, so it’s too early to give a verdict, but looking forward to seeing how this plays out</p>
+<ul>
+<li>🏖️ Notable Terminals</li>
+</ul>
+<p>This is a freshly sprouting brain fungus.</p>
+<blockquote>
+<p><strong>brain fun·gus</strong> | brān ˈfəNGɡəs | 
+noun
+an inevitable and mushrooming preoccupation of the mind with something ostensibly unreasonable. <em>He let a simple expiration date on a package of shredded cheese turn into a brain fungus on food preservation in general.</em></p>
+</blockquote>
+<blockquote>
+<p>origin
+circa 2005 after a discussion with roommates concerning the potential of fungus to form on shredded cheese after the expiration date. unlike a <a href="https://www.urbandictionary.com/define.php?term=mind+virus">mind virus</a>, a brain fungus is generally not highly contagious</p>
+</blockquote>
+<p><a href="https://medium.com/@geetduggal/editor-first-vs-terminal-first-for-development-efea6b02d294">My first Medium post ever</a> (back when I was not really writing regularly) was about how I’m a terminal-first kinda person. A decade later, I still am! Don’t get me wrong, I still love my apps. I have written extensively about Obsidian and even made my own note taking app at this point.</p>
+<p>That being said, there’s nothing like a well done terminal to quickly browse, execute, and get something done. I could spend hours in one, and I absolutely love the renaissance we are experiencing with well-designed terminal apps.</p>
+<p>The work here was motivated by the fact that I often want to quickly launch or work on a terminal in a particular directory I’m in somewhere else. After making Order, I found this to be even moreso the case. At first I had a link help me open up a brand new terminal but I thought it would be even more frictionless and pleasant of an experience to just have my Notable Folder ‘flip’ and become a terminal in the directory.</p>
+<p>It looks kinda like this (here you can just see how Claude Code can become a part of your note taking experience instantly), and you can just as easily run Vim etc. I accomplished this by developing a small Rust module that acts as a <a href="https://en.wikipedia.org/wiki/Pseudoterminal">PTY manager</a> to the React frontend.</p>
+<p><img src="/order-home/tech-habits-tiny-experiments-in-note-apps-ai-and-terminals/image-o-7rNbnC7yKGoqn1GCNlQQ.png" alt=""></p>
+<p>I can easily make it full screen, and hop between themes depending on my mood and everything <em>just works in context</em>. I’ve used it so much since making it that I made it a part of the initial alpha release.</p>
+<p><img src="/order-home/tech-habits-tiny-experiments-in-note-apps-ai-and-terminals/image-_0woO26m5p2-J9cQKp5Sag.png" alt=""></p>
+<p><img src="/order-home/tech-habits-tiny-experiments-in-note-apps-ai-and-terminals/image-cpJsH9gPM340vqUB9zJRjQ.png" alt=""></p>
+<p><img src="/order-home/tech-habits-tiny-experiments-in-note-apps-ai-and-terminals/image-Tzfwy1I9QZ4jSN9jkZIYaw.png" alt=""></p>
+<p><img src="/order-home/tech-habits-tiny-experiments-in-note-apps-ai-and-terminals/image-vgrakXMPT6JTGCOltrVPcw.png" alt=""></p>
+<p><img src="/order-home/tech-habits-tiny-experiments-in-note-apps-ai-and-terminals/image-jd8D_1jAv1fGSR5C-ZGZ4g.png" alt=""></p>
+<p><img src="/order-home/tech-habits-tiny-experiments-in-note-apps-ai-and-terminals/image-oBriQSeHVkkakkT4Wtrklg.png" alt=""></p>
+<ul>
+<li>🏖️ Conversational Vaults</li>
+</ul>
+<p>One area that I’m also very interested in exploring, given my extensive use of voice journaling and voice mode in AI apps, is a seamless, clean way to work with voice chat on my vault. I have not yet come across a way that does this very well, but I’m also not tempted to develop one because I think it’s really just a matter of time.</p>
+<p>The main problem is being able to run local or cloud models on files that reside on your phone or other mobile device locally, in a way that works really well with effective techniques for conversational voice interaction. To date, I found that Claude’s voice mode is the one that I like the best, but I think all of the major AI companies are working on improving their conversational voice capabilities. In particular, I’m very excited to see what Apple will develop within the next year, especially given what we heard at WWDC and what we were expecting from improvements in their AI techniques.</p>
+<p>The real key is that Apple has the ability to index a lot of your information locally on your device and on your phone in a way that, at least on paper, is cleaner, faster, and more secure. The main benefit of this is that I can see that, if there is a voice mode that works really well on my local file system on the phone, and I can edit and modify them, I could get a lot of information from my vault and even modify it without even touching the internet. I feel like we’re very close to essentially operating systems doing this very well natively on mobile. They may already kind of do it to an extent. I haven’t found a technique I like on iOS yet, but if you want to know more about this or are curious about what Apple’s got coming up, my favorite tech podcast and arguably the best tech podcast on the planet, The Vergecast, has a nice discussion on it.</p>
+<p>Thanks for coming along with me on this journey and I love learning from all of you and your techniques to help inspire me along the way. ‘Till next time! 🏔️</p>
+</article></div><script>window.__ORDER__={"slug":"tech-habits-tiny-experiments-in-note-apps-ai-and-terminals","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>

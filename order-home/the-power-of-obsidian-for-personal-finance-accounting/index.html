@@ -17,12 +17,166 @@
         document.documentElement.dataset.theme = resolved;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-DNmSa4jU.js"></script>
+    <script type="module" crossorigin src="/order-home/assets/index-TfcIvxRp.js"></script>
     <link rel="stylesheet" crossorigin href="/order-home/assets/index-BXhAVYCs.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>The Power of Obsidian for Personal Finance Accounting</h1>
-<p><em>2024-01-05</em> — <a href="https://medium.com/@geetduggal/the-power-of-obsidian-for-personal-finance-accounting-f00bbcb1b66f">read on Medium</a></p>
+<p><em>2024-01-06</em> — <a href="https://medium.com/@geetduggal/the-power-of-obsidian-for-personal-finance-accounting-f00bbcb1b66f">read on Medium</a></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2400/1*IZd7wGys7edTy41JxNd9sA" alt=""></p>
+<p><em>Photo by Firmbee.com on Unsplash</em></p>
+<p>I built a basic personal finance accounting system for myself in Obsidian’s mobile app in less than a day over my holiday break. It is already super useful to me. But what excites me the most is the potential for what it could become using a variety of tools in Obsidian.</p>
+<p>When I was in high school (twenty-five-ish years ago 🤯), I landed an internship at a rapidly growing health information technology company called Cerner. On my first day, I was thrown into typical corporate culture with a whole onboarding program, spending $ with credit for swag, and … setting up my financials.</p>
+<p>I quickly learned that a personal finance management program called ‘Microsoft Money’ could automatically grab transactions and other information directly from my bank. It sported a much cleaner, slick interface than the various ‘Web 1.0’ sites of yore, and it could combine my financial data from multiple sources into one single view. Most importantly, it provided me an enjoyable way to regularly check on the activity of my spending and saving.</p>
+<p>If there’s anything you should regularly check on, it’s probably your finances. A journal of how you earn and spend your money may be as close as you can get to a truthful, auditable record of your activities. It may even be an indicator of what you <em>really</em> value vs what you’d <em>like</em> to value. This is a lesson I am still learning, and I’m convinced that the right medium to explore my finances can be a big motivator to pay attention to them in the first place.</p>
+<p>In the past Microsoft Money was that medium. I eventually abandoned it as it ended up having its own shortcomings (bank account compatibility being the biggest issue I had). I subsequently tried to use Mint.com but ultimately ran into similar issues and instabilities with synchronization of my accounts. Worse, I was in ‘Web 2.0 advertisement hell’ and in an interface that I really didn’t find much more appealing or useful to me than going to individual account websites. (Microsoft Money is sunset and Mint.com is following suit literally as I write this.)</p>
+<p>So I stopped using personal finance management software and, in turn, stopped paying attention to my personal finances. The consequences of this for me were certainly negative. Subscription fees added up without my knowledge. Lack of planning and/or budgeting led to short-term vs. long-term thinking with respect to spending. Crucially, I think I subconsciously beat myself up for not paying attention to my finances. Frankly, I thought it would be boring and potentially not useful to “look at my books” or even bookkeep in the first place.</p>
+<blockquote>
+<p>“And some things that should not have been forgotten were lost. History became legend. Legend became myth. And for two and a half thousand years, the ring passed out of all knowledge.” ― Galadriel in The Lord of the Rings: The Fellowship of the Ring</p>
+</blockquote>
+<p>A couple of months ago I decided this negligence needed to end. Somehow I should be motivated to track my finances and have fun in the process. In the last quarter century or so (🤦‍♂️), I’ve learned I thing or two that helped me come up with the following list of requirements for a new personal finance management system.</p>
+<p>I need to be able to:</p>
+<ul>
+<li>track spending by category (eg. family childcare, home accessories, home improvement, …),</li>
+<li>look up specific transactions (eg. drill down any particular category to see what expenses contributed to them),</li>
+<li>visualize an overview of assets, expenses, liabilities via tables and charts,</li>
+<li>ensure asset accounts have enough money for expected expenses at any time of the month,</li>
+<li>rely on the underlying format to stand the test of time (ideally it is readable and plain text-centric),</li>
+<li>analyze and enter data in a frictionless and mobile-friendly way, and</li>
+<li>share this information in an understandable and customized way for myself, my family, or others as appropriate.</li>
+</ul>
+<h2>Basics of accounting &amp; brief introduction to Ledger</h2>
+<p>This section is, at its core, a shameless advertisement to watch this excellent presentation:</p>
+<p>I’m a newbie when it comes to accounting, and I really like how this presentation overviews some basics of accounting. The presentation also illustrates how they apply when using a Unix command line interface (CLI) utility for personal finance called ‘Ledger’.</p>
+<p>At its core, you account or “keep books” to have an accurate understanding of “what you have”. Bookkeeping broadly involves keeping track of what you’re owed and what you owe others: how various streams of your income contribute to your expenses and what you can spend money on.</p>
+<p>For the purposes of this article, your <strong>Ledger journal</strong> can be thought of as ‘your books’. It is a record of all your transactions in a useful and human-friendly plain text format.</p>
+<p>A <strong>transaction</strong> is a collection of credit and debits to and from various accounts that occurs at a particular time.</p>
+<p>An <strong>account</strong> is an abstract label along with a total amount of something in it.</p>
+<p>A simple example of a transaction in Ledger journal format would be:</p>
+<pre><code>
+2024–01–01 Amazon (Tetely Tea and Dark Chocolates)
+ Expenses:Groceries $15.54
+ Liabilities:Credit:VisaChasePrime $-15.54
+</code></pre>
+<p>This transaction simply encodes that we took money (debited) from a ‘Liabilities’ account (in this case with a ‘sub account’ labeled with the credit card used) and added (credited) it to an ‘Expenses’ account (in this case with a ‘sub account’ labeled with the type of expense).</p>
+<p>Notice that the sum of credits and debits in the transaction is 0. This practice of book keeping is called <strong>double entry accounting</strong>, and it is useful to get an accurate view of where money goes to and from and to catch errors in accounting.</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2400/1*gQvN0NzjCBWzCfgChSbs-g" alt=""></p>
+<p><em>Gringotts Bank, Shay DeSimone on <a href="https://www.flickr.com/photos/escriteur/17355097815">Flickr</a></em></p>
+<p>I use the term ‘abstract’ to describe the account name because when you keep your books you have flexibility to create accounts “from thin air” however you like. For example, you may not have an actual bank account you keep for tracking grocery expenses (here abstractly referred to as ‘Expenses:Groceries’), but it is useful for you to understand how you spend your money.</p>
+<p>Generally speaking, in “Ledger land”, there are a 5 broad types of accounts:</p>
+<ul>
+<li>Assets (eg. bank accounts, cash on person, investments)</li>
+<li>Income (eg. paychecks, gifts, interest earned)</li>
+<li>Expenses (eg. groceries, taxes, subscriptions, clothing)</li>
+<li>Liabilities (eg. mortgages, credit cards, car loans)</li>
+<li>Equity (opening balances, general catch-all)</li>
+</ul>
+<p>The presentation linked above and other documentation online (including the Ledger documentation) provide more useful detail and examples. In short, if you have a list of transactions like the one shown above for all of your accounts, then you possess the foundation for managing your personal finances in a principled way using the Ledger CLI tool.</p>
+<p>The beauty of the Ledger CLI is that it follows the UNIX philosophy of solving one problem well. If you have your transactions listed in the simple and readable format above (one of my criteria above!), this tool will provide you the basic nuts and bolts you need to help better analyze your finances. For more on keeping a Ledger journal, see the ‘Keeping a Journal’ section of the Ledger documentation. Here are a few excerpts from the documentation from the documentation for motivation:</p>
+<blockquote>
+<p>Ledger is an accounting tool with the moxie to exist. It provides no bells or whistles, and returns the user to the days before user interfaces were even a twinkling in their father’s CRT.</p>
+<p>What it does offer is a double-entry accounting journal with all the flexibility and muscle of its modern day cousins, without any of the fat. Think of it as the Bran Muffin of accounting tools. 
+…
+The most important part of accounting is keeping a good journal. If you have a good journal, tools can be written to work whatever mathematical tricks you need to better understand your spending patterns. Without a good journal, no tool, however smart, can help you.
+…
+Ledger has been designed to make data transactions as simple as possible, by keeping the journal format easy, and also by automagically determining as much information as possible based on the nature of your transactions.
+…</p>
+</blockquote>
+<h2>The power of Obsidian and Plain Text Accounting</h2>
+<p>A tool like Ledger falls under the broader category of <a href="https://plaintextaccounting.org/">plain text accounting</a>and itsjournal format is similar across many tools. Ledger itself satisfies most of my requirements. However, in my exploration there are two key requirements that are left unsatisfied:</p>
+<ul>
+<li>analyze and enter data in a frictionless and <em>mobile-friendly</em> way, and</li>
+<li>share this information in an understandable and <em>customized</em> way for myself, my family, or others as appropriate.</li>
+</ul>
+<p>Ledger’s CLI is great, but it’s not meant for use on the phone and lacks other visuals that may be nice to have (e.g. charts). In addition, there is specific information on my Ledger journal data that I would like to extract that is better suited to be customized just for me. </p>
+<p>For example, I would like to share with my wife, at a glance, the sum of money we should transfer from investment accounts to our checking account based on expected upcoming expenses. A detailed explanation of why should be easily available and auditable as well. There have been numerous times where we both have essentially manually done this (myself related to remodeling expenses). The ability to create this summary in a relatively automated and precise way would be amazingly useful. </p>
+<p>At first I thought spreadsheets would satisfy a lot of these concerns, but I started to realize that spreadsheets, as intuitive as they are, can get complicated and the functionality I desire is often more cleanly and directly accessed from my Ledger journal coupled with some <strong>basic code and notes</strong>.</p>
+<p>This is where Obsidian starts to flex its muscles. Due to the tool’s power and flexibility, I tend to go about things in two broad steps: (1) think clearly about the problem I’m trying to solve, and (2) piece together the right files and tools in Obsidian to do the thing.</p>
+<p>For example, if all I want is a simple summary of all my account &amp; sub-account balances and how they add up (one problem I’m trying to solve), I could directly use the <a href="https://github.com/tgrosinger/ledger-obsidian">Obsidian Ledger plugin</a>. However, it currently lacks visualization in a mobile-friendly way. I realized I could piece together my Ledger journal file with the <a href="https://github.com/blacksmithgu/obsidian-dataview">Obsidian dataview plugin</a> to do just that.</p>
+<p>The dataview plugin is powerful in the sense that you can execute ‘arbitrary javascript code’ directly in your Obsidian note and see the results in a friendly way. While the plugin has no built-in capabilities to access a Ledger journal, it is fairly straightforward to obtain the summary of account balances in a data pipeline of three steps:</p>
+<ol>
+<li>Parse ledger file transactions and impute necessary data for double entry accounting</li>
+<li>Group transactions by account and sum credits and debits</li>
+<li>Visualize the result in a table in my Obsidian note</li>
+</ol>
+<p>For example, a Ledger journal could look like:</p>
+<pre><code>alias A=Assets
+alias B=Assets:Banking
+alias C=Liabilities:Credit
+alias E=Expenses
+alias I=Income
+
+2023-12-15 Opening balances
+    C:ChasePrime $-200
+    C:AmexPlatinum $-100
+    B:BofASavings $18000
+    B:BofAChecking $1200
+    Equity:OpeningBalances
+
+2023-12-15 Paycheck
+    B:BofAChecking $1000
+    I:Work
+
+2023-12-18 Poirot on Amazon Prime
+    E:Family:Entertainment $6
+    C:ChasePrime
+
+2023-12-19 Common Savings to Checking
+    B:BofAChecking $1000
+    B:BofASavings
+
+2023-12-19 Monthly earnings
+    B:CapitalOneChecking $800
+    I:SideHustleLLC
+
+2023-12-21 Trader Joes
+    E:Family:Groceries $50
+    C:AmexPlatinum
+
+2023-12-25 Apple
+    E:Family:Subscriptions $10
+    C:AmexPlatinum
+
+2023-12-26 Netflix
+    E:Family:Subscriptions  $15
+    C:AmexPlatinum
+
+2023-12-27 Home Depot
+    E:Family:Homebuilding $45
+    C:ChasePrime
+
+2023-12-27 Tetley Tea
+    E:Family:Groceries $16
+    C:AmexPlatinum
+
+2023-12-28 Readwise
+    E:Family:Subscriptions $9
+    C:ChasePrime
+
+2023-12-29 Safeway
+    E:Family:Groceries $15
+    C:AmexPlatinum
+</code></pre>
+<p><img src="/order-home/the-power-of-obsidian-for-personal-finance-accounting/image-EvwLv0VifuzIlyoMmqg2lg.png" alt=""></p>
+<p><em>Sketch of a pipeline for creating an account balance summmary in Obsidian</em></p>
+<p>And the final resulting table can look something like:</p>
+<p><img src="/order-home/the-power-of-obsidian-for-personal-finance-accounting/image-W1qjczMQ2lcedUnC1d83Rg.png" alt=""></p>
+<p>The amount of code to do this is so small it can be almost viewed in one screenshot on my phone:</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:2400/1*0nEed9IHqw_YS5lzLcAjXA" alt=""></p>
+<p>The code is far from perfect but it does produce the output I was looking for and I didn’t have to try very hard.</p>
+<p>I also want to emphasize that I am of course not limited to using only the Ledger journal format. I’m just amazed that I could get what I wanted from my Ledger journal directly from my phone. I didn’t have to develop a new module. I didn’t need to request features for another module/tool. And I got to have fun while doing it.</p>
+<p>This is where Obsidian shines. It allows for customization that goes way beyond spreadsheet formulas. For example, I could conceivably bypass Ledger all together and use the basic features of the dataview plugin and store entries in files representing transactions, or use the <a href="https://github.com/tgrosinger/advanced-tables-obsidian/blob/main/docs/help.md">Advanced Tables</a> and/or <a href="https://github.com/klaudyu/CalcCraft">CalcCraft</a> plugins to store my data. Or, better yet, use these plugins to <em>compliment</em>and <em>supplement</em> analysis of the data in my Ledger journal.</p>
+<h2>PTPL 085: CalcCraft is the Obsidian Tables Plugin I Was Looking For!</h2>
+<h3>Did you know there&#39;s a plugin for doing simple calculations in Markdown tables in Obsidian? And that there&#39;s a serious…</h3>
+<p><a href="http://www.blog.plaintextpaperless.com">www.blog.plaintextpaperless.com</a></p>
+<p>The possibilities seem so endless that it is almost inevitable that I have to start from the basics. So I repeat for myself:</p>
+<ol>
+<li>think clearly about the problem I’m trying to solve, and</li>
+<li>piece together the right files and tools in Obsidian to do the thing.</li>
+</ol>
+<p>Perhaps I’ll write another article with snippets on how I solve other specific problems for me later, but that not why I’m inspired to be writing this right now. The reason I posted the code as a screenshot above is to emphasize that the code itself is not the point.</p>
+<p>The point is that I feel like with Obsidian I’ve been empowered in a special way to solve the problems that matter to me related to personal finance management. And I get to have fun in the process. The screenshot is therefore intended for inspiration and a reminder of the power of Obsidian.</p>
+<p>On a similar note, my hope in writing this is article is that I will find some camaraderie with others in the plain text accounting community. I am excited to hear about how you solve your personal finance problems with Obsidian, and if there are interesting alternative ways to think about personal finance management. Until then, I will excuse myself from further writing and make sure my books are up to date.</p>
 </article></div><script>window.__ORDER__={"slug":"the-power-of-obsidian-for-personal-finance-accounting","dataUrl":"/order-home/data.json"}</script>
   </body>
 </html>

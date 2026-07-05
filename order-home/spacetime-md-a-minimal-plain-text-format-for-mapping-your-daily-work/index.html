@@ -17,155 +17,166 @@
         document.documentElement.dataset.theme = resolved;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-DNmSa4jU.js"></script>
+    <script type="module" crossorigin src="/order-home/assets/index-TfcIvxRp.js"></script>
     <link rel="stylesheet" crossorigin href="/order-home/assets/index-BXhAVYCs.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>spacetime.md: A Minimal Plain Text Format for Mapping Your Daily Work</h1>
-<h2>Hold where your work lives and when it happens in place you can call home: in a place where Johnny-Decimal-style organization meets your calendar.</h2>
+<p><em>2026-06-19</em> — <a href="https://medium.com/@geetduggal/spacetime-md-a-minimal-plain-text-format-for-mapping-your-daily-work-b3e03e2621be">read on Medium</a></p>
+<h4>Hold where your work lives and when it happens in a place you can call home: in a place where Johnny-Decimal-style organization meets your calendar.</h4>
 <p><img src="/order-home/spacetime-md-a-minimal-plain-text-format-for-mapping-your-daily-work/image-49A94nsUw5IYMZp_pLqz-w.png" alt=""></p>
 <p>What if everything you organize:</p>
 <ul>
 <li>every project,</li>
-<li>every note, and</li>
-<li>every event across every season of your life</li>
+<li>every note, and</li>
+<li>every event across every season of your life</li>
 </ul>
-<p>could fit in a plain text file you could read at a glance, edit by hand, and never be locked out of?</p>
+<p>could fit in a plain text file you could read at a glance, edit by hand, and never be locked out of?</p>
 <p>If you’ve spent time with me, you know I’ve have spent a month or so building a calendar-first notebook app called <a href="https://medium.com/@geetduggal/order-a-calendar-first-notebook-for-mapping-your-world-abc0970494a5">Order</a>. It has a newspaper-style layout, it is built on a notion of notable folders, has hand-tuned themes, and even markdown cards that can turn into terminals 😅. I am proud of it because of how fun it is to play with, how useful it is to me, and how many itches it scratches.</p>
 <p>Underneath all of that machinery is question I have been background processing for over a year now: what is the minimal representation underneath all of this? If you stripped away all my buttons and cards and calendars, what are the irreducible machine- and human-comprehensible foundations of my system independent of any convenient interface?</p>
-<p>This article is about the answer I arrived at. The most surprising part is how much of it was inspired directly from markdown. So let’s get out the tea ☕️ and cookies 🍪 and talk plain text.</p>
-<h2>Our friend Markdown</h2>
-<p>Even with the recent hype on HTML vs markdown, to me it is clear that markdown ‘won’ in a special way. Not because it is the most powerful and can do everything. It won because it understood something fundamental about how humans actually work.</p>
+<p>This article is about the answer I arrived at. The most surprising part is how much of it was inspired directly from markdown. So let’s get out the tea ☕️ and cookies 🍪 and talk plain text.</p>
+<h3>Our friend Markdown</h3>
+<p>Even with the recent hype on HTML vs markdown, to me it is clear that markdown ‘won’ in a special way. Not because it is the most powerful and can do everything. It won because it understood something fundamental about how humans actually work.</p>
 <p>Before markdown, if you wanted structure and formatting on the web, you wrote HTML. And HTML is a beautiful, powerful thing. It can hold images, SVG files, forms, scripts, animations, anything. You can render it into something gorgeous.</p>
 <p>But you do not want to <em>live</em> in HTML. You do not want to open a file and casually edit a tag nested inside three divs while you are trying to get a thought down. The machine stands between you and your expression.</p>
-<p>Here is a great Vergecast video with John Gruber, and a fun excerpt from it:</p>
+<p>Here is a great Vergecast video with John Gruber, and a fun excerpt from it:</p>
 <blockquote>
-<p>I had strong opinions about those since like the early 90s, and I thought everybody should do it my way and use the asterisks. And then I thought the second best way is the underscores, but all the other ways people would use the tildas for that. People would use slashes for italics. And I’m like, I wish people would do it my way. And that’s really what Markdown has done is that everybody now when they decorate plain text, they do it my way. And it’s it’s a convention more than a syntax.</p>
-<p>I had to write the original. It’s not even a parser, … [it’s a] series of regular expressions that turns markdown into HTML. And I was ruthless on myself by only making it what I wanted to see and write, no matter how hard it was for me to make the conversion. But really, ultimately, it’s a convention or a series of conventions for how you do things. And those conventions are like everywhere now. That’s all we ever have, right? A spec is like ego, right? The web is just a bunch of things we’re hoping works this way. Nobody ever follows a spec, right? The web is all just a bunch of things we slap together, and like this is the thing that works the way people work. — John Gruber, creator of Markdown</p>
+<p>I had strong opinions about those since like the early 90s, and I thought everybody should do it my way and use the asterisks. And then I thought the second best way is the underscores, but all the other ways people would use the tildas for that. People would use slashes for italics. And I’m like, I wish people would do it my way. And that’s really what Markdown has done is that everybody now when they decorate plain text, they do it my way. And it’s it’s a convention more than a syntax.</p>
 </blockquote>
-<p>John Gruber’s insight was deep <em>IMHO</em>. He noticed that the <em>source itself</em> should be what I call ‘habitable’. You should be able to open the raw file and read it without translation and feel comfortable writing in it and editing it. The format should get out of the way. That is the whole magic, and probably a good chunk of why markdown spread like it did.</p>
-<p>To be clear, markdown did not ‘beat’ HTML. Nor is HTML ‘having a comeback’ now. They are not really competitors. They solve different problems. If you want to generate a rich interactive visualization, a styled page with embedded charts and forms, HTML wins and it is not even close. HTML is the right tool for that job.</p>
-<p>But if you want a human in the loop writing, reading, editing, living in the file day after day, markdown wins for plain text. The distinction is not about which format is better. It is about where the human sits … and when.</p>
+<blockquote>
+<p>I had to write the original. It’s not even a parser, … [it’s a] series of regular expressions that turns markdown into HTML. And I was ruthless on myself by only making it what I wanted to see and write, no matter how hard it was for me to make the conversion. But really, ultimately, it’s a convention or a series of conventions for how you do things. And those conventions are like everywhere now. That’s all we ever have, right? A spec is like ego, right? The web is just a bunch of things we’re hoping works this way. Nobody ever follows a spec, right? The web is all just a bunch of things we slap together, and like this is the thing that works the way people work. — John Gruber, creator of Markdown</p>
+</blockquote>
+<p>John Gruber’s insight was deep <em>IMHO</em>. He noticed that the <em>source itself</em> should be what I call ‘habitable’. You should be able to open the raw file and read it without translation and feel comfortable writing in it and editing it. The format should get out of the way. That is the whole magic, and probably a good chunk of why markdown spread like it did.</p>
+<p>To be clear, markdown did not ‘beat’ HTML. Nor is HTML ‘having a comeback’ now. They are not really competitors. They solve different problems. If you want to generate a rich interactive visualization, a styled page with embedded charts and forms, HTML wins and it is not even close. HTML is the right tool for that job.</p>
+<p>But if you want a human in the loop writing, reading, editing, living in the file day after day, markdown wins for plain text. The distinction is not about which format is better. It is about where the human sits … and when.</p>
 <p>I keep coming back to that idea because it turns out to be the key to everything else.</p>
-<h2><strong>Two Dimensions: Where Things Live and When They Happen</strong></h2>
-<p>When I finally sat down and asked what my system is actually made of, it kept collapsing into two things.</p>
+<h3><strong>Two Dimensions: Where Things Live and When They Happen</strong></h3>
+<p>When I finally sat down and asked what my system is actually made of, it kept collapsing into two things.</p>
 <p>The first is <strong>space</strong>: the hierarchy of where things live. My areas of life. Think Entertainment, Work, Health etc. Inside Entertainment are categories like Games and Music. Inside the Games category are Board Games and Video Games. This is the map. It is the structure of my world. It does not have a date. It just <em>is</em>. It is timeless in the way a map is timeless.</p>
-<p>The second is <strong>time</strong>: the record of what moved through that space: events, notes, and the longer stretches I call seasons. This is the log. Things like: my team standup at nine in the morning, a trip from the first of July to the fifth, a season of building that lasted half a year. Every piece of it is dated.</p>
-<p>Most tools pick one of these dimensions and treat the other as an afterthought. A calendar app is brilliant at time and treats your folders as an attachment. A note vault is brilliant at space and treats dates as just another field you have to manage. Neither one actually <em>lives</em> in both worlds equally.</p>
+<p>The second is <strong>time</strong>: the record of what moved through that space: events, notes, and the longer stretches I call seasons. This is the log. Things like: my team standup at nine in the morning, a trip from the first of July to the fifth, a season of building that lasted half a year. Every piece of it is dated.</p>
+<p>Most tools pick one of these dimensions and treat the other as an afterthought. A calendar app is brilliant at time and treats your folders as an attachment. A note vault is brilliant at space and treats dates as just another field you have to manage. Neither one actually <em>lives</em> in both worlds equally.</p>
 <p>I kept reaching for a format that held both as first-class, related citizens as opposed to an afterthought.</p>
-<h2><strong>Time Is a Table. Space Is a Tree.</strong></h2>
-<p>Look closely at your events and you will notice something: they are all the same kinda thing. Each one has a date. A title. Maybe a start and end time. Maybe a folder it belongs to. Every single event has the same slots to fill in. That is a table. Rows and columns. Reading down the column of dates and titles tells you what is happening and when, in order, at a glance. Everything else is supplementary detail sitting off to the right.</p>
-<p>Now look at your hierarchy. An area branches into categories. Categories branch into notable folders. The most concise way to write a tree is just to draw the tree itself. A name. And under it, indented, the ordered list of names that belong underneath it. You are not describing the structure with a bunch of labels. You are drawing it.</p>
-<h2><strong>The Machine Layer: YAML</strong></h2>
-<p>For the strict, precise, machine-readable version of all this, the best format to represent it is YAML. If markdown is the most habitable format for prose, YAML is the closest thing to that for structure. Indentation encodes nesting, a list encodes order, and asingle line can represent a whole event.</p>
-<p>Here is the entire format in one small example:</p>
-<pre><code class="language-yaml">space:
-
-* Entertainment:
-    * Games:
-        * Board Games
-        * Video Games
-    * Music:
-        * Jazz
-        * Rock
-* Work:
-    * Projects:
-        * Order
-        * PKM System
-    * Teams:
-        * Frontend
-        * Firmware
+<h3><strong>Time Is a Table. Space Is a Tree.</strong></h3>
+<p>Look closely at your events and you will notice something: they are all the same kinda thing. Each one has a date. A title. Maybe a start and end time. Maybe a folder it belongs to. Every single event has the same slots to fill in. That is a table. Rows and columns. Reading down the column of dates and titles tells you what is happening and when, in order, at a glance. Everything else is supplementary detail sitting off to the right.</p>
+<p>Now look at your hierarchy. An area branches into categories. Categories branch into notable folders. The most concise way to write a tree is just to draw the tree itself. A name. And under it, indented, the ordered list of names that belong underneath it. You are not describing the structure with a bunch of labels. You are drawing it.</p>
+<h3><strong>The Machine Layer: YAML</strong></h3>
+<p>For the strict, precise, machine-readable version of all this, the best format to represent it is YAML. If markdown is the most habitable format for prose, YAML is the closest thing to that for structure. Indentation encodes nesting, a list encodes order, and asingle line can represent a whole event.</p>
+<p>Here is the entire format in one small example:</p>
+<pre><code>space:
+  - Entertainment:
+      - Games:
+          - Board Games
+          - Video Games
+      - Music:
+          - Jazz
+          - Rock
+  - Work:
+      - Projects:
+          - Order
+          - PKM System
+      - Teams:
+          - Frontend
+          - Firmware
 time:
   seasons:
-
-    * {date: 2026-06-01, title: Summer Building, endDate: 2026-08-31}
-    * {date: 2026-09-01, title: Community Focus, endDate: 2026-11-30}\
-    events:
-
-    * {date: 2026-06-15, title: Order v0.1.0 Release, folder: Order, allDay: true}
-    * {date: 2026-06-16, title: Team standup, folder: Frontend, time: 09:00, endTime: 09:30}
-    * {date: 2026-07-01, title: Summer trip, folder: Rock, endDate: 2026-07-05}
-    * {date: 2026-07-10, title: Company offsite, folder: Firmware, allDay: true}
-    * {date: 2026-08-20, title: Medium deadline, folder: Order, time: 17:00}
+    - {date: 2026-06-01, title: Summer Building,        endDate: 2026-08-31}
+    - {date: 2026-09-01, title: Community Focus,        endDate: 2026-11-30}
+  events:
+    - {date: 2026-06-15, title: Order v0.1.0 Release,   folder: Order,         allDay: true}
+    - {date: 2026-06-16, title: Team standup,           folder: Frontend,      time: 09:00, endTime: 09:30}
+    - {date: 2026-07-01, title: Summer trip,            folder: Rock,          endDate: 2026-07-05}
+    - {date: 2026-07-10, title: Company offsite,        folder: Firmware,      allDay: true}
+    - {date: 2026-08-20, title: Medium deadline,        folder: Order,         time: 17:00}
 </code></pre>
-<p>Two top-level keys: <code>space</code> and <code>time</code>. Under <code>space</code>, the tree is drawn through nesting. You read the structure off the page. Under <code>time</code>, the records line up as a table. Dates and titles form clean columns you can read straight down.</p>
-<p>The idea here is just to encode the essential structure and data. When I look at this representing hundreds, even thousands of events across years of my life, it still looks like this.</p>
-<h2><strong>Three Key Properties</strong></h2>
-<p><strong>Composability.</strong> You should be able to split the whole thing across many files and rejoin them without anything breaking. Your entire world can sit in one <code>spacetime</code> file, or your Entertainment area can live in its own file, or your archived events can be tucked away separately from your current ones. When you union the pieces, you get the same picture every time.</p>
-<p><strong>Completeness.</strong> When you join the pieces, you have the entire system: a feeling and a knowing that all your bases are covered while still inviting you to garden and explore.</p>
-<p><strong>Habitability.</strong> You can live in plain text. You can open it, read it, change a line, save it, and nothing breaks. This is easier said than done. The moment a format turns into a glorified database, the keys multiply, the nesting deepens, and you stop wanting to touch it by hand. Most formats fail here. They technically work, but you just never open them. You never live in them.</p>
-<p>There are two rules that makes composability and completeness hold together for the space tree.</p>
+<p>Two top-level keys: space and time. Under space, the tree is drawn through nesting. You read the structure off the page. Under time, the records line up as a table. Dates and titles form clean columns you can read straight down.</p>
+<p>The idea here is just to encode the essential structure and data. When I look at this representing hundreds, even thousands of events across years of my life, it still looks like this.</p>
+<h3><strong>Three Key Properties</strong></h3>
+<p><strong>Composability.</strong> You should be able to split the whole thing across many files and rejoin them without anything breaking. Your entire world can sit in one spacetime file, or your Entertainment area can live in its own file, or your archived events can be tucked away separately from your current ones. When you union the pieces, you get the same picture every time.</p>
+<p><strong>Completeness.</strong> When you join the pieces, you have the entire system: a feeling and a knowing that all your bases are covered while still inviting you to garden and explore.</p>
+<p><strong>Habitability.</strong> You can live in plain text. You can open it, read it, change a line, save it, and nothing breaks. This is easier said than done. The moment a format turns into a glorified database, the keys multiply, the nesting deepens, and you stop wanting to touch it by hand. Most formats fail here. They technically work, but you just never open them. You never live in them.</p>
+<p>There are two rules that makes composability and completeness hold together for the space tree.</p>
 <ol>
 <li>Whenever you write the children of a node, you write <em>all</em> of them in order. I think of a complete set of children under one node as a <strong>brood</strong>. You never list a partial brood. The reason is subtle but important: order lives in the list, and a list only means something when it is complete. If two files each defined half of an area’s categories, there would be no way to decide their order when you merged them. But if you require the whole brood, the merge is always unambiguous.</li>
-<li><a href="https://johnnydecimal.com/documentation/areas-and-categories">Johnny-Decimal-like Areas and Categories</a>: at most 10 Areas, at most 10 categories per area, notable folders within a category. Ordering of areas, categories, and notable folders matter (often sorted by date). <strong>Files, events, and notes are only allowed in notable folders</strong>.</li>
+<li><a href="https://johnnydecimal.com/documentation/areas-and-categories">Johnny-Decimal-like Areas and Categories</a>: at most 10 Areas, at most 10 categories per area, notable folders within a category. Ordering of areas, categories, and notable folders matter (often sorted by date). <strong>Files, events, and notes are only allowed in notable folders</strong>.</li>
 </ol>
-<h2>The Notable Folder: Where It All Lives</h2>
-<p>The leaves of the space tree are <strong><a href="https://medium.com/@geetduggal/this-one-idea-changed-the-way-i-organized-my-notes-forever-f293371a0d5b">notable folders</a></strong>. Real. Filesystem. Folders.</p>
-<pre><code class="language-markdown">Entertainment/\
-Games/\
-Board Games/\
-Board Games.md &lt;-- Main document for folder\
-2026-06-20 Game Night.md &lt;-- Note and/or event\
-rules.txt\
-photos...\
-Video Games/\
-Work/\
-Projects/\
-Order/\
-Order.md\
-2026-06-15 Order v0.1.0 Release.md\
-architecture.png
+<h3>The Notable Folder: Where It All Lives</h3>
+<p>The leaves of the space tree are <a href="https://medium.com/@geetduggal/this-one-idea-changed-the-way-i-organized-my-notes-forever-f293371a0d5b">notable folders</a>. Real. Filesystem. Folders.</p>
+<pre><code>Entertainment/
+  Games/
+    Board Games/
+      Board Games.md             &lt;-- Main document for folder
+      2026-06-20 Game Night.md   &lt;-- Note and/or event
+      rules.txt
+      photos...
+    Video Games/
+Work/
+  Projects/
+    Order/
+      Order.md
+      2026-06-15 Order v0.1.0 Release.md
+      architecture.png
 </code></pre>
-<br /><p>That’s your space dimension. Just folders. The hierarchy is the structure of your directories.</p>
+<p>That’s your space dimension. Just folders. The hierarchy is the structure of your directories.</p>
 <p>Now look inside a notable folder. It can hold anything. Images. PDFs. A subfolder for a project. Whatever.</p>
-<p>But one thing is special by convention: a markdown file named with a date and title. <code>2026-06-15 Order v0.1.0 Release.md</code>. In the spirit of <a href="https://obsidian-full-calendar-remastered.github.io/plugin-full-calendar/user/calendars/local/">Obsidian Full Calendar Full Note Events</a>. That&#39;s an event. It could be a note. Or a dated task.</p>
-<p>The date places it on your calendar. The folder places it in space. The file contents are just markdown — you write whatever you want.</p>
-<p>This is the glue. A single naming convention — date plus title — ties space and time together without any database, without frontmatter, without an app.</p>
-<h2><strong>The Human Layer: Markwhen</strong></h2>
-<p>Here is where the whole thing starts to sing.</p>
-<p>The YAML is precise and it is actually quite readable! But in the spirit of markdown, I kept getting pulled toward something even lighter for the act of writing. I wanted that <a href="https://medium.com/@geetduggal/tech-habits-todo-txt-never-looked-so-good-and-a-new-type-of-calendar-view-c1ecc51d64ed">feeling of todo.txt</a>, where you add an entry by just starting to type on a line.</p>
-<p>While I was chewing on this, I went down a rabbit hole into a format called <a href="https://markwhen.com/">Markwhen</a>. It is a markdown-like language for timelines. You write plain lines and it parses them into events. Kudos to the inventor. The moment I saw it, I felt the same thing for time that markdown evokes for prose.</p>
-<p>The fact that it is designed to parse into machine-readable JSON made it a perfect candidate to translate into machine-readable YAML and arrive at the format I always wanted.</p>
-<p>Check this out:</p>
-<h1>Space</h1>
-<h2>Entertainment</h2>
-<ul>
-<li>Games</li>
-<li>Board Games</li>
-<li>Video Games</li>
-<li>Music</li>
-<li>Jazz</li>
-<li>Rock</li>
-</ul>
-<h2>Work</h2>
-<ul>
-<li>Projects</li>
-<li>Order</li>
-<li>PKM System</li>
-<li>Teams</li>
-<li>Frontend</li>
-<li>Firmware</li>
-</ul>
-<h1>Time</h1>
-<h2>Seasons</h2>
-<p>2026-06-01 / 2026-08-31: Summer Building<br>2026-09-01 / 2026-11-30: Community Focus</p>
-<h2>Events</h2>
-<p>2026-06-15: Order v0.1.0 Release #order<br>2026-06-16 09:00-09:30: Team standup #frontend<br>2026-07-01 / 2026-07-05: Summer trip #rock<br>2026-07-10: Company offsite #firmware<br>2026-08-20 17:00: Medium deadline #order</p>
-<p>The space tree is just a nested list, the way you would jot it on paper. The events are one line each, dates aligned so the titles fall into a column you can scan down. A notable folder is a hashtag. This is about as close to writing on a napkin as a structured format gets.</p>
+<p>But one thing is special by convention: a markdown file named with a date and title. 2026-06-15 Order v0.1.0 Release.md. In the spirit of <a href="https://obsidian-full-calendar-remastered.github.io/plugin-full-calendar/user/calendars/local/">Obsidian Full Calendar Full Note Events</a>. That&#39;s an event. It could be a note. Or a dated task.</p>
+<p>The date places it on your calendar. The folder places it in space. The file contents are just markdown — you write whatever you want.</p>
+<p>This is the glue. A single naming convention — date plus title — ties space and time together without any database, without frontmatter, without an app.</p>
+<h3><strong>The Human Layer: Markwhen</strong></h3>
+<p>Here is where the whole thing starts to sing.</p>
+<p>The YAML is precise and it is actually quite readable! But in the spirit of markdown, I kept getting pulled toward something even lighter for the act of writing. I wanted that <a href="https://medium.com/@geetduggal/tech-habits-todo-txt-never-looked-so-good-and-a-new-type-of-calendar-view-c1ecc51d64ed">feeling of todo.txt</a>, where you add an entry by just starting to type on a line.</p>
+<p>While I was chewing on this, I went down a rabbit hole into a format called <a href="https://markwhen.com">Markwhen</a>. It is a markdown-like language for timelines. You write plain lines and it parses them into events. Kudos to the inventor. The moment I saw it, I felt the same thing for time that markdown evokes for prose.</p>
+<p>The fact that it is designed to parse into machine-readable JSON made it a perfect candidate to translate into machine-readable YAML and arrive at the format I always wanted.</p>
+<p>Check this out:</p>
+<pre><code># Space
+
+## Entertainment
+
+- Games
+  - Board Games
+  - Video Games
+- Music
+  - Jazz
+  - Rock
+
+## Work
+
+- Projects
+  - Order
+  - PKM System
+- Teams
+  - Frontend
+  - Firmware
+
+# Time
+
+## Seasons
+
+2026-06-01 / 2026-08-31:  Summer Building
+2026-09-01 / 2026-11-30:  Community Focus
+
+## Events
+
+2026-06-15:               Order v0.1.0 Release #order
+2026-06-16 09:00-09:30:   Team standup #frontend
+2026-07-01 / 2026-07-05:  Summer trip #rock
+2026-07-10:               Company offsite #firmware
+2026-08-20 17:00:         Medium deadline #order
+</code></pre>
+<p>The space tree is just a nested list, the way you would jot it on paper. The events are one line each, dates aligned so the titles fall into a column you can scan down. A notable folder is a hashtag. This is about as close to writing on a napkin as a structured format gets.</p>
 <p>Now, I could <em>live</em> in this. I could sit down and write an event without thinking. I could glance at the week and see the complexity and theme of it. I could audit my hierarchy, tidy it up, move things around, all without feeling like I was editing a database.</p>
 <p>Critically, I could open my app Order and edit everything visually and have it reflected in the plain text with minimal obstruction.</p>
 <p>Also critically, Markwhen on its own does not encode the relationships I need. It is a wonderful, sprawling superset of timeline features. It is not built to express a strict hierarchy where every event belongs to exactly one notable folder, and no more. It can show you a beautiful timeline. It cannot, by itself, be the precise skeleton that holds everything together.</p>
-<p>Where the YAML is the strict, machine-friendly statement of what the minimal structure <em>is,</em> Markwhen is the external surface. It is the habitable, human-friendly way to read and write that same model. You could do everything in YAML. But living in the Markwhen convention, being so close to markdown, is simply the nicest thing to actually live in day after day.</p>
+<p>Where the YAML is the strict, machine-friendly statement of what the minimal structure *is,*Markwhen is the external surface. It is the habitable, human-friendly way to read and write that same model. You could do everything in YAML. But living in the Markwhen convention, being so close to markdown, is simply the nicest thing to actually live in day after day.</p>
 <p>This is the markdown-versus-HTML distinction I touched on above wearing new clothes. If I want to both read and manipulate my structure I can do it <em>right in the file</em>. Editing the file on disk or in Order when it’s open automatically keeps the directory structure and ordering clean as per what is defined in my spacetime file(s).</p>
-<p>Order is really just a helper on top of the ground truth <code>spacetime.md</code> format like Typora or Obsidian or Meridiem is for Markdown and Markwhen.</p>
-<h2><strong>Why Bother Being This Opinionated?</strong></h2>
-<p>There is a bold and slightly bossy claim hiding in all of this. The format tells you that you are <em>not</em> allowed to scatter your files wherever you feel like. Events belong to notable folders. Full stop. There is one right place each kind of thing goes.</p>
-<p>That sounds restrictive and flies in the face of linking and graph-based / wiki-like note taking. In practice it is the opposite. Once you accept the constraints, a strange calm sets in. Because you’ve put thought into the things that matter, the structure already helps clarify where everything goes. The space and the time click into one integrated picture. All-day events become meaningful markers of when a region of your life was active, which lets you render a whole season at a glance. Nothing is cluttered and things just fall into place.</p>
-<p>I have come to think the minimality itself is the feature. Markdown did not win by supporting everything. It won by choosing a tiny core: a few ways to emphasize, to list, to link — and refusing the rest. This format is trying to do the same thing for the map of a life and your digital organization.</p>
+<p>Order is really just a helper on top of the ground truth spacetime.md format like Typora or Obsidian or Meridiem is for Markdown and Markwhen.</p>
+<h3><strong>Why Bother Being This Opinionated?</strong></h3>
+<p>There is a bold and slightly bossy claim hiding in all of this. The format tells you that you are <em>not</em> allowed to scatter your files wherever you feel like. Events belong to notable folders. Full stop. There is one right place each kind of thing goes.</p>
+<p>That sounds restrictive and flies in the face of linking and graph-based / wiki-like note taking. In practice it is the opposite. Once you accept the constraints, a strange calm sets in. Because you’ve put thought into the things that matter, the structure already helps clarify where everything goes. The space and the time click into one integrated picture. All-day events become meaningful markers of when a region of your life was active, which lets you render a whole season at a glance. Nothing is cluttered and things just fall into place.</p>
+<p>I have come to think the minimality itself is the feature. Markdown did not win by supporting everything. It won by choosing a tiny core: a few ways to emphasize, to list, to link — and refusing the rest. This format is trying to do the same thing for the map of a life and your digital organization.</p>
 <p>With this minimally defined structure, a machine can do things with it such as render a calendar, show you all events in a season, etc much like what Order does. These type of constraints are not the enemy of creativity and flexibility. They are the foundation of it. They are what ground you and make you feel comfortable enough in your digital world so you can ready yourself for the next adventure.</p>
-<p>Of course, you do not need Order to use any of this. That is rather the point.</p>
-<p>Try thinking of your own world in just these terms. What are your areas? Your categories? The handful of notable folders that actually hold your content? Write them as a nested list. That is your space tree, and you already know how to read it. Then try logging time as plain dated lines. A date, a title, maybe a folder tag. One entry per line.</p>
-<p>The deeper invitation is underneath the syntax. It is the structure of your life at a glance and plain enough to read without a manual. Yours in a way no app can take away. You can always open the file. You can always read it. You can always live in it. There is a freshness I have found to this. That underneath all the machinery, the essential idea was simple the whole time. It was waiting there for me in plain text 🏔️</p>
+<p>Of course, you do not need Order to use any of this. That is rather the point.</p>
+<p>Try thinking of your own world in just these terms. What are your areas? Your categories? The handful of notable folders that actually hold your content? Write them as a nested list. That is your space tree, and you already know how to read it. Then try logging time as plain dated lines. A date, a title, maybe a folder tag. One entry per line.</p>
+<p>The deeper invitation is underneath the syntax. It is the structure of your life at a glance and plain enough to read without a manual. Yours in a way no app can take away. You can always open the file. You can always read it. You can always live in it. There is a freshness I have found to this. That underneath all the machinery, the essential idea was simple the whole time. It was waiting there for me in plain text 🏔️</p>
 </article></div><script>window.__ORDER__={"slug":"spacetime-md-a-minimal-plain-text-format-for-mapping-your-daily-work","dataUrl":"/order-home/data.json"}</script>
   </body>
 </html>
