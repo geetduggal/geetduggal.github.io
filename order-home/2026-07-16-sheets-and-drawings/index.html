@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
+    <title>2026-07-16 Sheets and Drawings</title>
+    <script>
+      // The published viewer follows the visitor's OS light/dark by default
+      // ("auto"); a saved override (from the in-session toggle) wins. Resolved
+      // before first paint to avoid a flash; theme.ts keeps it live afterwards.
+      try {
+        var pref = localStorage.getItem("order.theme") || "auto";
+        var resolved = (pref === "auto")
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : pref;
+        document.documentElement.dataset.theme = resolved;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/order-home/assets/index-CHL4dTiF.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BxhUBvEC.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><p>Sheets and Drawings</p>
+<p>Next, I’d like to build a feature that ends up allowing me ‘flip&#39; a note card or main document card from its markdown/milkdown editor to two other types of editors:</p>
+<ul>
+<li>Sheet backed by <code>react-spreadsheet</code><ul>
+<li>There should be a toolbar like Excalidraw’s but allows the background of a set of cells to be chosen from a set of simple colors that would look good in each Order theme but selectable in a generic way.  Users should also be able to add custom colors for cells from a simple pallet selector.</li>
+<li>Text should, by default, continue past the cell like a typical spreadsheet. You achieve this with column-based z-indexing: each column&#39;s background layer gets a higher z-index than the column to its left, so a later column&#39;s opaque background naturally paints over the overflow text from earlier columns. Empty cells simply don&#39;t render a background layer, letting the text pass through.  The toolbar should allow setting one or more cells to ‘collapse’ the continue past cell.</li>
+<li>Basic formulas should be supported</li>
+</ul>
+</li>
+<li>Drawing backed by Excalidraw<ul>
+<li>Allows instant editing of local drawing file using excalidraw library</li>
+</ul>
+</li>
+</ul>
+<p>These should be two icons next to the terminal icon.</p>
+<p>When clicked, a corresponding file of the exact same name as the note should be created if it doesn’t already exist with the following convention:</p>
+<ul>
+<li>File Name.md &lt;- Normal main document or note file in Order</li>
+<li>File Name.sheet.html &lt;- HTML-backed <code>react-spreadsheet</code></li>
+<li>File Name.excalidraw &lt;- excalidraw file</li>
+<li>File Name.md should now have a YAML frontmatter field called `view: [note, drawing, sheet] which will tell Order to view that by default.</li>
+<li>Every time a user clicks a sheet, or drawing icon the view will switch and persist in the note by modifying the <code>view</code> frontmatter field accordingly.</li>
+</ul>
+<p>More notes:</p>
+<ul>
+<li><p>The spreadsheet and drawing should cleanly expand in full screen mode.  By default more rows and columns should be added to the view to fill the space.</p>
+<br /></li>
+</ul>
+</article></div><script>window.__ORDER__={"slug":"2026-07-16-sheets-and-drawings","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>

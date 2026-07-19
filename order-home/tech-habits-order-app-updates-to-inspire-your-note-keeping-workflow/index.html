@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
+    <title>Tech Habits - Order App Updates to Inspire Your Note-Keeping Workflow</title>
+    <script>
+      // The published viewer follows the visitor's OS light/dark by default
+      // ("auto"); a saved override (from the in-session toggle) wins. Resolved
+      // before first paint to avoid a flash; theme.ts keeps it live afterwards.
+      try {
+        var pref = localStorage.getItem("order.theme") || "auto";
+        var resolved = (pref === "auto")
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : pref;
+        document.documentElement.dataset.theme = resolved;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/order-home/assets/index-CHL4dTiF.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BxhUBvEC.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>Tech Habits - Order App Updates to Inspire Your Note-Keeping Workflow</h1>
+<p><em>2026-07-19</em> — <a href="https://medium.com/@geetduggal/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow-23f4b9ffe362">read on Medium</a></p>
+<h4>Style refinements, spacetime &amp; cloud calendar sync, spreadsheets, drawings, masonry lists, and a Johny-Decimal toggle!</h4>
+<p><img src="/order-home/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow/image-qsiZjoO2CWUYnMsrh1qrnw.png" alt=""></p>
+<p>In my Medium profile, I have a mission statement that spiritually aligns with Simon Sinek’s ‘Just Cause’. A Just Cause has five elements:</p>
+<ul>
+<li>It stands for something, not against something: It’s optimistic and hopeful.</li>
+<li>It’s idealistic: It’s inspiring, bold, and ultimately unachievable.</li>
+<li>It’s inclusive: It invites and inspires others to join.</li>
+<li>It’s resilient: It can endure technological, cultural, political, and industry changes.</li>
+<li>It’s service-oriented: It’s aimed at the benefit of others.</li>
+</ul>
+<p>The run-on sentence in my profile has stayed something like this for years:</p>
+<blockquote>
+<p>In my posts I aim to provide surprisingly simple tips on how to use tech to streamline your workflow for maximal enjoyment and creativity.</p>
+</blockquote>
+<p>“<strong>Simple</strong> tips” for “<strong>your</strong> workflow” is decidedly not “here’s an advertisement for my home-grown app”.</p>
+<p>Given that we are in a world where it is extremely easy to vibe-code your own bespoke app that serves your needs, my Just Cause feels even more relevant.</p>
+<p>I have an app with many simple features that, in aggregate, services <strong>my</strong> needs. My hope is that sharing details about it to you all, there may be a few useful ideas that will translate to your setup.</p>
+<p>In this new world, the real vehicle to disseminate utility may be in these exact words as opposed to a mainstream app or plugin. This is because you can now literally take ideas written in text and translate them to usable apps.</p>
+<p>In other words, instead of sharing apps and code libraries, it may be better to represent modules of your bespoke app as a collection of prose remixed from others ideas, and with your own takes.</p>
+<p>I think this is pretty damn awesome.</p>
+<p>That being said, I think there’s still utility in publishing my app and code for two reasons:</p>
+<ol>
+<li>Source code can be useful for others, including AI tools for other bespoke apps</li>
+<li>Public binary and app-store downloads will allow playing with the tool and being inspired in a way that text won’t do justice</li>
+</ol>
+<p>The <a href="https://medium.com/@geetduggal/order-a-calendar-first-notebook-for-mapping-your-world-abc0970494a5">innaugural post on Order</a> corresponded to a v0.1.0 version of the app and today, I released the v0.1.2 version. The goal of the v0.1.* series is to make the app as useful to me as possible as a daily driver and battle test it deeply. Later in this post, I’ll describe a few features developed since the inaugural post that may inspire you.</p>
+<p>Longer-term, I aim to build to a v0.2.0 that targets an easily-installable binary for the desktop and includes an app on the app store so you can see if any ideas are inspiring for you.</p>
+<h3>Style improvements</h3>
+<p>The pile is a stack of editable cards, newest on top, with a folder’s main document as the wide center column. A subtle change from the original is that cards sit apart by elevation instead of hard borders. I opted for a feeling of a a lifted background, a very thin border, and a soft shadow so it looks more like a minimal card.</p>
+<p>The whole app still re-skins from one setting, and ⌘T cycles the themes as I find that it is convenient and puts me in different moods to browse, write etc.</p>
+<p><img src="/order-home/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow/image-v8D3XftwHyw32wGwiYAKUA.png" alt=""></p>
+<p><img src="/order-home/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow/image-xFFblXxzVizwwV0R_ET7Xw.png" alt=""></p>
+<p><img src="/order-home/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow/image-VdYYLgrFKz24pI4paeF5pw.png" alt=""></p>
+<h3>Spacetime and the calendar</h3>
+<p>One <a href="https://medium.com/@geetduggal/spacetime-md-a-minimal-plain-text-format-for-mapping-your-daily-work-b3e03e2621be">spacetime.md</a> at the vault root holds where my work lives (Areas, Categories, Notable Folders) and when things happen (events and seasons). The calendar reads straight from those notes: Day, Week, Month, Year, Season.</p>
+<p><img src="/order-home/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow/image-ZmpNUGNFMIVueJ11ZlMvFg.png" alt=""></p>
+<p>I can push an event to Google Calendar just by placing an email addresses at the end of a spacetime line. An address that matches a connected account hosts it, and the rest get invited.</p>
+<pre><code>2026-07-20 09:00-09:30 : Sprint sync       #[Map Pipeline v2] you@example.com dana@example.com
+2026-07-21 14:00-15:00 : Roadmap planning  #[Map Pipeline v2] you@example.com sam@example.com
+</code></pre>
+<p>I bring my own Google OAuth client and can connect accounts and set a default in Settings.</p>
+<h3>Sheets</h3>
+<p>Any note flips to a spreadsheet (the icon next to the terminal button). Under the hood it is just a plain HTML table saved next to the note as Name.sheet.html, so I can read or edit it in any text editor:</p>
+<pre><code>&lt;table class=&quot;order-sheet&quot;&gt;
+  &lt;tr&gt;&lt;td&gt;Item&lt;/td&gt;&lt;td&gt;Estimate&lt;/td&gt;&lt;td&gt;Actual&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Sofa&lt;/td&gt;&lt;td&gt;1800&lt;/td&gt;&lt;td&gt;1750&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+<p>The app allows adding formulas, colored cells, and text that overflows like a real sheet (these are stored minimally in the HTML). Fullscreen has the whole toolset, including cell drag: select a range and drag it to swap it somewhere else.</p>
+<p><img src="/order-home/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow/image-PKml0hPy-IqgUY15ariwRg.png" alt=""></p>
+<h3>Drawings</h3>
+<p>The same typa flip gives an Excalidraw canvas, saved as a Name.excalidraw file. Good for architecture sketches and quick diagrams. It stays with the note.</p>
+<p><img src="/order-home/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow/image-G3KHQTlVN40bS6frFzp3ng.png" alt=""></p>
+<h3>Sheets and drawings in the pile</h3>
+<p>They are not only fullscreen. A folder shows its sheet and drawing notes as small live cards, so I can read a budget or glance at a diagram without opening anything.</p>
+<h3>Directory view</h3>
+<p>Every Notable Folder is just a directory, so I can flip a card over and browse it as one: the files inside, with sizes and times, sorted by name or date, and rename, move, or delete right there. Files dragged in from Finder land in the folder.</p>
+<p><img src="/order-home/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow/image-UaW7hUZtnGUFdSdGzl7cWw.png" alt=""></p>
+<h3>Integrated terminal</h3>
+<p>There is a real terminal inside the card too (⌘4, or the terminal item in the ⋯ menu). It opens in the folder’s own directory, so I can run <code>git</code>, <code>grep</code>, <code>claude</code> or a quick script right where the notes live without leaving the app.</p>
+<p><img src="/order-home/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow/image-Idd7gdjFUHqI4n1LSRxaSQ.png" alt=""></p>
+<h3>Masonry lists</h3>
+<p>A third list type next to cards and lines. Set list: masonry and the note&#39;s bullets become boxes sized to their content, laid out in columns. Links and images inside the text render live, and I can drag any box to reorder. This is great for quick brainstorming lists or grocery lists on the phone.</p>
+<p><img src="/order-home/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow/image-wvXrdPlU3w_Og-huM95XwA.png" alt=""></p>
+<h3>Johnny-Decimal mode</h3>
+<p>A Settings toggle that puts Johnny.Decimal ids on everything: Areas as ranges (10–19), Categories as numbers (11), folders as 11.01. It rewrites spacetime.md, renames the directories, and fixes up the wikilinks and event tags. Toggle it off and the ids come back off. This is there partly to illustrate how easy it is to switch between decimals and non-decimals in Order for Johnny-Decimal since Order essentially borrows all concepts from Johnny-Decimal except the decimals.</p>
+<p>But the bigger reason is that I will soon conduct a longer tiny experiment with decimals vs. without and I wanted an easy way to flip between them like I used scripts in the past.</p>
+<p><img src="/order-home/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow/image-_2ebRkdseHYI1N4JeRlw_g.png" alt=""></p>
+<p><img src="/order-home/tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow/image-wpzH2WGm5MOfGVnmqjc6Hg.png" alt=""></p>
+<p>Overall, while Order still has <em>a lot</em> of usability improvements, it&#39;s already been my daily driver for weeks. I now only occasionally use Obsidian and other editors. A big feature for me is the minimalism and the fact that it gets rid of a lot of ‘boilerplate’.</p>
+<p>For example, when I use Obsidian, if I want to create a quick drawing or do a some napkin math in a spreadsheet like environment, I need to make sure not only that the appropriate plugins are installed, but also think about where to put files and what to name them. Because there are rather strict conventions in Order, the file names for notes, sheets, and drawings all share a prefix and you can go from writing to drawing to working on a grid in an instant.</p>
+<p>Look forward to updating you all with the next notable update to Order, and thanks for joining me on this journey! ‘Till next time 🏔️</p>
+</article></div><script>window.__ORDER__={"slug":"tech-habits-order-app-updates-to-inspire-your-note-keeping-workflow","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>
