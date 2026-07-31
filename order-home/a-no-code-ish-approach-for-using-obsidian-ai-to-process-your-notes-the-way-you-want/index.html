@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
+    <title>52.40 A “No-Code”ish Approach for Using Obsidian & AI To Process Your Notes th</title>
+    <script>
+      // The published viewer follows the visitor's OS light/dark by default
+      // ("auto"); a saved override (from the in-session toggle) wins. Resolved
+      // before first paint to avoid a flash; theme.ts keeps it live afterwards.
+      try {
+        var pref = localStorage.getItem("order.theme") || "auto";
+        var resolved = (pref === "auto")
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : pref;
+        document.documentElement.dataset.theme = resolved;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/order-home/assets/index-BQOh25Pl.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-BRg1YE2_.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>A “No-Code”ish Approach for Using Obsidian &amp; AI To Process Your Notes the Way You Want</h1>
+<p><em>2024-07-01</em> — <a href="https://medium.com/@geetduggal/a-no-code-ish-approach-for-using-obsidian-ai-to-process-your-notes-the-way-you-want-50714ceaf9c3">read on Medium</a></p>
+<p><em>I converged on using conversational AI with Obsidian Dataview to find patterns in</em><strong>my</strong><em>notes the way</em><strong>I</strong><em>take them</em></p>
+<p><img src="/order-home/a-no-code-ish-approach-for-using-obsidian-ai-to-process-your-notes-the-way-you-want/image-VN0IkrPr2ztcjxj4.jpg" alt=""></p>
+<p><em>Photo by <a href="https://unsplash.com/@taypaigey?utm_source=medium&utm_medium=referral">Taylor Flowe</a> on <a href="https://unsplash.com/?utm_source=medium&utm_medium=referral">Unsplash</a></em></p>
+<p>There are many apps that integrate note-taking with conversational AI and there will likely be many to come. Since I keep my notes in plain text, I have the luxury of using any app that works with plain text (eg. iA Writer, VS Code, Typora, …). I often end up using Obsidian for my note-taking needs.</p>
+<p>Even within Obsidian, many plugins help to harness the power of conversational AI. In this post, I will briefly demo a powerful combination of AI and Obsidian that <em>doesn’t require any AI-specific plugin within Obsidian</em>. My hope is to illustrate how conversational AI can be used in tandem with Obsidian in a way that adapts to the way <em>you</em> take <em>your</em> notes and is flexible enough to work directly on your phone or computer.</p>
+<p>Moreover, this approach is so simple almost anyone can do it, and it only requires a surface-level knowledge of Obsidian.</p>
+<blockquote>
+<p><em>The key idea is that — at least at the time of this writing — conversational AI is often better at</em>generating code<em>to solve a data analysis problem than being asked to analyze data directly.</em></p>
+</blockquote>
+<p>As a trivial example, ask a conversational AI to count the number of lines in a string of input text (number of ‘newline’ characters in computer programming parlance). The way it fails made me laugh out loud:</p>
+<pre><code>%  yes | head -100 &gt; y.txt # Create a file with 100 &#39;yes&#39;s each on a new line
+
+% ollama run llama3 &quot;How many newline characters are in this text: $(cat y.txt)&quot;
+There are 60 newline characters in this text.
+
+% ollama run llama3 &quot;How many newline characters are in this text: $(cat y.txt)&quot;
+There are 50 newline characters in this text.
+
+% ollama run llama3 &quot;How many newline characters are in this text: $(cat y.txt)&quot;
+There are 40 newline characters in this text.
+</code></pre>
+<p>Instead, ask AI to <em>generate the code</em> to count the number of lines in a string of input text. Almost any large language model (LLM) worth its salt will provide an accurate answer to that prompt. (See a link to a Medium post below that gives a concise and thoughtful explanation of this behavior.)</p>
+<pre><code>% ollama run llama3 &quot;Generate Python code to determine the number of lines in a string of input text&quot;
+Here is some simple Python code that counts the number of lines in a given
+string:
+
+```Python
+def count_lines(text):
+    return len(text.split(&#39;\n&#39;))
+
+text = &quot;Hello\nWorld,\nHow are you?&quot;
+print(&quot;Number of lines: &quot;, count_lines(text))
+</code></pre>
+<pre><code>
+The Dataview module for Obsidian allows you to embed (Javascript) code in a plain text file. This code can analyze the content of other notes in your vault and provide useful output. I show an example of this in-depth in a post on using Obsidian for personal finance management linked to below.
+
+Dataview not only allows you to execute arbitrary Javascript code on your notes, but it is also efficient when running this code on a mobile device. This feature allows Dataview to easily integrate into my daily life. The ability to run on mobile devices is something that is important to me and a feature I often find lacking in Obsidian modules using LLMs.
+
+Building on the key idea to use conversational AI to generate code, I decided to experiment with using ChatGPT-4o to generate ‘dataviewjs’ code. The beauty of using a conversational AI to generate code as opposed to process data directly is that you don’t need to actually provide the AI your data. You simply describe the *method*to process your data. (Note that using GPT-4o is a somewhat arbitrary choice. For example, at the time of writing this post ChatGPT worked very well, but I may have gotten *even better* results by using the recently released Claude 3.5 Sonnet.)
+
+What’s nice about using conversational AI for this type of data analysis is that it helps you to think simply and clearly about the problem you are trying to solve instead of getting caught up in the code or particular features of any app you’re using. Somewhat unintuitively, scripting even very technical solutions to problems in plain English helps to think about problems more directly.
+
+For example, In the world of programming there’s a term called ‘boilerplate code’ that refers to repetitive patterns that can often be very verbose: requiring more code than you would ideally need to perform a simple task. Many programming languages and tools help to reduce the overhead introduced by boilerplate code. In the example I show next, conversational AI takes this sentiment one step further by reducing the need to even code in the first place.
+
+This is how I typically take notes:
+
+![](/order-home/a-no-code-ish-approach-for-using-obsidian-ai-to-process-your-notes-the-way-you-want/image-iFLbH3TFj7xErZjgWj4MWg.png)
+
+*An example plain text ‘tick item’*
+
+It is a markdown task item prefixed by a simple timestamp followed by a description. I call these ‘tick items’ as they represent a quick note annotated with a timestamp as a markdown list item. Each tick note is like the tick of a clock of something that resonates with my mind. (I link to a couple of posts I wrote below that briefly discusses how this simple format is almost an unofficial standard at this point and how useful it can be for quick capture.)
+
+When I am jotting down a tick item, I’ll often mix a keyword or two with a quick description and/or URL. I call these tasks plain text ‘doodles’: specifically those ticks that have at least two items separated by a comma and at least one of the items is exactly one word (this is kinda like tagging but a bit more free-form in spirit and no hashtags):
+
+![](/order-home/a-no-code-ish-approach-for-using-obsidian-ai-to-process-your-notes-the-way-you-want/image-lwn48SED1-IvzuUlVlToyw.png)
+
+*An example plain text ‘doodle’*
+
+To illustrate how easy it was for me to perform relatively simple but meaningful data processing on my notes, here are my prompts to GPT-4o. I was able to iterate very effectively in the sense that it produced working code in answer to each of my requests. The entire ChatGPT transcript is linked to below, but here’s a taste of it:
+
+&gt; *Please write me Obsidian dataviewjs code that will retrieve all tasks prefixed by timestamp (format HH:MM) from my daily notes files. Please output a table of tasks sorted in descending order of date and time and limit the result to at most 200 rows.*
+
+The ChatGPT output looks like this, and I just paste that code into my Obsidian note:
+
+![](/order-home/a-no-code-ish-approach-for-using-obsidian-ai-to-process-your-notes-the-way-you-want/image-PGoexvE8mzfUosFAdcEM6w.png)
+
+&gt; *Great, thanks! Now please remove the file column. Additionally, filter for tasks that have at least two items separated by a comma and at least one of the items is exactly one word. Call these types of tasks ‘Plain Text Doodles’*
+
+I update the code to add the idea of a ‘doodle’ and its output makes sense.
+
+&gt; *Amazing. Now modify the code to filter for tasks (plain text doodles) that contain no more than 200 characters.*
+
+I perform some minor modifications so the output is more useful to me without editing a line of code.
+
+&gt; *Fantastic. Please remove the “Label” column from the table and please modify the code to add new tables that filter for rows where the task description shares one or more words in the text doodle. Please create headings above the table to indicate the words that they share.*
+
+Above, I perform a slightly more sophisticated (but not more complex than should be necessary) processing task where I want to group these notes together.
+
+&gt; *Please modify the code to sort the display of these tables by the number of rows in descending order*
+
+I then perform another code-modification task to sort these tables by their sizes which works just as expected. The output for one of the tables looks something like this:
+
+![](/order-home/a-no-code-ish-approach-for-using-obsidian-ai-to-process-your-notes-the-way-you-want/image-KDfHRM1rSjkymBFz5-zO_A.png)
+
+As you can see, the code was successively modified for usefulness. I literally copy-and-pasted it into an Obsidian note every time to verify that it was getting me the kind of results I wanted at each stage. This iterative approach is crucial in keeping myself (or any programmer/data analyst) grounded in how the data actually looks when processed by the code and it helps to confirm whether the method I described in English is actually useful to me.
+
+&gt; *The only thing for certain is that everything changes. The rate of change increases. If you want to hang on, you better speed up. That is the message of today. It could however be useful to remind everyone that our basic needs never change. The need to be seen and appreciated! It is the need to belong. The need for nearness and care, and for a little love! This is given only through slowness in human relations. In order to master changes, we have to recover slowness, reflection and togetherness. There we will find real renewal.**— Guttorm Fløistad*
+
+At this point, I wanna take a step back and reflect a little bit on some almost comically general questions like, “will AI replace the need to take notes?” or “why do we even take notes?” These questions may seem a bit too philosophical, but I don’t think they’re unreasonable.
+
+Why? Conversational LLMs are trained on essentially the Internet and we get most of our information from there. AI can help to synthesize and summarize this information in unprecedentedly useful ways in the context of our own personal data. This is where the rubber hits the road: when a new technology can essentially replace an aspect of the way you work, you are forced to establish your relationship with that technology moving forward.
+
+I say, take your own notes and have AI help you make them. Your personal curation — *your take*on things — will be of the most use to you. Others might even prefer your take over someone else’s!
+
+This is why new material — textbooks, YouTube channels, and educational software — crops up for even well-established ‘impersonal’ subjects (think introductory algebra or calculus). As time evolves, new and interesting media as well as ways of teaching are developed. And these notes can be particularly attractive in the context of a larger corpus of someone else’s work (think Feynman’s Lectures on Physics, for example).
+
+Your personal notes should be like your personal Wikipedia or lectures on a topic. They should evolve from fleeting ideas and thoughts to useful truths in your own words that you can reference in ‘weather resistant formats’. (I link to my definition of weather resistant formats below). If not for anyone else, for you! It is your personal portfolio of what resonates with you, what you find beautiful, and a chronicle of your journey in making it. Don’t let AI take that joy away.
+
+![](/order-home/a-no-code-ish-approach-for-using-obsidian-ai-to-process-your-notes-the-way-you-want/image-H1Tz2ny7Z-ko-3W-_qIqng.png)
+
+*Andy Matuschak publishess working notes online for others to read (top). Services like Obsidian Publish (bottom left) and Roam Research allow you to do the same directly from the functionality the apps provide. If you bullet journal (bottom right), you may prefer to keep your personal portfolio in a physical form.*
+
+The ‘group notes’ example I showed above uses AI to help me quickly group similar notes together in the way I prefer take them. This helps to serve in the larger purpose of refining my ‘personal portfolio’. This portfolio is a highly curated and refined version of all the notes I capture on a daily basis.
+
+While the example is still a bit ‘technical’ in spirit, I think it’s a glimpse of how we will see conversational AI help us with note taking in user friendly ways in the very near future. In the spirit of the slow movement (see quote above), I think it makes sense to curate my personal portfolio of notes at a human pace using AI simply as a tool to help make it the best and most useful version of what my personal portfolio can be.
+
+This ‘curate notes at a thoughtful and human pace’ mentality helps to manage AI anxiety (yes, see the link below on how ‘AI anxiety’ is indeed a thing) and avoid the temptation to enter an AI adoption rat race to the bottom. In the end, despite all the tooling I discussed above, I am still writing this article on my own with no AI. These are my words written by my own desire to write. Write for no other reason than it is fun.
+
+&gt; *After working the problem out on paper, Feynman discovered a 2-to-1 ratio between the plate’s wobble and spin, a neat relationship that suggested a deeper underlying principle at work. When a fellow physicist and mentor asked what the use of such an insight was, Feynman responded: “It doesn’t have any importance… I don’t care whether a thing has importance. Isn’t it fun?**— Tiago Forte, Building a Second Brain*
+
+Related posts I’ve made on Medium:
+
+- [The power of Dataview demonstrated through personal finance management](/@geetduggal/how-to-create-a-simple-personal-finance-dashboard-in-obsidian-2f238627286a).
+- [Introducing the ‘tick item](/@geetduggal/it-was-love-at-first-sight-with-this-obsidian-plugin-0616630becf7)’
+- [Quick capture in ‘weather resistant’ formats](/@geetduggal/the-most-useful-ios-shortcut-for-obsidian-and-beyond-revisited-9692e62c993a)
+- [My personal (and ongoing!) experient in Bullet Journaling](/@geetduggal/bullet-journals-and-obsidian-15c52584cd83)
+
+External links:
+
+- [No-Code](https://www.nocode.tech)
+- Examples of ML/AI-assisted note-taking: 
+[NotebookLM](https://notebooklm.google), [MyMind](https://mymind.com), [Mem](https://get.mem.ai), [Notion](http://notion.so), …
+- Examples of Obsidian AI modules:
+[Smart Connections](https://github.com/brianpetro/obsidian-smart-connections), [Text Generator](https://github.com/nhaouari/obsidian-textgenerator-plugin), [Obsidian Copilot](https://github.com/logancyang/obsidian-copilot), …
+- [Why LLMs suck at the # of lines prompt](/@gcentulani/the-curious-case-of-llms-llms-can-code-but-not-count-14513d9532e1)
+- [Article on ‘AI Anxiety’](https://www.scientificamerican.com/article/ai-anxiety-is-on-the-rise-heres-how-to-manage-it/)
+- [ChatGPT transcript for the prompts shown in the post](https://chatgpt.com/share/b7d9341c-6383-4dc6-b42a-e222f955d362)
+</code></pre>
+</article></div><script>window.__ORDER__={"slug":"a-no-code-ish-approach-for-using-obsidian-ai-to-process-your-notes-the-way-you-want","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>
