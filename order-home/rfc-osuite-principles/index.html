@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
+    <title>RFC: OSuite — Principles for Splitting Order Apart</title>
+    <script>
+      // The published viewer follows the visitor's OS light/dark by default
+      // ("auto"); a saved override (from the in-session toggle) wins. Resolved
+      // before first paint to avoid a flash; theme.ts keeps it live afterwards.
+      try {
+        var pref = localStorage.getItem("order.theme") || "auto";
+        var resolved = (pref === "auto")
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : pref;
+        document.documentElement.dataset.theme = resolved;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/order-home/assets/index-AuBSQXwN.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-CspjOKOe.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>RFC: OSuite — Principles for Splitting Order Apart</h1>
+<p>Status: early, exploratory. This is meant as a living document, not a locked spec. It&#39;s closer to an RFC than a final design. It&#39;ll change as the thinking sharpens.</p>
+<h2>Motivation</h2>
+<p>Every creative project seems to move through an initial phase of divergence: exploring options, trying shapes, figuring out what actually works before anything converges into something stable. Tiago Forte&#39;s <em>Building a Second Brain</em> is a useful reference point here: the same divergence/convergence rhythm he describes for personal knowledge work applies just as well to building the tool itself.</p>
+<p>A lot of what currently lives inside Order -- the single, unified app trying to hold notes, chat/voice, calendar, finance, reading, sheets, drawings, publishing, all in one shell etc. -- is really just the upshot of that divergence phase. Features got added where they were needed, tried out, kept if they worked. That&#39;s healthy for exploration, but it isn&#39;t necessarily the right shape to converge into permanently. At some point divergence needs to give way to convergence, and convergence might not mean &quot;keep adding to the one app forever”. It might mean pulling the distinct, proven ideas out into their own focused tools.</p>
+<h2>The core idea</h2>
+<p>Instead of Order being one monolithic app trying to do everything, split its key functions apart into a suite of separate, focused apps, each one really good at exactly one job. Notes, calendar, chat, sheets, drawings  etc.   I’m calling it the Order Suite or ‘OSuite’ for short.</p>
+<p>What ties them together isn&#39;t a shared codebase or a unified UI. It&#39;s the filesystem itself, plus the conventions layered on top of it: the Johnny Decimal numbering, plain-text markdown, the vault structure, the Notable Folder model. The filesystem is the durable, portable substrate. The individual apps are replaceable tools that sit on top of it and read/write into that same shared structure.</p>
+<h2>The tension with spacetime.md  and its resolution</h2>
+<p>There&#39;s a real conceptual friction here worth naming directly, because it isn&#39;t small. The whole spacetime.md article argues for one unified way of reading space and time together a single home, not a set of separate rooms with separate front doors. OSuite starts from close to the opposite instinct: cutting that home apart into a suite of focused apps. That&#39;s the first concern.</p>
+<p>The second concern is more practical: sometimes it&#39;s just easier to edit the plain text file directly, or visualize it directly, than to go through any app at all. Part of spacetime.md&#39;s appeal is that for a lot of events, you never have to create a new file or a new folder. It’s just another line appended into existing text. This is a different mode from a notable-folder-with-its-own-directory model, and different again from a suite of separate apps, each of which might expect its own structured place to write into. More apps risks more ceremony per event, which cuts against the &quot;just a line, no new file&quot; simplicity that makes the format work in the first place.</p>
+<p>The resolution: flip spacetime.md from something hand-authored into something derived. Rather than being the thing you type into directly, it becomes a compiled index generated from whatever structure the various apps or CLI tools actually create on disk. That preserves the low-ceremony ease for the cases where a quick tool handles it, while spacetime.md becomes a unifying view of the truth rather than a thing every app has to remember to maintain by hand. It also fits OSuite naturally: separate apps can each write their own files in their own way, and spacetime.md is rebuilt from what&#39;s actually there, rather than requiring every app to coordinate on writing to one shared file directly.</p>
+<h2>Where this stands</h2>
+<p>Not yet scoped: which functions would actually split off first, how they&#39;d share state or sync, and what the minimal shared convention layer needs to look like for spacetime.md-as-derived-index to actually work. This note exists to capture the principles before the scoping work starts — the filesystem as source of truth, apps as replaceable tools on top of it, and spacetime.md as a compiled view rather than a hand-maintained one.</p>
+</article></div><script>window.__ORDER__={"slug":"rfc-osuite-principles","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>
