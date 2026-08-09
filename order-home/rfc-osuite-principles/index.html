@@ -17,8 +17,8 @@
         document.documentElement.dataset.theme = resolved;
       } catch (e) {}
     </script>
-    <script type="module" crossorigin src="/order-home/assets/index-AuBSQXwN.js"></script>
-    <link rel="stylesheet" crossorigin href="/order-home/assets/index-CspjOKOe.css">
+    <script type="module" crossorigin src="/order-home/assets/index-C9-pvKV5.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-DMMwufEp.css">
   </head>
   <body>
     <div id="viewer-root"><article class="prerendered"><h1>RFC: OSuite — Principles for Splitting Order Apart</h1>
@@ -33,8 +33,11 @@
 <p>There&#39;s a real conceptual friction here worth naming directly, because it isn&#39;t small. The whole spacetime.md article argues for one unified way of reading space and time together a single home, not a set of separate rooms with separate front doors. OSuite starts from close to the opposite instinct: cutting that home apart into a suite of focused apps. That&#39;s the first concern.</p>
 <p>The second concern is more practical: sometimes it&#39;s just easier to edit the plain text file directly, or visualize it directly, than to go through any app at all. Part of spacetime.md&#39;s appeal is that for a lot of events, you never have to create a new file or a new folder. It’s just another line appended into existing text. This is a different mode from a notable-folder-with-its-own-directory model, and different again from a suite of separate apps, each of which might expect its own structured place to write into. More apps risks more ceremony per event, which cuts against the &quot;just a line, no new file&quot; simplicity that makes the format work in the first place.</p>
 <p>The resolution: flip spacetime.md from something hand-authored into something derived. Rather than being the thing you type into directly, it becomes a compiled index generated from whatever structure the various apps or CLI tools actually create on disk. That preserves the low-ceremony ease for the cases where a quick tool handles it, while spacetime.md becomes a unifying view of the truth rather than a thing every app has to remember to maintain by hand. It also fits OSuite naturally: separate apps can each write their own files in their own way, and spacetime.md is rebuilt from what&#39;s actually there, rather than requiring every app to coordinate on writing to one shared file directly.</p>
+<h2>CLI-first as a design rule</h2>
+<p>Every app in OSuite should ideally expose a CLI component, and the underlying code should be architected to support that from the start rather than bolted on afterward for one app in particular. In practice, this means core logic gets written as callable functions or standalone commands first, with any GUI or voice-agent interaction sitting on top as a thin layer that calls into that same shared code, rather than a GUI holding logic a script can&#39;t reach.</p>
+<p>This matters beyond convenience. For me, it means that each tool in the Order Suite has not only a well defined interface (API, CLI, UX behavior), but that itself acts as a value proposition when you tie the tools together in the spirit of the UNIX philosophy.</p>
 <h2>Where this stands</h2>
-<p>Not yet scoped: which functions would actually split off first, how they&#39;d share state or sync, and what the minimal shared convention layer needs to look like for spacetime.md-as-derived-index to actually work. This note exists to capture the principles before the scoping work starts — the filesystem as source of truth, apps as replaceable tools on top of it, and spacetime.md as a compiled view rather than a hand-maintained one.</p>
+<p>Not yet scoped: which functions would actually split off first, how they&#39;d share state or sync, and what the minimal shared convention layer needs to look like for spacetime.md-as-derived-index to actually work. This note exists to capture the principles before the scoping work starts. The filesystem as source of truth, apps as replaceable tools on top of it, and spacetime.md as a compiled view rather than a hand-maintained one.</p>
 </article></div><script>window.__ORDER__={"slug":"rfc-osuite-principles","dataUrl":"/order-home/data.json"}</script>
   </body>
 </html>
