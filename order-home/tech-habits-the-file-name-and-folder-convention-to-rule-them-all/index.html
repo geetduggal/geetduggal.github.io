@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/order-home/assets/order-glass-CcSTcEND.svg" />
+    <title>52.70 Tech Habits - The File Name and Folder Convention to Rule them All</title>
+    <script>
+      // The published viewer follows the visitor's OS light/dark by default
+      // ("auto"); a saved override (from the in-session toggle) wins. Resolved
+      // before first paint to avoid a flash; theme.ts keeps it live afterwards.
+      try {
+        var pref = localStorage.getItem("order.theme") || "auto";
+        var resolved = (pref === "auto")
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : pref;
+        document.documentElement.dataset.theme = resolved;
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/order-home/assets/index-3XOLWk9J.js"></script>
+    <link rel="stylesheet" crossorigin href="/order-home/assets/index-DgKskTWp.css">
+  </head>
+  <body>
+    <div id="viewer-root"><article class="prerendered"><h1>Tech Habits - The File Name and Folder Convention to Rule them All</h1>
+<p><em>2026-08-16</em> — <a href="https://medium.com/@geetduggal/tech-habits-the-file-name-and-folder-convention-to-rule-them-all-e7cb6b501b14">read on Medium</a></p>
+<h2>Further convergence on a unified representation of events, notes, &amp; their categories while retaining power</h2>
+<p><img src="/order-home/tech-habits-the-file-name-and-folder-convention-to-rule-them-all/image-zCSrr3Ntf17I89Ebpa6TBg.png" alt=""></p>
+<p>A couple of months ago I wrote about <a href="https://medium.com/@geetduggal/spacetime-md-a-minimal-plain-text-format-for-mapping-your-daily-work-b3e03e2621be">spacetime.md</a>: a unified, habitable plain text file format that was created with the aim of being a minimal and powerful way to represent events and notes across all areas of my life.</p>
+<p>The idea is really simple: you have a <a href="https://medium.com/@geetduggal/tech-habits-how-i-moved-into-my-johnny-decimal-and-obsidian-bases-system-for-organizing-notes-6bc7a00747e7">Johnny-Decimal-style folder structure</a> representing different areas, categories, and specific &#39;<a href="https://medium.com/@geetduggal/this-one-idea-changed-the-way-i-organized-my-notes-forever-f293371a0d5b">notable folders</a>&#39; within those categories. Each event or note is placed in time and belongs to exactly one of the notable folders. See eg. the <code>Lantern v2</code> folder and its associated events below:</p>
+<pre><code># Space
+
+[ ... ]
+
+## 30-39 Craft
+- 31 Craft Projects
+  - 31.01 Lantern v2
+  - 31.02 Build Log v3
+- 32 Craft People
+  - 32.01 Ana Sterling
+
+## 40-49 Stewardship
+
+[ ... ]
+
+# Time
+
+## Seasons
+
+2025-12-01 / 2026-02-14: Winter Quiet
+2026-02-15 / 2026-04-30: Spring Builds
+2026-05-01 / 2026-06-13: Frontier
+
+## Events
+
+[ ... ]
+
+2026-02-20             : Sketch on the wall #[31.01 Lantern v2]
+2026-02-20 09:00-10:30 : Kickoff scoping #[31.01 Lantern v2]
+2026-03-15             : Prototype runs #[31.01 Lantern v2]
+2026-04-10             : Alpha shape #[31.01 Lantern v2]
+2026-04-22 14:00-15:30 : Topology whiteboard #[31.01 Lantern v2]
+2026-05-05 11:00-11:45 : Cost model #[31.01 Lantern v2]
+2026-05-08             : Frontier kickoff #[31.01 Lantern v2]
+2026-05-22             : Staging deploy #[31.01 Lantern v2]
+2026-06-01             : Q2 sprint - pipeline v2 #[31.01 Lantern v2]
+2026-06-04             : Perf milestone #[31.01 Lantern v2]
+2026-06-05 16:20       : Debugging the drift #[31.01 Lantern v2]
+2026-06-08             : v2 dashboards - sprint week #[31.01 Lantern v2]
+2026-06-10             : Deep work - ingestion path #[31.01 Lantern v2]
+2026-06-12             : Incident review #[31.01 Lantern v2]
+2026-06-13             : Ship to prod #[31.01 Lantern v2]
+2026-06-16 09:00       : Standup #[31.01 Lantern v2]
+2026-06-17 08:00-10:00 : Deep block: ingestion path #[31.01 Lantern v2]
+2026-06-18 10:30       : Prod deploy window #[31.01 Lantern v2]
+[ ... ]
+</code></pre>
+<p>For this thought experiment (which I&#39;m affectionately calling <code>spacetime/</code> or &#39;spacetime-slash&#39;), I wanted to see how I&#39;d like it if I came from the other direction. That is, for:</p>
+<ul>
+<li><strong>space</strong>, instead of a plain text file being the source of truth, the <em>file system</em> itself is the source of truth? Specifically, the authoritative tree structure represented by the space component is literally just the directories in the filesystem. (In my case, Johnny-Decimal Areas, Categories, and Folders). And for</li>
+<li><strong>time</strong>, instead of plaintext <a href="https://markwhen.com/">Markwhen</a>-like ways of representing events, the <em>file name</em> itself contains that kind of syntax. And for</li>
+<li><strong>notable folders</strong>, the main document and important notes in the notable folders show up at the top by typical file naming conventions?</li>
+</ul>
+<p>Here is the <code>Lantern v2</code> project above represented in the filesystem using the UNIX <code>tree</code> command:</p>
+<pre><code>├── 30-39 Craft
+│   ├── 31 Craft Projects
+│   │   ├── 31.01 Lantern v2
+│   │   │   ├── ! 31.01 Lantern v2.md
+│   │   │   ├── $ Deploy checklist.md
+│   │   │   ├── $ Status - green.md
+│   │   │   ├── 2026-02-20 0900-1030 Kickoff scoping.md
+│   │   │   ├── 2026-02-20 Sketch on the wall.md
+│   │   │   ├── 2026-03-15 Prototype runs.md
+│   │   │   ├── 2026-04-10 Alpha shape.md
+│   │   │   ├── 2026-04-22 1400-1530 Topology whiteboard.excalidraw
+│   │   │   ├── 2026-04-22 1400-1530 Topology whiteboard.md
+│   │   │   ├── 2026-05-05 1100-1145 Cost model.md
+│   │   │   ├── 2026-05-05 1100-1145 Cost model.sheet.html
+│   │   │   ├── 2026-05-08 Dashboard wireframe.png
+│   │   │   ├── 2026-05-08 Frontier kickoff.md
+│   │   │   ├── 2026-05-19 Topology sketch.png
+│   │   │   ├── 2026-05-22 Staging deploy.md
+│   │   │   ├── 2026-06-01 Q2 sprint - pipeline v2.md
+│   │   │   ├── 2026-06-04 Perf milestone.md
+│   │   │   ├── 2026-06-05 1620 Debugging the drift.chat.md
+│   │   │   ├── 2026-06-08 v2 dashboards - sprint week.md
+│   │   │   ├── 2026-06-10 Deep work - ingestion path.md
+│   │   │   ├── 2026-06-12 Incident review.md
+│   │   │   ├── 2026-06-13 Ship to prod.md
+│   │   │   ├── 2026-06-16 0900 Standup.md
+│   │   │   ├── 2026-06-17 0800-1000 Deep block - ingestion path.md
+│   │   │   ├── 2026-06-18 1030 Prod deploy window.md
+</code></pre>
+<p>The idea here is that the convention is deceptively limited. It looks pretty intuitive and is pretty legible. There&#39;s clearly a project in some area called &#39;Craft&#39;. It looks like there&#39;s an important note at the top and a few other ones right below it, followed by a bunch of dated ones, some with times.</p>
+<p>Let&#39;s unpack how this is a bit more powerful than you might first imagine (and this is just scratching the surface):</p>
+<ul>
+<li><strong>Johnny-Decimal in Directory Names</strong>. The 31.01 and the directories above encode quite a bit: they pinpoint where in a larger context this project lies. And that there are only a handful of Areas and Categories within any Area to contend with. And an even more subtle point: in spacetime-slash, Johnny-Decimal is not strictly enforced, but when I use it, I strictly enforce it at the directory name level. This keeps it nicely decoupled from the folder contents and is one less thing for me to have to keep in sync.</li>
+<li><strong>The Exclamation Mark</strong>. It is clear it&#39;s at the top, but in spacetime-slash, it points at the folder&#39;s main document. There can only be one of them, and it&#39;s always at the top. Name it how you like (though I follow Johnny-Decimal).</li>
+<li><strong>The Dollar Sign</strong>. Represents &#39;pinned notes&#39; and there can be multiple pinned notes. It is the center portion of a three level pyramid: the main document at the top, a handful of pinned items just below, dated entries and arbitrary files at the bottom. This is a subtle way of saying that spacetime-slash has 4 broad classes of files sorted by importance.</li>
+<li><strong>Everything Can be Seen in the Context of Time</strong>. The specific ISO-8601 YYYY-MM-DD date convention followed by a typical HHMM-HHMM is intuitive to read but the format itself is strict enough to use to render in any calendar and the folder itself can be the color/label/name of that calendar. It supports all day events, multi-day events, and timed daily events. This is represented as a simple and clean syntax on the file name itself and can support multiple different kinds of calendar views: day, week, month, year, and <a href="https://medium.com/@geetduggal/tech-habits-todo-txt-never-looked-so-good-and-a-new-type-of-calendar-view-c1ecc51d64ed">season</a>.</li>
+<li><strong>&#39;<a href="https://medium.com/@geetduggal/weather-resistant-productivity-2a90c4357068">Weather Resistant</a></strong> <strong>Formats&#39;</strong>. At first glance most notes seem to be in markdown, but the whole power of using folders to represent a topic vs. files in a flatter hierarchy is that it acknowledges the fact that there are multiple types of files useful for particular occasions. spacetime-slash encourages notes and pinned notes to literally be image or HTML files directly for example and suggests that viewers of this convention render them as first class citizens.</li>
+</ul>
+<p>Another key problem this filesystem approach solves is not having to keep any external ledger or database in sync with what&#39;s on the filesystem. If the filesystem itself is the truth and all other views are derived, then you don&#39;t have a synchronization problem to solve. Moving a note from one folder to another requires no extra bookkeeping.</p>
+<p>Now, imagine you can have so many useful interfaces on top of this very simple structure:</p>
+<ul>
+<li>You can edit files directly through typical OS file browsers and editors</li>
+<li>You can use UNIX tools to quickly query and process these files</li>
+<li>You can build a CLI and even terminal app that can take advantage of these conventions in a visual and meaningful way.</li>
+</ul>
+<p><img src="/order-home/tech-habits-the-file-name-and-folder-convention-to-rule-them-all/image-n2Emx9T16KP3Y_Kk5_lwzg.png" alt=""></p>
+<p>You can also create modules/libraries that reliably parse and work with the file naming conventions. For example, the simple <a href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form">Extended Backus-Naur form</a> metasyntax below can be used to help define the implementation parse order and rules:</p>
+<pre><code class="language-ebnf">filename   = [ marker , &quot; &quot; ] , core , &quot;.&quot; , ext ;
+
+marker     = &quot;!&quot;                 (* main document: exactly one per folder      *)
+           | &quot;$&quot; ;               (* pinned note:  zero or more per folder      *)
+                                 (* a name carries at most one; ! and $ never
+                                    combine                                    *)
+
+core       = event | label ;
+
+event      = date , [ &quot; &quot; , clock ]          (* all-day, or a point/span that day *)
+           | date , &quot; - &quot; , date ;           (* multi-day all-day span            *)
+
+clock      = time , [ &quot;-&quot; , time ] ;         (* a point in time, or a same-day span *)
+
+date       = YYYY , &quot;-&quot; , MM , &quot;-&quot; , DD ;    (* ISO 8601; must be a real calendar day *)
+time       = HH , MM ;                       (* 24-hour, &quot;0000&quot;..&quot;2359&quot;, no colon      *)
+
+label      = ? any text, not beginning with a valid `date`, no &quot;/&quot; ? ;
+
+ext        = &quot;md&quot; | &quot;html&quot; | &quot;pdf&quot; | &quot;txt&quot;
+           | &quot;png&quot; | &quot;jpg&quot; | &quot;jpeg&quot;          (* weather-resistant, core            *)
+           | &quot;chat.md&quot; | &quot;sheet.html&quot;
+           | &quot;excalidraw&quot; | … ;              (* incubating, optional               *)
+
+YYYY = digit , digit , digit , digit ;
+MM   = digit , digit ;   DD = digit , digit ;
+HH   = digit , digit ;   (* 00..23 *)
+digit = &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot; ;
+</code></pre>
+<p>The surprising thing about all of these explorations in plain text management of my files and notes is that there is certainly an element of shiny new object/technique syndrome. However, because the format underneath is portable, I have found myself actually <em>converging</em> on a system over the last few years.</p>
+<p>In other words, in each new evolution I&#39;m certainly trying out different ideas (eg. see my <a href="https://medium.com/@geetduggal/tech-habits-property-folders-a-linear-calendar-view-in-obsidian-a-plain-text-renaissance-9252bad51a46">flattened</a> <a href="https://medium.com/@geetduggal/tech-habits-can-you-johnny-decimal-without-the-decimal-31927f0f2e82">decimal-less</a> Johnny-Decimal experiments). In the end, I find myself often <a href="https://mcfunley.com/choose-boring-technology">choosing boring technology</a> and giving the old shoe a shine myself to torture the metaphor. For example, I think it&#39;s fairly clear that the &#39;boring&#39; technology of plain text files in a vault has proven to be exceptionally useful in the context of AI. For me, it&#39;s the best of both worlds. &#39;Till next time 🏔️</p>
+<hr>
+<p>Some interesting links of late:</p>
+<ul>
+<li><a href="https://dariusforoux.medium.com/the-quiet-life-is-the-most-underrated-path-to-success-6ca119163c6b">The Quiet Life Is the Most Underrated Path to Success</a> — &quot;The right life is the one where you don&#39;t need a vacation from your own week.&quot; What a good heuristic to test how you&#39;re using your time!</li>
+<li><a href="https://medium.com/health-science/the-rise-and-fall-of-the-second-brain-30d164b56750">The Rise and Fall of the Second Brain</a> — &quot;Thinking was never a storage problem, so stop solving it like one.&quot; This really resonated with me. For me all these note taking apps and techniques aren&#39;t about storage and retrieval but people focus on that so much. They should help us think and converse with each other in richer ways.</li>
+<li><a href="https://miscellaneplans.medium.com/ptpl-219-do-what-works-drop-the-rest-fit-it-all-on-one-page-4a678f743320">PTPL 219 · Do what works, drop the rest. Fit it all on one page.</a> — &quot;tailoring the simplicity of your system to the end you are trying to attain&quot; from Ellane W low-key planted a seed for this thought experiment to simplify what I was already doing.</li>
+<li><a href="https://kurtis-redux.medium.com/bentowise-2-0-building-the-foundation-before-adding-ai-dbbac33dc012">Bentowise 2.0: Building the Foundation Before Adding AI</a> — I came across Kurtis Redux&#39;s work after I developed my homegrown made-pretty-much-just-for-me app, but on reading it you could guess how happy I was with the folder-based, local-first focus of this app. I don&#39;t think folder/local-first is uniformly the way to go for everything (especially corporate contexts), but I do feel like it probably is for personal knowledge and projects and I love seeing these efforts.</li>
+</ul>
+</article></div><script>window.__ORDER__={"slug":"tech-habits-the-file-name-and-folder-convention-to-rule-them-all","dataUrl":"/order-home/data.json"}</script>
+  </body>
+</html>
